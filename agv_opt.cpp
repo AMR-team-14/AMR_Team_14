@@ -415,7 +415,31 @@ struct AgvState {
     int rid = -1;
 };
 
-SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tree, int q_cutoff = -1) {
+// Evaluates the dispatching tree priority bitmask kappa(v, r) for a candidate pair.
+static inline int eval_tree_bits(const Tree& tree, const Arrival& ar, double de, double w, int qo) {
+    int bits = 0;
+    int shift = 12;
+    int nid = 1;
+    while (nid != 0) {
+        const TreeNode& tn = tree.nodes[nid];
+        double val;
+        if (tn.feat == 0) val = ar.u;
+        else if (tn.feat == 1) val = w;
+        else if (tn.feat == 2) val = de;
+        else if (tn.feat == 3) val = ar.dl;
+        else val = qo;
+
+        bool is_hi = val > tn.th;
+        int bit = tn.is_min ? (is_hi ? 1 : 0) : (is_hi ? 0 : 1);
+        bits |= (bit << shift);
+        --shift;
+        nid = is_hi ? tn.hi : tn.lo;
+    }
+    return bits;
+}
+
+SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tree,
+                   int q_cutoff = -1, bool brute_force = false) {
     const auto& arrivals = sd.streams[stream_idx];
     const int n_arr = (int)arrivals.size();
     int q_limit = (q_cutoff > 0) ? std::min(q_cutoff, sd.qcap) : sd.qcap;
@@ -423,10 +447,12 @@ SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tre
     // Collect distinct w thresholds used in the tree for exact flow pruning even with w min!
     bool all_w_max = true;
     std::vector<double> w_min_thresh;
-    for (int nid = 1; nid <= tree.n_nodes; ++nid) {
-        if (tree.nodes[nid].feat == 1 && tree.nodes[nid].is_min) {
-            all_w_max = false;
-            w_min_thresh.push_back(tree.nodes[nid].th);
+    if (!brute_force) {
+        for (int nid = 1; nid <= tree.n_nodes; ++nid) {
+            if (tree.nodes[nid].feat == 1 && tree.nodes[nid].is_min) {
+                all_w_max = false;
+                w_min_thresh.push_back(tree.nodes[nid].th);
+            }
         }
     }
 
@@ -483,28 +509,46 @@ SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tre
     };
 
     auto try_dispatch = [&](double t) {
-        int cand_rids[64];
+        int cand_rids[305];
         while (idle_mask && q_len > 0) {
-            int rep_pos[7];
-            int rep_aid[7];
+            int rep_pos[32];
+            int rep_aid[32];
             int n_rep = 0;
-            uint32_t seen_pos_mask = 0;
-            uint32_t m = idle_mask;
-            while (m) {
-                int aid = __builtin_ctz(m);
-                m &= m - 1;
-                int p = agv_pos[aid];
-                uint32_t bit = 1u << p;
-                if (!(seen_pos_mask & bit)) {
-                    seen_pos_mask |= bit;
-                    rep_pos[n_rep] = p;
+            if (brute_force) {
+                uint32_t m = idle_mask;
+                while (m) {
+                    int aid = __builtin_ctz(m);
+                    m &= m - 1;
+                    rep_pos[n_rep] = agv_pos[aid];
                     rep_aid[n_rep] = aid;
                     ++n_rep;
+                }
+            } else {
+                uint32_t seen_pos_mask = 0;
+                uint32_t m = idle_mask;
+                while (m) {
+                    int aid = __builtin_ctz(m);
+                    m &= m - 1;
+                    int p = agv_pos[aid];
+                    uint32_t bit = 1u << p;
+                    if (!(seen_pos_mask & bit)) {
+                        seen_pos_mask |= bit;
+                        rep_pos[n_rep] = p;
+                        rep_aid[n_rep] = aid;
+                        ++n_rep;
+                    }
                 }
             }
 
             int n_cand = 0;
-            if (all_w_max) {
+            if (brute_force) {
+                for (int fid = 0; fid < sd.n_flows; ++fid) {
+                    const auto& fq = flow_q[fid];
+                    for (int k = fq_head[fid]; k < (int)fq.size(); ++k) {
+                        cand_rids[n_cand++] = fq[k];
+                    }
+                }
+            } else if (all_w_max) {
                 for (int fid = 0; fid < sd.n_flows; ++fid) {
                     if (fq_head[fid] < (int)flow_q[fid].size()) {
                         cand_rids[n_cand++] = flow_q[fid][fq_head[fid]];
@@ -553,34 +597,12 @@ SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tre
                     int rid = cand_rids[c_i];
                     const Arrival& ar = arrivals[rid];
                     double de = sp_row[ar.o];
-                    double w = t - ar.at;
-                    int qo = qo_map[ar.o];
+                    int bits = eval_tree_bits(tree, ar, de, t - ar.at, qo_map[ar.o]);
 
-                    int bits = 0;
-                    int shift = 12;
-                    int nid = 1;
-                    while (nid != 0) {
-                        const TreeNode& tn = tree.nodes[nid];
-                        double val;
-                        if (tn.feat == 0) val = ar.u;
-                        else if (tn.feat == 1) val = w;
-                        else if (tn.feat == 2) val = de;
-                        else if (tn.feat == 3) val = ar.dl;
-                        else val = qo;
-
-                        bool is_hi = val > tn.th;
-                        int bit = tn.is_min ? (is_hi ? 1 : 0) : (is_hi ? 0 : 1);
-                        bits |= (bit << shift);
-                        --shift;
-                        nid = is_hi ? tn.hi : tn.lo;
-                    }
-
-                    bool better = false;
-                    if (bits != best_bits) better = bits < best_bits;
-                    else if (de != best_de) better = de < best_de;
-                    else if (rid != best_rid) better = rid < best_rid;
-                    else better = aid < best_aid;
-
+                    bool better = (bits != best_bits) ? (bits < best_bits)
+                                : (de != best_de)     ? (de < best_de)
+                                : (rid != best_rid)   ? (rid < best_rid)
+                                                      : (aid < best_aid);
                     if (better) {
                         best_bits = bits;
                         best_de = de;
@@ -799,129 +821,196 @@ std::string tree_key_str(const Tree& raw_t) {
     return os.str();
 }
 
-bool is_noop_attach(const Tree& t, int p_nid, bool is_hi, int feat, bool is_min) {
-    int urg_state = -1;
-    bool dl_gt_25 = false;
-    auto dfs = [&](auto& self, int curr, int us, bool dgt) -> bool {
-        if (curr == 0) return false;
-        const auto& tn = t.nodes[curr];
-        if (curr == p_nid) {
-            if (tn.feat == 0) us = is_hi ? 1 : 0;
-            else if (tn.feat == 3 && tn.th >= 25 && is_hi) dgt = true;
-            urg_state = us; dl_gt_25 = dgt;
-            return true;
-        }
-        int lo_u = (tn.feat == 0) ? 0 : us;
-        int hi_u = (tn.feat == 0) ? 1 : us;
-        bool hi_d = (tn.feat == 3 && tn.th >= 25) ? true : dgt;
-        return self(self, tn.lo, lo_u, dgt) || self(self, tn.hi, hi_u, hi_d);
-    };
-    dfs(dfs, 1, -1, false);
-    if (urg_state == 1) {
-        if (feat == 3 || feat == 4) return true;
-        if (feat == 1 && !is_min) return true;
-        if (feat == 2 && is_min) return true;
+struct Split {
+    int feat;
+    bool is_min;
+    double th;
+};
+
+static const std::vector<double> DE_GRID = {0, 25, 65, 90, 115, 140, 155, 180};
+static const std::vector<double> DL_GRID = {25, 50, 65, 90};
+static const std::vector<double> QO_GRID = {1, 2, 3, 4, 5};
+static const std::vector<double> W_GRID  = {
+    0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0
+};
+
+// Executes fn(i) for i in [0, count) using up to n_threads worker threads.
+template <typename Fn>
+void parallel_for(int count, int n_threads, Fn&& fn) {
+    int nt = std::max(1, std::min(n_threads, count));
+    if (nt <= 1) {
+        for (int i = 0; i < count; ++i) fn(i);
+        return;
     }
-    if (dl_gt_25 && feat == 0) return true;
-    return false;
+    std::vector<std::thread> ths;
+    ths.reserve(nt);
+    for (int ti = 0; ti < nt; ++ti) {
+        ths.emplace_back([&, ti]() {
+            for (int i = ti; i < count; i += nt) fn(i);
+        });
+    }
+    for (auto& th : ths) th.join();
 }
 
-struct Split { int feat; bool is_min; double th; };
+// Evaluates weighted multi-seed objective: 0.15 * Seed11 + 0.85 * mean(unseen[5..5+n_tail)).
+double eval_w51(const SimData& sd, int n_agv, const Tree& t, int n_tail = 50,
+                int q_cut = -1, double* out_s11 = nullptr, double* out_tail = nullptr) {
+    double s11 = run_sim(sd, 0, n_agv, t, q_cut).cost;
+    if (s11 >= 900000.0) return 999999.0;
+    double tail = eval_streams(sd, n_agv, t, 5, 5 + n_tail, q_cut);
+    if (tail >= 900000.0) return 999999.0;
+    if (out_s11) *out_s11 = s11;
+    if (out_tail) *out_tail = tail;
+    return 0.15 * s11 + 0.85 * tail;
+}
 
-// Fast 2-stage robust coordinate polish: screens all single-node changes on 12 streams,
-// then evaluates top 8 candidates on all 55 streams!
-Tree fast_robust_polish(const SimData& sd, int n_agv, Tree base_t, double& out_cost, int n_threads) {
-    static const std::vector<double> DE_GRID = {0, 25, 65, 90, 115, 140, 155, 180};
-    static const std::vector<double> DL_GRID = {25, 50, 65, 90};
-    static const std::vector<double> QO_GRID = {1, 2, 3, 4, 5};
-    static const std::vector<double> W_GRID = {0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0};
+std::vector<double> eval_batch_w51(const SimData& sd, int n_agv, const std::vector<Tree>& trees,
+                                   int n_threads, int n_tail = 50, int q_cut = -1) {
+    std::vector<double> scores(trees.size(), 999999.0);
+    parallel_for((int)trees.size(), n_threads, [&](int i) {
+        scores[i] = eval_w51(sd, n_agv, trees[i], n_tail, q_cut);
+    });
+    return scores;
+}
 
-    int n_tot = (int)sd.streams.size(); // 55 streams
+std::vector<SimMetrics> eval_stream_range(const SimData& sd, int n_agv, const Tree& t,
+                                          int start_s, int count, int n_threads) {
+    std::vector<SimMetrics> out(count);
+    parallel_for(count, n_threads, [&](int i) {
+        out[i] = run_sim(sd, start_s + i, n_agv, t);
+    });
+    return out;
+}
+
+struct RangeStats {
+    double mean_cost = 999999.0;
+    double std_cost = 0.0;
+    double mean_w = 0.0;
+    double mean_u95 = 0.0;
+    double max_cost = 999999.0;
+    int max_q = 0;
+    int max_end_q = 0;
+    int disq = 0;
+    std::vector<double> costs;
+};
+
+RangeStats summarize_range(const SimData& sd, int n_agv, const Tree& t, int start_s, int count, int n_threads) {
+    auto ms = eval_stream_range(sd, n_agv, t, start_s, count, n_threads);
+    RangeStats st;
+    st.costs.reserve(count);
+    double sc = 0.0, sw = 0.0, su = 0.0;
+    for (const auto& m : ms) {
+        st.max_q = std::max(st.max_q, m.max_q);
+        st.max_end_q = std::max(st.max_end_q, m.end_q);
+        if (m.cost >= 900000.0) {
+            ++st.disq;
+        } else {
+            sc += m.cost;
+            sw += m.w_bar;
+            su += m.u_95;
+            st.costs.push_back(m.cost);
+        }
+    }
+    int ok = (int)st.costs.size();
+    if (ok == 0) return st;
+    st.mean_cost = sc / ok;
+    st.mean_w = sw / ok;
+    st.mean_u95 = su / ok;
+    double var = 0.0;
+    double mx = 0.0;
+    for (double c : st.costs) {
+        var += (c - st.mean_cost) * (c - st.mean_cost);
+        mx = std::max(mx, c);
+    }
+    st.std_cost = ok > 1 ? std::sqrt(var / (ok - 1)) : 0.0;
+    st.max_cost = mx;
+    return st;
+}
+
+std::vector<int> sorted_order(const std::vector<double>& vals) {
+    std::vector<int> idx(vals.size());
+    std::iota(idx.begin(), idx.end(), 0);
+    std::sort(idx.begin(), idx.end(), [&](int a, int b) { return vals[a] < vals[b]; });
+    return idx;
+}
+
+std::vector<double> threshold_grid_for(int feat, double current_th) {
+    if (feat == 2) return DE_GRID;
+    if (feat == 3) return DL_GRID;
+    if (feat == 4) return QO_GRID;
+    std::vector<double> grid = W_GRID;
+    for (int d = -4; d <= 4; ++d) {
+        grid.push_back(std::round(std::max(0.1, current_th + d * 0.1) * 100.0) / 100.0);
+    }
+    std::sort(grid.begin(), grid.end());
+    grid.erase(std::unique(grid.begin(), grid.end()), grid.end());
+    return grid;
+}
+
+std::vector<Tree> generate_neighbor_trees(const Tree& base_t) {
+    std::vector<Tree> cands;
+    std::set<std::string> seen;
+    seen.insert(tree_key_str(base_t));
+
+    auto try_add = [&](const Tree& cand) {
+        if (is_valid_tree(cand) && seen.insert(tree_key_str(cand)).second) {
+            cands.push_back(cand);
+        }
+    };
+
+    for (int nid = 1; nid <= base_t.n_nodes; ++nid) {
+        const auto& tn = base_t.nodes[nid];
+        if (tn.feat == 0) {
+            Tree cand = base_t;
+            cand.nodes[nid].is_min = !tn.is_min;
+            try_add(cand);
+        } else {
+            auto grid = threshold_grid_for(tn.feat, tn.th);
+            for (bool cm : {true, false}) {
+                for (double cth : grid) {
+                    Tree cand = base_t;
+                    cand.nodes[nid].is_min = cm;
+                    cand.nodes[nid].th = cth;
+                    try_add(cand);
+                }
+            }
+        }
+        if (tn.lo == 0 && tn.hi == 0 && nid != 1) {
+            Tree cand = base_t;
+            for (int pid = 1; pid <= cand.n_nodes; ++pid) {
+                if (cand.nodes[pid].lo == nid) cand.nodes[pid].lo = 0;
+                if (cand.nodes[pid].hi == nid) cand.nodes[pid].hi = 0;
+            }
+            try_add(canonicalize_tree(cand));
+        }
+    }
+    return cands;
+}
+
+// Fast 2-stage robust coordinate polish: screens all single-node changes on 12 streams
+// (Seed11 + unseen 101..111 with q_cut=65), then verifies top 10 on full w51 (51 streams).
+Tree coordinate_polish(const SimData& sd, int n_agv, Tree base_t, double& out_cost, int n_threads) {
     Tree best_t = canonicalize_tree(base_t);
-    double best_c = eval_streams(sd, n_agv, best_t, 0, n_tot);
+    double best_c = eval_w51(sd, n_agv, best_t);
 
     bool improved = true;
     while (improved) {
         improved = false;
-        std::vector<Tree> cands;
-        std::set<std::string> seen;
-        seen.insert(tree_key_str(best_t));
-
-        for (int nid = 1; nid <= best_t.n_nodes; ++nid) {
-            const auto& tn = best_t.nodes[nid];
-            if (tn.feat == 0) continue;
-            std::vector<double> grid;
-            if (tn.feat == 1) {
-                grid = W_GRID;
-                for (int d = -4; d <= 4; ++d) {
-                    grid.push_back(std::round(std::max(0.1, tn.th + d * 0.1) * 100.0) / 100.0);
-                }
-                std::sort(grid.begin(), grid.end());
-                grid.erase(std::unique(grid.begin(), grid.end()), grid.end());
-            } else if (tn.feat == 2) grid = DE_GRID;
-            else if (tn.feat == 3) grid = DL_GRID;
-            else grid = QO_GRID;
-
-            for (bool cm : {true, false}) {
-                for (double cth : grid) {
-                    Tree cand = best_t;
-                    cand.nodes[nid].is_min = cm; cand.nodes[nid].th = cth;
-                    if (is_valid_tree(cand) && seen.insert(tree_key_str(cand)).second) cands.push_back(cand);
-                }
-            }
-            if (tn.lo == 0 && tn.hi == 0 && nid != 1) {
-                Tree cand = best_t;
-                for (int pid = 1; pid <= cand.n_nodes; ++pid) {
-                    if (cand.nodes[pid].lo == nid) cand.nodes[pid].lo = 0;
-                    if (cand.nodes[pid].hi == nid) cand.nodes[pid].hi = 0;
-                }
-                cand = canonicalize_tree(cand);
-                if (is_valid_tree(cand) && seen.insert(tree_key_str(cand)).second) cands.push_back(cand);
-            }
-        }
+        auto cands = generate_neighbor_trees(best_t);
         if (cands.empty()) break;
 
-        // Stage 1: Screen on 12 streams (seed 11 + unseen 101..111)
-        std::vector<double> scr(cands.size(), 999999.0);
-        {
-            std::vector<std::thread> ths;
-            for (int ti = 0; ti < n_threads; ++ti) {
-                ths.emplace_back([&, ti]() {
-                    for (size_t i = ti; i < cands.size(); i += n_threads) {
-                        double c0 = run_sim(sd, 0, n_agv, cands[i], 65).cost;
-                        if (c0 < 900000.0) {
-                            double c11 = eval_streams(sd, n_agv, cands[i], 5, 16, 65);
-                            if (c11 < 900000.0) scr[i] = (c0 + 11.0 * c11) / 12.0;
-                        }
-                    }
-                });
-            }
-            for (auto& th : ths) th.join();
-        }
-        std::vector<int> idx(cands.size());
-        std::iota(idx.begin(), idx.end(), 0);
-        std::sort(idx.begin(), idx.end(), [&](int a, int b) { return scr[a] < scr[b]; });
+        auto scr = eval_batch_w51(sd, n_agv, cands, n_threads, 11, 65);
+        auto idx = sorted_order(scr);
 
-        // Stage 2: Exact 55-stream eval on top 10
-        int top_k = std::min((int)idx.size(), 10);
-        std::vector<double> exact_c(top_k, 999999.0);
-        {
-            std::vector<std::thread> ths;
-            for (int ti = 0; ti < n_threads; ++ti) {
-                ths.emplace_back([&, ti]() {
-                    for (int k = ti; k < top_k; k += n_threads) {
-                        if (scr[idx[k]] < 900000.0) {
-                            exact_c[k] = eval_streams(sd, n_agv, cands[idx[k]], 0, n_tot);
-                        }
-                    }
-                });
-            }
-            for (auto& th : ths) th.join();
+        std::vector<Tree> top_trees;
+        for (int k = 0; k < std::min((int)idx.size(), 10); ++k) {
+            if (scr[idx[k]] < 900000.0) top_trees.push_back(cands[idx[k]]);
         }
-        for (int k = 0; k < top_k; ++k) {
+        auto exact_c = eval_batch_w51(sd, n_agv, top_trees, n_threads);
+        for (size_t k = 0; k < top_trees.size(); ++k) {
             if (exact_c[k] < best_c - 1e-4) {
                 best_c = exact_c[k];
-                best_t = cands[idx[k]];
+                best_t = top_trees[k];
                 improved = true;
             }
         }
@@ -932,22 +1021,12 @@ Tree fast_robust_polish(const SimData& sd, int n_agv, Tree base_t, double& out_c
 
 void run_analysis(const SimData& sd, const std::string& csv_path, int n_threads) {
     auto [base_n, base_t] = load_csv_tree(csv_path);
+    int n_unseen = std::min(50, (int)sd.streams.size() - 5);
     std::cout << "=== FULL ANALYSIS FOR " << csv_path << " (n=" << base_n << ", nodes=" << base_t.n_nodes << ") ===\n";
-    auto eval_50_unseen = [&](int n_agv, const Tree& tr) {
-        int n_unseen = (int)sd.streams.size() - 5;
-        std::vector<SimMetrics> ms(n_unseen);
-        std::vector<std::thread> ths;
-        for (int ti = 0; ti < n_threads; ++ti) {
-            ths.emplace_back([&, ti]() {
-                for (int i = ti; i < n_unseen; i += n_threads) ms[i] = run_sim(sd, 5 + i, n_agv, tr);
-            });
-        }
-        for (auto& th : ths) th.join();
-        return ms;
-    };
 
     std::cout << "\n[1] Public 5-Seed Breakdown (Seeds 11..15):\n";
-    double p_sum = 0, p_w = 0, p_u = 0; int p_maxq = 0, p_endq = 0;
+    double p_sum = 0, p_w = 0, p_u = 0;
+    int p_maxq = 0, p_endq = 0;
     const int pub_seeds[5] = {11, 12, 13, 14, 15};
     for (int s = 0; s < 5; ++s) {
         SimMetrics m = run_sim(sd, s, base_n, base_t);
@@ -964,38 +1043,36 @@ void run_analysis(const SimData& sd, const std::string& csv_path, int n_threads)
 
     std::cout << "\n[2] Fleet Size Sensitivity (n=16..23) on Public (5) & Unseen (50):\n";
     for (int na = 16; na <= 23; ++na) {
-        double pm_c = 0, pm_w = 0, pm_u = 0; int pm_disq = 0, pm_mq = 0;
+        double pm_c = 0, pm_w = 0, pm_u = 0;
+        int pm_disq = 0, pm_mq = 0;
         for (int s = 0; s < 5; ++s) {
             SimMetrics m = run_sim(sd, s, na, base_t);
             if (m.cost >= 900000.0) ++pm_disq;
             else { pm_c += m.cost; pm_w += m.w_bar; pm_u += m.u_95; }
             pm_mq = std::max(pm_mq, m.max_q);
         }
-        auto ums = eval_50_unseen(na, base_t);
-        std::vector<double> ucs; int udisq = 0, umq = 0, ueq = 0;
-        double uw = 0, uu = 0;
-        for (const auto& m : ums) {
-            umq = std::max(umq, m.max_q); ueq = std::max(ueq, m.end_q);
-            if (m.cost >= 900000.0) ++udisq;
-            else { ucs.push_back(m.cost); uw += m.w_bar; uu += m.u_95; }
-        }
-        std::sort(ucs.begin(), ucs.end());
-        double umean = ucs.empty() ? 999999.0 : std::accumulate(ucs.begin(), ucs.end(), 0.0) / ucs.size();
-        double uvar = 0.0; for (double v : ucs) uvar += (v - umean) * (v - umean);
-        double ustd = ucs.size() > 1 ? std::sqrt(uvar / ucs.size()) : 0.0;
-        double umax = ucs.empty() ? 999999.0 : ucs.back();
+        RangeStats st = summarize_range(sd, na, base_t, 5, n_unseen, n_threads);
+        double ustd = st.costs.size() > 1 ? st.std_cost * std::sqrt((double)(st.costs.size() - 1) / st.costs.size()) : 0.0;
+        bool ok_u = !st.costs.empty();
         std::cout << "  n=" << std::setw(2) << na << " | pub=" << std::setprecision(2) << (pm_disq ? 999999.0 : pm_c / 5.0)
                   << " (w=" << std::setprecision(4) << (pm_disq ? 999.0 : pm_w / 5.0) << ", u95=" << (pm_disq ? 999.0 : pm_u / 5.0)
-                  << ", maxQ=" << pm_mq << ") | unseen50: mean=" << std::setprecision(2) << umean
-                  << " (w=" << std::setprecision(4) << (ucs.empty() ? 999.0 : uw / ucs.size())
-                  << ", u95=" << (ucs.empty() ? 999.0 : uu / ucs.size()) << ") std=" << std::setprecision(2) << ustd
-                  << " max=" << umax << " maxQ=" << umq << " endQ=" << ueq << " disq=" << udisq << "/50\n";
+                  << ", maxQ=" << pm_mq << ") | unseen50: mean=" << std::setprecision(2) << st.mean_cost
+                  << " (w=" << std::setprecision(4) << (ok_u ? st.mean_w : 999.0)
+                  << ", u95=" << (ok_u ? st.mean_u95 : 999.0) << ") std=" << std::setprecision(2) << ustd
+                  << " max=" << st.max_cost << " maxQ=" << st.max_q << " endQ=" << st.max_end_q
+                  << " disq=" << st.disq << "/" << n_unseen << "\n";
     }
+
+    auto summarize_unseen = [&](const Tree& tr, int& out_disq) {
+        RangeStats st = summarize_range(sd, base_n, tr, 5, n_unseen, n_threads);
+        out_disq = st.disq;
+        return st.mean_cost;
+    };
 
     std::cout << "\n[3] Node Ablation Analysis (Removing each node 2..N):\n";
     double full_pub = p_sum / 5.0;
-    auto full_u50 = eval_50_unseen(base_n, base_t);
-    double full_u_mean = 0; for (const auto& m : full_u50) full_u_mean += m.cost / full_u50.size();
+    int dummy_dq = 0;
+    double full_u_mean = summarize_unseen(base_t, dummy_dq);
     for (int rem = 2; rem <= base_t.n_nodes; ++rem) {
         Tree ab = base_t;
         for (int pid = 1; pid <= ab.n_nodes; ++pid) {
@@ -1003,15 +1080,12 @@ void run_analysis(const SimData& sd, const std::string& csv_path, int n_threads)
             if (ab.nodes[pid].hi == rem) ab.nodes[pid].hi = 0;
         }
         ab = canonicalize_tree(ab);
-        double ac = 0, aw = 0, au = 0;
-        for (int s = 0; s < 5; ++s) { SimMetrics m = run_sim(sd, s, base_n, ab); ac += m.cost; aw += m.w_bar; au += m.u_95; }
-        auto a_u50 = eval_50_unseen(base_n, ab);
-        double au_mean = 0; int au_disq = 0;
-        for (const auto& m : a_u50) { if (m.cost >= 900000.0) ++au_disq; else au_mean += m.cost; }
-        au_mean = (50 - au_disq) ? au_mean / (50 - au_disq) : 999999.0;
+        double ac = eval_streams(sd, base_n, ab, 0, 5);
+        int au_disq = 0;
+        double au_mean = summarize_unseen(ab, au_disq);
         const auto& rn = base_t.nodes[rem];
         std::cout << "  Drop #" << rem << " (" << FEAT_NAMES[rn.feat] << " " << (rn.is_min ? "min" : "max") << " " << rn.th
-                  << "): pub=" << std::setprecision(2) << ac / 5.0 << " (delta=" << std::showpos << (ac / 5.0 - full_pub) << std::noshowpos
+                  << "): pub=" << std::setprecision(2) << ac << " (delta=" << std::showpos << (ac - full_pub) << std::noshowpos
                   << ") | unseen50=" << au_mean << " (delta=" << std::showpos << (au_mean - full_u_mean) << std::noshowpos << ", disq=" << au_disq << ")\n";
     }
 
@@ -1024,257 +1098,432 @@ void run_analysis(const SimData& sd, const std::string& csv_path, int n_threads)
         else if (tn.feat == 2) vals = {0, 25, 65, 90, 115};
         else if (tn.feat == 3) vals = {25, 50, 65, 90};
         else vals = {1, 2, 3, 4};
-        if (std::find(vals.begin(), vals.end(), tn.th) == vals.end()) { vals.push_back(tn.th); std::sort(vals.begin(), vals.end()); }
+        if (std::find(vals.begin(), vals.end(), tn.th) == vals.end()) {
+            vals.push_back(tn.th);
+            std::sort(vals.begin(), vals.end());
+        }
         std::cout << "  Node #" << nid << " (" << FEAT_NAMES[tn.feat] << " " << (tn.is_min ? "min" : "max") << ", opt=" << tn.th << "):\n";
         for (double v : vals) {
-            Tree cand = base_t; cand.nodes[nid].th = v;
-            auto ms = eval_50_unseen(base_n, cand);
-            double sum = 0; int dq = 0;
-            for (const auto& m : ms) { if (m.cost >= 900000.0) ++dq; else sum += m.cost; }
-            double um = (50 - dq) ? sum / (50 - dq) : 999999.0;
+            Tree cand = base_t;
+            cand.nodes[nid].th = v;
+            int dq = 0;
+            double um = summarize_unseen(cand, dq);
             std::cout << "    th=" << std::setw(5) << v << " -> unseen50=" << std::setprecision(2) << um << " (disq=" << dq << ")\n";
         }
     }
 }
 
-int main(int argc, char** argv) {
-    SimData sd = load_case_data("agv_case_data (1).json", "agv_dispatch_log_seed11 (1).csv", 50);
-    int n_threads = 10;
+struct AstNode { int feat; bool is_min; double th; int lo; int hi; };
+using Ast = std::vector<AstNode>;
 
-    if (argc >= 3 && std::string(argv[1]) == "--eval") {
-        auto [n_agv, tree] = load_csv_tree(argv[2]);
+std::pair<Ast, int> tree_to_ast(const Tree& t, std::vector<int>* tid_to_ast = nullptr) {
+    Ast a;
+    if (tid_to_ast) tid_to_ast->assign(t.n_nodes + 1, -1);
+    auto build = [&](auto& self, int nid) -> int {
+        if (nid == 0) return -1;
+        int l = self(self, t.nodes[nid].lo);
+        int r = self(self, t.nodes[nid].hi);
+        int idx = (int)a.size();
+        a.push_back({t.nodes[nid].feat, t.nodes[nid].is_min, t.nodes[nid].th, l, r});
+        if (tid_to_ast) (*tid_to_ast)[nid] = idx;
+        return idx;
+    };
+    int root = build(build, 1);
+    return {a, root};
+}
+
+// Reconstructs a bounded valid <=9-node Tree from an AST via BFS, omitting duplicate path features.
+Tree ast_to_valid_tree(const Ast& a, int root_idx) {
+    Tree out;
+    out.n_nodes = 0;
+    if (root_idx < 0) return out;
+    struct Item { int ast_idx; int parent_tid; bool is_hi; int feat_mask; };
+    std::queue<Item> q;
+    q.push({root_idx, 0, false, 0});
+    while (!q.empty() && out.n_nodes < 9) {
+        Item cur = q.front();
+        q.pop();
+        if (cur.ast_idx < 0 || cur.ast_idx >= (int)a.size()) continue;
+        const AstNode& an = a[cur.ast_idx];
+        if (cur.feat_mask & (1 << an.feat)) continue;
+        int tid = ++out.n_nodes;
+        out.nodes[tid] = {an.feat, an.is_min, an.th, 0, 0};
+        if (cur.parent_tid != 0) {
+            if (cur.is_hi) out.nodes[cur.parent_tid].hi = tid;
+            else out.nodes[cur.parent_tid].lo = tid;
+        }
+        int nm = cur.feat_mask | (1 << an.feat);
+        if (an.lo >= 0) q.push({an.lo, tid, false, nm});
+        if (an.hi >= 0) q.push({an.hi, tid, true, nm});
+    }
+    return canonicalize_tree(out);
+}
+
+// Wraps an existing AST node under a newly created split node (edge-split).
+void insert_split_above(Ast& ast, int& root, int target_idx, const Split& sp, bool old_on_hi) {
+    int new_idx = (int)ast.size();
+    ast.push_back({sp.feat, sp.is_min, sp.th, old_on_hi ? -1 : target_idx, old_on_hi ? target_idx : -1});
+    if (target_idx == root) {
+        root = new_idx;
+        return;
+    }
+    for (int i = 0; i < new_idx; ++i) {
+        if (ast[i].lo == target_idx) ast[i].lo = new_idx;
+        if (ast[i].hi == target_idx) ast[i].hi = new_idx;
+    }
+}
+
+std::vector<Tree> build_reconstruct_seeds(const std::string& seed_csv, const std::vector<Split>& splits) {
+    std::vector<Tree> pool;
+    std::set<std::string> seen;
+    auto push_tree = [&](const Tree& tr) {
+        if (!is_valid_tree(tr)) return;
+        Tree ct = canonicalize_tree(tr);
+        if (seen.insert(tree_key_str(ct)).second) pool.push_back(ct);
+    };
+
+    std::vector<std::string> candidate_csvs = {"answer_final_best.csv", "reconstruct_best_19.csv", "robust_best_19.csv", "answer (1).csv"};
+    if (!seed_csv.empty()) candidate_csvs.insert(candidate_csvs.begin(), seed_csv);
+    for (const auto& fn : candidate_csvs) {
+        std::ifstream chk(fn);
+        if (chk.good()) push_tree(load_csv_tree(fn).second);
+    }
+
+    const std::vector<Split> top_roots = {
+        {4, false, 1}, {4, false, 2}, {4, true, 1},
+        {3, true, 65}, {3, true, 25}, {3, false, 65},
+        {1, false, 2.0}, {1, false, 4.0}, {1, true, 1.0}, {1, true, 2.5},
+        {0, false, 0.5}
+    };
+    const std::vector<double> de_vals = {0, 25, 65, 90, 115};
+    for (const auto& r1 : top_roots) {
+        for (double d_lo : de_vals) {
+            for (double d_hi : de_vals) {
+                Tree t3; t3.n_nodes = 3;
+                t3.nodes[1] = {r1.feat, r1.is_min, r1.th, 2, 3};
+                t3.nodes[2] = {2, true, d_lo, 0, 0};
+                t3.nodes[3] = {2, true, d_hi, 0, 0};
+                push_tree(t3);
+                if (r1.feat != 0 && r1.feat != 4) {
+                    Tree t7 = t3; t7.n_nodes = 7;
+                    t7.nodes[2].lo = 4; t7.nodes[2].hi = 5;
+                    t7.nodes[3].lo = 6; t7.nodes[3].hi = 7;
+                    t7.nodes[4] = {4, false, 1, 0, 0};
+                    t7.nodes[5] = {0, false, 0.5, 0, 0};
+                    t7.nodes[6] = {0, false, 0.5, 0, 0};
+                    t7.nodes[7] = {1, true, 1.0, 0, 0};
+                    push_tree(t7);
+                }
+            }
+        }
+    }
+
+    if (!pool.empty()) {
+        Tree base = pool[0];
+        for (int target = 1; target <= base.n_nodes; ++target) {
+            for (const auto& sp : splits) {
+                for (bool old_on_hi : {false, true}) {
+                    std::vector<int> tid_to_ast;
+                    auto [ast, root] = tree_to_ast(base, &tid_to_ast);
+                    insert_split_above(ast, root, tid_to_ast[target], sp, old_on_hi);
+                    push_tree(ast_to_valid_tree(ast, root));
+                }
+            }
+        }
+    }
+    return pool;
+}
+
+Tree mutate_reconstruct_child(const Tree& p1, const Tree& p2, const std::vector<Split>& splits, std::mt19937& rng) {
+    auto [ast, root] = tree_to_ast(p1);
+    int op = rng() % 5;
+
+    if (op == 0) {
+        auto [ast2, root2] = tree_to_ast(p2);
+        (void)root2;
+        int donor_idx = rng() % ast2.size();
+        int base_sz = (int)ast.size();
+        for (const auto& dn : ast2) {
+            ast.push_back({dn.feat, dn.is_min, dn.th, dn.lo >= 0 ? dn.lo + base_sz : -1, dn.hi >= 0 ? dn.hi + base_sz : -1});
+        }
+        int target = rng() % base_sz;
+        if (rng() % 2) ast[target].lo = donor_idx + base_sz;
+        else ast[target].hi = donor_idx + base_sz;
+    } else if (op == 1) {
+        int target = rng() % ast.size();
+        const auto& sp = splits[rng() % splits.size()];
+        insert_split_above(ast, root, target, sp, (rng() % 2) == 1);
+    } else if (op == 2 && ast.size() > 2) {
+        int target = rng() % ast.size();
+        int promo = (rng() % 2) ? ast[target].lo : ast[target].hi;
+        if (promo >= 0) {
+            if (target == root) root = promo;
+            else {
+                for (auto& node : ast) {
+                    if (node.lo == target) node.lo = promo;
+                    if (node.hi == target) node.hi = promo;
+                }
+            }
+        }
+    } else if (op == 3) {
+        int target = rng() % ast.size();
+        std::swap(ast[target].lo, ast[target].hi);
+    } else {
+        int nm = 1 + (rng() % 2);
+        for (int m = 0; m < nm; ++m) {
+            int target = rng() % ast.size();
+            const auto& sp = splits[rng() % splits.size()];
+            if ((rng() % 3) == 0 && ast.size() < 9) {
+                int new_idx = (int)ast.size();
+                ast.push_back({sp.feat, sp.is_min, sp.th, -1, -1});
+                if (ast[target].lo < 0) ast[target].lo = new_idx;
+                else if (ast[target].hi < 0) ast[target].hi = new_idx;
+            } else {
+                ast[target].feat = sp.feat;
+                ast[target].is_min = sp.is_min;
+                ast[target].th = sp.th;
+            }
+        }
+    }
+    return ast_to_valid_tree(ast, root);
+}
+
+int run_reconstruct(const SimData& sd, const std::string& seed_csv, int n_agv, int n_threads) {
+    auto t0 = std::chrono::steady_clock::now();
+    const std::vector<Split> splits = {
+        {0, false, 0.5}, {0, true, 0.5},
+        {2, true, 0}, {2, true, 25}, {2, true, 65}, {2, true, 90}, {2, true, 115},
+        {1, false, 1.0}, {1, false, 2.0}, {1, false, 3.5}, {1, false, 5.5},
+        {1, true, 0.5}, {1, true, 0.85}, {1, true, 1.5}, {1, true, 2.5}, {1, true, 4.0},
+        {4, false, 1}, {4, false, 2}, {4, true, 1},
+        {3, true, 25}, {3, true, 50}, {3, true, 65}, {3, false, 65}
+    };
+
+    auto pop_trees = build_reconstruct_seeds(seed_csv, splits);
+    std::cout << "[Reconstruct Init] Screening " << pop_trees.size() << " multi-tier + edge-split seeds...\n" << std::flush;
+    auto iscr = eval_batch_w51(sd, n_agv, pop_trees, n_threads, 11, 65);
+    auto iidx = sorted_order(iscr);
+
+    std::vector<Tree> init_eval;
+    std::map<int, int> fcnt;
+    std::set<std::string> ieval_seen;
+    for (int idx : iidx) {
+        if (iscr[idx] >= 900000.0) break;
+        const Tree& tr = pop_trees[idx];
+        int f = tr.nodes[1].feat;
+        if ((int)init_eval.size() < 100 || fcnt[f] < 10) {
+            if (ieval_seen.insert(tree_key_str(tr)).second) {
+                init_eval.push_back(tr);
+                ++fcnt[f];
+            }
+        }
+        if ((int)init_eval.size() >= 140) break;
+    }
+
+    auto init_c = eval_batch_w51(sd, n_agv, init_eval, n_threads);
+    struct GPInd { double c; Tree t; };
+    std::vector<GPInd> pop;
+    for (size_t i = 0; i < init_eval.size(); ++i) {
+        if (init_c[i] < 900000.0) pop.push_back({init_c[i], init_eval[i]});
+    }
+    std::sort(pop.begin(), pop.end(), [](const GPInd& a, const GPInd& b) { return a.c < b.c; });
+    std::cout << "[Reconstruct Gen 0] pop=" << pop.size() << " | best w51=" << std::fixed << std::setprecision(2) << pop[0].c << "\n" << std::flush;
+
+    std::mt19937 rng(202619);
+    for (int gen = 1; gen <= 12; ++gen) {
+        std::vector<Tree> kids;
+        std::set<std::string> kseen;
+        for (const auto& ind : pop) kseen.insert(tree_key_str(ind.t));
+
+        auto tournament = [&]() -> const Tree& {
+            int best_i = rng() % pop.size();
+            for (int k = 0; k < 3; ++k) {
+                int j = rng() % pop.size();
+                if (pop[j].c < pop[best_i].c) best_i = j;
+            }
+            return pop[best_i].t;
+        };
+
+        int attempts = 0;
+        while ((int)kids.size() < 320 && ++attempts < 4000) {
+            Tree child = mutate_reconstruct_child(tournament(), tournament(), splits, rng);
+            if (is_valid_tree(child) && kseen.insert(tree_key_str(child)).second) {
+                kids.push_back(child);
+            }
+        }
+
+        auto kscr = eval_batch_w51(sd, n_agv, kids, n_threads, 11, 65);
+        auto kidx = sorted_order(kscr);
+
+        std::vector<Tree> eval_kids;
+        for (int k = 0; k < std::min((int)kidx.size(), 60); ++k) {
+            if (kscr[kidx[k]] < 900000.0) eval_kids.push_back(kids[kidx[k]]);
+        }
+        auto ek_c = eval_batch_w51(sd, n_agv, eval_kids, n_threads);
+        std::vector<GPInd> new_inds;
+        for (size_t k = 0; k < eval_kids.size(); ++k) {
+            if (ek_c[k] < 900000.0) new_inds.push_back({ek_c[k], eval_kids[k]});
+        }
+        std::sort(new_inds.begin(), new_inds.end(), [](const GPInd& a, const GPInd& b) { return a.c < b.c; });
+
+        for (int k = 0; k < std::min((int)new_inds.size(), 3); ++k) {
+            double pc = 0;
+            Tree pt = coordinate_polish(sd, n_agv, new_inds[k].t, pc, n_threads);
+            pop.push_back({pc, pt});
+        }
+        for (const auto& ni : new_inds) pop.push_back(ni);
+
+        std::sort(pop.begin(), pop.end(), [](const GPInd& a, const GPInd& b) { return a.c < b.c; });
+        std::vector<GPInd> next_pop;
+        std::set<std::string> dedup;
+        for (const auto& ind : pop) {
+            if (dedup.insert(tree_key_str(ind.t)).second) next_pop.push_back(ind);
+            if ((int)next_pop.size() >= 80) break;
+        }
+        pop = std::move(next_pop);
+        std::cout << "  [Reconstruct Gen " << std::setw(2) << gen << "] best w51=" << std::fixed << std::setprecision(2) << pop[0].c
+                  << " (nodes=" << pop[0].t.n_nodes << ", root=" << FEAT_NAMES[pop[0].t.nodes[1].feat] << ")\n" << std::flush;
+    }
+
+    Tree best_t = pop[0].t;
+    double best_c = pop[0].c;
+    for (int k = 0; k < std::min((int)pop.size(), 5); ++k) {
+        double pc = 0;
+        Tree pt = coordinate_polish(sd, n_agv, pop[k].t, pc, n_threads);
+        if (pc < best_c) { best_c = pc; best_t = pt; }
+    }
+
+    double s11 = 0, u50 = 0;
+    eval_w51(sd, n_agv, best_t, 50, -1, &s11, &u50);
+    double pub5 = eval_streams(sd, n_agv, best_t, 0, 5);
+    RangeStats hst = summarize_range(sd, n_agv, best_t, 55, 50, n_threads);
+
+    save_csv_tree(sd, "reconstruct_best_19.csv", n_agv, best_t);
+    auto t1 = std::chrono::steady_clock::now();
+    std::cout << "\n[Reconstruct Final] seed11=" << s11 << " | pub5=" << pub5
+              << " | u50(101..150)=" << u50 << " | w51=" << best_c
+              << " | HELD-OUT 50(151..200)=" << hst.mean_cost << " (disq=" << hst.disq << "/50)"
+              << " | time=" << std::chrono::duration<double>(t1 - t0).count() << "s\n" << std::flush;
+    return 0;
+}
+
+void run_eval_cmd(const SimData& sd, const std::string& csv_path, const std::string& mode, int n_threads) {
+    auto [n_agv, tree] = load_csv_tree(csv_path);
+    if (mode == "--eval") {
         double sum = 0.0;
-        std::cout << "[" << argv[2] << "] n=" << n_agv << ", nodes=" << tree.n_nodes << " | 5-seed:";
+        std::cout << "[" << csv_path << "] n=" << n_agv << ", nodes=" << tree.n_nodes << " | 5-seed:";
         for (int s = 0; s < 5; ++s) {
             double c = run_sim(sd, s, n_agv, tree).cost;
             sum += c;
             std::cout << " " << std::fixed << std::setprecision(4) << c;
         }
         std::cout << " | mean=" << std::setprecision(4) << (sum / 5.0) << "\n";
-        return 0;
+        return;
     }
 
-    if (argc >= 3 && std::string(argv[1]) == "--analyze") {
+    if (mode == "--eval100") {
+        double s11 = run_sim(sd, 0, n_agv, tree).cost;
+        double pub5 = eval_streams(sd, n_agv, tree, 0, 5);
+        RangeStats a = summarize_range(sd, n_agv, tree, 5, 50, n_threads);
+        RangeStats b = summarize_range(sd, n_agv, tree, 55, 50, n_threads);
+        double u100 = (a.mean_cost * (50 - a.disq) + b.mean_cost * (50 - b.disq)) / std::max(1, 100 - a.disq - b.disq);
+        std::cout << "[" << csv_path << "] n=" << n_agv << " | seed11=" << std::fixed << std::setprecision(2) << s11
+                  << " | pub5=" << pub5 << " | u50(101..150)=" << a.mean_cost << " (dq=" << a.disq
+                  << ") | held50(151..200)=" << b.mean_cost << " (dq=" << b.disq << ") | all100=" << u100 << "\n";
+        return;
+    }
+
+    if (mode == "--eval300") {
+        RangeStats st = summarize_range(sd, n_agv, tree, 105, 300, n_threads);
+        std::cout << "[" << csv_path << "] n=" << n_agv
+                  << " | HELD300(201..500)=" << std::fixed << std::setprecision(2) << st.mean_cost << " +/- " << st.std_cost
+                  << " | w_bar=" << std::setprecision(4) << st.mean_w << " | u95=" << st.mean_u95
+                  << " | maxQ=" << st.max_q << " | endQ=" << st.max_end_q << " | dq=" << st.disq << "/300\n";
+        return;
+    }
+
+    // --eval800: HELD300 (201..500) + NEW500 (501..1000)
+    RangeStats h3 = summarize_range(sd, n_agv, tree, 105, 300, n_threads);
+    RangeStats h5 = summarize_range(sd, n_agv, tree, 405, 500, n_threads);
+    RangeStats all = summarize_range(sd, n_agv, tree, 105, 800, n_threads);
+    int b_1185 = 0, n_blocks = (int)all.costs.size() / 5;
+    for (int b = 0; b < n_blocks; ++b) {
+        double m = 0.0;
+        for (int k = 0; k < 5; ++k) m += all.costs[b * 5 + k];
+        if (m / 5.0 < 1185.42) ++b_1185;
+    }
+    std::cout << "[" << csv_path << "] n=" << n_agv
+              << " | HELD300=" << std::fixed << std::setprecision(2) << h3.mean_cost
+              << " | NEW500=" << h5.mean_cost
+              << " | ALL800=" << all.mean_cost << " +/- " << all.std_cost
+              << " (w=" << std::setprecision(4) << all.mean_w << ", u95=" << all.mean_u95 << ")"
+              << " | P5(<1185.42)=" << std::setprecision(1) << (n_blocks ? 100.0 * b_1185 / n_blocks : 0.0) << "%"
+              << " | maxQ=" << all.max_q << " | endQ=" << all.max_end_q << " | dq=" << all.disq << "/800\n";
+}
+
+int run_verify_cmd(const SimData& sd, const std::string& csv_path) {
+    std::ifstream in(csv_path);
+    std::string line, dir_str;
+    while (std::getline(in, line)) {
+        if (line.rfind("dir,", 0) == 0) {
+            dir_str = line.substr(4);
+            while (!dir_str.empty() && (dir_str.back() == '\r' || dir_str.back() == ' ')) dir_str.pop_back();
+            break;
+        }
+    }
+    auto [n_agv, tree] = load_csv_tree(csv_path);
+    bool dir_ok = (dir_str == sd.fixed_dir);
+    bool fleet_ok = (n_agv >= 1 && n_agv <= 30);
+    bool tree_ok = is_valid_tree(tree);
+    double max_diff = 0.0;
+    for (int s = 0; s < 15; ++s) {
+        double cf = run_sim(sd, s, n_agv, tree, -1, false).cost;
+        double cb = run_sim(sd, s, n_agv, tree, -1, true).cost;
+        max_diff = std::max(max_diff, std::abs(cf - cb));
+    }
+    bool parity_ok = (max_diff <= 1e-9);
+    std::cout << "[" << csv_path << "] dir=" << (dir_ok ? "OK" : "FAIL")
+              << " | fleet=" << n_agv << (fleet_ok ? "(OK)" : "(FAIL)")
+              << " | tree=" << tree.n_nodes << "nodes" << (tree_ok ? "(OK)" : "(FAIL)")
+              << " | max |fast - brute| across 15 streams = " << std::fixed << std::setprecision(9) << max_diff
+              << (parity_ok ? " (PASS)" : " (FAIL)") << "\n";
+    return (dir_ok && fleet_ok && tree_ok && parity_ok) ? 0 : 1;
+}
+
+int main(int argc, char** argv) {
+    std::string mode = (argc >= 2) ? argv[1] : "";
+    int n_unseen = 50;
+    if (mode == "--eval100" || mode == "--reconstruct") n_unseen = 100;
+    else if (mode == "--eval300") n_unseen = 400;
+    else if (mode == "--eval800") n_unseen = 900;
+
+    SimData sd = load_case_data("agv_case_data (1).json", "agv_dispatch_log_seed11 (1).csv", n_unseen);
+    int n_threads = std::max(1, (int)std::thread::hardware_concurrency());
+
+    if (argc >= 3 && (mode == "--eval" || mode == "--eval100" || mode == "--eval300" || mode == "--eval800")) {
+        run_eval_cmd(sd, argv[2], mode, n_threads);
+        return 0;
+    }
+    if (argc >= 3 && mode == "--verify") {
+        return run_verify_cmd(sd, argv[2]);
+    }
+    if (argc >= 3 && mode == "--analyze") {
         run_analysis(sd, argv[2], n_threads);
         return 0;
     }
-
-    if (argc >= 2 && std::string(argv[1]) == "--robust") {
-        auto t0 = std::chrono::steady_clock::now();
-        int n_tot = (int)sd.streams.size(); // 55 streams (0=exact seed11, 1..4=mulberry12..15, 5..54=unseen101..150)
-
-        std::vector<Split> all_splits = {
-            {0, false, 0.5},
-            {2, true, 0}, {2, true, 25}, {2, true, 65}, {2, true, 90}, {2, true, 115},
-            {1, false, 0.5}, {1, false, 1.0}, {1, false, 1.5}, {1, false, 2.0}, {1, false, 2.5}, {1, false, 3.5}, {1, false, 4.5}, {1, false, 6.0},
-            {1, true, 0.5}, {1, true, 1.0}, {1, true, 1.5}, {1, true, 2.0}, {1, true, 3.0}, {1, true, 4.0}, {1, true, 5.0},
-            {4, false, 1}, {4, false, 2}, {4, false, 3}, {4, true, 1}, {4, true, 2},
-            {3, true, 25}, {3, true, 50}, {3, true, 65}, {3, false, 25}, {3, false, 65}
-        };
-
-        std::vector<Tree> base_pool;
-        for (const char* fn : {"cpp_best_18.csv", "cpp_best_19.csv", "cpp_best_20.csv", "answer_exact_sync.csv", "answer_bruteforce.csv"}) {
-            std::ifstream chk(fn);
-            if (chk.good()) base_pool.push_back(load_csv_tree(fn).second);
-        }
-        // Also seed with the 7-node robust core (drop #4 & #7 from cpp_best_19) + fresh 3-node roots
-        {
-            std::ifstream chk("cpp_best_19.csv");
-            if (chk.good()) {
-                Tree tr = load_csv_tree("cpp_best_19.csv").second;
-                tr.nodes[2].lo = 0;
-                base_pool.push_back(canonicalize_tree(tr));
-            }
-        }
-        // Add diverse fresh 3-node skeletons across all root features
-        std::vector<Split> r1s = {{2, true, 25}, {2, true, 65}, {1, false, 2.5}, {4, false, 1}, {3, true, 65}, {0, false, 0.5}};
-        std::vector<Split> r2s = {{0, false, 0.5}, {4, false, 1}, {3, true, 65}, {1, false, 2.5}, {2, true, 65}};
-        for (const auto& r1 : r1s) {
-            for (const auto& r2 : r2s) {
-                if (r2.feat == r1.feat) continue;
-                for (const auto& r3 : r2s) {
-                    if (r3.feat == r1.feat) continue;
-                    Tree t3; t3.n_nodes = 3;
-                    t3.nodes[1] = {r1.feat, r1.is_min, r1.th, 2, 3};
-                    t3.nodes[2] = {r2.feat, r2.is_min, r2.th, 0, 0};
-                    t3.nodes[3] = {r3.feat, r3.is_min, r3.th, 0, 0};
-                    if (is_valid_tree(t3)) base_pool.push_back(t3);
-                }
-            }
-        }
-
-        double global_best_55 = 999999.0;
-        int global_best_n = 19;
-        Tree global_best_t;
-
-        for (int n_agv : {18, 19, 20}) {
-            // Fast 12-stream screen of base_pool -> polish top 6 unique trees on 55 streams
-            std::vector<Tree> uniq_base;
-            std::set<std::string> bseen;
-            for (const auto& bt : base_pool) {
-                Tree ct = canonicalize_tree(bt);
-                if (is_valid_tree(ct) && bseen.insert(tree_key_str(ct)).second) uniq_base.push_back(ct);
-            }
-            std::vector<double> bscr(uniq_base.size(), 999999.0);
-            {
-                std::vector<std::thread> ths;
-                for (int ti = 0; ti < n_threads; ++ti) {
-                    ths.emplace_back([&, ti]() {
-                        for (size_t i = ti; i < uniq_base.size(); i += n_threads) {
-                            double c0 = run_sim(sd, 0, n_agv, uniq_base[i], 65).cost;
-                            if (c0 < 900000.0) {
-                                double c11 = eval_streams(sd, n_agv, uniq_base[i], 5, 16, 65);
-                                if (c11 < 900000.0) bscr[i] = (c0 + 11.0 * c11) / 12.0;
-                            }
-                        }
-                    });
-                }
-                for (auto& th : ths) th.join();
-            }
-            std::vector<int> bidx(uniq_base.size());
-            std::iota(bidx.begin(), bidx.end(), 0);
-            std::sort(bidx.begin(), bidx.end(), [&](int a, int b) { return bscr[a] < bscr[b]; });
-
-            std::vector<std::pair<double, Tree>> elites;
-            for (int k = 0; k < std::min((int)bidx.size(), 6); ++k) {
-                if (bscr[bidx[k]] >= 900000.0) break;
-                double rc = 0;
-                Tree rt = fast_robust_polish(sd, n_agv, uniq_base[bidx[k]], rc, n_threads);
-                elites.push_back({rc, rt});
-            }
-            std::sort(elites.begin(), elites.end(), [](auto& a, auto& b) { return a.first < b.first; });
-            double best_c = elites[0].first;
-            Tree best_t = elites[0].second;
-            std::cout << "[Robust55 Init n=" << n_agv << "] start mean55=" << std::fixed << std::setprecision(2) << best_c << "\n" << std::flush;
-
-            std::mt19937 rng(2026 + n_agv);
-            for (int round = 1; round <= 4; ++round) {
-                std::vector<Tree> cands;
-                std::set<std::string> seen;
-                seen.insert(tree_key_str(best_t));
-
-                int used_e = 0;
-                std::set<std::string> se;
-                for (const auto& [ec, et] : elites) {
-                    if (!se.insert(tree_key_str(et)).second) continue;
-                    if (++used_e > 3) break;
-                    for (int nid = 1; nid <= et.n_nodes; ++nid) {
-                        for (const auto& sp : all_splits) {
-                            Tree c = et;
-                            c.nodes[nid].feat = sp.feat; c.nodes[nid].is_min = sp.is_min; c.nodes[nid].th = sp.th;
-                            if (is_valid_tree(c) && seen.insert(tree_key_str(c)).second) cands.push_back(c);
-                        }
-                        Tree sw = et;
-                        std::swap(sw.nodes[nid].lo, sw.nodes[nid].hi);
-                        sw = canonicalize_tree(sw);
-                        if (is_valid_tree(sw) && seen.insert(tree_key_str(sw)).second) cands.push_back(sw);
-
-                        if (et.n_nodes < 9) {
-                            for (int br = 0; br < 2; ++br) {
-                                int ch = (br == 0) ? et.nodes[nid].lo : et.nodes[nid].hi;
-                                if (ch != 0) continue;
-                                for (const auto& sp : all_splits) {
-                                    if (is_noop_attach(et, nid, br == 1, sp.feat, sp.is_min)) continue;
-                                    Tree c = et;
-                                    int nid_new = c.n_nodes + 1;
-                                    c.n_nodes = nid_new;
-                                    c.nodes[nid_new] = {sp.feat, sp.is_min, sp.th, 0, 0};
-                                    if (br == 0) c.nodes[nid].lo = nid_new; else c.nodes[nid].hi = nid_new;
-                                    c = canonicalize_tree(c);
-                                    if (is_valid_tree(c) && seen.insert(tree_key_str(c)).second) cands.push_back(c);
-                                }
-                            }
-                        }
-                        if (et.nodes[nid].lo == 0 && et.nodes[nid].hi == 0 && nid != 1) {
-                            Tree c = et;
-                            for (int pid = 1; pid <= c.n_nodes; ++pid) {
-                                if (c.nodes[pid].lo == nid) c.nodes[pid].lo = 0;
-                                if (c.nodes[pid].hi == nid) c.nodes[pid].hi = 0;
-                            }
-                            c = canonicalize_tree(c);
-                            if (is_valid_tree(c) && seen.insert(tree_key_str(c)).second) cands.push_back(c);
-                        }
-                    }
-                }
-                for (int trial = 0; trial < 1500; ++trial) {
-                    Tree c = best_t;
-                    for (int k = 0; k < 2; ++k) {
-                        int nid = 1 + (rng() % c.n_nodes);
-                        if ((rng() % 4) == 0) std::swap(c.nodes[nid].lo, c.nodes[nid].hi);
-                        else {
-                            const auto& sp = all_splits[rng() % all_splits.size()];
-                            c.nodes[nid].feat = sp.feat; c.nodes[nid].is_min = sp.is_min; c.nodes[nid].th = sp.th;
-                        }
-                    }
-                    c = canonicalize_tree(c);
-                    if (is_valid_tree(c) && seen.insert(tree_key_str(c)).second) cands.push_back(c);
-                }
-
-                // Screen on 12 streams -> top 40 on 55 streams -> polish top 4
-                std::vector<double> scr(cands.size(), 999999.0);
-                {
-                    std::vector<std::thread> ths;
-                    for (int ti = 0; ti < n_threads; ++ti) {
-                        ths.emplace_back([&, ti]() {
-                            for (size_t i = ti; i < cands.size(); i += n_threads) {
-                                double c0 = run_sim(sd, 0, n_agv, cands[i], 65).cost;
-                                if (c0 < 900000.0) {
-                                    double c11 = eval_streams(sd, n_agv, cands[i], 5, 16, 65);
-                                    if (c11 < 900000.0) scr[i] = (c0 + 11.0 * c11) / 12.0;
-                                }
-                            }
-                        });
-                    }
-                    for (auto& th : ths) th.join();
-                }
-                std::vector<int> idx(cands.size());
-                std::iota(idx.begin(), idx.end(), 0);
-                std::sort(idx.begin(), idx.end(), [&](int a, int b) { return scr[a] < scr[b]; });
-                int eval_k = std::min((int)idx.size(), 40);
-                std::vector<std::pair<double, Tree>> r55(eval_k);
-                {
-                    std::vector<std::thread> ths;
-                    for (int ti = 0; ti < n_threads; ++ti) {
-                        ths.emplace_back([&, ti]() {
-                            for (int k = ti; k < eval_k; k += n_threads) {
-                                r55[k] = {eval_streams(sd, n_agv, cands[idx[k]], 0, n_tot), cands[idx[k]]};
-                            }
-                        });
-                    }
-                    for (auto& th : ths) th.join();
-                }
-                std::sort(r55.begin(), r55.end(), [](auto& a, auto& b) { return a.first < b.first; });
-                for (int k = 0; k < std::min((int)r55.size(), 4); ++k) {
-                    if (r55[k].first >= 900000.0) continue;
-                    double pc = 0;
-                    Tree pt = fast_robust_polish(sd, n_agv, r55[k].second, pc, n_threads);
-                    elites.push_back({pc, pt});
-                    if (pc < best_c - 1e-4) { best_c = pc; best_t = pt; }
-                }
-                std::sort(elites.begin(), elites.end(), [](auto& a, auto& b) { return a.first < b.first; });
-                std::cout << "  [Robust55 n=" << n_agv << " Round " << round << "] checked=" << cands.size() << " -> mean55=" << best_c << "\n" << std::flush;
-            }
-
-            double s11 = run_sim(sd, 0, n_agv, best_t).cost;
-            double pub5 = eval_streams(sd, n_agv, best_t, 0, 5);
-            double u50 = eval_streams(sd, n_agv, best_t, 5, n_tot);
-            save_csv_tree(sd, "robust_best_" + std::to_string(n_agv) + ".csv", n_agv, best_t);
-            std::cout << "[Robust Final n=" << n_agv << "] seed11=" << s11 << " | pub5=" << pub5
-                      << " | unseen50=" << u50 << " | mean55=" << best_c << " (nodes=" << best_t.n_nodes << ")\n" << std::flush;
-            if (best_c < global_best_55) {
-                global_best_55 = best_c;
-                global_best_n = n_agv;
-                global_best_t = best_t;
-            }
-        }
-        save_csv_tree(sd, "answer_final_best.csv", global_best_n, global_best_t);
-        auto t1 = std::chrono::steady_clock::now();
-        std::cout << "\nSaved overall 55-seed winner to answer_final_best.csv (n=" << global_best_n
-                  << ", mean55=" << global_best_55 << ") in " << std::fixed << std::setprecision(2)
-                  << std::chrono::duration<double>(t1 - t0).count() << "s!\n";
+    if (argc >= 3 && mode == "--polish") {
+        auto [n_agv, tree] = load_csv_tree(argv[2]);
+        double out_c = 0.0;
+        Tree best_t = coordinate_polish(sd, n_agv, tree, out_c, n_threads);
+        std::cout << "[Polish] n=" << n_agv << " | w51=" << std::fixed << std::setprecision(4) << out_c << "\n";
+        if (argc >= 4) save_csv_tree(sd, argv[3], n_agv, best_t);
         return 0;
     }
+    if (mode == "--reconstruct") {
+        std::string seed_csv = (argc >= 3) ? argv[2] : "";
+        return run_reconstruct(sd, seed_csv, 19, n_threads);
+    }
 
-    std::cout << "Usage: agv_opt.exe [--eval <csv> | --analyze <csv> | --robust]\n";
+    std::cout << "Usage: agv_opt.exe [--eval <csv> | --eval100 <csv> | --eval300 <csv> | --eval800 <csv> | --verify <csv> | --analyze <csv> | --polish <in.csv> [out.csv] | --reconstruct [seed.csv]]\n";
     return 0;
 }
