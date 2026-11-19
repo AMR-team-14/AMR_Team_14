@@ -17,6 +17,7 @@ void usage() {
     std::cout <<
         "Usage: agv_opt --eval <csv> [--seeds 11,12,13,14,15] [--data-dir docs]\n"
         "       agv_opt --eval-json <csv> [--seeds 151,152,153]\n"
+        "       agv_opt --export-arrivals [--seeds 11,12,13,14,15] [--data-dir docs]\n"
         "       agv_opt --analyze <csv> [--data-dir docs]\n"
         "       agv_opt --robust [--output-dir runs/robust] [--data-dir docs]\n";
 }
@@ -44,27 +45,45 @@ void ensure_search_output(const fs::path& output) {
     fs::create_directories(output);
 }
 
+void export_arrivals(SimData& model, const std::vector<uint32_t>& seeds) {
+    std::cout << "seed,request_index,arrival_min,origin_node,destination_node,urgent\n";
+    std::cout << std::setprecision(std::numeric_limits<double>::max_digits10);
+    for (uint32_t seed : seeds) {
+        const auto& stream = model.streams[scenario_index(model, seed)];
+        for (size_t i = 0; i < stream.size(); ++i) {
+            const auto& request = stream[i];
+            std::cout << seed << ',' << i << ',' << request.at << ',' << request.o << ','
+                      << request.d << ',' << request.u << '\n';
+        }
+    }
+}
+
 int run(int argc, char** argv) {
     if (argc < 2 || std::string_view(argv[1]) == "--help") { usage(); return 0; }
     const std::string mode = argv[1];
     const bool eval = mode == "--eval" || mode == "--eval-json";
     const bool robust = mode == "--robust";
-    if (!eval && !robust && mode != "--analyze") throw std::runtime_error("Unknown mode: " + mode);
-    if (!robust && argc < 3) throw std::runtime_error("Provide the policy CSV");
-    const std::string csv = robust ? "" : argv[2];
+    const bool export_only = mode == "--export-arrivals";
+    if (!eval && !robust && !export_only && mode != "--analyze") throw std::runtime_error("Unknown mode: " + mode);
+    if (!(robust || export_only) && argc < 3) throw std::runtime_error("Provide the policy CSV");
+    const std::string csv = (robust || export_only) ? "" : argv[2];
     fs::path directory = "docs", output = "runs/robust";
     std::vector<uint32_t> seeds;
-    for (int i = robust ? 2 : 3; i < argc; i += 2) {
+    for (int i = (robust || export_only) ? 2 : 3; i < argc; i += 2) {
         if (i + 1 >= argc) throw std::runtime_error("Missing value for " + std::string(argv[i]));
         const std::string option = argv[i];
         if (option == "--data-dir") directory = argv[i + 1];
-        else if (option == "--seeds" && eval) seeds = parse_seeds(argv[i + 1]);
+        else if (option == "--seeds" && (eval || export_only)) seeds = parse_seeds(argv[i + 1]);
         else if (option == "--output-dir" && robust) output = argv[i + 1];
         else throw std::runtime_error("Unknown option: " + option);
     }
     if (robust) ensure_search_output(output);
     SimData model = load_case(read_text((directory / "case.json").string()),
-        read_text((directory / "seed11.json").string()), eval ? 0 : 50);
+        read_text((directory / "seed11.json").string()), (eval || export_only) ? 0 : 50);
+    if (export_only) {
+        export_arrivals(model, seeds.empty() ? model.seeds : seeds);
+        return 0;
+    }
     if (robust) { run_search(model, output, 10); return 0; }
     if (mode == "--analyze") { run_analysis(model, csv, 10); return 0; }
 
