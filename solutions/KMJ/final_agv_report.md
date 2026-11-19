@@ -2,29 +2,29 @@
 
 ## 1. 요약 및 최종 성과 (Executive Summary)
 
-* **핵심 달성 결과:** Python 알고리즘 스크립트를 모두 제거하고 자체 구축한 **독립형 C++20 멀티스레드 최적화 엔진**([agv_opt.cpp](file:///c:/logistic_final_project/agv_opt.cpp))으로 55개 시드(실제 시드 11 + 독립 시드 54개)를 직접 최적화하고, 실제 웹 채점기로 `n=18, 19, 20` 대수를 검증한 결과 **AGV 19대 기반 9노드 결정 트리([robust_best_19.csv](file:///c:/logistic_final_project/robust_best_19.csv), [answer_final_best.csv](file:///c:/logistic_final_project/answer_final_best.csv)로 동기화)** 가 **웹 채점 `1,201.39점`** (기존 최고 `1,223.21` 대비 **`-21.82점`**, 리더보드 2위 `1,203.73` 돌파!) 을 달성했습니다.
+* **핵심 달성 결과:** Python 알고리즘 스크립트를 모두 제거하고 자체 구축한 **독립형 C++20 멀티스레드 최적화 엔진**([agv_opt.cpp](https://github.com/AMR-team-14/AMR_Team_14/blob/d643725360a53cab7b5bb861cfe108a6d8126a08/agv_opt.cpp))으로 55개 시드(실제 시드 11 + 독립 시드 54개)를 직접 최적화하고, 실제 웹 채점기로 `n=18, 19, 20` 대수를 검증한 결과 **AGV 19대 기반 9노드 결정 트리([robust_best_19.csv](robust_best_19.csv), [answer_final_best.csv](answer_final_best.csv)로 동기화)** 가 **웹 채점 `1,201.39점`** (기존 최고 `1,223.21` 대비 **`-21.82점`**, 리더보드 2위 `1,203.73` 돌파!) 을 달성했습니다.
 * **기존 대비 개선 폭:**
-  * 인수인계서 기준선([answer_bruteforce.csv](file:///c:/logistic_final_project/answer_bruteforce.csv), `n=19`): 웹 **`1,223.21`** / 미공개 50시드 **`1,231.54`** $\to$ **`robust_best_19.csv` 기준 웹 `-21.82점`, 미공개 50시드 `-32.92점` 개선**
-  * 로컬 5시드 집중 탐색([cpp_best_19.csv](file:///c:/logistic_final_project/cpp_best_19.csv), `n=19`): 웹 **`1,204.43`** / 미공개 50시드 **`1,206.94`** $\to$ 55시드 범용 최적화로 전환해 웹 **`-3.04점`**, 미공개 50시드 **`-8.32점` 추가 개선**
+  * 인수인계서 기준선(answer_bruteforce.csv, `n=19`): 웹 **`1,223.21`** / 미공개 50시드 **`1,231.54`** $\to$ **`robust_best_19.csv` 기준 웹 `-21.82점`, 미공개 50시드 `-32.92점` 개선**
+  * 로컬 5시드 집중 탐색(cpp_best_19.csv, `n=19`): 웹 **`1,204.43`** / 미공개 50시드 **`1,206.94`** $\to$ 55시드 범용 최적화로 전환해 웹 **`-3.04점`**, 미공개 50시드 **`-8.32점` 추가 개선**
 
 | 설계 CSV | $n$ | 노드 수 | **웹 실측 점수** | 시드 11 (실제 로그) | 로컬 5시드 평균 (`11~15`) | 미공개 50시드 평균 ± 표준편차 (`101~150`) | 미공개 `maxQ` / `endQ` | 실격률 |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| [answer (1).csv](file:///c:/logistic_final_project/answer%20(1).csv) | 18 | 1 | - | - | `1,274.90` | `1,272.27 ± 22.32` | `35` / `18` | `0/50` |
-| [answer_bruteforce.csv](file:///c:/logistic_final_project/answer_bruteforce.csv) | 19 | 8 | `1,223.21` | `1,213.42` | `1,224.81` | `1,231.54 ± 11.80` | `31` / `18` | `0/50` |
-| [answer_exact_sync.csv](file:///c:/logistic_final_project/answer_exact_sync.csv) | 20 | 8 | - | `1,201.18` | `1,218.14` | `1,227.09 ± 11.91` | `41` / `17` | `0/50` |
-| [cpp_best_19.csv](file:///c:/logistic_final_project/cpp_best_19.csv) | 19 | 9 | `1,204.43` | `1,189.06` | `1,193.73` | `1,206.94 ± 11.99` | `28` / `18` | `0/50` |
-| [robust_best_18.csv](file:///c:/logistic_final_project/robust_best_18.csv) | 18 | 9 | `1,205.54` | `1,188.79` | `1,199.76` | **`1,196.68 ± 11.64`** | `31` / `19` | `0/50` |
-| [robust_best_20.csv](file:///c:/logistic_final_project/robust_best_20.csv) | 20 | 9 | `1,207.63` | **`1,179.82`** | `1,199.71` | `1,207.43` | - | `0/50` |
-| **[robust_best_19.csv](file:///c:/logistic_final_project/robust_best_19.csv)** (`= answer_final_best`) | **19** | **9** | **`1,201.39`** | `1,183.51` | **`1,198.18`** | `1,198.62 ± 12.14` | **`30` / `18`** | **`0/50`** |
+| answer (1).csv | 18 | 1 | - | - | `1,274.90` | `1,272.27 ± 22.32` | `35` / `18` | `0/50` |
+| answer_bruteforce.csv | 19 | 8 | `1,223.21` | `1,213.42` | `1,224.81` | `1,231.54 ± 11.80` | `31` / `18` | `0/50` |
+| answer_exact_sync.csv | 20 | 8 | - | `1,201.18` | `1,218.14` | `1,227.09 ± 11.91` | `41` / `17` | `0/50` |
+| cpp_best_19.csv | 19 | 9 | `1,204.43` | `1,189.06` | `1,193.73` | `1,206.94 ± 11.99` | `28` / `18` | `0/50` |
+| [robust_best_18.csv](robust_best_18.csv) | 18 | 9 | `1,205.54` | `1,188.79` | `1,199.76` | **`1,196.68 ± 11.64`** | `31` / `19` | `0/50` |
+| [robust_best_20.csv](robust_best_20.csv) | 20 | 9 | `1,207.63` | **`1,179.82`** | `1,199.71` | `1,207.43` | - | `0/50` |
+| **[robust_best_19.csv](robust_best_19.csv)** (`= answer_final_best`) | **19** | **9** | **`1,201.39`** | `1,183.51` | **`1,198.18`** | `1,198.62 ± 12.14` | **`30` / `18`** | **`0/50`** |
 
 > [!TIP]
-> **웹 실측 반영 결론:** 로컬 미공개 50시드 평균에서는 `n=18`(`1,196.68`)이 `n=19`(`1,198.62`)를 근소하게 앞섰으나, **실제 웹 채점 결과 `n=19` (`1,201.39`) > `n=18` (`1,205.54`) > `n=20` (`1,207.63`)** 로 확인되어 **[answer_final_best.csv](file:///c:/logistic_final_project/answer_final_best.csv)** 를 웹 최적안인 `robust_best_19.csv`(`n=19`)로 최종 동기화했습니다.
+> **웹 실측 반영 결론:** 로컬 미공개 50시드 평균에서는 `n=18`(`1,196.68`)이 `n=19`(`1,198.62`)를 근소하게 앞섰으나, **실제 웹 채점 결과 `n=19` (`1,201.39`) > `n=18` (`1,205.54`) > `n=20` (`1,207.63`)** 로 확인되어 **[answer_final_best.csv](answer_final_best.csv)** 를 웹 최적안인 `robust_best_19.csv`(`n=19`)로 최종 동기화했습니다.
 
 ---
 
 ## 2. 최종 우승 설계 구조 및 제출 CSV
 
-### 2.1 웹 실측 1위([answer_final_best.csv](file:///c:/logistic_final_project/answer_final_best.csv) = [robust_best_19.csv](file:///c:/logistic_final_project/robust_best_19.csv), `n=19`, 웹 `1,201.39점`)
+### 2.1 웹 실측 1위([answer_final_best.csv](answer_final_best.csv) = [robust_best_19.csv](robust_best_19.csv), `n=19`, 웹 `1,201.39점`)
 ```csv
 dir,000011110000000111100000000110101
 fleet,19
@@ -39,7 +39,7 @@ key,8,w,min,2.5,0,0
 key,9,w,min,0.85,0,0
 ```
 
-### 2.2 `n=18` 대안([robust_best_18.csv](file:///c:/logistic_final_project/robust_best_18.csv), `n=18`, 웹 `1,205.54점`, 미공개 50시드 `1,196.68점`)
+### 2.2 `n=18` 대안([robust_best_18.csv](robust_best_18.csv), `n=18`, 웹 `1,205.54점`, 미공개 50시드 `1,196.68점`)
 ```csv
 dir,000011110000000111100000000110101
 fleet,18
@@ -94,10 +94,10 @@ flowchart TD
 
 ## 3. 웹 채점 이질감 원인 규명 및 핵심 도메인 인사이트
 
-### 3.1 왜 로컬 `1,193.73`([cpp_best_19.csv](file:///c:/logistic_final_project/cpp_best_19.csv))이 웹에서 `1,204.43`으로 나왔는가?
-1. **원인 규명:** 실제 로그([agv_dispatch_log_seed11 (1).csv](file:///c:/logistic_final_project/agv_dispatch_log_seed11%20(1).csv))의 시드 11 도착 건수는 **8,453건**인 반면, 기존 시뮬레이터의 `Mulberry32(11)` 생성 스트림은 **8,531건**으로 서로 다릅니다. 즉, 시드 11은 실제 로그와 같지만 **시드 12~15는 웹 채점기와 다른 PRNG 스트림**을 사용합니다.
-2. **과적합 검증:** [cpp_best_19.csv](file:///c:/logistic_final_project/cpp_best_19.csv)의 로컬 5시드(`1,193.73`)를 독립 50시드에 돌린 결과 **`1,206.94점`**으로 나타났고, 이는 실제 웹 채점 결과(**`1,204.43점`**)와 오차 ~2.5점 내에서 정확히 부합했습니다. 특히 4번 노드(`w max 6.65`)와 7번 노드(`dl min 25`)를 제거하자 미공개 50시드 평균이 **`1,201.20점`(-5.74점)** 으로 내려가면서 4개 `Mulberry32` 시드에 과적합되어 있었음이 확인되었습니다.
-3. **해결:** 55개 시드(`--robust`)로 직접 최적화한 [answer_final_best.csv](file:///c:/logistic_final_project/answer_final_best.csv)는 로컬 5시드(`1,199.76`)와 미공개 50시드(`1,196.68`) 간 괴리가 완전히 사라졌으며(오히려 미공개 시드에서 더 낮음), **실제 웹 환경에서도 `1,196~1,200점` 수준의 일반화 성능**을 기대할 수 있습니다.
+### 3.1 왜 로컬 `1,193.73`(cpp_best_19.csv)이 웹에서 `1,204.43`으로 나왔는가?
+1. **원인 규명:** 실제 로그(agv_dispatch_log_seed11 (1).csv)의 시드 11 도착 건수는 **8,453건**인 반면, 기존 시뮬레이터의 `Mulberry32(11)` 생성 스트림은 **8,531건**으로 서로 다릅니다. 즉, 시드 11은 실제 로그와 같지만 **시드 12~15는 웹 채점기와 다른 PRNG 스트림**을 사용합니다.
+2. **과적합 검증:** cpp_best_19.csv의 로컬 5시드(`1,193.73`)를 독립 50시드에 돌린 결과 **`1,206.94점`**으로 나타났고, 이는 실제 웹 채점 결과(**`1,204.43점`**)와 오차 ~2.5점 내에서 정확히 부합했습니다. 특히 4번 노드(`w max 6.65`)와 7번 노드(`dl min 25`)를 제거하자 미공개 50시드 평균이 **`1,201.20점`(-5.74점)** 으로 내려가면서 4개 `Mulberry32` 시드에 과적합되어 있었음이 확인되었습니다.
+3. **해결:** 55개 시드(`--robust`)로 직접 최적화한 [answer_final_best.csv](answer_final_best.csv)는 로컬 5시드(`1,199.76`)와 미공개 50시드(`1,196.68`) 간 괴리가 완전히 사라졌으며(오히려 미공개 시드에서 더 낮음), **실제 웹 환경에서도 `1,196~1,200점` 수준의 일반화 성능**을 기대할 수 있습니다.
 
 ### 3.2 최적 트리가 찾아낸 4가지 핵심 운영 원리
 1. **근거리(`de <= 65m`)에서는 `urg`보다 `qo > 1`이 선행 (`#2: qo max 1`):**
@@ -113,7 +113,7 @@ flowchart TD
 
 ## 4. 민감도 분석 (Sensitivity & Ablation Analysis)
 
-### 4.1 공개 5시드 세부 지표 ([answer_final_best.csv](file:///c:/logistic_final_project/answer_final_best.csv))
+### 4.1 공개 5시드 세부 지표 ([answer_final_best.csv](answer_final_best.csv))
 | 시드 | 총비용 ($C$) | 평균 대기 ($\overline{W}$, 분) | 긴급 $U_{95}$ (분) | 최대 대기열 (`maxQ`) | 종료 대기열 (`endQ`) |
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | Seed 11 (실제 로그) | `1,188.79` | `3.8808` | `5.2202` | `21` | `1` |
@@ -124,7 +124,7 @@ flowchart TD
 | **5시드 평균** | **`1,199.76`** | **`3.9686`** (`405.75`) | **`5.2401`** (`524.01`) | 최대 **`24`** | 최대 **`7`** |
 
 ### 4.2 AGV 대수($n$) 민감도 (`n = 16 ~ 23`)
-동일한 최종 트리([answer_final_best.csv](file:///c:/logistic_final_project/answer_final_best.csv))에서 대수만 변화시킨 결과입니다:
+동일한 최종 트리([answer_final_best.csv](answer_final_best.csv))에서 대수만 변화시킨 결과입니다:
 
 | $n$ | 고정비 ($15n$) | 공개 5시드 비용 | 미공개 50시드 평균 (표준편차) | 미공개 $\overline{W}$ | 미공개 $U_{95}$ | 미공개 최악(Max) | 최대 `maxQ` / `endQ` | 실격 |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -170,11 +170,11 @@ flowchart TD
 ### 5.1 웹 실측 5개 지점 비교 및 대수 판정
 | 제출 설계 | $n$ | 로컬 `unseen50` | **웹 실측 점수** | 편차 (`웹 - unseen50`) | 판정 |
 | :--- | :---: | :---: | :---: | :---: | :--- |
-| [answer_bruteforce.csv](file:///c:/logistic_final_project/answer_bruteforce.csv) | 19 | `1,231.54` | `1,223.21` | `-8.33` | 구버전 기준선 |
-| [cpp_best_19.csv](file:///c:/logistic_final_project/cpp_best_19.csv) | 19 | `1,206.94` | `1,204.43` | `-2.51` | 5시드 과적합 포함 |
-| [robust_best_18.csv](file:///c:/logistic_final_project/robust_best_18.csv) | 18 | **`1,196.68`** | `1,205.54` | `+8.86` | 웹 시드에서는 18대 변동성 노출 |
-| **[robust_best_19.csv](file:///c:/logistic_final_project/robust_best_19.csv)** | **19** | `1,198.62` | **`1,201.39`** | `+2.77` | **웹 실측 최적 (리더보드 2위권)** |
-| [robust_best_20.csv](file:///c:/logistic_final_project/robust_best_20.csv) | 20 | `1,207.43` | `1,207.63` | `+0.20` | 고정비(+15점) 초과로 비효율 |
+| answer_bruteforce.csv | 19 | `1,231.54` | `1,223.21` | `-8.33` | 구버전 기준선 |
+| cpp_best_19.csv | 19 | `1,206.94` | `1,204.43` | `-2.51` | 5시드 과적합 포함 |
+| [robust_best_18.csv](robust_best_18.csv) | 18 | **`1,196.68`** | `1,205.54` | `+8.86` | 웹 시드에서는 18대 변동성 노출 |
+| **[robust_best_19.csv](robust_best_19.csv)** | **19** | `1,198.62` | **`1,201.39`** | `+2.77` | **웹 실측 최적 (리더보드 2위권)** |
+| [robust_best_20.csv](robust_best_20.csv) | 20 | `1,207.43` | `1,207.63` | `+0.20` | 고정비(+15점) 초과로 비효율 |
 
 * **핵심 관찰:**
   1. 실제 웹 공개 시드(`11~15`)에서는 `18대`(`1,205.54`)보다 **`19대`(`1,201.39`)가 `4.15점` 더 우수**하며, 실제 로그가 일치하는 시드 11 단독 점수 역시 `19대`(`1,183.51`)가 `18대`(`1,188.79`)보다 `5.28점` 우수합니다.
@@ -197,6 +197,6 @@ flowchart TD
 ## 6. 작업 디렉터리 정리 현황
 * **제거 완료:** 모든 파이썬 알고리즘·임시 파일(`exact_sync.py`, `fast_paradigm_search.py`, `__pycache__`, `sim_data.txt`, `checkpoint_best.csv`)
 * **유지 및 생성 파일:**
-  * 핵심 독립형 C++20 엔진: [agv_opt.cpp](file:///c:/logistic_final_project/agv_opt.cpp) / [agv_opt.exe](file:///c:/logistic_final_project/agv_opt.exe) (`--eval`, `--analyze`, `--robust` 지원)
-  * **최종 제출 1순위 CSV (`n=19`, 웹 실측 `1,201.39`):** [answer_final_best.csv](file:///c:/logistic_final_project/answer_final_best.csv) (= [robust_best_19.csv](file:///c:/logistic_final_project/robust_best_19.csv))
-  * 대수별 55시드 최적 CSV: [robust_best_18.csv](file:///c:/logistic_final_project/robust_best_18.csv) (웹 `1,205.54`), [robust_best_19.csv](file:///c:/logistic_final_project/robust_best_19.csv) (웹 `1,201.39`), [robust_best_20.csv](file:///c:/logistic_final_project/robust_best_20.csv) (웹 `1,207.63`)
+  * 핵심 독립형 C++20 엔진: [agv_opt.cpp](https://github.com/AMR-team-14/AMR_Team_14/blob/d643725360a53cab7b5bb861cfe108a6d8126a08/agv_opt.cpp) / agv_opt.exe (`--eval`, `--analyze`, `--robust` 지원)
+  * **최종 제출 1순위 CSV (`n=19`, 웹 실측 `1,201.39`):** [answer_final_best.csv](answer_final_best.csv) (= [robust_best_19.csv](robust_best_19.csv))
+  * 대수별 55시드 최적 CSV: [robust_best_18.csv](robust_best_18.csv) (웹 `1,205.54`), [robust_best_19.csv](robust_best_19.csv) (웹 `1,201.39`), [robust_best_20.csv](robust_best_20.csv) (웹 `1,207.63`)

@@ -1,5 +1,7 @@
 # AGV 운영 규칙 설계 최적화 · 팀 공유 패키지 안내
 
+> 기존 단일 C++ 구현을 사용하던 당시의 기록입니다. 현재 구조와 실행 방법은 [프로젝트 README](../../README.md)를 참고하세요.
+
 ## 1. 왜 Python에서 C++20으로 전환했는가?
 1. **Python GIL 및 인터프리터 루프 한계:**
    - Python의 일반 `threading`은 GIL(Global Interpreter Lock) 때문에 멀티코어 CPU 병렬화가 불가능합니다.

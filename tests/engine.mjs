@@ -28,8 +28,9 @@ const fixtures = {
   "robust_best_20.csv": [1179.8209, 1195.3046, 1207.7404, 1204.4888, 1211.2004]
 };
 for (const [file, baseline] of Object.entries(fixtures)) {
-  const browser = JSON.parse(evaluate(contents(file)));
-  const command = cli("--eval-json", file);
+  const candidate = "solutions/KMJ/" + file;
+  const browser = JSON.parse(evaluate(contents(candidate)));
+  const command = cli("--eval-json", candidate);
   assert.equal(command.status, 0, command.stderr);
   const cliScore = JSON.parse(command.stdout);
   assert.deepEqual(browser, cliScore, file);
@@ -38,7 +39,7 @@ for (const [file, baseline] of Object.entries(fixtures)) {
   console.log(file + " | " + cliScore.average.toFixed(4));
 }
 
-const holdout = cli("--eval-json", "answer_final_best.csv", "--seeds", "11,151,152");
+const holdout = cli("--eval-json", "solutions/KMJ/answer_final_best.csv", "--seeds", "11,151,152");
 assert.equal(holdout.status,0,holdout.stderr);
 assert.deepEqual(JSON.parse(holdout.stdout).scores.map(row=>row.seed), [11,151,152]);
 const dir = JSON.parse(contents("docs/case.json")).fixedDir;

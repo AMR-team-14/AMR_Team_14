@@ -4,7 +4,8 @@ IE325 물류관리 기말 프로젝트입니다. 고정된 통로망에서 AGV(A
 
 - [배차 트리 시각화 · 시드별 로컬 평가](https://amr-team-14.github.io/AMR_Team_14/)
 - [공식 과제 페이지 · 웹 평가](https://script.google.com/macros/s/AKfycbyfytW6GhEMwkUIE7xja48WGlirBBES_VTXoXxVuzDSHAfcML17mWYwT7VDdBA8gFD9/exec?p=case)
-- [기존 구현의 팀 공유 요약](README_팀공유_요약.md) · [성능 보고서](final_agv_report.md)
+
+[![최종 19대 설계의 배차 트리와 시드별 로컬 평가 결과](docs/images/viewer.png)](https://amr-team-14.github.io/AMR_Team_14/)
 
 ## 목적함수
 
@@ -22,7 +23,7 @@ $$
 
 각 시드는 3,000분 동안 실행합니다. 대기시간 통계에는 300분 이후에 들어와 픽업된 요청을 포함합니다. 미배정 요청이 한때 300건을 넘거나 종료 시 30건을 넘으면 해당 시드는 반려됩니다.
 
-뷰어는 시드 11~15의 비용과 **다섯 비용의 산술평균**을 보여줍니다. 한 시드라도 반려되면 평균을 표시하지 않습니다. 시드 11은 공식 배차 로그에서 요청을 복원하며, 12~15는 로컬에서 생성합니다. 후보를 고를 때는 로컬 평균을 참고하고, 확정 전에는 같은 파일을 공식 과제 페이지에서 평가합니다.
+뷰어는 시드 11–15의 비용과 **다섯 비용의 산술평균**을 보여줍니다. 한 시드라도 반려되면 평균을 표시하지 않습니다. 시드 11은 공식 배차 로그에서 요청을 복원하며, 12–15는 로컬에서 생성합니다. 후보를 고를 때는 로컬 평균을 참고하고, 확정 전에는 같은 파일을 공식 과제 페이지에서 평가합니다.
 
 ## 팀원별 후보
 
@@ -30,8 +31,10 @@ $$
 
 | | | |
 | --- | --- | --- |
-| [ㄱㅁㅈ](solutions/ㄱㅁㅈ/) | [ㅂㅈㅎ](solutions/ㅂㅈㅎ/) | [ㅇㅈㅌ](solutions/ㅇㅈㅌ/) |
-| [ㅇㅂ](solutions/ㅇㅂ/) | [ㅈㄱㄷ](solutions/ㅈㄱㄷ/) | [ㅈㅅㅁ](solutions/ㅈㅅㅁ/) |
+| [KMJ](solutions/KMJ/) | [PJH](solutions/PJH/) | [OJT](solutions/OJT/) |
+| [YB](solutions/YB/) | [JGD](solutions/JGD/) | [JSM](solutions/JSM/) |
+
+기존 후보 CSV 네 개와 [성능 보고서](solutions/KMJ/final_agv_report.md)는 [KMJ 폴더](solutions/KMJ/)에 있습니다.
 
 ## 하나의 시뮬레이터, 두 가지 사용 방법
 
@@ -54,6 +57,8 @@ docs/             팀원용 화면과 웹 배포 파일
 ```
 
 ### 개발과 검증
+
+[기존 구현이 C++를 선택한 이유](docs/notes/cpp-rationale.md)
 
 공개 링크에는 배포 브랜치의 코드가 표시됩니다. 작업 브랜치의 화면은 로컬에서 미리볼 수 있습니다.
 
