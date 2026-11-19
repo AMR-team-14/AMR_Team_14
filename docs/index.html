@@ -6,34 +6,48 @@
   <title>IE325 배차 트리 평가</title>
   <style>
     *{box-sizing:border-box}
-    body{margin:0;background:#edf1f5;color:#17253a;font:16px/1.6 system-ui,sans-serif}
-    main{max-width:990px;margin:auto;padding:30px 16px}
-    h1,h2{line-height:1.22;overflow-wrap:anywhere} h1{margin:0}
-    a{color:#1741a5}
-    button{background:#2054c9;color:white;border:0;border-radius:6px;padding:8px 13px;font:inherit;cursor:pointer}
-    button:disabled{opacity:.55;cursor:wait}
-    form{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    input{max-width:100%;font:inherit}
+    body{margin:0;background:#f0f5f3;color:#172b29;font:16px/1.6 system-ui,sans-serif}
+    main{max-width:1120px;margin:auto;padding:28px 16px 60px}
+    .intro{background:#173c36;color:#fff;border-radius:18px;padding:clamp(20px,4vw,38px)}
+    h1,h2{line-height:1.22;overflow-wrap:anywhere;letter-spacing:-.02em}
+    h1{margin:0;font-size:clamp(28px,5vw,46px)}
+    .intro p{color:#d9ece7}
+    a{color:#174984}
+    .intro a{color:#dcf8ec;text-underline-offset:4px}
+    form{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:14px;background:#fff;color:#173c36;border-radius:12px}
+    label{font-weight:700}
+    input{font:inherit;max-width:100%;padding:3px}
+    input::file-selector-button,button{font:inherit;border:0;border-radius:7px;padding:8px 12px;cursor:pointer}
+    input::file-selector-button{background:#edf4f1;color:#173c36}
+    button{background:#206649;color:#fff;margin-inline-start:auto}
+    button:disabled{opacity:.6;cursor:wait}
     #status{min-height:1.6em}
     #results:empty{display:none}
-    #results{background:white;border:1px solid #cfd8e4;border-radius:10px;padding:16px}
-    .graph{overflow:auto;border:1px solid #cfd8e4;border-radius:6px}
-    canvas{display:block;margin:auto}
-    details{padding:8px 0} summary{cursor:pointer}
-    table{width:100%;border-collapse:collapse} th,td{text-align:left;padding:7px;border-bottom:1px solid #dbe2ec}
-    .average{font-weight:700}
+    #results{background:white;border:1px solid #d2e1dd;border-radius:16px;padding:clamp(12px,3vw,26px)}
+    .tree-meta{font-weight:650;color:#22604f}
+    .graph,.score-scroll{overflow:auto;border:1px solid #d7e4e2;border-radius:10px}
+    canvas{display:block;margin:auto;background:#fff}
+    details{padding:10px 0} summary{cursor:pointer}
+    .scores-heading{margin-top:30px}
+    table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;min-width:490px}
+    th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #e2ebe8;white-space:nowrap}
+    thead{background:#ecf4f1}
+    tbody tr:last-child>*{border-bottom:0}
+    .average{font-weight:750;color:#164c3b;background:#e4f4ec;padding:10px 12px;border-radius:8px}
   </style>
   <script type="module" src="./viewer.js"></script>
 </head>
 <body><main>
-  <h1>배차 트리 평가</h1>
-  <p>설계 CSV를 불러와 배차 트리와 시드별 비용을 확인하세요. 파일은 브라우저에서만 읽습니다.</p>
-  <form>
-    <label for="file">설계 CSV</label>
-    <input id="file" type="file" accept=".csv,text/csv" required>
-    <button type="submit">트리와 점수 보기</button>
-  </form>
-  <p>로컬 점수는 공식 점수와 다를 수 있습니다. <a href="https://script.google.com/macros/s/AKfycbyfytW6GhEMwkUIE7xja48WGlirBBES_VTXoXxVuzDSHAfcML17mWYwT7VDdBA8gFD9/exec?p=case" target="_blank" rel="noopener">공식 실습기에서 같은 CSV 평가하기</a></p>
+  <section class="intro" aria-labelledby="title">
+    <h1 id="title">배차 트리 평가</h1>
+    <p>설계 CSV 하나로 배차 트리와 시드별 비용을 확인하세요. 파일은 브라우저에서만 처리합니다.</p>
+    <form>
+      <label for="file">설계 CSV</label>
+      <input id="file" type="file" accept=".csv,text/csv" required>
+      <button type="submit">트리와 점수 보기</button>
+    </form>
+    <p>로컬 점수는 공식 점수와 다를 수 있습니다. <a href="https://script.google.com/macros/s/AKfycbyfytW6GhEMwkUIE7xja48WGlirBBES_VTXoXxVuzDSHAfcML17mWYwT7VDdBA8gFD9/exec?p=case" target="_blank" rel="noopener">공식 실습기에서 같은 CSV 평가하기</a></p>
+  </section>
   <p id="status" role="status"></p>
   <section id="results" aria-label="배차 트리와 점수"></section>
 </main></body></html>

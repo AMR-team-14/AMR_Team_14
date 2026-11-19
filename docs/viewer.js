@@ -1,28 +1,34 @@
-import {features, parseCsv} from "./policy.js";
-import {buildCase, decodeReference, generateArrivals, simulate} from "./simulator.js";
-
+const features = {
+  de: ["빈 차 이동거리", " m"], dl: ["적재 이동거리", " m"],
+  qo: ["출발지 대기 건수", "건"], urg: ["긴급 여부", ""], w: ["대기 시간", "분"]
+};
 const files = document.getElementById("file");
 const results = document.getElementById("results");
 const status = document.getElementById("status");
 const form = document.querySelector("form");
 const submit = form.querySelector("button");
-const scoreText = new Intl.NumberFormat("ko-KR",{minimumFractionDigits:2,maximumFractionDigits:2});
-const readJson = async path => {
-  const response = await fetch(path);
-  if (!response.ok) throw new Error("평가 데이터를 불러오지 못했습니다.");
-  return response.json();
-};
+const scoreText = new Intl.NumberFormat("ko-KR", {minimumFractionDigits:2, maximumFractionDigits:2});
+let worker;
 
-async function loadCase() {
-  const [data, reference] = await Promise.all([readJson("./case.json"),readJson("./seed11.json")]);
-  const model = buildCase(data);
-  const seed11 = decodeReference(model,reference);
-  return { model, scenarios:model.seeds.map(seed => ({
-    seed, arrivals:seed===11 ? seed11 : generateArrivals(model,seed),
-    source:seed===11 ? "공식 배차 로그에서 복원" : "로컬 생성"
-  })) };
+function evaluate(csv) {
+  worker ??= new Worker(new URL("./score-worker.js", import.meta.url), { type: "module" });
+  return new Promise((resolve, reject) => {
+    function done({data}) {
+      worker.removeEventListener("error", failed);
+      if (data.error) reject(new Error(data.error));
+      else resolve(data);
+    }
+    function failed() {
+      worker.removeEventListener("message", done);
+      worker.terminate();
+      worker = undefined;
+      reject(new Error("공통 평가 엔진을 시작하지 못했습니다. 웹 빌드와 서버를 확인하세요."));
+    }
+    worker.addEventListener("message", done, {once:true});
+    worker.addEventListener("error", failed, {once:true});
+    worker.postMessage(csv);
+  });
 }
-let caseInputs;
 
 function describe(node, high) {
   if (node.feature === "urg") return high ? "긴급" : "일반";
@@ -104,7 +110,7 @@ function draw(canvas, rule) {
 function renderTree(name, policy) {
   const title = element("h2",name,results);
   title.id = "current-tree";
-  element("p",`차량 ${policy.fleet}대 · 규칙 ${policy.nodes.size}개 · 깊이 ${policy.maxDepth}`,results);
+  element("p",`차량 ${policy.fleet}대 · 규칙 ${policy.nodes.size}개 · 깊이 ${policy.maxDepth}`,results).className = "tree-meta";
   element("p","파란 가지가 우선입니다. 끝 노드에서 동점이면 빈 차 거리 → 요청 도착순 → 차량 번호 순으로 비교합니다.",results);
   const graph = element("div",null,results);
   graph.className = "graph";
@@ -123,47 +129,46 @@ function renderTree(name, policy) {
   }
 }
 
-function renderScores(scores) {
-  element("h2","로컬 시뮬레이션 점수",results);
-  const table = element("table",null,results);
+function renderScores({ scores, average }) {
+  const heading = element("h2","시드별 로컬 점수",results);
+  heading.className = "scores-heading";
+  element("p",average === null ? "반려된 시드가 있어 평균을 표시하지 않습니다." :
+    `로컬 평균 ${scoreText.format(average)}점`,results).className = "average";
+  const frame = element("div",null,results);
+  frame.className = "score-scroll";
+  const table = element("table",null,frame);
   const header = element("tr",null,element("thead",null,table));
-  for (const label of ["시드","요청 데이터","비용 ↓"]) {
+  for (const label of ["시드","요청 데이터","비용 ↓","평균 대기","긴급 95백분위"]) {
     element("th",label,header).scope = "col";
   }
   const body = element("tbody",null,table);
-  for (const {seed,source,rejected,cost} of scores) {
+  for (const {seed,source,rejected,cost,averageWait,urgent95} of scores) {
     const row = element("tr",null,body);
     element("th",String(seed),row).scope = "row";
-    element("td",source,row);
+    element("td",source === "reference" ? "공식 로그 복원" : "로컬 생성",row);
     element("td",rejected ? "반려" : scoreText.format(cost),row);
+    element("td",rejected ? "—" : scoreText.format(averageWait) + "분",row);
+    element("td",rejected ? "—" : scoreText.format(urgent95) + "분",row);
   }
-  const avg = scores.reduce((sum,row) => sum+(row.cost ?? 0),0)/scores.length;
-  element("p",scores.some(row => row.rejected) ? "반려된 시드가 있어 평균을 표시하지 않습니다." :
-    `로컬 평균 ${scoreText.format(avg)}점`,results).className = "average";
 }
 
-form.addEventListener("submit",async event => {
+form.addEventListener("submit", async event => {
   event.preventDefault();
   const file = files.files[0];
   if (!file) return;
   submit.disabled = true;
   results.replaceChildren();
-  status.textContent = "평가 중…";
+  status.textContent = "시드 11~15를 평가하고 있습니다…";
   try {
     if (file.size > 8192) throw new Error("올바른 설계 CSV 파일인지 확인하세요.");
-    caseInputs ??= await loadCase();
-    const {model,scenarios} = caseInputs;
-    const policy = parseCsv(await file.text(),model);
-    renderTree(file.name,policy);
-    const scores = [];
-    for (const {seed,source,arrivals} of scenarios) {
-      status.textContent = `시드 ${seed} 평가 중…`;
-      await new Promise(resolve => setTimeout(resolve,0));
-      scores.push({seed,source,...simulate(model,policy,arrivals)});
-    }
-    renderScores(scores);
+    const result = await evaluate(await file.text());
+    const nodes = new Map(result.nodes.map(node => [node.id, node]));
+    const depth = id => id ? 1 + Math.max(depth(nodes.get(id).low), depth(nodes.get(id).high)) : 0;
+    renderTree(file.name, {...result, nodes, maxDepth: depth(1)});
+    renderScores(result);
     status.textContent = "";
   } catch (error) {
+    results.replaceChildren();
     status.textContent = error.message;
   } finally {
     submit.disabled = false;

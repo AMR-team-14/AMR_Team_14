@@ -4,7 +4,7 @@ IE325 물류관리 기말 프로젝트입니다. 고정된 통로망에서 AGV(A
 
 - [배차 트리 시각화 · 시드별 로컬 평가](https://amr-team-14.github.io/AMR_Team_14/)
 - [공식 과제 페이지 · 웹 평가](https://script.google.com/macros/s/AKfycbyfytW6GhEMwkUIE7xja48WGlirBBES_VTXoXxVuzDSHAfcML17mWYwT7VDdBA8gFD9/exec?p=case)
-- [팀 공유 요약](README_팀공유_요약.md) · [성능 보고서](final_agv_report.md)
+- [기존 구현의 팀 공유 요약](README_팀공유_요약.md) · [성능 보고서](final_agv_report.md)
 
 ## 목적함수
 
@@ -33,8 +33,32 @@ $$
 | [ㄱㅁㅈ](solutions/ㄱㅁㅈ/) | [ㅂㅈㅎ](solutions/ㅂㅈㅎ/) | [ㅇㅈㅌ](solutions/ㅇㅈㅌ/) |
 | [ㅇㅂ](solutions/ㅇㅂ/) | [ㅈㄱㄷ](solutions/ㅈㄱㄷ/) | [ㅈㅅㅁ](solutions/ㅈㅅㅁ/) |
 
-## 코드 구성
+## 하나의 시뮬레이터, 두 가지 사용 방법
 
-- `agv_opt.cpp`는 데이터 로딩, 경로 계산, 시뮬레이션, 후보 탐색, 민감도 분석이 들어 있는 기존 C++ 실행 코드입니다.
-- `docs/`는 평가 화면과 브라우저용 시뮬레이터입니다. 사용자가 선택한 CSV 하나를 평가하고 트리를 보여줍니다. CSV와 계산 결과는 브라우저에서만 처리합니다.
-- `tools/prepare-viewer-data.mjs`는 공식 입력과 시드 11 배차 로그에서 뷰어에 필요한 데이터를 추출합니다.
+웹 화면과 에이전트 실험은 모두 `src/`의 C++ 시뮬레이터로 차량을 배정하고 점수를 계산합니다. 케이스 데이터와 CSV 검증 규칙도 공유합니다.
+
+| 사용 경로 | 하는 일 |
+| --- | --- |
+| 팀원용 웹 화면 | CSV 하나를 읽어 트리, 시드별 비용·대기시간, 평균 비용을 보여줍니다. WebAssembly로 빌드한 C++ 엔진을 브라우저에서 실행합니다. |
+| 에이전트용 명령줄 | 웹 화면 없이 CSV를 채점하고, 차량 대수와 규칙을 탐색하거나 여러 시드에서 비교합니다. 자세한 명령은 [에이전트 실험 가이드](AGENT_EXPERIMENTS.md)에 있습니다. |
+
+```text
+src/case_data.*   고정 통로망·최단경로·시드별 요청 준비
+src/policy.*      배차 규칙과 CSV 읽기·검증
+src/simulator.*   차량 이동·배차·대기열과 비용 계산
+src/evaluation.*  시드별 실행과 결과 출력 형식
+src/search.*      후보 탐색과 민감도 분석
+src/main.cpp      명령줄 진입점
+src/web_api.cpp   브라우저가 호출하는 진입점
+docs/             팀원용 화면과 웹 배포 파일
+```
+
+### 개발과 검증
+
+공개 링크에는 배포 브랜치의 코드가 표시됩니다. 작업 브랜치의 화면은 로컬에서 미리볼 수 있습니다.
+
+- 명령줄 빌드: `node tools/build.mjs native`
+- 웹 엔진 재빌드: Emscripten 4.0.21을 활성화한 뒤 `node tools/build.mjs web`. 생성된 `docs/engine/` 파일을 소스 변경과 함께 커밋합니다.
+- 로컬 웹 미리보기: `python -m http.server 8080 --directory docs`를 실행하고 [localhost:8080](http://localhost:8080)을 엽니다.
+- 두 빌드가 끝나면 `node tests/engine.mjs`로 기존 네 설계의 시드별 점수와 명령줄·브라우저 엔진의 일치를 확인합니다.
+- `tools/prepare-viewer-data.mjs`는 공식 케이스와 시드 11 배차 로그에서 필요한 입력을 추출합니다.
