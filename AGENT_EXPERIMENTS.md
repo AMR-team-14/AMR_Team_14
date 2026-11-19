@@ -16,7 +16,11 @@ Windows에서는 `build\agv_opt.exe`를 실행합니다. 기본 입력은 `docs/
 
 `--eval-json`은 차량 대수, 트리, 시드별 비용, 평균 대기, 긴급 대기 95백분위수, 최대·종료 대기열을 반환합니다. 시드 반려는 `rejected: true`와 `cost: null`로 표시합니다. 한 시드라도 반려되면 `average`도 `null`입니다.
 
-## 후보 탐색과 검증
+## 새 실험 설계
+
+[트리 계열과 대수 비교 계획](docs/notes/experiment-design.md)을 따릅니다. 아래 명령은 기존 실험을 재현할 때 사용합니다.
+
+## 기존 탐색 재현
 
 ```sh
 ./build/agv_opt --analyze solutions/KMJ/answer_final_best.csv
