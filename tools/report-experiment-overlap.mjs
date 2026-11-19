@@ -1,5 +1,7 @@
 import { execFileSync, spawnSync } from "node:child_process";
-import { readdirSync } from "node:fs";
+import { branchCandidates } from "./branch-candidates.mjs";
+import { createHash } from "node:crypto";
+import { copyFileSync, mkdirSync, mkdtempSync, writeFileSync, readdirSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -48,6 +50,7 @@ function code(value) {
 
 function cite(file) {
   const label = code(file.path);
+  if (file.refs) return file.refs.map(({branch, commit}) => "[" + code(branch) + " " + label + "](https://github.com/" + (process.env.GITHUB_REPOSITORY || "AMR-team-14/AMR_Team_14") + "/blob/" + commit + "/" + file.path.split("/").map(encodeURIComponent).join("/") + ")").join(", ");
   if (!process.env.GITHUB_SHA) return label;
   const blob = file.path.split("/").map(encodeURIComponent).join("/");
   return "[" + label + "](https://github.com/" + process.env.GITHUB_REPOSITORY + "/blob/" + process.env.GITHUB_SHA + "/" + blob + ")";
@@ -72,7 +75,8 @@ function differences(first, second) {
   return changes;
 }
 
-const files = readdirSync(solutions, { withFileTypes: true })
+function localFiles() {
+  return readdirSync(solutions, { withFileTypes: true })
   .filter(entry => entry.isDirectory())
   .sort((a, b) => a.name.localeCompare(b.name))
   .flatMap(({ name: owner }) => candidates(join(solutions, owner)).map(fullPath => ({
@@ -80,10 +84,16 @@ const files = readdirSync(solutions, { withFileTypes: true })
     owner, ownerName: Object.hasOwn(owners, owner) ? owners[owner] : code(owner)
   })));
 
+}
+const remote = process.argv.includes("--all-branches");
+const bundle = remote ? mkdtempSync(join(root, "build", "overlap-report-")) : null;
+const inputFiles = remote ? branchCandidates(root, join(bundle, "inputs")) : localFiles();
+const files = inputFiles.map(file => ({ ...file, ownerName: Object.hasOwn(owners, file.owner) ? owners[file.owner] : code(file.owner) }));
+
 const designs = new Map();
 const invalid = [];
 for (const file of files) {
-  const parsed = spawnSync(engine, ["--policy-json", file.path], { cwd: root, encoding: "utf8" });
+  const parsed = spawnSync(engine, ["--policy-json", file.local ?? file.path], { cwd: root, encoding: "utf8" });
   if (parsed.error || parsed.status === null) throw parsed.error ?? new Error("Policy validator stopped: " + parsed.signal);
   if (parsed.status !== 0) {
     const reason = parsed.stderr.trim();
@@ -98,12 +108,13 @@ for (const file of files) {
 }
 
 for (const design of designs.values()) {
-  const result = execFileSync(engine, ["--eval-json", design.files[0].path, "--seeds", seeds.join(",")], {
+  const result = execFileSync(engine, ["--eval-json", design.files[0].local ?? design.files[0].path, "--seeds", seeds.join(",")], {
     cwd: root, encoding: "utf8"
   });
   const { scores, average } = JSON.parse(result);
   design.rejected = scores.filter(score => score.rejected).length;
   design.average = average;
+  design.scores = scores;
 }
 
 const ranked = Array.from(designs.values())
@@ -157,6 +168,30 @@ for (const [feature, entries] of coverage) {
   const fleets = groupBy(entries, design => design.policy.fleet);
   const counts = [...fleets.keys()].sort((a, b) => a - b).map(fleet => fleet + "대 " + fleets.get(fleet).length + "개");
   lines.push("- " + code(feature) + " · " + counts.join(", "));
+}
+
+const projection = new Set(ranked.map(d => d.policy.fleet + "/" + d.paths.get("루트").feature));
+lines.push("", "## 제출된 대수 × 루트", "", "150칸 중 " + projection.size + "칸에 제출이 있습니다. 한 칸 안에도 여러 구조와 임계값이 있습니다.");
+for (const feature of ["de", "w", "urg", "qo", "dl"]) {
+  const empty = Array.from({length: 30}, (_, i) => i + 1).filter(n => !projection.has(n + "/" + feature));
+  lines.push("- " + feature + " 미제출 대수 · " + (empty.join(", ") || "없음"));
+}
+if (remote) {
+  const manifest = [];
+  for (const design of ranked) {
+    const policyID = createHash("sha256").update(JSON.stringify(design.policy)).digest("hex");
+    const inMain = design.files.some(f => f.refs.some(ref => ref.branch === "main"));
+    if (!inMain) {
+      const directory = join(bundle, "main-additions", "solutions", "collected");
+      mkdirSync(directory, {recursive: true});
+      copyFileSync(design.files[0].local, join(directory, policyID + ".csv"));
+    }
+    manifest.push({ policyID, inMain, policy: design.policy, seeds, scores: design.scores,
+      sources: design.files.map(({ owner, path, refs }) => ({ owner, path, refs })) });
+  }
+  writeFileSync(join(bundle, "candidates.json"), JSON.stringify({engineCommit: process.env.GITHUB_SHA || null, candidates: manifest}, null, 2));
+  lines.push("", "## main에 추가할 후보", "", "현재 main에 없는 고유 정책 " + manifest.filter(d => !d.inMain).length +
+    "개. 실행 첨부의 main-additions 폴더와 candidates.json에서 원본과 시드별 결과를 확인하세요.");
 }
 
 const byOwner = new Map();

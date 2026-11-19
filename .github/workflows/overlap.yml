@@ -7,6 +7,7 @@ on:
     paths:
       - '.github/workflows/overlap.yml'
       - 'tools/report-experiment-overlap.mjs'
+      - 'tools/branch-candidates.mjs'
       - 'tools/build.mjs'
       - 'src/**'
       - 'solutions/**'
@@ -27,6 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@v6
         with:
@@ -34,10 +36,13 @@ jobs:
       - run: node tools/build.mjs native
       - name: Generate report
         run: |
-          node tools/report-experiment-overlap.mjs > ggyeopchimi.md
+          node tools/report-experiment-overlap.mjs --all-branches > ggyeopchimi.md
           head -c 900000 ggyeopchimi.md >> "$GITHUB_STEP_SUMMARY"
           printf '\n\n전체 보고서는 이 실행의 Artifacts에서 내려받을 수 있습니다.\n' >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v7
         with:
           name: ggyeopchimi
-          path: ggyeopchimi.md
+          path: |
+            ggyeopchimi.md
+            build/overlap-report-*/candidates.json
+            build/overlap-report-*/main-additions/
