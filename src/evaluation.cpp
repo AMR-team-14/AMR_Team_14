@@ -1,6 +1,7 @@
 #include "evaluation.hpp"
 
 #include <iomanip>
+#include <limits>
 #include <sstream>
 #include <stdexcept>
 
@@ -17,10 +18,9 @@ std::vector<SeedScore> evaluate(SimData& data, const Policy& policy, const std::
     return scores;
 }
 
-std::string evaluation_json(const Policy& policy, const std::vector<SeedScore>& scores) {
-    std::ostringstream out;
-    out << std::setprecision(15);
-    out << "{\"fleet\":" << policy.fleet << ",\"nodes\":[";
+namespace {
+void write_policy_fields(std::ostream& out, const Policy& policy) {
+    out << "\"fleet\":" << policy.fleet << ",\"nodes\":[";
     for (int id = 1; id <= policy.tree.n_nodes; ++id) {
         const auto& node = policy.tree.nodes[id];
         if (id > 1) out << ',';
@@ -29,7 +29,23 @@ std::string evaluation_json(const Policy& policy, const std::vector<SeedScore>& 
             << "\",\"threshold\":" << node.th << ",\"low\":" << node.lo
             << ",\"high\":" << node.hi << '}';
     }
-    out << "],\"scores\":[";
+    out << ']';
+}
+} // namespace
+
+std::string policy_json(const Policy& policy) {
+    std::ostringstream out;
+    out << std::setprecision(std::numeric_limits<double>::max_digits10) << '{';
+    write_policy_fields(out, policy);
+    out << '}';
+    return out.str();
+}
+
+std::string evaluation_json(const Policy& policy, const std::vector<SeedScore>& scores) {
+    std::ostringstream out;
+    out << std::setprecision(15) << '{';
+    write_policy_fields(out, policy);
+    out << ",\"scores\":[";
     double sum = 0.0;
     bool any_rejected = false;
     for (size_t i = 0; i < scores.size(); ++i) {

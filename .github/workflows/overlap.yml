@@ -1,0 +1,43 @@
+name: 겹치미
+
+on:
+  push:
+    branches:
+      - codex/simulator-reproducibility
+    paths:
+      - '.github/workflows/overlap.yml'
+      - 'tools/report-experiment-overlap.mjs'
+      - 'tools/build.mjs'
+      - 'src/**'
+      - 'solutions/**'
+      - 'docs/case.json'
+      - 'docs/seed11.json'
+  workflow_dispatch:
+  schedule:
+    # 21:17 KST. The scheduled workflow runs from the default branch.
+    - cron: '17 12 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  overlap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - run: node tools/build.mjs native
+      - name: Generate report
+        run: |
+          node tools/report-experiment-overlap.mjs > ggyeopchimi.md
+          head -c 900000 ggyeopchimi.md >> "$GITHUB_STEP_SUMMARY"
+          printf '\n\n전체 보고서는 이 실행의 Artifacts에서 내려받을 수 있습니다.\n' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ggyeopchimi
+          path: ggyeopchimi.md

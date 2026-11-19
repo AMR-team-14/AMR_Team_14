@@ -17,6 +17,7 @@ void usage() {
     std::cout <<
         "Usage: agv_opt --eval <csv> [--seeds 11,12,13,14,15] [--data-dir docs]\n"
         "       agv_opt --eval-json <csv> [--seeds 151,152,153]\n"
+        "       agv_opt --policy-json <csv> [--data-dir docs]\n"
         "       agv_opt --export-arrivals [--seeds 11,12,13,14,15] [--data-dir docs]\n"
         "       agv_opt --analyze <csv> [--data-dir docs]\n"
         "       agv_opt --robust [--output-dir runs/robust] [--data-dir docs]\n";
@@ -62,9 +63,10 @@ int run(int argc, char** argv) {
     if (argc < 2 || std::string_view(argv[1]) == "--help") { usage(); return 0; }
     const std::string mode = argv[1];
     const bool eval = mode == "--eval" || mode == "--eval-json";
+    const bool policy_only = mode == "--policy-json";
     const bool robust = mode == "--robust";
     const bool export_only = mode == "--export-arrivals";
-    if (!eval && !robust && !export_only && mode != "--analyze") throw std::runtime_error("Unknown mode: " + mode);
+    if (!eval && !policy_only && !robust && !export_only && mode != "--analyze") throw std::runtime_error("Unknown mode: " + mode);
     if (!(robust || export_only) && argc < 3) throw std::runtime_error("Provide the policy CSV");
     const std::string csv = (robust || export_only) ? "" : argv[2];
     fs::path directory = "docs", output = "runs/robust";
@@ -79,7 +81,7 @@ int run(int argc, char** argv) {
     }
     if (robust) ensure_search_output(output);
     SimData model = load_case(read_text((directory / "case.json").string()),
-        read_text((directory / "seed11.json").string()), (eval || export_only) ? 0 : 50);
+        read_text((directory / "seed11.json").string()), (eval || export_only || policy_only) ? 0 : 50);
     if (export_only) {
         export_arrivals(model, seeds.empty() ? model.seeds : seeds);
         return 0;
@@ -88,6 +90,11 @@ int run(int argc, char** argv) {
     if (mode == "--analyze") { run_analysis(model, csv, 10); return 0; }
 
     const auto policy = parse_policy(read_text(csv), model);
+    if (policy_only) {
+        const Policy canonical{policy.fleet, canonicalize_tree(policy.tree)};
+        std::cout << policy_json(canonical) << '\n';
+        return 0;
+    }
     const auto scores = evaluate(model, policy, seeds.empty() ? model.seeds : seeds);
     if (mode == "--eval-json") {
         std::cout << evaluation_json(policy, scores) << '\n';

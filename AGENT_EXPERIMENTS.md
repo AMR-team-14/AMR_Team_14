@@ -18,7 +18,7 @@ Windows에서는 `build\agv_opt.exe`를 실행합니다. 기본 입력은 `docs/
 
 ## 새 실험 설계
 
-[개인별 완성 트리 탐색과 AI 취합 계획](docs/notes/experiment-design.md)을 따릅니다. 이전 웹 보드의 단계별 인계안은 현재 계획과 다릅니다. 아래 명령은 기존 실험을 재현할 때 사용합니다.
+[개인별 완성 트리 탐색과 AI 취합 계획](docs/notes/experiment-design.md)을 따릅니다. 후보는 작업 브랜치의 개인 폴더에 올리고 GitHub Actions의 겹치미 요약에서 겹친 규칙과 공통 16시드 점수를 확인합니다. 아래 명령은 기존 실험을 재현할 때 사용합니다.
 
 ## 기존 탐색 재현
 
