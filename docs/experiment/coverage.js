@@ -3,7 +3,7 @@ const plans = {
  Q0:"qo", Q1:"qo(-,w)", Q2:"qo(dl,w)", U0:"urg", U1:"urg(-,w)", U2:"urg(qo,w)",
  L0:"dl", L1:"dl(urg,-)", L2:"dl(urg,qo)"
 };
-const fleetPlan=Array.from({length:30},(_,i)=>i+1).filter(n=>n<=10||n%2||n>=16&&n<=22);
+const fleetPlan=Array.from({length:30},(_,i)=>i+1).filter(n=>n%2||n>=16&&n<=22);
 const makeElement=(tag,txt)=>Object.assign(document.createElement(tag),{textContent:txt});
 function structure(nodes){
  if(!Array.isArray(nodes)||nodes.length<1||nodes.length>9)throw Error("트리 노드 수를 확인하세요.");
