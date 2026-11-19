@@ -1,0 +1,4 @@
+*.exe
+*.o
+*.obj
+reconstruct_best_19.csv
