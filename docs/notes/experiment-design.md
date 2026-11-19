@@ -138,3 +138,9 @@ solutions/<기존 개인 폴더>/
 - **남은 작업:** 첫 회의에서 각자 더 볼 가설을 정한다. 겹치미를 새 후보에 적용해 담당자 간 겹침을 확인한다. 현 시점에 공개된 기준 후보는 곽민재 폴더에 있다.
 
 탐색에는 다른 시작점에서 재시작하고 작은 변경에서 큰 변경으로 넓히는 방법을 사용할 수 있다. 비교에는 공통 난수를 사용한다. [ParamILS](https://ml.informatik.uni-freiburg.de/wp-content/uploads/papers/09-JAIR-ParamILS.pdf) · [가변 근방 탐색](https://sci2s.ugr.es/sites/default/files/files/Teaching/GraduatesCourses/Metaheuristicas/Bibliography/HansenVNS.pdf) · [공통 난수 비교](https://users.iems.northwestern.edu/~nelsonb/Publications/KimNelsonKN.pdf)
+
+## 거시 설계 마감과 다음 회의
+
+거리(de), 장기 대기(w), 출발지 적체(qo), 긴급(urg), 적재 거리(dl)에서 각각 시작하고 대수는 전원이 함께 본다. 예비 비교는 같은 대수에서 트리를 바꿔 공통 5시드로 보고, 대수 조사는 대표 트리를 고정하고 차량 수를 바꿔 앞의 5개를 포함한 8시드로 본다. 기본 24대수는 같은 트리·시드 기준으로 전수 조사보다 실행 횟수가 20% 적다.
+
+다음 회의에서는 각 담당자가 루트의 이하·초과 가지에서 어떤 변수를 먼저 볼지 정한다. 각자 기준 트리 하나와 2층 규칙 하나를 바꾼 트리를 준비하고, 같은 대수·시드에서 확인할 가설과 평가 지표를 적는다. [회의 웹의 관계표](https://ie325-agv-team14-experiment-roadmap.jsm0308.chatgpt.site/#relations), [탐색 현황판](../experiment/index.html#coverage), [기존 후보 원본](../../solutions/KMJ/)을 함께 참고한다.
