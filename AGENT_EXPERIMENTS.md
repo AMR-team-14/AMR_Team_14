@@ -18,7 +18,7 @@ Windows에서는 `build\agv_opt.exe`를 실행합니다. 기본 입력은 `docs/
 
 ## 새 실험 설계
 
-[트리 계열과 대수 비교 계획](docs/notes/experiment-design.md)을 따릅니다. 아래 명령은 기존 실험을 재현할 때 사용합니다.
+[회의용 분업 보드 HTML](docs/experiment/index.html)과 [트리 계열과 대수 비교 계획](docs/notes/experiment-design.md)을 참고합니다. 아래 명령은 기존 실험을 재현할 때 사용합니다.
 
 ## 기존 탐색 재현
 
