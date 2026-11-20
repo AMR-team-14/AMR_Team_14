@@ -1,8 +1,10 @@
 #include <algorithm>
 #include <array>
+#include <bit>
 #include <chrono>
 #include <cmath>
 #include <cstdint>
+#include <filesystem>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -12,6 +14,7 @@
 #include <random>
 #include <set>
 #include <sstream>
+#include <stdexcept>
 #include <string>
 #include <thread>
 #include <tuple>
@@ -517,7 +520,7 @@ SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tre
             if (brute_force) {
                 uint32_t m = idle_mask;
                 while (m) {
-                    int aid = __builtin_ctz(m);
+                    int aid = std::countr_zero(m);
                     m &= m - 1;
                     rep_pos[n_rep] = agv_pos[aid];
                     rep_aid[n_rep] = aid;
@@ -527,7 +530,7 @@ SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tre
                 uint32_t seen_pos_mask = 0;
                 uint32_t m = idle_mask;
                 while (m) {
-                    int aid = __builtin_ctz(m);
+                    int aid = std::countr_zero(m);
                     m &= m - 1;
                     int p = agv_pos[aid];
                     uint32_t bit = 1u << p;
@@ -717,7 +720,7 @@ bool is_valid_tree(const Tree& t) {
     auto dfs = [&](auto& self, int curr, int path_mask, int feat_mask) -> bool {
         if (curr == 0) return true;
         if (curr < 1 || curr > t.n_nodes) return false;
-        if (path_mask & (1 << curr)) return false;
+        if (visited[curr] || (path_mask & (1 << curr))) return false;
         const TreeNode& tn = t.nodes[curr];
         if (tn.feat < 0 || tn.feat >= 5) return false;
         if (tn.feat == 0 && std::abs(tn.th - 0.5) > 1e-9) return false;
@@ -756,30 +759,54 @@ Tree canonicalize_tree(const Tree& t) {
     return out;
 }
 
-std::pair<int, Tree> load_csv_tree(const std::string& path) {
+std::pair<int, Tree> load_csv_tree(const std::string& path, const std::string* required_dir = nullptr) {
     std::ifstream in(path);
+    if (!in) throw std::invalid_argument("CSV not found: " + path);
     std::string line;
+    std::string direction;
+    bool has_fleet = false;
+    std::array<bool, 10> present{};
     int n_agv = 19, max_id = 0;
     Tree t;
     while (std::getline(in, line)) {
+        if (!line.empty() && line.back() == '\r') line.pop_back();
         if (line.empty()) continue;
         std::stringstream ss(line);
         std::string tok;
         std::vector<std::string> parts;
         while (std::getline(ss, tok, ',')) parts.push_back(tok);
         if (parts.empty()) continue;
-        if (parts[0] == "fleet") n_agv = std::stoi(parts[1]);
+        if (parts[0] == "dir" && parts.size() == 2) direction = parts[1];
+        else if (parts[0] == "fleet" && parts.size() == 2) {
+            n_agv = std::stoi(parts[1]);
+            has_fleet = true;
+        }
         else if (parts[0] == "key") {
+            if (parts.size() != 7 || (parts[3] != "min" && parts[3] != "max")) {
+                throw std::invalid_argument("Invalid key row: " + line);
+            }
             int nid = std::stoi(parts[1]);
+            if (nid < 1 || nid > 9 || present[nid]) {
+                throw std::invalid_argument("Invalid or duplicate node ID: " + parts[1]);
+            }
+            present[nid] = true;
             max_id = std::max(max_id, nid);
             t.nodes[nid].feat = feat_from_str(parts[2]);
             t.nodes[nid].is_min = (parts[3] == "min");
             t.nodes[nid].th = std::stod(parts[4]);
             t.nodes[nid].lo = std::stoi(parts[5]);
             t.nodes[nid].hi = std::stoi(parts[6]);
+            if (t.nodes[nid].lo < 0 || t.nodes[nid].lo > 9 ||
+                t.nodes[nid].hi < 0 || t.nodes[nid].hi > 9 || !std::isfinite(t.nodes[nid].th)) {
+                throw std::invalid_argument("Invalid threshold or branch: " + line);
+            }
         }
     }
     t.n_nodes = max_id;
+    if (required_dir && (direction != *required_dir || !has_fleet || n_agv < 1 || n_agv > 30 ||
+                         std::count(present.begin(), present.end(), true) != max_id || !is_valid_tree(t))) {
+        throw std::invalid_argument("Invalid direction, fleet or decision tree: " + path);
+    }
     return {n_agv, canonicalize_tree(t)};
 }
 
@@ -1490,15 +1517,21 @@ int run_verify_cmd(const SimData& sd, const std::string& csv_path) {
     return (dir_ok && fleet_ok && tree_ok && parity_ok) ? 0 : 1;
 }
 
+#include "agv_yb_search.hpp"
+
 int main(int argc, char** argv) {
     std::string mode = (argc >= 2) ? argv[1] : "";
+    const bool yb_mode = mode == "--yb-search" || mode == "--yb-deadlines" || mode == "--yb-audit";
     int n_unseen = 50;
     if (mode == "--eval100" || mode == "--reconstruct") n_unseen = 100;
     else if (mode == "--eval300") n_unseen = 400;
     else if (mode == "--eval800") n_unseen = 900;
+    else if (yb_mode) n_unseen = 0;
 
     SimData sd = load_case_data("agv_case_data (1).json", "agv_dispatch_log_seed11 (1).csv", n_unseen);
     int n_threads = std::max(1, (int)std::thread::hardware_concurrency());
+
+    if (yb_mode) return yb::run(sd, argc, argv, n_threads);
 
     if (argc >= 3 && (mode == "--eval" || mode == "--eval100" || mode == "--eval300" || mode == "--eval800")) {
         run_eval_cmd(sd, argv[2], mode, n_threads);
@@ -1525,5 +1558,7 @@ int main(int argc, char** argv) {
     }
 
     std::cout << "Usage: agv_opt.exe [--eval <csv> | --eval100 <csv> | --eval300 <csv> | --eval800 <csv> | --verify <csv> | --analyze <csv> | --polish <in.csv> [out.csv] | --reconstruct [seed.csv]]\n";
+    std::cout << "YB: [--yb-search <baseline.csv> <new.csv> [rounds=8] | --yb-deadlines <baseline.csv> <new.csv>"
+              << " | --yb-audit <baseline.csv> <challenger.csv> [first_seed=6001]]\n";
     return 0;
 }
