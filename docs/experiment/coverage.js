@@ -19,7 +19,7 @@ function structure(nodes){
 }
 function renderCoverage(data,caption){
  const candidates=data.candidates;
- if(!Array.isArray(candidates))throw Error("candidates.json 형식을 확인하세요.");
+ if(!Array.isArray(candidates))throw Error("후보 데이터 형식을 확인하세요.");
  const groups=new Map(Object.values(plans).map(shape=>[shape,new Map()]));
  const fleets=new Set(fleetPlan);
  for(const c of candidates){
@@ -57,7 +57,3 @@ function renderCoverage(data,caption){
  details.textContent="칸을 선택하면 정확한 경계값과 담당 기록을 볼 수 있습니다.";
 }
 renderCoverage(JSON.parse(document.querySelector("#baseline-data").textContent),"공개 CSV 기준 · 곽민재 고유 3종");
-document.querySelector("#coverage-file").onchange=async event=>{
- const file=event.target.files[0];if(!file)return;
- try{renderCoverage(JSON.parse(await file.text()),file.name)}catch(error){document.querySelector("#coverage-summary").textContent="불러오기 실패 · "+error.message}
-};
