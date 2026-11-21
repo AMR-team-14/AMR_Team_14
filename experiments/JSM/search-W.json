@@ -77882,5 +77882,8 @@
     "w(max,8)[de(max,180)[qo(min,8)[-,dl(max,25)],qo(min,4)[dl(min,50),-]],dl(min,25)[de(max,90)[-,qo(max,8)],-]]",
     "w(max,8)[de(max,180)[qo(min,8)[-,dl(max,25)[urg(min,0.5),-]],qo(min,4)[dl(min,50),-]],dl(min,25)[de(max,90),-]]",
     "w(max,8)[de(max,180)[qo(min,8)[-,dl(max,25)[urg(max,0.5),-]],qo(min,4)[dl(min,50),-]],dl(min,25)[de(max,90),-]]"
-  ]
+  ],
+  "stages": {
+    "A": "WA1"
+  }
 }
