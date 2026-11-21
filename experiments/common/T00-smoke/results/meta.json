@@ -1,0 +1,16 @@
+{
+  "engineCommit": "1378af7",
+  "seeds": [
+    1001,
+    1002
+  ],
+  "fleets": [
+    19
+  ],
+  "trees": 2,
+  "evaluations": 2,
+  "runner": "github-actions",
+  "threads": 4,
+  "seconds": 0,
+  "finishedAt": "2026-11-21T13:56:28.777Z"
+}
