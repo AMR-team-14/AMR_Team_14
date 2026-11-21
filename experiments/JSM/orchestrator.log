@@ -20,3 +20,5 @@
 2026-11-21T17:58:45.756Z U: U07 -> U08: 275 survivors, 17912 trees, 53736 evaluations
 2026-11-21T18:00:15.248Z W: W07 -> W08: 320 survivors, 19098 trees, 57303 evaluations
 2026-11-21T18:06:41.778Z pushed next layers
+2026-11-21T18:52:20.895Z U: no further expansion, done
+2026-11-21T18:53:44.237Z W: W08 -> W09: 311 survivors, 18482 trees, 55452 evaluations
