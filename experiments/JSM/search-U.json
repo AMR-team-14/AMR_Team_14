@@ -1,0 +1,10 @@
+{
+  "family": "U",
+  "root": "urg",
+  "seeds": "1001-1064",
+  "maxEvaluations": 60000,
+  "layers": [
+    "U01-layer2"
+  ],
+  "done": false
+}

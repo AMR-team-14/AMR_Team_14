@@ -1,0 +1,10 @@
+{
+  "family": "W",
+  "root": "w",
+  "seeds": "1001-1064",
+  "maxEvaluations": 60000,
+  "layers": [
+    "W01-root-threshold"
+  ],
+  "done": false
+}

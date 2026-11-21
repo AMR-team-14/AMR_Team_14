@@ -1,16 +1,9 @@
 {
-  "engineCommit": "1378af7",
-  "seeds": [
-    1001,
-    1002
-  ],
-  "fleets": [
-    19
-  ],
+  "engineCommit": "627a7ec",
+  "seeds": "1001-1002",
   "trees": 2,
   "evaluations": 2,
-  "runner": "github-actions",
-  "threads": 4,
-  "seconds": 0,
-  "finishedAt": "2026-11-21T13:56:28.777Z"
+  "runner": "local",
+  "seconds": 0.064,
+  "finishedAt": "2026-11-21T14:46:51.796Z"
 }
