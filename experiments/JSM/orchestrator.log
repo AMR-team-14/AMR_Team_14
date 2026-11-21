@@ -5,3 +5,5 @@
 2026-11-21T14:51:05.373Z pushed next layers
 2026-11-21T14:52:38.416Z U: U01-layer2 -> U02: 17 survivors, 902 trees, 2706 evaluations
 2026-11-21T14:52:39.172Z W: W01-root-threshold -> W02: 6 survivors, 324 trees, 972 evaluations
+2026-11-21T15:17:03.716Z U: U03 -> U04: 232 survivors, 17373 trees, 52183 evaluations
+2026-11-21T15:17:17.366Z W: W03 -> W04: 16 survivors, 1041 trees, 3123 evaluations
