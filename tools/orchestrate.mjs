@@ -104,7 +104,7 @@ function pushReport(status) {
 }
 
 while (true) {
-  sh("git", ["pull", "-q", "--ff-only", "origin", branch]);
+  try { sh("git", ["pull", "-q", "--ff-only", "origin", branch]); } catch { note("git pull failed; retrying in 60 s"); await sleep(60e3); continue; }
   const { busy, lastFailed } = activeRun();
   if (Date.now() - lastReport >= 30 * 60e3) pushReport(busy ? "GitHub에서 실험 실행 중" : "다음 층 준비 또는 대기");
   if (lastFailed) { note(`workflow run ${lastFailed} failed; stopping for a human`); pushReport(`워크플로 실패(${lastFailed}), 사람 확인 필요`); break; }
