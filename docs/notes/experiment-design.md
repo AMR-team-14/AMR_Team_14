@@ -427,13 +427,14 @@ $\overline\Delta>0$이면 확장이 비용을 낮춘 것이다. $|\overline\Delt
 
 ~~~text
 docs/notes/experiment-design.md   이 문서 (거시+미시 통합)
+experiments/<개인 폴더>/
+  root-plan.md      개인 가설·실험 순서 (부록 A 템플릿)
+  <ID>-<이름>/      실험 하나 = 폴더 하나 (README · run.json · trees · results)
 solutions/<개인 폴더>/
-  root-plan.md      개인 가설·탐색 계획 (부록 A 템플릿)
-  <후보ID>.csv      대수와 완성 트리 전체를 담은 공식 제출 파일
-  <후보ID>.md       출발 가설, 이전 후보에서 바꾼 점, 실행 조건과 결과 위치
+  <후보ID>.csv      최종 후보로 고른 공식 제출 파일만
 ~~~
 
-모든 팀원 에이전트는 [README](../../README.md), 이 문서, 개인 `root-plan.md`를 읽고 시작한다. 에이전트는 매 실험 후 **설계 가설 · 정적 검증 · 실험 결과 · 다음 제안**을 구분해 반환한다. 로컬 시드 결과와 공식 웹 점수를 섞지 않고, 공식 점수가 없으면 “미평가”로 적는다.
+실험 폴더 규칙과 실행 방법은 [experiments/README.md](../../experiments/README.md)에 있다. 모든 팀원 에이전트는 [README](../../README.md), 이 문서, 개인 `root-plan.md`를 읽고 시작한다. 에이전트는 매 실험 후 **설계 가설 · 정적 검증 · 실험 결과 · 다음 제안**을 구분해 반환한다. 로컬 시드 결과와 공식 웹 점수를 섞지 않고, 공식 점수가 없으면 “미평가”로 적는다.
 
 **중복 방지.** 착수 전 GitHub 이슈와 [탐색 현황판](../experiment/index.html#coverage)을 확인한다. 이슈 제목에 보드의 EXP 식별자를 넣고 담당·브랜치·예정 규칙·임계값·시드·엔진 커밋을 남긴다. 현황판은 참고 골격 15개 × 기본 대수 19개를 펼친 계획 단위이며, 한 사람의 평가 예산 360회와 단위가 다르다.
 
@@ -442,7 +443,7 @@ solutions/<개인 폴더>/
 - **기존 기준 후보:** main의 곽민재 19대 트리 [answer_final_best_main.csv](../../solutions/KMJ/answer_final_best_main.csv)(공식 웹 1,185.42, main 커밋 `654c1c3`)를 1순위 기준으로 쓴다. 이전 후보 `robust_best_18/19/20.csv`(웹 1,205.54/1,201.39/1,207.63)는 비교용으로 둔다. 모두 루트가 `de(min,65)`다.
 - **팀원 브랜치:** 윤빈(`younbean`)과 진홍(`jinhong-experiments`)의 후보도 모두 `de(min,65)` 루트에서 이웃 탐색·임계값 조정을 한 것이다. 둘 다 1,185.42안을 통계적으로 이기는 후보를 찾지 못했다. 따라서 **`de` 이외 루트는 아직 아무도 탐색하지 않았다.**
 - **확인 완료:** 고정 맵과 분기·노드 제약, 참고 골격 15개와 임계값 변형 39개의 로컬 정책 검사. [시드 11~15 요청 파일](../../data/scenarios/)과 [시뮬레이터 검증 기록](../../src/simulator-validation.md).
-- **다음 회의:** 각 담당자가 루트의 이하·초과 가지에서 어떤 변수를 먼저 볼지 정한다. 기준 트리 하나와 2층 규칙을 하나 바꾼 트리를 준비하고, 같은 대수·시드에서 확인할 가설과 지표를 적는다. 장승민은 **긴급 우선(U) 계열**을 맡는다([solutions/JSM/root-plan.md](../../solutions/JSM/root-plan.md)).
+- **다음 회의:** 각 담당자가 루트의 이하·초과 가지에서 어떤 변수를 먼저 볼지 정한다. 기준 트리 하나와 2층 규칙을 하나 바꾼 트리를 준비하고, 같은 대수·시드에서 확인할 가설과 지표를 적는다. 장승민은 **긴급 우선(U)과 장기 대기 우선(W) 계열**을 실험한다([experiments/JSM/root-plan.md](../../experiments/JSM/root-plan.md)).
 
 ## 14. 공통 원칙
 
@@ -463,7 +464,7 @@ solutions/<개인 폴더>/
 
 ## 부록 A. `root-plan.md` 템플릿
 
-각자 `solutions/<개인 폴더>/root-plan.md`로 복사해 채운다.
+각자 `experiments/<개인 폴더>/root-plan.md`로 복사해 채운다.
 
 ~~~markdown
 # 배차 트리 개인 탐색 계획

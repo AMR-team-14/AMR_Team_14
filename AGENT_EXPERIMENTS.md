@@ -18,7 +18,7 @@ Windows에서는 `build\agv_opt.exe`를 실행합니다. 기본 입력은 `docs/
 
 ## 새 실험 설계
 
-실험 전에 [README](README.md), [통합 실험 설계](docs/notes/experiment-design.md), 담당자의 `solutions/<개인 폴더>/root-plan.md`를 읽습니다. 설계 문서의 필수 제약과 논리 축소는 에이전트가 자동으로 검사하고, 어느 가지를 확장할지는 담당자가 정합니다. 후보는 작업 브랜치의 개인 폴더에 올리고 공통 시드의 평가 결과를 함께 기록합니다. 매 실험 후 설계 가설·정적 검증·실험 결과·다음 제안을 구분해 보고합니다. 아래 명령은 기존 실험을 재현할 때 사용합니다.
+실험 전에 [README](README.md), [통합 실험 설계](docs/notes/experiment-design.md), 담당자의 `experiments/<개인 폴더>/root-plan.md`를 읽습니다. 실험은 [experiments/README.md](experiments/README.md)의 폴더 구조로 기록하고 `tools/run-batch.mjs`로 실행합니다. 설계 문서의 필수 제약과 논리 축소는 에이전트가 자동으로 검사하고, 어느 가지를 확장할지는 담당자가 정합니다. 최종 후보 CSV만 `solutions/<개인 폴더>/`에 올립니다. 매 실험 후 설계 가설·정적 검증·실험 결과·다음 제안을 구분해 보고합니다. 아래 명령은 기존 실험을 재현할 때 사용합니다.
 
 `--seeds`는 쉼표로 나열합니다(`1001,1002,1003`). 범위 표기는 지원하지 않습니다.
 

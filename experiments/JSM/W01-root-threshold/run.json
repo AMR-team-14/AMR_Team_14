@@ -1,0 +1,6 @@
+{
+  "status": "planned",
+  "fleets": [18, 19, 20, 21],
+  "seeds": "1001-1008",
+  "baseline": "D0.csv"
+}

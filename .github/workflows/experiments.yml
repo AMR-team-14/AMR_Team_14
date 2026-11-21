@@ -1,0 +1,39 @@
+name: 실험 실행
+
+# experiments/**/run.json 을 "ready"로 바꿔 푸시하면, 결과가 없는 실험을 돌리고
+# results/ 를 같은 브랜치에 커밋한다. 봇 커밋은 워크플로를 다시 깨우지 않는다.
+on:
+  push:
+    paths:
+      - 'experiments/**/run.json'
+      - 'experiments/**/trees/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: experiments-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Build engine
+        run: node tools/build.mjs native
+      - name: Run ready experiments
+        run: node tools/run-batch.mjs --pending
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add experiments
+          if git diff --cached --quiet; then echo "No new results."; exit 0; fi
+          git commit -m "Add experiment results [skip ci]"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
