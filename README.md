@@ -3,7 +3,7 @@
 IE325 물류관리 기말 프로젝트입니다. 고정된 통로망에서 AGV(Automated Guided Vehicle, 무인운반차)의 **차량 대수와 배차 트리**를 정해 시간당 운영 비용을 줄입니다. 배차 트리는 빈 차량과 대기 요청의 조합에 우선순위를 매깁니다.
 
 - [배차 트리 시각화 · 시드별 로컬 평가](https://amr-team-14.github.io/AMR_Team_14/)
-- [실험 로드맵](https://amr-team-14.github.io/AMR_Team_14/experiment/) · 원본은 이 브랜치의 `docs/experiment/`이며 수정 후 `gh-pages`의 `docs/experiment/`에 복사해 배포합니다.
+- [실험 로드맵](https://amr-team-14.github.io/AMR_Team_14/experiment/) · `jsm` 브랜치의 `docs/`가 GitHub Pages로 바로 배포됩니다.
 - [공식 과제 페이지 · 웹 평가](https://script.google.com/macros/s/AKfycbyfytW6GhEMwkUIE7xja48WGlirBBES_VTXoXxVuzDSHAfcML17mWYwT7VDdBA8gFD9/exec?p=case)
 
 [![최종 19대 설계의 배차 트리와 시드별 로컬 평가 결과](docs/images/viewer.png)](https://amr-team-14.github.io/AMR_Team_14/)

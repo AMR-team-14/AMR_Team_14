@@ -10,7 +10,7 @@ import { gunzipSync } from "node:zlib";
 const root = fileURLToPath(new URL("..", import.meta.url));
 const args = process.argv.slice(2);
 const until = new Date(args[args.indexOf("--until") + 1] ?? Date.now() + 12 * 3600e3);
-const branch = "codex/simulator-reproducibility";
+const branch = "jsm";
 const home = join(root, "experiments", "JSM");
 const log = join(home, "orchestrator.log");
 const sh = (cmd, a) => execFileSync(cmd, a, { cwd: root, encoding: "utf8", maxBuffer: 1 << 28, stdio: ["ignore", "pipe", "ignore"] }).trim();

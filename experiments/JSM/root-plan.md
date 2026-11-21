@@ -4,7 +4,7 @@
 
 - 담당자: 장승민
 - 루트 변수: `urg`, `w` (두 계열을 같은 대수·시드로 비교)
-- 브랜치·폴더: `codex/simulator-reproducibility` · `experiments/JSM/` (실험), `solutions/JSM/` (최종 후보)
+- 브랜치·폴더: `jsm` · `experiments/JSM/` (실험), `solutions/JSM/` (최종 후보)
 - 기준 엔진: `bba5b48`의 `src/simulator.cpp` (배차·비용 계산은 `215db7e` 이후 변경 없음)
 - 공통 설계: [experiment-design.md](../../docs/notes/experiment-design.md)
 
