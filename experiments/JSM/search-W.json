@@ -77885,6 +77885,21 @@
   ],
   "stages": {
     "A": "WA1",
-    "A2": "WA2"
+    "A2": "WA2",
+    "B": "WB1",
+    "Bstarts": [
+      {
+        "notation": "w(max,32)[de(max,180)[qo(max,8),qo(max,2)[dl(min,25),dl(min,25)]],de(max,0)]",
+        "fleet": 23
+      },
+      {
+        "notation": "w(max,32)[de(max,180)[qo(max,8),qo(max,2)[dl(min,25),dl(min,25)]],dl(min,25)]",
+        "fleet": 23
+      },
+      {
+        "notation": "w(max,32)[de(max,180)[qo(max,8),qo(max,2)[dl(min,25),dl(min,25)]],dl(max,25)]",
+        "fleet": 23
+      }
+    ]
   }
 }
