@@ -1,0 +1,9 @@
+key,1,urg,max,0.5,2,0
+key,2,qo,max,8,9,3
+key,3,de,max,180,4,5
+key,4,w,min,4,6,0
+key,5,w,min,1,7,8
+key,6,dl,min,50,0,0
+key,7,dl,max,50,0,0
+key,8,dl,min,25,0,0
+key,9,dl,max,90,0,0
