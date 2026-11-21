@@ -1,0 +1,4 @@
+2026-11-21T14:51:00.743Z U01-layer2: fleets 17-22, ready
+2026-11-21T14:51:00.751Z W01-root-threshold: fleets 17-23, ready
+2026-11-21T14:51:00.925Z U: waiting for U01-layer2
+2026-11-21T14:51:01.071Z W: waiting for W01-root-threshold
