@@ -105,19 +105,42 @@ function writeReport(status) {
       out.push(`| ${h.layer} | ${h.evaluated} | ${h.sameAsEarlier ?? ""} | ${h.survivors} | ${code(h.layerBest?.notation ?? "-")} | ${h.layerBest?.fleet ?? ""} | ${h.layerBest?.avg ?? ""} | ${h.nextTrees} | ${h.cappedTo ? h.cappedTo + "개로 축소" : ""} |`);
     out.push("");
   }
-  const stageRows = [];
-  for (const f of readdirSync(home).filter(f => /^search-.*.json$/.test(f))) {
-    const st = JSON.parse(readFileSync(join(home, f), "utf8"));
-    for (const d of st.extra ?? []) {
-      const rows = summaryRows(join(home, d));
-      const b = rows && bestByTree(rows)[0];
-      stageRows.push(`| ${d} | ${rows ? "완료" : "실행 대기·중"} | ${b ? code(b.notation) : "-"} | ${b?.fleet ?? ""} | ${b ? (+b.average).toFixed(2) : ""} | ${b ? (+b.costSD).toFixed(1) : ""} |`);
+  // Follow-up stages: best tree of each experiment, and paired difference to the 1,185 tree when it is inside.
+  const vs1185 = dir => {
+    if (!existsSync(join(dir, "results", "raw.jsonl.gz"))) return null;
+    const all = rows(dir).filter(r => r.cost.every(c => c !== null));
+    const refs = all.filter(r => r.tree === "ref_B1185.csv").sort((a, b) => mean(a.cost) - mean(b.cost));
+    const fam = all.filter(r => !/^ref_(B1185|D0)/.test(r.tree)).sort((a, b) => mean(a.cost) - mean(b.cost));
+    if (!fam.length) return null;
+    const b = fam[0], res = { b, avg: mean(b.cost), sd: Math.sqrt(b.cost.reduce((a, x) => a + (x - mean(b.cost)) ** 2, 0) / (b.cost.length - 1)) };
+    if (refs.length) {
+      const d = b.cost.map((c, i) => c - refs[0].cost[i]), m = mean(d);
+      const se = Math.sqrt(d.reduce((a, x) => a + (x - m) ** 2, 0) / (d.length - 1) / d.length);
+      Object.assign(res, { d: m, lcb: m - 1.96 * se, refFleet: refs[0].fleet });
     }
+    return res;
+  };
+  const stageNames = { A: "A 짝 확장", A2: "A2 확인(1065~1264)", B: "B 방법 A 이웃", B2: "B2 확인(1065~1264)" };
+  const stageRows = [];
+  const fmtRow = (label, dir) => {
+    const r = vs1185(join(home, dir));
+    return `| ${label} | ${dir} | ${r ? code(r.b.notation) : "실행 대기·중"} | ${r?.b.fleet ?? ""} | ${r ? r.avg.toFixed(2) : ""} | ${r ? r.sd.toFixed(1) : ""} | ${r?.d !== undefined ? `${r.d.toFixed(2)} (하한 ${r.lcb.toFixed(2)}, 1185안 ${r.refFleet}대)` : ""} |`;
+  };
+  for (const f of readdirSync(home).filter(f => /^search-.*\.json$/.test(f))) {
+    const st = JSON.parse(readFileSync(join(home, f), "utf8"));
+    for (const [k, label] of Object.entries(stageNames)) if (st.stages?.[k]) stageRows.push(fmtRow(`${st.family} ${label}`, st.stages[k]));
   }
-  if (stageRows.length) out.push("## 후속 단계 A(짝 확장)·B(다듬기)", "", "| 실험 | 상태 | 최선 트리 | 대수 | 평균 | 표준편차 |", "| --- | --- | --- | ---: | ---: | ---: |", ...stageRows, "");
+  for (const [dir, label] of [["X01-fresh", "C 보류 시드(2001~2200)"], ["X02-final", "D 새 시드(3001~4000)"]])
+    if (existsSync(join(home, dir))) stageRows.push(fmtRow(label, dir));
+  if (stageRows.length) out.push("## 후속 단계 (팀 방법 A 절차 적용)", "",
+    "| 단계 | 실험 | 최선 트리 | 대수 | 평균 | 표준편차 | 1,185안 대비 차이 |", "| --- | --- | --- | ---: | ---: | ---: | --- |", ...stageRows,
+    "", "차이는 같은 시드 짝비교(음수면 1,185안보다 쌈). 하한은 단측이 아닌 95% 신뢰구간 하한.", "");
   const x01 = summaryRows(join(home, "X01-fresh"));
-  if (x01) out.push("## C · 새 시드(2001~2200) 확인과 15~25대 재확인", "", "| 트리 | 최적 대수 | 평균 | 표준편차 | 나쁜 쪽 5% |", "| --- | ---: | ---: | ---: | ---: |",
-    ...bestByTree(x01).map(r => `| ${code(r.notation)} | ${r.fleet} | ${(+r.average).toFixed(2)} | ${(+r.costSD).toFixed(1)} | ${(+r.costP95).toFixed(1)} |`), "");
+  if (x01) out.push("### C 단계 전체 (트리별 최적 대수)", "", "| 트리 | 최적 대수 | 평균 | 표준편차 | 나쁜 쪽 5% |", "| --- | ---: | ---: | ---: | ---: |",
+    ...bestByTree(x01).slice(0, 30).map(r => `| ${code(r.notation)} | ${r.fleet} | ${(+r.average).toFixed(2)} | ${(+r.costSD).toFixed(1)} | ${(+r.costP95).toFixed(1)} |`), "");
+  const x02 = summaryRows(join(home, "X02-final"));
+  if (x02) out.push("### D 단계 (새 시드 1,000개)", "", "| 트리 | 대수 | 평균 | 표준편차 | 나쁜 쪽 5% |", "| --- | ---: | ---: | ---: | ---: |",
+    ...x02.sort((a, b) => +a.average - +b.average).map(r => `| ${code(r.notation)} | ${r.fleet} | ${(+r.average).toFixed(2)} | ${(+r.costSD).toFixed(1)} | ${(+r.costP95).toFixed(1)} |`), "");
   out.push("## F01 대수 조사 (루트 하나짜리)", "", ...f01Table(), "");
   const notes = join(home, "report-notes.md");
   if (existsSync(notes)) out.push("## 판단과 조정 제안", "", readFileSync(notes, "utf8"));
@@ -159,18 +182,18 @@ while (true) {
   }
   const done = states.every(s => JSON.parse(readFileSync(s, "utf8")).done);
   if (done) {
-    // Follow-up stages A (pair expansion) -> B (refinement) -> C (fresh seeds), one after another.
+    // Follow-up stages (tools/stages.mjs): A -> A2 -> B -> B2 -> C -> D, each after the previous finished.
     const postPath = join(home, "post.json");
     const post = existsSync(postPath) ? JSON.parse(readFileSync(postPath, "utf8")) : { stage: "start" };
     const finished = dirs => dirs.every(d => existsSync(join(home, d, "results", "summary.csv")));
-    const extras = () => states.flatMap(s => JSON.parse(readFileSync(s, "utf8")).extra ?? []);
-    const steps = { start: ["pair", "A"], A: ["refine", "B"], B: ["validate", "C"] };
-    if (post.stage === "C" && finished(["X01-fresh"])) { post.stage = "done"; writeFileSync(postPath, JSON.stringify(post) + "\n"); note("stage C done"); pushReport("A·B·C 단계 모두 종료"); break; }
-    if (post.stage === "done") { pushReport("A·B·C 단계 모두 종료"); break; }
-    if (steps[post.stage] && (post.stage === "start" || finished(extras())) && Date.now() < until.getTime()) {
-      const [cmd, next] = steps[post.stage];
-      if (cmd === "validate") note(sh("node", ["tools/stages.mjs", "validate", join(home, "X01-fresh"), ...states]));
-      else for (const s of states) note(sh("node", ["tools/stages.mjs", cmd, s]));
+    const stageDirs = stage => stage === "C" ? ["X01-fresh"] : stage === "D" ? ["X02-final"]
+      : states.map(s => JSON.parse(readFileSync(s, "utf8")).stages?.[stage]).filter(Boolean);
+    const order = ["start", "A", "A2", "B", "B2", "C", "D"];
+    if (post.stage === "D" && finished(stageDirs("D"))) { post.stage = "done"; writeFileSync(postPath, JSON.stringify(post) + "\n"); note("stage D done"); pushReport("후속 단계 A~D 모두 종료"); break; }
+    if (post.stage === "done") { pushReport("후속 단계 A~D 모두 종료"); break; }
+    const next = order[order.indexOf(post.stage) + 1];
+    if (next && (post.stage === "start" || finished(stageDirs(post.stage))) && Date.now() < until.getTime()) {
+      note(sh("node", ["tools/stages.mjs", next, ...states]));
       post.stage = next; writeFileSync(postPath, JSON.stringify(post) + "\n");
       sh("git", ["add", "experiments"]);
       sh("git", ["commit", "-q", "-m", `Start follow-up stage ${next}`, "-m", "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"]);

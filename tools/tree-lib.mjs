@@ -67,7 +67,7 @@ export function emptySlots(nodes) {
 
 // Every single-node expansion at one slot after the automatic pruning rules
 // (docs/notes/experiment-design.md §4.1 and §5).
-export function expansionsAt(parent, parentId, side, vars = Object.keys(GRID)) {
+export function expansionsAt(parent, parentId, side, vars = Object.keys(GRID), grid = GRID) {
   const key = side === "lo" ? "low" : "high";
   const path = pathTo(parent, parentId, side);
   const used = new Set(path.map(p => p.feature));
@@ -89,7 +89,7 @@ export function expansionsAt(parent, parentId, side, vars = Object.keys(GRID)) {
     for (const mode of ["min", "max"]) {
       const reason = prune(feature, mode);
       if (reason) { skipped.push(`${feature}(${mode}): ${reason}`); continue; }
-      for (const threshold of GRID[feature]) {
+      for (const threshold of grid[feature]) {
         const nodes = new Map([...parent].map(([id, n]) => [id, { ...n }]));
         const id = nodes.size + 1;
         nodes.get(parentId)[key] = id;
