@@ -95366,6 +95366,7 @@
     "urg(max,0.5)[qo(max,8)[-,dl(max,65)[w(min,4)[de(max,90),-],w(min,0.5)]],w(min,2)[de(max,180),de(max,65)]]"
   ],
   "stages": {
-    "A": "UA1"
+    "A": "UA1",
+    "A2": "UA2"
   }
 }
