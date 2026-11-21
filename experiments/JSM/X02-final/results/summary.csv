@@ -1,0 +1,5 @@
+tree,notation,nodes,fleet,rejected,average,costSD,costP95,avgWait,urgent95,maxQueue,endQueueMax,deltaVsBaseline,deltaSE
+ref_B1185.csv,"de(min,65)[qo(max,1)[-,urg(max,0.5)[-,w(min,2.45)]],dl(min,65)[qo(max,1)[urg(min,0.5),w(min,0.75)[urg(max,0.5),-]],-]]",9,18,0,1191.0659,12.4821,1213.39,3.9501,5.1721,35,28,,
+ref_B1185.csv,"de(min,65)[qo(max,1)[-,urg(max,0.5)[-,w(min,2.45)]],dl(min,65)[qo(max,1)[urg(min,0.5),w(min,0.75)[urg(max,0.5),-]],-]]",9,19,0,1191.3108,11.4283,1210.638,3.7869,5.1914,32,24,,
+U_final.csv,"urg(max,0.5)[qo(max,8)[de(min,115)[-,dl(min,65)[w(min,2),-]],w(min,8)[de(max,180)[-,dl(min,25)],-]],-]",8,20,1,,,,4.0573,5.317,54,31,,
+W_final.csv,"w(max,32)[de(max,180)[qo(max,8),qo(max,2)[dl(min,25),dl(min,25)]],dl(min,25)]",7,23,0,1237.6628,19.2589,1268.184,3.4988,5.3494,31,15,,
