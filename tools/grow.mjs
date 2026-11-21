@@ -35,8 +35,25 @@ const ranked = [...best.values()].sort((a, b) => a.avg - b.avg);
 if (ranked.length && (!state.ref || ranked[0].avg < state.ref.avg))
   state.ref = { layer, tree: ranked[0].tree, notation: ranked[0].notation, fleet: ranked[0].fleet, avg: ranked[0].avg, cost: ranked[0].cost };
 
+// A tree whose costs equal an already evaluated tree's at the same fleet made no different decision
+// on these seeds (decision impact 0, design §10): keep only the first, simpler one.
+const sig = r => `${r.fleet}|${r.cost.join(",")}`;
+const known = new Set();
+for (const earlier of state.layers.slice(0, -1)) {
+  const file = join(home, earlier, "results", "raw.jsonl.gz");
+  if (existsSync(file)) gunzipSync(readFileSync(file)).toString().split("\n").filter(Boolean)
+    .forEach(l => known.add(sig(JSON.parse(l))));
+}
+const distinct = [];
+let duplicates = 0;
+for (const r of ranked) {
+  if (known.has(sig(r))) { duplicates++; continue; }
+  known.add(sig(r));
+  distinct.push(r);
+}
+
 // Survive unless significantly worse than the family best (paired over the same seeds).
-let survivors = ranked.filter(r => {
+let survivors = distinct.filter(r => {
   const d = r.cost.map((c, i) => c - state.ref.cost[i]);
   return mean(d) - 2 * se(d) <= 0;
 });
@@ -68,7 +85,7 @@ while (state.maxEvaluations && evals(next) > state.maxEvaluations && survivors.l
 }
 
 state.history = state.history ?? [];
-state.history.push({ layer, evaluated: rows.length, familyTrees: ranked.length,
+state.history.push({ layer, evaluated: rows.length, familyTrees: ranked.length, sameAsEarlier: duplicates,
   layerBest: ranked[0] ? { notation: ranked[0].notation, fleet: ranked[0].fleet, avg: +ranked[0].avg.toFixed(2) } : null,
   familyBest: { notation: state.ref.notation, fleet: state.ref.fleet, avg: +state.ref.avg.toFixed(2) },
   survivors: survivors.length, cappedTo: capped, nextTrees: next.size, nextEvaluations: evals(next) });

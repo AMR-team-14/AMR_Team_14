@@ -13,7 +13,7 @@ const until = new Date(args[args.indexOf("--until") + 1] ?? Date.now() + 12 * 36
 const branch = "codex/simulator-reproducibility";
 const home = join(root, "experiments", "JSM");
 const log = join(home, "orchestrator.log");
-const sh = (cmd, a) => execFileSync(cmd, a, { cwd: root, encoding: "utf8" }).trim();
+const sh = (cmd, a) => execFileSync(cmd, a, { cwd: root, encoding: "utf8", maxBuffer: 1 << 28, stdio: ["ignore", "pipe", "ignore"] }).trim();
 const note = m => { const line = `${new Date().toISOString()} ${m}`; console.log(line); appendFileSync(log, line + "\n"); };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const mean = xs => xs.reduce((a, b) => a + b, 0) / xs.length;
