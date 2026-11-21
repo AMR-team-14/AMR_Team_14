@@ -51,3 +51,18 @@ g++ -O3 -std=c++20 -s -Wall -Wextra -o agv_opt.exe agv_opt.cpp
 
 1. **최종 제출 확정:** 현재 [answer_final_best.csv](./answer_final_best.csv) (`1,185.42`)를 최종 제출본으로 유지 (비공개 시드 일반화 분산 `±11.18` 최저, `FRESH3600 = 1,191.49`, 실격 `0/3,600`).
 2. **최종 보고서/발표 작성:** [final_agv_report.md](./final_agv_report.md), [algorithm_methodology_report.md](./algorithm_methodology_report.md), [method_a_local_optimality_report.md](./method_a_local_optimality_report.md) 기반으로 논리 정리 (2-노드 이웃 기준 $\varepsilon=0.5$, 95% 신뢰 국소최적 정당화 문장 수록 완료).
+
+## 공개 5시드 로컬 재현 기록 (2026-11-21)
+
+`younbean`의 [검증 대상 커밋](https://github.com/AMR-team-14/AMR_Team_14/commit/888a53732467c934bb82c5aee3762d644fc68d8b)에 있는 `answer_final_best.csv`(AGV 19대, 결정 트리 9노드)를 Linux의 GCC 14.2.0에서 확인했습니다. 저장소 루트에서 실행하세요. 컴파일 시 `agv_yb_search.hpp`가 필요하며, 실행 시 두 입력 파일 `agv_case_data (1).json`과 `agv_dispatch_log_seed11 (1).csv`를 현재 디렉터리에서 읽습니다.
+
+```bash
+g++ -O3 -std=c++20 -pthread -Wall -Wextra -o agv_opt agv_opt.cpp
+./agv_opt --eval answer_final_best.csv
+```
+
+| 공개 시드 | 11 | 12 | 13 | 14 | 15 | 평균 |
+|---|---:|---:|---:|---:|---:|---:|
+| 로컬 비용 (천원/시간) | 1178.3137 | 1190.3025 | 1189.8866 | 1200.0376 | 1196.3056 | **1190.9692** |
+
+로컬 평균은 위에 기록된 웹 채점 **1185.42 천원/시간**보다 **5.5492 천원/시간** 높았습니다. 이번에 실행한 것은 로컬 `--eval`뿐이며, 웹 재채점이나 차이의 원인 검증은 하지 않았습니다.
