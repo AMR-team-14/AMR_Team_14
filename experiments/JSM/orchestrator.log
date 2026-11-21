@@ -46,3 +46,6 @@ WB1: 3188 trees, 3188 evaluations
 2026-11-21T20:41:43.595Z UB2: 3001 trees, 9002 evaluations
 WB2: 625 trees, 1874 evaluations
 2026-11-21T20:41:54.598Z pushed stage B2
+2026-11-21T20:56:58.373Z U: done
+2026-11-21T20:56:58.656Z W: done
+2026-11-21T20:57:26.646Z X01-fresh: 60 trees, 252 evaluations
