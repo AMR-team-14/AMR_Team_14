@@ -51,7 +51,9 @@ $$
 | [KMJ](solutions/KMJ/) | [PJH](solutions/PJH/) | [OJT](solutions/OJT/) |
 | [YB](solutions/YB/) | [JGD](solutions/JGD/) | [JSM](solutions/JSM/) |
 
-기존 후보 CSV 네 개와 [성능 보고서](solutions/KMJ/final_agv_report.md)는 [KMJ 폴더](solutions/KMJ/)에 있습니다.
+기존 후보 CSV와 [성능 보고서](solutions/KMJ/final_agv_report.md)는 [KMJ 폴더](solutions/KMJ/)에 있습니다. 현재 기준 후보는 main의 19대 트리를 옮긴 [answer_final_best_main.csv](solutions/KMJ/answer_final_best_main.csv)(공식 웹 1,185.42)입니다.
+
+새 후보를 만들 때는 [통합 실험 설계](docs/notes/experiment-design.md)를 따릅니다. 거시 설계(대수·시드·예산·검증)와 미시 설계(트리를 한 층씩 키우는 방법)를 한 문서에 담았고, 개인 계획은 각자 폴더의 `root-plan.md`에 적습니다.
 
 ## 하나의 시뮬레이터, 두 가지 사용 방법
 
