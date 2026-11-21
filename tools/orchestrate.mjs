@@ -56,10 +56,58 @@ function activeRun() {
   return { busy: runs.some(r => r.status !== "completed"), lastFailed: runs[0]?.conclusion === "failure" ? runs[0].databaseId : null, failed };
 }
 
+
+// experiments/JSM/REPORT.md: progress every 30 minutes, plus report-notes.md (human/Claude judgment).
+const reportPath = join(home, "REPORT.md");
+let lastReport = 0;
+function f01Table() {
+  const dir = join(root, "experiments", "common", "F01-fleet-survey");
+  if (!existsSync(join(dir, "results", "raw.jsonl.gz"))) return ["F01 결과 없음"];
+  const by = new Map();
+  for (const r of rows(dir)) {
+    if (r.cost.some(c => c === null)) continue;
+    const avg = mean(r.cost);
+    if (!by.has(r.tree) || avg < by.get(r.tree).avg) by.set(r.tree, { fleet: r.fleet, avg });
+  }
+  return ["| 트리 | 최적 대수 | 평균 |", "| --- | ---: | ---: |",
+    ...[...by].sort((x, y) => x[1].avg - y[1].avg).map(([t, v]) => `| ${t.replace(".csv", "")} | ${v.fleet} | ${v.avg.toFixed(1)} |`)];
+}
+const code = t => "`" + t + "`";
+function writeReport(status) {
+  const kst = d => new Date(d).toLocaleString("ko-KR", { timeZone: "Asia/Seoul", hour12: false });
+  const out = ["# U·W 탐색 현황", "", `- 갱신: ${kst(Date.now())} (KST) · 30분마다 자동 갱신`, `- 상태: ${status}`, `- 새 층 생성 마감: ${kst(until)}`,
+    "- 시드 1001~1064 로컬 평균, 단위 천원/시간. 공식 웹 점수와 다를 수 있음", ""];
+  for (const f of readdirSync(home).filter(f => /^search-.*\.json$/.test(f))) {
+    const s = JSON.parse(readFileSync(join(home, f), "utf8"));
+    out.push(`## ${s.family} 계열 (루트 ${s.root})${s.done ? " · 종료" : ""}`, "");
+    if (s.ref) out.push(`- **계열 최선:** ${code(s.ref.notation)} · ${s.ref.fleet}대 · 평균 ${s.ref.avg.toFixed(2)}`);
+    out.push(`- 진행 중 층: ${s.done ? "없음" : s.layers.at(-1)}`, "",
+      "| 층 | 평가 | 결과 동일로 제외 | 생존 | 층 최선 | 대수 | 평균 | 다음 층 트리 | 상한 |",
+      "| --- | ---: | ---: | ---: | --- | ---: | ---: | ---: | --- |");
+    for (const h of s.history ?? [])
+      out.push(`| ${h.layer} | ${h.evaluated} | ${h.sameAsEarlier ?? ""} | ${h.survivors} | ${code(h.layerBest?.notation ?? "-")} | ${h.layerBest?.fleet ?? ""} | ${h.layerBest?.avg ?? ""} | ${h.nextTrees} | ${h.cappedTo ? h.cappedTo + "개로 축소" : ""} |`);
+    out.push("");
+  }
+  out.push("## F01 대수 조사 (루트 하나짜리)", "", ...f01Table(), "");
+  const notes = join(home, "report-notes.md");
+  if (existsSync(notes)) out.push("## 판단과 조정 제안", "", readFileSync(notes, "utf8"));
+  writeFileSync(reportPath, out.join("\n") + "\n");
+}
+function pushReport(status) {
+  lastReport = Date.now();
+  writeReport(status);
+  sh("git", ["add", "experiments/JSM/REPORT.md", "experiments/JSM/orchestrator.log"].concat(existsSync(join(home, "report-notes.md")) ? ["experiments/JSM/report-notes.md"] : []));
+  try { sh("git", ["commit", "-q", "-m", "Update U/W search report [skip ci]"]); } catch { return; }
+  sh("git", ["pull", "-q", "--rebase", "origin", branch]);
+  sh("git", ["push", "-q", "origin", branch]);
+  lastReport = Date.now();
+}
+
 while (true) {
   sh("git", ["pull", "-q", "--ff-only", "origin", branch]);
   const { busy, lastFailed } = activeRun();
-  if (lastFailed) { note(`workflow run ${lastFailed} failed; stopping for a human`); break; }
+  if (Date.now() - lastReport >= 30 * 60e3) pushReport(busy ? "GitHub에서 실험 실행 중" : "다음 층 준비 또는 대기");
+  if (lastFailed) { note(`workflow run ${lastFailed} failed; stopping for a human`); pushReport(`워크플로 실패(${lastFailed}), 사람 확인 필요`); break; }
   if (busy) { await sleep(60e3); continue; }
 
   let changed = unlockAfterF01();
@@ -80,7 +128,7 @@ while (true) {
     continue;
   }
   const done = states.every(s => JSON.parse(readFileSync(s, "utf8")).done);
-  if (done) { note("all families done"); break; }
-  if (Date.now() >= until.getTime()) { note("deadline reached; no new layers"); break; }
+  if (done) { note("all families done"); pushReport("두 계열 모두 종료"); break; }
+  if (Date.now() >= until.getTime()) { note("deadline reached; no new layers"); pushReport("마감 도달, 새 층 생성 중단"); break; }
   await sleep(60e3);
 }
