@@ -1014,3 +1014,29 @@ WF: experiment method, no stage A
 WG: experiment method, no stage A
 2026-11-22T20:39:46.680Z pushed stage A
 2026-11-22T20:41:18.506Z workflow run 45067688748 failed; stopping for a human
+2026-11-22T21:04:11.808Z D: done
+2026-11-22T21:04:11.912Z DF: done
+2026-11-22T21:04:12.029Z DM: done
+2026-11-22T21:04:12.214Z L: done
+2026-11-22T21:04:12.308Z LF: done
+2026-11-22T21:04:12.389Z LG: done
+2026-11-22T21:04:12.568Z Q: done
+2026-11-22T21:04:12.690Z QF: done
+2026-11-22T21:04:12.784Z QG: done
+2026-11-22T21:04:12.875Z UF: done
+2026-11-22T21:04:12.959Z UG: done
+2026-11-22T21:04:13.044Z WF: done
+2026-11-22T21:04:13.129Z WG: done
+2026-11-22T21:10:47.961Z DA2: 3001 trees, 9002 evaluations
+DFA2: 11 trees, 32 evaluations
+DMA2: 1125 trees, 3374 evaluations
+LA2: 3002 trees, 9003 evaluations
+LFA2: 6 trees, 17 evaluations
+LGA2: 21 trees, 62 evaluations
+QA2: 3001 trees, 9002 evaluations
+QFA2: 11 trees, 32 evaluations
+QGA2: 21 trees, 62 evaluations
+UFA2: 16 trees, 47 evaluations
+UGA2: 21 trees, 62 evaluations
+WFA2: 11 trees, 32 evaluations
+WGA2: 11 trees, 32 evaluations

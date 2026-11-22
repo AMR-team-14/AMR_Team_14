@@ -105,5 +105,8 @@
       "nextTrees": 0
     }
   ],
-  "done": true
+  "done": true,
+  "stages": {
+    "A2": "LFA2"
+  }
 }

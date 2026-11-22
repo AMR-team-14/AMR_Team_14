@@ -95111,6 +95111,8 @@
     "de(max,180)[-,qo(max,2)[dl(min,25)[w(min,1)[-,urg(max,0.5)],w(min,1)],dl(min,25)[w(min,4),w(min,2)]]]"
   ],
   "done": true,
-  "stages": {},
+  "stages": {
+    "A2": "DA2"
+  },
   "stageANote": "de 루트라 짝 확장 후보 0개(de 재사용 금지, 긴급 가지 없음) → A 생략"
 }
