@@ -1,0 +1,72 @@
+name: 루트 고정 GP 탐색
+
+# tools/gp/request.json 을 푸시하면 루트 변수 × 대수마다 agv_opt.cpp --reconstruct-root 를 돌리고
+# (AST GP -> 좌표 polish, 백지 시작) 상위 트리를 experiments/JSM/GP/<루트>-<대수>/ 에 커밋한다.
+on:
+  push:
+    paths:
+      - 'tools/gp/request.json'
+
+permissions:
+  contents: write
+
+jobs:
+  gp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 345
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { root: urg, fleet: 18 }
+          - { root: urg, fleet: 20 }
+          - { root: urg, fleet: 22 }
+          - { root: w, fleet: 20 }
+          - { root: w, fleet: 22 }
+          - { root: w, fleet: 24 }
+          - { root: dl, fleet: 18 }
+          - { root: dl, fleet: 20 }
+          - { root: dl, fleet: 22 }
+          - { root: qo, fleet: 18 }
+          - { root: qo, fleet: 20 }
+          - { root: qo, fleet: 22 }
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build
+        working-directory: tools/gp
+        run: g++ -O3 -march=native -std=c++17 -pthread agv_opt.cpp -o agv_opt
+      - name: Search
+        working-directory: tools/gp
+        run: |
+          set +e
+          start=$(date +%s)
+          timeout 320m ./agv_opt --reconstruct-root ${{ matrix.root }} ${{ matrix.fleet }} 202619 12 | tee log.txt
+          echo "exit=$? seconds=$(( $(date +%s) - start ))" | tee -a log.txt
+          out=out/${{ matrix.root }}-${{ matrix.fleet }}
+          mkdir -p $out && cp gp_*.csv log.txt $out/ 2>/dev/null
+          exit 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gp-${{ matrix.root }}-${{ matrix.fleet }}
+          path: tools/gp/out
+          retention-days: 5
+
+  commit:
+    needs: gp
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: gp-*
+          merge-multiple: true
+          path: experiments/JSM/GP
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add experiments/JSM/GP
+          if git diff --cached --quiet; then echo "No GP output."; exit 0; fi
+          git commit -m "Add root-fixed GP results [skip ci]"
+          for i in 1 2 3 4 5; do git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && break; sleep 20; done
