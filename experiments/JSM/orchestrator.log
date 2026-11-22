@@ -120,3 +120,16 @@ WB2: 625 trees, 1874 evaluations
 2026-11-22T15:13:43.233Z UG: GP layer UG01-gp with 60 trees
 2026-11-22T15:13:43.805Z WG: GP layer WG01-gp with 60 trees
 2026-11-22T15:24:25.544Z pushed next layers
+2026-11-22T16:28:10.073Z D: D08 -> D09: 272 survivors, 17651 trees, 52953 evaluations
+2026-11-22T16:28:10.344Z DF: waiting for GP (0/3)
+2026-11-22T16:28:16.214Z DM: DM04 -> DM05: 22 survivors, 1573 trees, 4727 evaluations
+2026-11-22T16:29:49.904Z L: L08 -> L09: 390 survivors, 18972 trees, 56916 evaluations
+2026-11-22T16:29:50.230Z LF: waiting for GP (0/3)
+2026-11-22T16:29:50.519Z LG: GP layer evaluated, done
+2026-11-22T16:31:20.618Z Q: Q08 -> Q09: 238 survivors, 16411 trees, 49233 evaluations
+2026-11-22T16:31:20.936Z QF: waiting for GP (0/3)
+2026-11-22T16:31:21.206Z QG: GP layer evaluated, done
+2026-11-22T16:31:21.389Z UF: waiting for GP (0/3)
+2026-11-22T16:31:21.600Z UG: GP layer evaluated, done
+2026-11-22T16:31:21.746Z WF: waiting for GP (0/3)
+2026-11-22T16:31:21.912Z WG: GP layer evaluated, done
