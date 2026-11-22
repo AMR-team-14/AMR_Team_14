@@ -440,8 +440,14 @@ struct SimTrace {
     std::vector<int> previous_delivery;
 };
 
+struct ExperimentalWaitPriority {
+    int terminal_parent;
+    double threshold;
+};
+
 // Evaluates the dispatching tree priority bitmask kappa(v, r) for a candidate pair.
-static inline int eval_tree_bits(const Tree& tree, const Arrival& ar, double de, double w, int qo) {
+static inline int eval_tree_bits(const Tree& tree, const Arrival& ar, double de, double w, int qo,
+                                 const ExperimentalWaitPriority* extra = nullptr) {
     int bits = 0;
     int shift = 12;
     int nid = 1;
@@ -458,13 +464,18 @@ static inline int eval_tree_bits(const Tree& tree, const Arrival& ar, double de,
         int bit = tn.is_min ? (is_hi ? 1 : 0) : (is_hi ? 0 : 1);
         bits |= (bit << shift);
         --shift;
+        if (extra && nid == extra->terminal_parent && !is_hi && tn.lo == 0 && w <= extra->threshold) {
+            // Score a virtual w,max leaf on the otherwise terminal low branch.
+            bits |= 1 << shift;
+        }
         nid = is_hi ? tn.hi : tn.lo;
     }
     return bits;
 }
 
 SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tree,
-                   int q_cutoff = -1, bool brute_force = false, SimTrace* trace = nullptr) {
+                   int q_cutoff = -1, bool brute_force = false, SimTrace* trace = nullptr,
+                   const ExperimentalWaitPriority* extra = nullptr) {
     const auto& arrivals = sd.streams[stream_idx];
     const int n_arr = (int)arrivals.size();
     int q_limit = (q_cutoff > 0) ? std::min(q_cutoff, sd.qcap) : sd.qcap;
@@ -630,7 +641,7 @@ SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tre
                     int rid = cand_rids[c_i];
                     const Arrival& ar = arrivals[rid];
                     double de = sp_row[ar.o];
-                    int bits = eval_tree_bits(tree, ar, de, t - ar.at, qo_map[ar.o]);
+                    int bits = eval_tree_bits(tree, ar, de, t - ar.at, qo_map[ar.o], extra);
 
                     bool better = (bits != best_bits) ? (bits < best_bits)
                                 : (de != best_de)     ? (de < best_de)
@@ -1573,17 +1584,19 @@ int run_verify_cmd(const SimData& sd, const std::string& csv_path) {
 #include "agv_yb_search.hpp"
 #include "agv_sort_supply.hpp"
 #include "agv_aged_backlog.hpp"
+#include "agv_backlog_keep_urgent.hpp"
 
 int main(int argc, char** argv) {
     std::string mode = (argc >= 2) ? argv[1] : "";
     const bool yb_mode = mode == "--yb-search" || mode == "--yb-deadlines" || mode == "--yb-audit";
     const bool sort_mode = mode == "--yb-sort-replay" || mode == "--yb-sort-search";
     const bool backlog_mode = mode == "--yb-aged-backlog";
+    const bool keep_urgent_mode = mode == "--yb-backlog-keep-urgent";
     int n_unseen = 50;
     if (mode == "--eval100" || mode == "--reconstruct") n_unseen = 100;
     else if (mode == "--eval300") n_unseen = 400;
     else if (mode == "--eval800") n_unseen = 900;
-    else if (yb_mode || sort_mode || backlog_mode) n_unseen = 0;
+    else if (yb_mode || sort_mode || backlog_mode || keep_urgent_mode) n_unseen = 0;
 
     SimData sd = load_case_data("agv_case_data (1).json", "agv_dispatch_log_seed11 (1).csv", n_unseen);
     int n_threads = std::max(1, (int)std::thread::hardware_concurrency());
@@ -1591,6 +1604,7 @@ int main(int argc, char** argv) {
     if (yb_mode) return yb::run(sd, argc, argv, n_threads);
     if (sort_mode) return sort_supply::run(sd, argc, argv, n_threads);
     if (backlog_mode) return aged_backlog::run(sd, argc, argv, n_threads);
+    if (keep_urgent_mode) return backlog_keep_urgent::run(sd, argc, argv, n_threads);
 
     if (argc >= 3 && (mode == "--eval" || mode == "--eval100" || mode == "--eval300" || mode == "--eval800")) {
         run_eval_cmd(sd, argv[2], mode, n_threads);
@@ -1622,5 +1636,6 @@ int main(int argc, char** argv) {
     std::cout << "SORT: [--yb-sort-replay <baseline.csv> <out.csv> <first_seed> <count>"
               << " | --yb-sort-search <baseline.csv> <out.csv>]\n";
     std::cout << "Backlog: --yb-aged-backlog <baseline.csv> <new-results-directory>\n";
+    std::cout << "Backlog with urgent rule retained: --yb-backlog-keep-urgent <baseline.csv> <new-results-directory>\n";
     return 0;
 }

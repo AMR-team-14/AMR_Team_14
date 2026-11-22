@@ -1,0 +1,9 @@
+comparison,paired,rejected,delta_cost,se_cost,delta_urgent_p95,delta_late_general_per_1000,se_late_general,changed_cost
+02_without_far_leaf_minus_01_baseline,3600,0,0.971718,0.199799,0.016777,-0.852893,0.099084,3600
+03_virtual_best_minus_01_baseline,3600,0,-0.071067,0.172863,-0.002279,0.016247,0.086661,3444
+04_legal_best_minus_02_without_far_leaf,3600,0,0.271783,0.203463,-0.003142,-0.253279,0.099106,3600
+04_legal_best_minus_01_baseline,3600,0,1.243501,0.201461,0.013635,-1.106172,0.099452,3600
+05_virtual_T4_minus_01_baseline,3600,0,0.551400,0.197872,-0.005684,-0.490119,0.100879,3600
+06_legal_T4_minus_02_without_far_leaf,3600,0,0.890780,0.202204,-0.003138,-0.302348,0.097896,3600
+06_legal_T4_minus_01_baseline,3600,0,1.862499,0.198820,0.013640,-1.155242,0.098928,3600
+06_legal_T4_minus_05_virtual_T4,3600,0,1.311099,0.202459,0.019324,-0.665122,0.098038,3600
