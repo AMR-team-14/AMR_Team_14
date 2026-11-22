@@ -59,3 +59,10 @@ WB2: 625 trees, 1874 evaluations
 2026-11-21T21:00:43.748Z stage D done
 2026-11-21T21:01:29.066Z U: done
 2026-11-21T21:01:29.257Z W: done
+2026-11-22T09:47:39.177Z D: D01-root -> D02: 1 survivors, 64 trees, 192 evaluations
+2026-11-22T09:47:39.437Z L: L01-root -> L02: 2 survivors, 128 trees, 384 evaluations
+2026-11-22T09:47:39.528Z LG: waiting for GP (0/3)
+2026-11-22T09:47:39.746Z Q: Q01-root -> Q02: 1 survivors, 66 trees, 198 evaluations
+2026-11-22T09:47:39.849Z QG: waiting for GP (0/3)
+2026-11-22T09:47:39.970Z UG: waiting for GP (0/3)
+2026-11-22T09:47:40.089Z WG: waiting for GP (0/3)
