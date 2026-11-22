@@ -1585,6 +1585,7 @@ int run_verify_cmd(const SimData& sd, const std::string& csv_path) {
 #include "agv_sort_supply.hpp"
 #include "agv_aged_backlog.hpp"
 #include "agv_backlog_keep_urgent.hpp"
+#include "agv_backlog_demand_profiles.hpp"
 
 int main(int argc, char** argv) {
     std::string mode = (argc >= 2) ? argv[1] : "";
@@ -1592,11 +1593,12 @@ int main(int argc, char** argv) {
     const bool sort_mode = mode == "--yb-sort-replay" || mode == "--yb-sort-search";
     const bool backlog_mode = mode == "--yb-aged-backlog";
     const bool keep_urgent_mode = mode == "--yb-backlog-keep-urgent";
+    const bool demand_profiles_mode = mode == "--yb-backlog-demand-profiles";
     int n_unseen = 50;
     if (mode == "--eval100" || mode == "--reconstruct") n_unseen = 100;
     else if (mode == "--eval300") n_unseen = 400;
     else if (mode == "--eval800") n_unseen = 900;
-    else if (yb_mode || sort_mode || backlog_mode || keep_urgent_mode) n_unseen = 0;
+    else if (yb_mode || sort_mode || backlog_mode || keep_urgent_mode || demand_profiles_mode) n_unseen = 0;
 
     SimData sd = load_case_data("agv_case_data (1).json", "agv_dispatch_log_seed11 (1).csv", n_unseen);
     int n_threads = std::max(1, (int)std::thread::hardware_concurrency());
@@ -1605,6 +1607,7 @@ int main(int argc, char** argv) {
     if (sort_mode) return sort_supply::run(sd, argc, argv, n_threads);
     if (backlog_mode) return aged_backlog::run(sd, argc, argv, n_threads);
     if (keep_urgent_mode) return backlog_keep_urgent::run(sd, argc, argv, n_threads);
+    if (demand_profiles_mode) return backlog_demand_profiles::run(sd, argc, argv, n_threads);
 
     if (argc >= 3 && (mode == "--eval" || mode == "--eval100" || mode == "--eval300" || mode == "--eval800")) {
         run_eval_cmd(sd, argv[2], mode, n_threads);
@@ -1637,5 +1640,6 @@ int main(int argc, char** argv) {
               << " | --yb-sort-search <baseline.csv> <out.csv>]\n";
     std::cout << "Backlog: --yb-aged-backlog <baseline.csv> <new-results-directory>\n";
     std::cout << "Backlog with urgent rule retained: --yb-backlog-keep-urgent <baseline.csv> <new-results-directory>\n";
+    std::cout << "Backlog demand profiles: --yb-backlog-demand-profiles <baseline.csv> <new-results-directory>\n";
     return 0;
 }

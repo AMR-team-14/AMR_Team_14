@@ -45,3 +45,5 @@ cl /nologo /std:c++20 /O2 /EHsc /utf-8 agv_opt.cpp /Fe:agv_opt.exe
 근거리에서 오래 밀린 일반 요청에만 예외를 주는 트리를 구성했다. 8노드 대조안과 기존 9노드 제출안을 따로 비교해 예외의 효과와 실제 교체 비용을 분리했다. [Q01 오래된 적체 예외 실험](Q01-aged-backlog/README.md)
 
 근거리 긴급 규칙을 유지한 채 일반 요청 예외 자체를 가상으로 검증하고, 9노드 안에서는 원거리 규칙을 옮기는 비용과 일반 픽업 지연 개선을 따로 측정했다. [Q02 긴급 규칙 유지 실험](Q02-aged-backlog-keep-urgent/README.md)
+
+같은 요청 수에서 도착 집중의 길이와 구역 수를 나누고, 4분 예외와 대기열 기준의 효과를 따로 확인했다. [Q03 주문 집중 형태별 실험](Q03-backlog-demand-profiles/README.md)
