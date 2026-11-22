@@ -6,6 +6,7 @@
 #include <cstdint>
 #include <filesystem>
 #include <fstream>
+#include <functional>
 #include <iomanip>
 #include <iostream>
 #include <map>
@@ -418,6 +419,27 @@ struct AgvState {
     int rid = -1;
 };
 
+struct DispatchView {
+    int index;
+    double time;
+    int request;
+    int vehicle;
+    uint32_t idle_mask;
+    const int* positions;
+    const AgvState* vehicles;
+    const std::vector<int>* queues;
+    const int* head;
+    const int* waiting_at;
+};
+
+struct SimTrace {
+    // The replay hook can choose a different waiting request for the same vehicle.
+    std::function<int(const DispatchView&)> choose_request;
+    std::vector<double> pickup;
+    std::vector<double> unload;
+    std::vector<int> previous_delivery;
+};
+
 // Evaluates the dispatching tree priority bitmask kappa(v, r) for a candidate pair.
 static inline int eval_tree_bits(const Tree& tree, const Arrival& ar, double de, double w, int qo) {
     int bits = 0;
@@ -442,7 +464,7 @@ static inline int eval_tree_bits(const Tree& tree, const Arrival& ar, double de,
 }
 
 SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tree,
-                   int q_cutoff = -1, bool brute_force = false) {
+                   int q_cutoff = -1, bool brute_force = false, SimTrace* trace = nullptr) {
     const auto& arrivals = sd.streams[stream_idx];
     const int n_arr = (int)arrivals.size();
     int q_limit = (q_cutoff > 0) ? std::min(q_cutoff, sd.qcap) : sd.qcap;
@@ -485,6 +507,14 @@ SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tre
     int q_len = 0;
     int max_q = 0;
     std::vector<double> pickup_t(n_arr, -1.0);
+    int dispatch_index = 0;
+    std::array<int, 32> last_delivery;
+    if (trace) {
+        trace->pickup.clear();
+        trace->unload.assign(n_arr, -1.0);
+        trace->previous_delivery.assign(n_arr, -1);
+        last_delivery.fill(-1);
+    }
 
     auto start_leg = [&](double t, int aid, int target_node, bool is_loaded, int rid) {
         int cur = agv_pos[aid];
@@ -615,6 +645,23 @@ SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tre
                 }
             }
 
+            if (trace) {
+                if (trace->choose_request) {
+                    const int choice = trace->choose_request({
+                        dispatch_index, t, best_rid, best_aid, idle_mask,
+                        agv_pos, agv_state, flow_q, fq_head, qo_map
+                    });
+                    if (choice != best_rid && choice >= 0 && choice < n_arr) {
+                        const int f = arrivals[choice].fid;
+                        const auto& queue = flow_q[f];
+                        if (std::find(queue.begin() + fq_head[f], queue.end(), choice) != queue.end()) {
+                            best_rid = choice;
+                        }
+                    }
+                }
+                trace->previous_delivery[best_rid] = last_delivery[best_aid];
+                ++dispatch_index;
+            }
             idle_mask &= ~(1u << best_aid);
             int fid = arrivals[best_rid].fid;
             if (best_rid == flow_q[fid][fq_head[fid]]) {
@@ -679,6 +726,11 @@ SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tre
                 start_leg(t, aid, arrivals[rid].d, true, rid);
             } else {
                 int aid = ev.idx;
+                if (trace) {
+                    const int rid = agv_state[aid].rid;
+                    trace->unload[rid] = t;
+                    last_delivery[aid] = rid;
+                }
                 agv_state[aid].status = 0;
                 idle_mask |= (1u << aid);
                 need_dispatch = true;
@@ -711,6 +763,7 @@ SimMetrics run_sim(const SimData& sd, int stream_idx, int n_agv, const Tree& tre
     size_t hi = (size_t)std::ceil(pos);
     double u95 = waits_urg[lo] + (pos - lo) * (waits_urg[hi] - waits_urg[lo]);
     double cost = sd.c_agv * n_agv + sd.c_w * sd.lam_hr * w_bar + sd.c_u * u95;
+    if (trace) trace->pickup = std::move(pickup_t);
     return SimMetrics{cost, w_bar, u95, max_q, q_len};
 }
 
@@ -1518,20 +1571,23 @@ int run_verify_cmd(const SimData& sd, const std::string& csv_path) {
 }
 
 #include "agv_yb_search.hpp"
+#include "agv_sort_supply.hpp"
 
 int main(int argc, char** argv) {
     std::string mode = (argc >= 2) ? argv[1] : "";
     const bool yb_mode = mode == "--yb-search" || mode == "--yb-deadlines" || mode == "--yb-audit";
+    const bool sort_mode = mode == "--yb-sort-replay" || mode == "--yb-sort-search";
     int n_unseen = 50;
     if (mode == "--eval100" || mode == "--reconstruct") n_unseen = 100;
     else if (mode == "--eval300") n_unseen = 400;
     else if (mode == "--eval800") n_unseen = 900;
-    else if (yb_mode) n_unseen = 0;
+    else if (yb_mode || sort_mode) n_unseen = 0;
 
     SimData sd = load_case_data("agv_case_data (1).json", "agv_dispatch_log_seed11 (1).csv", n_unseen);
     int n_threads = std::max(1, (int)std::thread::hardware_concurrency());
 
     if (yb_mode) return yb::run(sd, argc, argv, n_threads);
+    if (sort_mode) return sort_supply::run(sd, argc, argv, n_threads);
 
     if (argc >= 3 && (mode == "--eval" || mode == "--eval100" || mode == "--eval300" || mode == "--eval800")) {
         run_eval_cmd(sd, argv[2], mode, n_threads);
@@ -1560,5 +1616,7 @@ int main(int argc, char** argv) {
     std::cout << "Usage: agv_opt.exe [--eval <csv> | --eval100 <csv> | --eval300 <csv> | --eval800 <csv> | --verify <csv> | --analyze <csv> | --polish <in.csv> [out.csv] | --reconstruct [seed.csv]]\n";
     std::cout << "YB: [--yb-search <baseline.csv> <new.csv> [rounds=8] | --yb-deadlines <baseline.csv> <new.csv>"
               << " | --yb-audit <baseline.csv> <challenger.csv> [first_seed=6001]]\n";
+    std::cout << "SORT: [--yb-sort-replay <baseline.csv> <out.csv> <first_seed> <count>"
+              << " | --yb-sort-search <baseline.csv> <out.csv>]\n";
     return 0;
 }
