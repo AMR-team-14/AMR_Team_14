@@ -2,7 +2,7 @@
 //   node tools/grow.mjs experiments/JSM/search-U.json
 // Reads the newest layer's results, keeps every tree that is not significantly worse than the
 // family's best so far, and writes the next layer (all empty slots of each survivor, one node each).
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { gunzipSync } from "node:zlib";
 import { parseTree, readTree, treeText, notation, emptySlots, expansionsAt } from "./tree-lib.mjs";
@@ -12,6 +12,52 @@ const state = JSON.parse(readFileSync(statePath, "utf8"));
 const home = dirname(statePath);
 const save = () => writeFileSync(statePath, JSON.stringify(state, null, 2) + "\n");
 if (state.done) { console.log(`${state.family}: done`); process.exit(0); }
+
+if (state.method === "experiment") {
+  // GP families: one evaluation layer built from experiments/JSM/GP/<root>-<fleet>/gp_top*.csv, then done.
+  const gpHome = join(home, "GP");
+  if (!state.layers.length) {
+    const runs = existsSync(gpHome) ? readdirSync(gpHome).filter(d => d.startsWith(state.root + "-")) : [];
+    if (runs.length < state.gpRuns) { console.log(`${state.family}: waiting for GP (${runs.length}/${state.gpRuns})`); process.exit(0); }
+    const id = `${state.family}01-gp`, dir = join(home, id);
+    mkdirSync(join(dir, "trees"), { recursive: true });
+    const trees = new Map();
+    for (const r of runs) for (const f of readdirSync(join(gpHome, r)).filter(f => /^gp_top\d+\.csv$/.test(f))) {
+      const nodes = parseTree(readFileSync(join(gpHome, r, f), "utf8"));
+      if (nodes.get(1).feature !== state.root) continue;
+      trees.set(notation(nodes), nodes);
+    }
+    const perTree = {};
+    let i = 0;
+    for (const nodes of trees.values()) {
+      const file = `t${String(++i).padStart(5, "0")}.csv`;
+      writeFileSync(join(dir, "trees", file), treeText(nodes));
+      perTree[file] = state.fleets;
+    }
+    writeFileSync(join(dir, "trees.json"), JSON.stringify(perTree) + "\n");
+    writeFileSync(join(dir, "run.json"), JSON.stringify({ status: "ready", fleets: [], seeds: state.seeds }, null, 2) + "\n");
+    writeFileSync(join(dir, "README.md"), `# ${id} ${state.family} 계열 GP 결과 평가
+
+- 루트 ${state.root} 고정, 백지 시작 GP(main agv_opt.cpp run_reconstruct) ${runs.join(", ")}의 상위 트리 ${trees.size}개
+- 대수 ${state.fleets[0]}~${state.fleets.at(-1)} · 시드 ${state.seeds}
+`);
+    state.layers.push(id);
+    save();
+    console.log(`${state.family}: GP layer ${id} with ${trees.size} trees`);
+    process.exit(0);
+  }
+  const l = state.layers.at(-1);
+  if (!existsSync(join(home, l, "results", "summary.csv"))) { console.log(`${state.family}: waiting for ${l}`); process.exit(0); }
+  const best = gunzipSync(readFileSync(join(home, l, "results", "raw.jsonl.gz"))).toString().split("\n").filter(Boolean)
+    .map(x => JSON.parse(x)).filter(r => r.cost.every(c => c !== null))
+    .map(r => ({ ...r, avg: r.cost.reduce((a, b) => a + b, 0) / r.cost.length })).sort((a, b) => a.avg - b.avg)[0];
+  if (best) state.ref = { layer: l, tree: best.tree, notation: best.notation, fleet: best.fleet, avg: best.avg, cost: best.cost };
+  state.history = [{ layer: l, evaluated: 0, survivors: 0, layerBest: best ? { notation: best.notation, fleet: best.fleet, avg: +best.avg.toFixed(2) } : null, nextTrees: 0 }];
+  state.done = true;
+  save();
+  console.log(`${state.family}: GP layer evaluated, done`);
+  process.exit(0);
+}
 
 const layer = state.layers.at(-1);
 const layerDir = join(home, layer);

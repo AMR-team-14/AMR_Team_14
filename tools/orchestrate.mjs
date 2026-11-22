@@ -9,7 +9,15 @@ import { gunzipSync } from "node:zlib";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const args = process.argv.slice(2);
-const until = new Date(args[args.indexOf("--until") + 1] ?? Date.now() + 12 * 3600e3);
+const arg = (k, d) => args.includes(k) ? args[args.indexOf(k) + 1] : d;
+const until = new Date(arg("--until", Date.now() + 12 * 3600e3));
+// Round 2: --families D,L,Q,UG,WG,LG,QG --post post-R2.json --xc X03-fresh --xd X04-final --seeds-c 4201-4400 --seeds-d 5001-6000
+const families = arg("--families", null)?.split(",");
+// New growth layers stop at --grow-until (default --until); follow-up stages may start until --until.
+const growUntil = new Date(arg("--grow-until", until));
+const postName = arg("--post", "post.json");
+const XC = arg("--xc", "X01-fresh"), XD = arg("--xd", "X02-final");
+const stageEnv = { ...process.env, STAGE_XC: XC, STAGE_XD: XD, SEEDS_C: arg("--seeds-c", "2001-2200"), SEEDS_D: arg("--seeds-d", "3001-4000") };
 const branch = "jsm";
 const home = join(root, "experiments", "JSM");
 const log = join(home, "orchestrator.log");
@@ -31,6 +39,7 @@ function unlockAfterF01() {
   let changed = false;
   for (const [id, rootTree] of [["U01-layer2", "U0.csv"], ["W01-root-threshold", "W0.csv"]]) {
     const runPath = join(home, id, "run.json");
+    if (!existsSync(runPath)) continue;
     const spec = JSON.parse(readFileSync(runPath, "utf8"));
     if (spec.status !== "planned") continue;
     const fleets = new Set();
@@ -92,7 +101,7 @@ function bestByTree(rows) {
 const code = t => "`" + t + "`";
 function writeReport(status) {
   const kst = d => new Date(d).toLocaleString("ko-KR", { timeZone: "Asia/Seoul", hour12: false });
-  const out = ["# U·W 탐색 현황", "", `- 갱신: ${kst(Date.now())} (KST) · 30분마다 자동 갱신`, `- 상태: ${status}`, `- 새 층 생성 마감: ${kst(until)}`,
+  const out = ["# 루트별 탐색 현황", "", `- 갱신: ${kst(Date.now())} (KST) · 30분마다 자동 갱신`, `- 상태: ${status}`, `- 새 층 생성 마감: ${kst(growUntil)} · 후속 단계 시작 마감: ${kst(until)}`,
     "- 시드 1001~1064 로컬 평균, 단위 천원/시간. 공식 웹 점수와 다를 수 있음", ""];
   for (const f of readdirSync(home).filter(f => /^search-.*\.json$/.test(f))) {
     const s = JSON.parse(readFileSync(join(home, f), "utf8"));
@@ -130,29 +139,38 @@ function writeReport(status) {
     const st = JSON.parse(readFileSync(join(home, f), "utf8"));
     for (const [k, label] of Object.entries(stageNames)) if (st.stages?.[k]) stageRows.push(fmtRow(`${st.family} ${label}`, st.stages[k]));
   }
-  for (const [dir, label] of [["X01-fresh", "C 보류 시드(2001~2200)"], ["X02-final", "D 새 시드(3001~4000)"]])
+  for (const [dir, label] of [["X01-fresh", "U·W C 보류 시드(2001~2200)"], ["X02-final", "U·W D 새 시드(3001~4000)"],
+    [XC, `2차 C 보류 시드(${stageEnv.SEEDS_C})`], [XD, `2차 D 새 시드(${stageEnv.SEEDS_D})`]].filter((x, i, a) => a.findIndex(y => y[0] === x[0]) === i))
     if (existsSync(join(home, dir))) stageRows.push(fmtRow(label, dir));
   if (stageRows.length) out.push("## 후속 단계 (팀 방법 A 절차 적용)", "",
     "| 단계 | 실험 | 최선 트리 | 대수 | 평균 | 표준편차 | 1,185안 대비 차이 |", "| --- | --- | --- | ---: | ---: | ---: | --- |", ...stageRows,
     "", "차이는 같은 시드 짝비교(음수면 1,185안보다 쌈). 하한은 단측이 아닌 95% 신뢰구간 하한.", "");
-  const x01 = summaryRows(join(home, "X01-fresh"));
-  if (x01) out.push("### C 단계 전체 (트리별 최적 대수)", "", "| 트리 | 최적 대수 | 평균 | 표준편차 | 나쁜 쪽 5% |", "| --- | ---: | ---: | ---: | ---: |",
+  for (const [xc, xd] of [...new Set(["X01-fresh|X02-final", `${XC}|${XD}`])].map(x => x.split("|")).reverse()) {
+  const x01 = summaryRows(join(home, xc));
+  if (x01) out.push(`### ${xc} C 단계 전체 (트리별 최적 대수)`, "", "| 트리 | 최적 대수 | 평균 | 표준편차 | 나쁜 쪽 5% |", "| --- | ---: | ---: | ---: | ---: |",
     ...bestByTree(x01).slice(0, 30).map(r => `| ${code(r.notation)} | ${r.fleet} | ${(+r.average).toFixed(2)} | ${(+r.costSD).toFixed(1)} | ${(+r.costP95).toFixed(1)} |`), "");
-  const x02 = summaryRows(join(home, "X02-final"));
-  if (x02) out.push("### D 단계 (새 시드 1,000개)", "", "| 트리 | 대수 | 평균 | 표준편차 | 나쁜 쪽 5% |", "| --- | ---: | ---: | ---: | ---: |",
+  const x02 = summaryRows(join(home, xd));
+  if (x02) out.push(`### ${xd} D 단계 (새 시드)`, "", "| 트리 | 대수 | 평균 | 표준편차 | 나쁜 쪽 5% |", "| --- | ---: | ---: | ---: | ---: |",
     ...x02.sort((a, b) => +a.average - +b.average).map(r => `| ${code(r.notation)} | ${r.fleet} | ${(+r.average).toFixed(2)} | ${(+r.costSD).toFixed(1)} | ${(+r.costP95).toFixed(1)} |`), "");
+  }
   out.push("## F01 대수 조사 (루트 하나짜리)", "", ...f01Table(), "");
   const notes = join(home, "report-notes.md");
   if (existsSync(notes)) out.push("## 판단과 조정 제안", "", readFileSync(notes, "utf8"));
   writeFileSync(reportPath, out.join("\n") + "\n");
+}
+// Other workflows (GP) also push to the branch: rebase before pushing, retry a few times.
+function push() {
+  for (let i = 0; ; i++) {
+    try { sh("git", ["pull", "-q", "--rebase", "origin", branch]); sh("git", ["push", "-q", "origin", branch]); return; }
+    catch (e) { if (i >= 4) throw e; execFileSync("node", ["-e", "setTimeout(()=>{},20000)"]); }
+  }
 }
 function pushReport(status) {
   lastReport = Date.now();
   writeReport(status);
   sh("git", ["add", "experiments/JSM/REPORT.md", "experiments/JSM/orchestrator.log"].concat(existsSync(join(home, "report-notes.md")) ? ["experiments/JSM/report-notes.md"] : []));
   try { sh("git", ["commit", "-q", "-m", "Update U/W search report [skip ci]"]); } catch { return; }
-  sh("git", ["pull", "-q", "--rebase", "origin", branch]);
-  sh("git", ["push", "-q", "origin", branch]);
+  push();
   lastReport = Date.now();
 }
 
@@ -164,8 +182,9 @@ while (true) {
   if (busy) { await sleep(60e3); continue; }
 
   let changed = unlockAfterF01();
-  const states = readdirSync(home).filter(f => /^search-.*\.json$/.test(f)).map(f => join(home, f));
-  if (Date.now() < until.getTime()) {
+  const states = readdirSync(home).filter(f => /^search-.*\.json$/.test(f))
+    .filter(f => !families || families.includes(f.slice(7, -5))).map(f => join(home, f));
+  if (Date.now() < growUntil.getTime()) {
     for (const s of states) {
       const before = readFileSync(s, "utf8");
       note(sh("node", ["tools/grow.mjs", s]));
@@ -174,30 +193,39 @@ while (true) {
   }
   if (changed) {
     sh("git", ["add", "experiments"]);
-    sh("git", ["commit", "-q", "-m", "Grow U/W search layers", "-m", "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"]);
-    sh("git", ["push", "-q", "origin", branch]);
+    sh("git", ["commit", "-q", "-m", "Grow search layers", "-m", "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"]);
+    push();
     note("pushed next layers");
     await sleep(90e3);
     continue;
   }
+  if (Date.now() >= growUntil.getTime())
+    for (const s of states) {
+      const st = JSON.parse(readFileSync(s, "utf8"));
+      const last = st.layers.at(-1);
+      if (!st.done && st.ref && (!last || existsSync(join(home, last, "results", "summary.csv")) || st.method !== "experiment")) {
+        st.done = true; st.stoppedAtDeadline = true; writeFileSync(s, JSON.stringify(st, null, 2) + "\n");
+        note(`${st.family}: growth deadline, stopping with ${st.layers.length} layers`);
+      }
+    }
   const done = states.every(s => JSON.parse(readFileSync(s, "utf8")).done);
   if (done) {
     // Follow-up stages (tools/stages.mjs): A -> A2 -> B -> B2 -> C -> D, each after the previous finished.
-    const postPath = join(home, "post.json");
+    const postPath = join(home, postName);
     const post = existsSync(postPath) ? JSON.parse(readFileSync(postPath, "utf8")) : { stage: "start" };
     const finished = dirs => dirs.every(d => existsSync(join(home, d, "results", "summary.csv")));
-    const stageDirs = stage => stage === "C" ? ["X01-fresh"] : stage === "D" ? ["X02-final"]
+    const stageDirs = stage => stage === "C" ? [XC] : stage === "D" ? [XD]
       : states.map(s => JSON.parse(readFileSync(s, "utf8")).stages?.[stage]).filter(Boolean);
     const order = ["start", "A", "A2", "B", "B2", "C", "D"];
     if (post.stage === "D" && finished(stageDirs("D"))) { post.stage = "done"; writeFileSync(postPath, JSON.stringify(post) + "\n"); note("stage D done"); pushReport("후속 단계 A~D 모두 종료"); break; }
     if (post.stage === "done") { pushReport("후속 단계 A~D 모두 종료"); break; }
     const next = order[order.indexOf(post.stage) + 1];
     if (next && (post.stage === "start" || finished(stageDirs(post.stage))) && Date.now() < until.getTime()) {
-      note(sh("node", ["tools/stages.mjs", next, ...states]));
+      note(execFileSync("node", ["tools/stages.mjs", next, ...states], { cwd: root, encoding: "utf8", env: stageEnv }).trim());
       post.stage = next; writeFileSync(postPath, JSON.stringify(post) + "\n");
       sh("git", ["add", "experiments"]);
       sh("git", ["commit", "-q", "-m", `Start follow-up stage ${next}`, "-m", "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"]);
-      sh("git", ["push", "-q", "origin", branch]);
+      push();
       note(`pushed stage ${next}`);
       await sleep(90e3);
       continue;

@@ -1,0 +1,10 @@
+{
+  "family": "L",
+  "root": "dl",
+  "method": "knowledge",
+  "seeds": "1001-1064",
+  "maxEvaluations": 60000,
+  "layers": [
+    "L01-root"
+  ]
+}

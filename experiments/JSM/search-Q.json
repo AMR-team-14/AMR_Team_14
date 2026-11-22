@@ -1,0 +1,10 @@
+{
+  "family": "Q",
+  "root": "qo",
+  "method": "knowledge",
+  "seeds": "1001-1064",
+  "maxEvaluations": 60000,
+  "layers": [
+    "Q01-root"
+  ]
+}

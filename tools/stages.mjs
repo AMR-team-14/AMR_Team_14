@@ -19,6 +19,9 @@ const home = dirname(statePaths[0]);
 const root = join(home, "..", "..");
 const out = p => join(process.env.STAGES_OUT ?? home, p);
 const dry = !!process.env.STAGES_OUT;
+// Round 2 (de/dl/qo knowledge, U/W/dl/qo GP) uses its own held-out and fresh seeds and output names.
+const XC = process.env.STAGE_XC ?? "X01-fresh", XD = process.env.STAGE_XD ?? "X02-final";
+const SEEDS_C = process.env.SEEDS_C ?? "2001-2200", SEEDS_D = process.env.SEEDS_D ?? "3001-4000";
 const mean = xs => xs.reduce((a, b) => a + b, 0) / xs.length;
 const seStat = xs => Math.sqrt(xs.reduce((a, x) => a + (x - mean(xs)) ** 2, 0) / (xs.length - 1) / xs.length);
 const paired = (a, b) => { const d = a.map((x, i) => x - b[i]); const m = mean(d), s = seStat(d); return { d: m, se: s, t: m / (s || 1e-9), lcb: m - 1.96 * s }; };
@@ -98,6 +101,8 @@ const refs = map => { add(map, B1185(), [18, 19], "ref_B1185"); };
 // ---------- A: pair expansion ----------
 function stageA(sp) {
   const st = loadState(sp);
+  // Experiment-method families (GP) skip the knowledge-driven pair expansion.
+  if (st.method === "experiment") { console.log(`${st.family}: experiment method, no stage A`); return; }
   const all = bestRows(st.layers.filter(l => existsSync(join(home, l, "results", "raw.jsonl.gz"))).flatMap(l => rows(join(home, l))), st.root);
   const seen = new Set(all.map(r => r.notation));
   const count = new Map(), starts = [];
@@ -162,7 +167,7 @@ function stageA2(sp) {
   const st = loadState(sp);
   const growth = st.layers.map(l => join(home, l)).filter(d => existsSync(join(d, "results", "raw.jsonl.gz")));
   const ref = bestRows(growth.flatMap(d => rows(d)), st.root)[0];
-  confirm(sp, [...growth.slice(-3), join(home, st.stages.A)], ref, "A2", "screen", "성장·짝 확장");
+  confirm(sp, [...growth.slice(-3), ...(st.stages?.A ? [join(home, st.stages.A)] : [])], ref, "A2", "screen", "성장·짝 확장");
 }
 
 // Rank inside one confirm experiment, paired against its ref_family rows.
@@ -273,14 +278,14 @@ function stageC() {
   add(map, B1185(), span(15, 25), "ref_B1185");
   add(map, D0(), span(15, 25), "ref_D0");
   lines.push("1,185안과 D0를 15~25대 전부", "판정: 계열 기준 대비 t < −2이고 반려 없음일 때만 개선으로 인정, 1,185안 대비 차이와 단측 95% 하한 보고");
-  write(out("X01-fresh"), map, "2001-2200", "X01-fresh 보류 시드 확인과 대수 재확인", lines);
+  write(out(XC), map, SEEDS_C, `${XC} 보류 시드 확인과 대수 재확인`, lines);
 }
 
 // ---------- D: fresh seeds 3001-4000 ----------
 function stageD() {
   const map = new Map(), lines = [];
-  const x = rows(join(home, "X01-fresh"));
-  const best = bestRows(x);
+  const x = rows(join(home, XC));
+  const best = bestRows(x.filter(r => !r.tree.startsWith("ref_")));
   for (const sp of statePaths) {
     const st = loadState(sp);
     const fam = best.filter(r => r.nodes.get(1).feature === st.root)[0];
@@ -288,7 +293,7 @@ function stageD() {
   }
   add(map, B1185(), [18, 19], "ref_B1185");
   lines.push("1,185안 18·19대: 제출 대수 재확인 겸 기준", "강건성: 반려율, 평균, 표준편차, 나쁜 쪽 5% 비용");
-  write(out("X02-final"), map, "3001-4000", "X02-final 새 시드 1,000개 최종 확인", lines);
+  write(out(XD), map, SEEDS_D, `${XD} 새 시드 최종 확인`, lines);
 }
 
 const per = { A: stageA, A2: stageA2, B: stageB, B2: stageB2 };

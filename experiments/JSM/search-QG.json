@@ -1,0 +1,18 @@
+{
+  "family": "QG",
+  "root": "qo",
+  "method": "experiment",
+  "gpRuns": 3,
+  "fleets": [
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "seeds": "1001-1064",
+  "layers": []
+}
