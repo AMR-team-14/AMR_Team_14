@@ -93,7 +93,8 @@ for (const earlier of state.layers.slice(0, -1)) {
 const distinct = [];
 let duplicates = 0;
 for (const r of ranked) {
-  if (known.has(sig(r))) { duplicates++; continue; }
+  // A one-node root decides nothing alone (de(min,θ) equals D0); keep every root so its subtrees get grown.
+  if (state.layers.length > 1 && known.has(sig(r))) { duplicates++; continue; }
   known.add(sig(r));
   distinct.push(r);
 }
