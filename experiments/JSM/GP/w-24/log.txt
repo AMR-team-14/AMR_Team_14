@@ -1,0 +1,17 @@
+[Reconstruct Init] Screening 272 multi-tier + edge-split seeds...
+[Reconstruct Gen 0] pop=100 | best w51=1297.98
+  [Reconstruct Gen  1] best w51=1242.12 (nodes=4, root=w)
+  [Reconstruct Gen  2] best w51=1242.12 (nodes=4, root=w)
+  [Reconstruct Gen  3] best w51=1242.12 (nodes=6, root=w)
+  [Reconstruct Gen  4] best w51=1241.67 (nodes=7, root=w)
+  [Reconstruct Gen  5] best w51=1241.67 (nodes=8, root=w)
+  [Reconstruct Gen  6] best w51=1241.67 (nodes=6, root=w)
+  [Reconstruct Gen  7] best w51=1241.67 (nodes=6, root=w)
+  [Reconstruct Gen  8] best w51=1241.67 (nodes=9, root=w)
+  [Reconstruct Gen  9] best w51=1241.67 (nodes=8, root=w)
+  [Reconstruct Gen 10] best w51=1241.67 (nodes=8, root=w)
+  [Reconstruct Gen 11] best w51=1241.67 (nodes=7, root=w)
+  [Reconstruct Gen 12] best w51=1241.67 (nodes=8, root=w)
+
+[Reconstruct Final] seed11=1228.79 | pub5=1251.83 | u50(101..150)=1243.94 | w51=1241.67 | HELD-OUT 50(151..200)=1242.53 (disq=0/50) | time=520.01s
+exit=0 seconds=520
