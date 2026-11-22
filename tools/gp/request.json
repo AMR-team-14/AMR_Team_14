@@ -1,1 +1,1 @@
-{"roots":["urg","w","dl","qo"],"note":"루트 고정 백지 시작 GP (main agv_opt.cpp run_reconstruct 재사용)","requested":"2026-11-22T18:50+09:00"}
+{"roots":["urg","w","dl","qo"],"note":"2회차: 12세대가 10분 만에 끝나고 아직 개선 중이어서 200세대로 연장, 다른 난수 시드","generations":200,"rng":7311,"requested":"2026-11-22T19:00+09:00"}

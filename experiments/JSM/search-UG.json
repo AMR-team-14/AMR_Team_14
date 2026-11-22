@@ -2,7 +2,7 @@
   "family": "UG",
   "root": "urg",
   "method": "experiment",
-  "gpRuns": 3,
+  "gpRuns": 6,
   "fleets": [
     17,
     18,

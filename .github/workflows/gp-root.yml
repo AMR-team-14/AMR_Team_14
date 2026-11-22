@@ -40,9 +40,11 @@ jobs:
         run: |
           set +e
           start=$(date +%s)
-          timeout 320m ./agv_opt --reconstruct-root ${{ matrix.root }} ${{ matrix.fleet }} 202619 12 | tee log.txt
-          echo "exit=$? seconds=$(( $(date +%s) - start ))" | tee -a log.txt
-          out=out/${{ matrix.root }}-${{ matrix.fleet }}
+          gens=$(node -p "require('./request.json').generations ?? 12")
+          rng=$(node -p "require('./request.json').rng ?? 202619")
+          timeout 320m ./agv_opt --reconstruct-root ${{ matrix.root }} ${{ matrix.fleet }} $rng $gens | tee log.txt
+          echo "exit=${PIPESTATUS[0]} seconds=$(( $(date +%s) - start ))" | tee -a log.txt
+          out=out/${{ matrix.root }}-${{ matrix.fleet }}-g$gens
           mkdir -p $out && cp gp_*.csv log.txt $out/ 2>/dev/null
           exit 0
       - uses: actions/upload-artifact@v4
