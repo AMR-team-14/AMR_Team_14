@@ -105,6 +105,21 @@
   ],
   "done": true,
   "stages": {
-    "A2": "QGA2"
+    "A2": "QGA2",
+    "B": "QGB1",
+    "Bstarts": [
+      {
+        "notation": "qo(max,5)[de(min,65)[-,dl(min,65)[w(min,1.15),w(min,1.6)]],w(min,5)[de(min,65)[dl(max,65),-],-]]",
+        "fleet": 19
+      },
+      {
+        "notation": "qo(max,5)[de(min,65)[-,dl(min,65)[w(min,1.15),w(min,1.6)]],w(min,5)[de(min,65)[urg(max,0.5),-],dl(min,25)]]",
+        "fleet": 19
+      },
+      {
+        "notation": "qo(max,5)[de(min,65)[-,dl(min,65)[w(min,1.15),w(min,1.6)[urg(min,0.5),-]]],w(min,5)[de(min,65)[urg(max,0.5),-],-]]",
+        "fleet": 19
+      }
+    ]
   }
 }

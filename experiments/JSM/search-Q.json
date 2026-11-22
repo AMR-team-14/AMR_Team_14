@@ -77773,6 +77773,21 @@
   "done": true,
   "stages": {
     "A": "QA1",
-    "A2": "QA2"
+    "A2": "QA2",
+    "B": "QB1",
+    "Bstarts": [
+      {
+        "notation": "qo(max,8)[de(max,180)[-,w(min,2)[-,dl(max,25)]],dl(min,25)[de(max,90)[w(min,0.5),w(min,2)],w(min,0.5)]]",
+        "fleet": 23
+      },
+      {
+        "notation": "qo(max,8)[de(max,180)[-,w(min,2)[-,dl(max,25)]],w(min,4)[de(max,90)[-,dl(max,25)],-]]",
+        "fleet": 23
+      },
+      {
+        "notation": "qo(max,8)[de(max,180)[-,w(min,2)[-,dl(max,25)]],w(min,4)[de(max,90)[-,dl(max,25)],de(max,0)]]",
+        "fleet": 23
+      }
+    ]
   }
 }

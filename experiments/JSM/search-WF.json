@@ -107,6 +107,21 @@
   ],
   "done": true,
   "stages": {
-    "A2": "WFA2"
+    "A2": "WFA2",
+    "B": "WFB1",
+    "Bstarts": [
+      {
+        "notation": "w(max,0.1)[dl(min,50)[de(max,180)[qo(min,1),qo(max,1)],-],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)]]",
+        "fleet": 21
+      },
+      {
+        "notation": "w(max,0.1)[dl(min,50)[de(max,180)[qo(min,1),-],de(min,90)],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)]]",
+        "fleet": 21
+      },
+      {
+        "notation": "w(max,0.1)[dl(min,50)[de(max,180)[qo(min,1),-],qo(min,4)],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)]]",
+        "fleet": 21
+      }
+    ]
   }
 }

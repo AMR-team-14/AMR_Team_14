@@ -105,6 +105,21 @@
   ],
   "done": true,
   "stages": {
-    "A2": "LGA2"
+    "A2": "LGA2",
+    "B": "LGB1",
+    "Bstarts": [
+      {
+        "notation": "dl(max,90)[de(min,65)[-,qo(max,1)[urg(min,0.5),w(min,1.1)[urg(max,0.5),-]]],w(min,0.5)[-,urg(min,0.5)]]",
+        "fleet": 19
+      },
+      {
+        "notation": "dl(max,90)[de(min,65)[-,qo(max,1)[urg(min,0.5),w(min,1.1)[urg(max,0.5),-]]],w(max,3.5)[qo(max,1)[urg(min,0.5),-],-]]",
+        "fleet": 19
+      },
+      {
+        "notation": "dl(max,90)[de(min,65)[-,qo(max,1)[urg(min,0.5),w(min,1.1)[urg(max,0.5),-]]],de(min,25)]",
+        "fleet": 19
+      }
+    ]
   }
 }

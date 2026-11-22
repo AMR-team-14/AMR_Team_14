@@ -107,6 +107,21 @@
   ],
   "done": true,
   "stages": {
-    "A2": "UFA2"
+    "A2": "UFA2",
+    "B": "UFB1",
+    "Bstarts": [
+      {
+        "notation": "urg(max,0.5)[de(min,115)[-,dl(min,25)[qo(max,1)[w(max,3.5),w(max,2)],w(max,2.4)]],de(min,90)[-,w(min,0.8)]]",
+        "fleet": 19
+      },
+      {
+        "notation": "urg(max,0.5)[de(min,115)[-,dl(min,25)[qo(max,2)[w(min,1.5),-],w(min,0.95)[-,qo(min,1)]]],de(min,90)[-,w(min,0.8)]]",
+        "fleet": 19
+      },
+      {
+        "notation": "urg(max,0.5)[de(min,115)[-,dl(min,25)[qo(max,2)[w(min,1.5),w(max,0.1)],w(min,0.95)]],de(min,90)[-,w(min,0.85)]]",
+        "fleet": 19
+      }
+    ]
   }
 }

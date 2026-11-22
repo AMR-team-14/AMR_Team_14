@@ -107,6 +107,21 @@
   ],
   "done": true,
   "stages": {
-    "A2": "QFA2"
+    "A2": "QFA2",
+    "B": "QFB1",
+    "Bstarts": [
+      {
+        "notation": "qo(max,5)[de(min,90)[-,dl(min,25)[w(min,1)[-,urg(min,0.5)],-]],de(min,65)[w(min,2.9),w(min,0.8)[-,dl(min,50)]]]",
+        "fleet": 19
+      },
+      {
+        "notation": "qo(max,5)[de(min,90)[-,dl(min,25)[w(min,1)[-,urg(min,0.5)],-]],de(min,65)[w(min,2.9)[urg(min,0.5),-],w(min,0.85)]]",
+        "fleet": 19
+      },
+      {
+        "notation": "qo(max,5)[de(min,90)[-,dl(min,25)[w(min,1)[-,urg(min,0.5)],-]],de(min,65)[w(min,4),w(min,0.85)[urg(min,0.5),-]]]",
+        "fleet": 19
+      }
+    ]
   }
 }

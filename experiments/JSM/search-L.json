@@ -90220,6 +90220,21 @@
   "done": true,
   "stages": {
     "A": "LA1",
-    "A2": "LA2"
+    "A2": "LA2",
+    "B": "LB1",
+    "Bstarts": [
+      {
+        "notation": "dl(min,90)[de(max,180)[-,qo(max,1)[w(min,0.5),w(min,4)]],de(min,0)[w(min,4.8),-]]",
+        "fleet": 23
+      },
+      {
+        "notation": "dl(min,90)[de(max,180)[-,qo(max,1)[w(min,0.5),w(min,4)]],qo(min,1)[-,de(min,0)[w(min,4.8),-]]]",
+        "fleet": 23
+      },
+      {
+        "notation": "dl(min,90)[de(max,180)[-,qo(max,1)[w(min,0.5),w(min,4)]],-]",
+        "fleet": 23
+      }
+    ]
   }
 }

@@ -105,6 +105,21 @@
   ],
   "done": true,
   "stages": {
-    "A2": "WGA2"
+    "A2": "WGA2",
+    "B": "WGB1",
+    "Bstarts": [
+      {
+        "notation": "w(min,8.5)[de(min,65)[qo(max,1)[urg(max,0.5),urg(max,0.5)],urg(min,0.5)[dl(min,65)[-,qo(min,1)],-]],qo(min,1)]",
+        "fleet": 20
+      },
+      {
+        "notation": "w(min,8.5)[de(min,65)[qo(max,1)[urg(max,0.5),urg(max,0.5)],urg(min,0.5)[dl(min,65)[-,qo(min,1)],-]],dl(min,50)]",
+        "fleet": 20
+      },
+      {
+        "notation": "w(min,8.5)[de(min,65)[qo(max,1)[urg(max,0.5),urg(max,0.5)],urg(min,0.5)[dl(min,65)[-,qo(min,1)],-]],de(max,0)]",
+        "fleet": 20
+      }
+    ]
   }
 }

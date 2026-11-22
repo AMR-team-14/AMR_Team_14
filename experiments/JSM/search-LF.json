@@ -107,6 +107,17 @@
   ],
   "done": true,
   "stages": {
-    "A2": "LFA2"
+    "A2": "LFA2",
+    "B": "LFB1",
+    "Bstarts": [
+      {
+        "notation": "dl(max,90)[de(min,65)[qo(max,3)[-,w(min,7.8)],qo(max,1)[urg(min,0.5),w(min,0.85)[urg(max,0.5),urg(min,0.5)]]],-]",
+        "fleet": 19
+      },
+      {
+        "notation": "dl(max,90)[de(min,65)[qo(max,3)[-,w(max,4.2)],qo(max,1)[urg(min,0.5),w(min,0.9)[urg(max,0.5),urg(min,0.5)]]],-]",
+        "fleet": 19
+      }
+    ]
   }
 }
