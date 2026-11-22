@@ -122,6 +122,7 @@
         "notation": "qo(max,5)[de(min,90)[-,dl(min,25)[w(min,1)[-,urg(min,0.5)],-]],de(min,65)[w(min,4),w(min,0.85)[urg(min,0.5),-]]]",
         "fleet": 19
       }
-    ]
+    ],
+    "B2": "QFB2"
   }
 }

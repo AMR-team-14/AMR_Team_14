@@ -1068,3 +1068,16 @@ UGB1: 6620 trees, 6620 evaluations
 WFB1: 6285 trees, 6285 evaluations
 WGB1: 2999 trees, 2999 evaluations
 2026-11-22T22:03:25.449Z pushed stage B
+2026-11-22T22:36:24.388Z DB2: 3001 trees, 9002 evaluations
+DFB2: 1406 trees, 4217 evaluations
+DMB2: 526 trees, 1577 evaluations
+LB2: 2055 trees, 6164 evaluations
+LFB2: 195 trees, 584 evaluations
+LGB2: 846 trees, 2537 evaluations
+QB2: 3001 trees, 9002 evaluations
+QFB2: 3001 trees, 9002 evaluations
+QGB2: 2616 trees, 7847 evaluations
+UFB2: 3001 trees, 9002 evaluations
+UGB2: 3001 trees, 9002 evaluations
+WFB2: 302 trees, 905 evaluations
+WGB2: 638 trees, 1913 evaluations

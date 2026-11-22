@@ -122,6 +122,7 @@
         "notation": "w(max,0.1)[dl(min,50)[de(max,180)[qo(min,1),-],qo(min,4)],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)]]",
         "fleet": 21
       }
-    ]
+    ],
+    "B2": "WFB2"
   }
 }

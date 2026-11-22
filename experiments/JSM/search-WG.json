@@ -120,6 +120,7 @@
         "notation": "w(min,8.5)[de(min,65)[qo(max,1)[urg(max,0.5),urg(max,0.5)],urg(min,0.5)[dl(min,65)[-,qo(min,1)],-]],de(max,0)]",
         "fleet": 20
       }
-    ]
+    ],
+    "B2": "WGB2"
   }
 }

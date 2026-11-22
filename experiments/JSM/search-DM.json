@@ -23702,7 +23702,8 @@
         "notation": "de(min,65)[qo(max,2)[-,dl(min,65)[-,w(min,1)]],w(min,1)[dl(min,65)[qo(max,1)[urg(min,0.5),-],-],urg(min,0.5)]]",
         "fleet": 19
       }
-    ]
+    ],
+    "B2": "DMB2"
   },
   "stageANote": "de 루트라 짝 확장 후보 0개(de 재사용 금지, 긴급 가지 없음) → A 생략"
 }

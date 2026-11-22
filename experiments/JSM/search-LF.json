@@ -118,6 +118,7 @@
         "notation": "dl(max,90)[de(min,65)[qo(max,3)[-,w(max,4.2)],qo(max,1)[urg(min,0.5),w(min,0.9)[urg(max,0.5),urg(min,0.5)]]],-]",
         "fleet": 19
       }
-    ]
+    ],
+    "B2": "LFB2"
   }
 }

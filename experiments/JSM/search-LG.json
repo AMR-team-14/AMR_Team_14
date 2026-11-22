@@ -120,6 +120,7 @@
         "notation": "dl(max,90)[de(min,65)[-,qo(max,1)[urg(min,0.5),w(min,1.1)[urg(max,0.5),-]]],de(min,25)]",
         "fleet": 19
       }
-    ]
+    ],
+    "B2": "LGB2"
   }
 }
