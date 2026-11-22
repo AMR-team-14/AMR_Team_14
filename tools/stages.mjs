@@ -136,6 +136,7 @@ function stageA(sp) {
       }
     }
   const id = `${st.family}A1`;
+  if (!map.size) { console.log(`${st.family}: no pair-expansion candidates, no stage A`); return; }
   write(out(id), map, st.seeds, `${id} ${st.family} 계열 짝 확장`, [
     "한 개씩 붙이는 확장으로는 내부 노드가 될 수 없던 규칙을 자식 규칙과 함께 추가: de(min), 긴급 가지의 qo·w(max)",
     `w 격자: 기본 7개 + 팀 진단값 0.75·2.45분 + (긴급 95분위 목표 ${P95_TARGET}분 − 빈 차 이동시간)`,

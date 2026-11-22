@@ -23686,7 +23686,6 @@
     "de(min,65)[qo(max,4)[-,w(max,4)[-,urg(max,0.5)]],w(min,1)[dl(min,65)[qo(max,1)[urg(min,0.5),-],-],urg(min,0.5)]]"
   ],
   "done": true,
-  "stages": {
-    "A": "DMA1"
-  }
+  "stages": {},
+  "stageANote": "de 루트라 짝 확장 후보 0개(de 재사용 금지, 긴급 가지 없음) → A 생략"
 }
