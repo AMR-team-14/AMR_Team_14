@@ -17,7 +17,7 @@ if (state.method === "experiment") {
   // GP families: one evaluation layer built from experiments/JSM/GP/<root>-<fleet>/gp_top*.csv, then done.
   const gpHome = join(home, "GP");
   if (!state.layers.length) {
-    const runs = existsSync(gpHome) ? readdirSync(gpHome).filter(d => d.startsWith(state.root + "-")) : [];
+    const runs = existsSync(gpHome) ? readdirSync(gpHome).filter(d => d.startsWith(state.root + "-") && (state.gpTag ? d.endsWith(state.gpTag) : !/-A$/.test(d))) : [];
     if (runs.length < state.gpRuns) { console.log(`${state.family}: waiting for GP (${runs.length}/${state.gpRuns})`); process.exit(0); }
     const id = `${state.family}01-gp`, dir = join(home, id);
     mkdirSync(join(dir, "trees"), { recursive: true });

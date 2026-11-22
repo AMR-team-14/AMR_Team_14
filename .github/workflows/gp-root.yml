@@ -17,19 +17,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - { root: urg, fleet: 18 }
-          - { root: urg, fleet: 20 }
-          - { root: urg, fleet: 22 }
-          - { root: w, fleet: 20 }
-          - { root: w, fleet: 22 }
-          - { root: w, fleet: 24 }
-          - { root: dl, fleet: 18 }
-          - { root: dl, fleet: 20 }
-          - { root: dl, fleet: 22 }
-          - { root: qo, fleet: 18 }
-          - { root: qo, fleet: 20 }
-          - { root: qo, fleet: 22 }
+        root: [de, urg, w, dl, qo]
+        fleet: [19, 21, 23]
     steps:
       - uses: actions/checkout@v6
       - name: Build
@@ -42,9 +31,10 @@ jobs:
           start=$(date +%s)
           gens=$(node -p "require('./request.json').generations ?? 12")
           rng=$(node -p "require('./request.json').rng ?? 202619")
-          timeout 320m ./agv_opt --reconstruct-root ${{ matrix.root }} ${{ matrix.fleet }} $rng $gens | tee log.txt
+          filter=$(node -p "require('./request.json').filter ?? ''")
+          timeout 320m ./agv_opt --reconstruct-root ${{ matrix.root }} ${{ matrix.fleet }} $rng $gens $filter | tee log.txt
           echo "exit=${PIPESTATUS[0]} seconds=$(( $(date +%s) - start ))" | tee -a log.txt
-          out=out/${{ matrix.root }}-${{ matrix.fleet }}-g$gens
+          out=out/${{ matrix.root }}-${{ matrix.fleet }}-g$gens${filter:+-$filter}
           mkdir -p $out && cp gp_*.csv log.txt $out/ 2>/dev/null
           exit 0
       - uses: actions/upload-artifact@v4

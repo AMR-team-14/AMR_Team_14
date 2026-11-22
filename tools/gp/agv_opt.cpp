@@ -1177,7 +1177,28 @@ void insert_split_above(Ast& ast, int& root, int target_idx, const Split& sp, bo
 static int g_root_feat = -1;
 static unsigned g_rng_seed = 202619;
 static int g_gens = 12;
-static bool root_ok(const Tree& t) { return g_root_feat < 0 || (t.n_nodes >= 1 && t.nodes[1].feat == g_root_feat); }
+static bool g_a_filter = false;
+// A relations (docs/notes/experiment-design.md 4.1): nodes that cannot change any decision.
+// Urgent branch (urg > 0.5): every urgent load is 25 m (A1: no dl), urgent candidates share qo (A2: no qo),
+// the oldest urgent request is already the only candidate (A4: no w(max)). Non-urgent branch: no urg (A1).
+// Leaf de(min) is also a no-op but stays allowed: it is the stepping stone to an internal de(min).
+static bool a_relations_ok(const Tree& t) {
+    auto dfs = [&](auto& self, int id, bool urgent, bool no_urgent) -> bool {
+        if (id == 0) return true;
+        const TreeNode& n = t.nodes[id];
+        if (urgent && (n.feat == 3 || n.feat == 4 || (n.feat == 1 && !n.is_min))) return false;
+        if (no_urgent && n.feat == 0) return false;
+        bool lo_no = no_urgent || n.feat == 0;
+        bool hi_urg = urgent || n.feat == 0;
+        bool hi_no = no_urgent || (n.feat == 3 && n.th >= 25);
+        return self(self, n.lo, urgent, lo_no) && self(self, n.hi, hi_urg, hi_no);
+    };
+    return dfs(dfs, 1, false, false);
+}
+static bool root_ok(const Tree& t) {
+    if (g_root_feat >= 0 && !(t.n_nodes >= 1 && t.nodes[1].feat == g_root_feat)) return false;
+    return !g_a_filter || a_relations_ok(t);
+}
 
 std::vector<Tree> build_reconstruct_seeds(const std::string& seed_csv, const std::vector<Split>& splits) {
     std::vector<Tree> pool;
@@ -1207,6 +1228,27 @@ std::vector<Tree> build_reconstruct_seeds(const std::string& seed_csv, const std
     if (g_root_feat >= 0) {
         roots.clear();
         for (const auto& sp : splits) if (sp.feat == g_root_feat) roots.push_back(sp);
+    }
+    if (g_a_filter) {
+        // Fair mode: the same template for every root, R[s1, s2] with s1, s2 any split of another variable
+        // (no built-in de(min) children), sampled to at most 600 seeds.
+        std::mt19937 trng(g_rng_seed + 1);
+        std::vector<Tree> all;
+        for (const auto& r1 : roots) {
+            Tree t1; t1.n_nodes = 1; t1.nodes[1] = {r1.feat, r1.is_min, r1.th, 0, 0};
+            all.push_back(t1);
+            for (const auto& a : splits) for (const auto& b : splits) {
+                if (a.feat == r1.feat || b.feat == r1.feat) continue;
+                Tree t3; t3.n_nodes = 3;
+                t3.nodes[1] = {r1.feat, r1.is_min, r1.th, 2, 3};
+                t3.nodes[2] = {a.feat, a.is_min, a.th, 0, 0};
+                t3.nodes[3] = {b.feat, b.is_min, b.th, 0, 0};
+                all.push_back(t3);
+            }
+        }
+        std::shuffle(all.begin() + 1, all.end(), trng);
+        for (size_t i = 0; i < all.size() && pool.size() < 600; ++i) push_tree(all[i]);
+        return pool;
     }
     for (const auto& r1 : roots) {
         for (double d_lo : de_vals) {
@@ -1546,10 +1588,11 @@ int main(int argc, char** argv) {
         return 0;
     }
     if (mode == "--reconstruct-root" && argc >= 4) {
-        // --reconstruct-root <urg|w|de|dl|qo> <n_agv> [rng_seed] [generations]
+        // --reconstruct-root <urg|w|de|dl|qo> <n_agv> [rng_seed] [generations] [A]
         g_root_feat = feat_from_str(argv[2]);
         if (argc >= 5) g_rng_seed = (unsigned)std::stoul(argv[4]);
         if (argc >= 6) g_gens = std::stoi(argv[5]);
+        if (argc >= 7 && std::string(argv[6]) == "A") g_a_filter = true;
         return run_reconstruct(sd, "", std::stoi(argv[3]), n_threads);
     }
     if (mode == "--reconstruct") {
