@@ -161,7 +161,7 @@ function writeReport(status) {
 // Other workflows (GP) also push to the branch: rebase before pushing, retry a few times.
 function push() {
   for (let i = 0; ; i++) {
-    try { sh("git", ["pull", "-q", "--rebase", "origin", branch]); sh("git", ["push", "-q", "origin", branch]); return; }
+    try { sh("git", ["pull", "-q", "--rebase", "--autostash", "origin", branch]); sh("git", ["push", "-q", "origin", branch]); return; }
     catch (e) { if (i >= 4) throw e; execFileSync("node", ["-e", "setTimeout(()=>{},20000)"]); }
   }
 }
