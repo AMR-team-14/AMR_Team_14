@@ -77770,5 +77770,8 @@
     "qo(max,8)[de(max,180)[-,w(min,2)[-,dl(max,25)]],w(min,4)[de(max,90)[dl(min,25)[urg(min,0.5),-],dl(max,25)],-]]",
     "qo(max,8)[de(max,180)[-,w(min,2)[-,dl(max,25)]],w(min,4)[de(max,90)[dl(min,25)[urg(max,0.5),-],dl(max,25)],-]]"
   ],
-  "done": true
+  "done": true,
+  "stages": {
+    "A": "QA1"
+  }
 }

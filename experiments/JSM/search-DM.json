@@ -23685,5 +23685,8 @@
     "de(min,65)[qo(max,4)[-,w(max,4)[-,urg(min,0.5)]],w(min,1)[dl(min,65)[qo(max,1)[urg(min,0.5),-],-],urg(min,0.5)]]",
     "de(min,65)[qo(max,4)[-,w(max,4)[-,urg(max,0.5)]],w(min,1)[dl(min,65)[qo(max,1)[urg(min,0.5),-],-],urg(min,0.5)]]"
   ],
-  "done": true
+  "done": true,
+  "stages": {
+    "A": "DMA1"
+  }
 }

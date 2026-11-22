@@ -95110,5 +95110,8 @@
     "de(max,180)[-,qo(max,2)[dl(min,25)[w(min,1)[-,urg(min,0.5)],w(min,1)],dl(min,25)[w(min,4),w(min,2)]]]",
     "de(max,180)[-,qo(max,2)[dl(min,25)[w(min,1)[-,urg(max,0.5)],w(min,1)],dl(min,25)[w(min,4),w(min,2)]]]"
   ],
-  "done": true
+  "done": true,
+  "stages": {
+    "A": "DA1"
+  }
 }
