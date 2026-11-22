@@ -15,6 +15,8 @@ const until = new Date(arg("--until", Date.now() + 12 * 3600e3));
 const families = arg("--families", null)?.split(",");
 // New growth layers stop at --grow-until (default --until); follow-up stages may start until --until.
 const growUntil = new Date(arg("--grow-until", until));
+// Failed runs already handled by hand (e.g. a duplicate run whose merge conflicted).
+const ignoreRuns = (arg("--ignore-runs", "") ?? "").split(",");
 const postName = arg("--post", "post.json");
 const XC = arg("--xc", "X01-fresh"), XD = arg("--xd", "X02-final");
 const stageEnv = { ...process.env, STAGE_XC: XC, STAGE_XD: XD, SEEDS_C: arg("--seeds-c", "2001-2200"), SEEDS_D: arg("--seeds-d", "3001-4000") };
@@ -62,7 +64,7 @@ function activeRun() {
   const out = sh("gh", ["run", "list", "--branch", branch, "--workflow", "experiments.yml", "-L", "5", "--json", "status,databaseId,conclusion"]);
   const runs = JSON.parse(out);
   const failed = runs.find(r => r.status === "completed" && r.conclusion === "failure");
-  return { busy: runs.some(r => r.status !== "completed"), lastFailed: runs[0]?.conclusion === "failure" ? runs[0].databaseId : null, failed };
+  return { busy: runs.some(r => r.status !== "completed"), lastFailed: runs[0]?.conclusion === "failure" && !ignoreRuns.includes(String(runs[0].databaseId)) ? runs[0].databaseId : null, failed };
 }
 
 
