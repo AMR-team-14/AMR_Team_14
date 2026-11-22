@@ -1572,22 +1572,25 @@ int run_verify_cmd(const SimData& sd, const std::string& csv_path) {
 
 #include "agv_yb_search.hpp"
 #include "agv_sort_supply.hpp"
+#include "agv_aged_backlog.hpp"
 
 int main(int argc, char** argv) {
     std::string mode = (argc >= 2) ? argv[1] : "";
     const bool yb_mode = mode == "--yb-search" || mode == "--yb-deadlines" || mode == "--yb-audit";
     const bool sort_mode = mode == "--yb-sort-replay" || mode == "--yb-sort-search";
+    const bool backlog_mode = mode == "--yb-aged-backlog";
     int n_unseen = 50;
     if (mode == "--eval100" || mode == "--reconstruct") n_unseen = 100;
     else if (mode == "--eval300") n_unseen = 400;
     else if (mode == "--eval800") n_unseen = 900;
-    else if (yb_mode || sort_mode) n_unseen = 0;
+    else if (yb_mode || sort_mode || backlog_mode) n_unseen = 0;
 
     SimData sd = load_case_data("agv_case_data (1).json", "agv_dispatch_log_seed11 (1).csv", n_unseen);
     int n_threads = std::max(1, (int)std::thread::hardware_concurrency());
 
     if (yb_mode) return yb::run(sd, argc, argv, n_threads);
     if (sort_mode) return sort_supply::run(sd, argc, argv, n_threads);
+    if (backlog_mode) return aged_backlog::run(sd, argc, argv, n_threads);
 
     if (argc >= 3 && (mode == "--eval" || mode == "--eval100" || mode == "--eval300" || mode == "--eval800")) {
         run_eval_cmd(sd, argv[2], mode, n_threads);
@@ -1618,5 +1621,6 @@ int main(int argc, char** argv) {
               << " | --yb-audit <baseline.csv> <challenger.csv> [first_seed=6001]]\n";
     std::cout << "SORT: [--yb-sort-replay <baseline.csv> <out.csv> <first_seed> <count>"
               << " | --yb-sort-search <baseline.csv> <out.csv>]\n";
+    std::cout << "Backlog: --yb-aged-backlog <baseline.csv> <new-results-directory>\n";
     return 0;
 }
