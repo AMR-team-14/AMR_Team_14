@@ -71,7 +71,11 @@ function mutator(rnd, opt) {
   return t0 => {
     for (let tries = 0; tries < 50; tries++) {
       const t = clone(t0), k = 1 + Math.min(3, Math.floor(-Math.log(1 - rnd()) / 1.0));
-      for (let j = 0; j < k; j++) one(t);
+      if (opt.oldonly) { // 도착 가지(root.lo)는 실험 12에서 최적으로 확인 → 대기 가지(root.hi)와 대수만 바꾼다
+        const sub = { n: t.n, root: t.root.hi || { f: 'de', d: 'min', th: 65, lo: null, hi: null } };
+        for (let j = 0; j < k; j++) one(sub);
+        t.root.hi = sub.root; t.n = sub.n;
+      } else for (let j = 0; j < k; j++) one(t);
       if (valid(t)) return t;
     }
     return null;
@@ -85,7 +89,7 @@ const STAGES = [ // [누적 묶음 수, 통과 기준: 짝차이 평균이 이 �
 
 async function main() {
   const [start, minutes, prefix, seedArg, ...rest] = process.argv.slice(2);
-  const opt = { fixroot: 0, nmin: 17, nmax: 23, lambda: 280 };
+  const opt = { fixroot: 0, oldonly: 0, nmin: 17, nmax: 23, lambda: 280 };
   rest.forEach(a => { const [k, v] = a.split('='); opt[k] = +v; });
   const rnd = makeRng(+(seedArg || 1)), mut = mutator(rnd, opt), eng = new Engine();
   const logf = `${prefix}.log`, log = s => { console.log(s); fs.appendFileSync(logf, s + '\n'); };
@@ -110,6 +114,10 @@ async function main() {
       evals += pool.length * (nb - prev) * 5;
       pool.forEach((c, i) => { c.cost = c.cost.concat(res[i] || [Infinity]); });
       pool = pool.filter(c => c.cost.every(Number.isFinite));
+      if (prev === 0) { // 첫 단계 비용이 최고안이나 다른 후보와 완전히 같으면 행동이 같은 나무다 → 버린다
+        const sig = new Set([incCost.slice(0, nb).map(x => x.toFixed(6)).join()]);
+        pool = pool.filter(c => { const k2 = c.cost.map(x => x.toFixed(6)).join(); if (sig.has(k2)) return false; sig.add(k2); return true; });
+      }
       pool.forEach(c => { c.p = paired(c.cost, incCost.slice(0, nb)); });
       pass.push(pool.length);
       if (thr !== null) pool = pool.filter(c => c.p.d < thr);

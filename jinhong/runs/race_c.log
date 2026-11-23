@@ -1,0 +1,1 @@
+시작 designs/b2_n21.csv: w(max,0.001)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)[dl(min,65),-]]] n21 | 학습 600시드 1181.61
