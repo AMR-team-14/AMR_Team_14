@@ -1,0 +1,45 @@
+{
+  "case": "c2",
+  "title": "기말 AGV/OHT Case 2 — 격자 기본",
+  "dir": "001011101110010001101000111001110101",
+  "fleet": 25,
+  "n_nodes": 9,
+  "key_rows": [
+    "key,1,urg,max,0.5,2,3",
+    "key,2,de,max,222.50,0,4",
+    "key,3,qo,max,3,0,5",
+    "key,4,w,max,4.40,0,6",
+    "key,5,dl,max,92.50,7,8",
+    "key,6,dl,min,180,0,0",
+    "key,7,de,min,160,0,0",
+    "key,8,w,max,0.50,0,9",
+    "key,9,de,min,137.50,0,0"
+  ],
+  "validation_3600_seeds": {
+    "seed_range": "3001..6600",
+    "mean_cost": 775.6824,
+    "std_cost": 60.3793,
+    "p95_cost": 847.0389,
+    "p99_cost": 894.3139,
+    "worst_max_cost": 922.2476,
+    "robust_risk_obj": 837.9381,
+    "mean_w_bar": 1.3014,
+    "mean_u95": 3.2525,
+    "max_u95": 4.7087,
+    "max_queue": 11,
+    "max_end_queue": 2,
+    "disqualifications": 0
+  },
+  "public_5_seeds": {
+    "mean_cost": 806.5735,
+    "mean_w_bar": 1.2946,
+    "mean_u95": 3.5654,
+    "disqualifications": 0
+  },
+  "checks": {
+    "dir_scc_ok": true,
+    "strict_tree_ok": true,
+    "fast_vs_brute_err": 0.000000000
+  },
+  "elapsed_sec": 271.75
+}
