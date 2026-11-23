@@ -139,4 +139,4 @@ async function main() {
   eng.close();
 }
 if (require.main === module) main();
-module.exports = { toTree, toSpec, show, count, valid, GRID, FEATS };
+module.exports = { toTree, toSpec, show, count, valid, GRID, FEATS, mutator, makeRng };
