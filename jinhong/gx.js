@@ -16,7 +16,9 @@ function caseTxt(P, tag) {
   P.flows.forEach(f => L.push(f.join(' ')));
   L.push([P.urgentDest, P.alpha, P.vc, P.ve, P.tl, P.tu, P.at, P.p, P.T, P.warm, P.qcap, P.endQmax, P.cAGV, P.cW, P.cU].join(' '));
   const f = path.join(os.tmpdir(), `agvg_case_${tag}_${process.pid}.txt`);
-  fs.writeFileSync(f, L.join('\n') + '\n'); return f;
+  const body = L.join('\n') + '\n';   // 같은 프로세스에서 엔진을 여러 개 띄울 때 다시 쓰면 먼저 뜬 엔진이 잘린 파일을 읽는다(「case 읽기 실패」) → 내용이 같으면 쓰지 않는다
+  if (!(fs.existsSync(f) && fs.readFileSync(f, 'utf8') === body)) fs.writeFileSync(f, body);
+  return f;
 }
 // 강연결 검사(웹 agvNet_의 ok와 같은 뜻)
 function strong(P, bits) {
