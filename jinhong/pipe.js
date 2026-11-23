@@ -259,7 +259,8 @@ const CMDS = {
     const [f, rounds = '3'] = ARGS, eng = new Engine(CN), t0 = Date.now(), base = toTree(csvToSpec(fs.readFileSync(f, 'utf8'))), dir = base.dir;
     const vals = stationDist(dir).vals, full = fullDist(dir);
     const dls = [...new Set(P.flows.filter(x => x[1] !== P.urgentDest).map(x => full[P.pd[x[0]]][P.pd[x[1]]]))].sort((a, b) => a - b);
-    const deOpt = [-1, ...vals.slice(0, -1)];                      // -1 = 노드 없음(가까운 차)
+    let dv = vals.slice(0, -1); if (dv.length > 36) dv = Array.from({ length: 36 }, (_, i) => dv[Math.round(i * (dv.length - 1) / 35)]);   // 값이 많은 케이스는 36개로 솎는다
+    const deOpt = [-1, ...new Set(dv)];                            // -1 = 노드 없음(가까운 차)
     const de = th => th < 0 ? null : N1('de', 'max', th);
     const mk = S => ({ dir, n: S.n, root: N1('urg', 'max', 0.5, N1('dl', 'min', S.t, de(S.a), de(S.b)), de(S.c)) });
     const evalAll = async list => { for (const S of list) if (!valid(mk(S))) throw new Error('형식에 안 맞는 나무: ' + show(mk(S).root)); const r = await eng.run(list.map(S => ({ ...toSpec(mk(S)), seed0: SEED0, count: NSEED, block: NSEED, qcut: 150 }))); return r.map(x => x ? x[0] : Infinity); };
