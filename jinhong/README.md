@@ -1,6 +1,6 @@
 # jinhong/ — 진홍의 실험 브랜치 (`jinhong-experiments`)
 
-**지금 제출 후보:** `answer_jinhong_best.csv`(21대 · 9노드, 리더보드 1180.42, 새 시드 1,000개 평균 1180.9). 근거와 막힌 곳은 [EXPERIMENTS.md](EXPERIMENTS.md) 맨 위에 있다.
+**지금 상태(11/23 18:20):** Case 1 리더보드 1위 1,170.20(`answer_jinhong_leaderboard.csv`, 21대). 논리 과정은 [CASE1_LOGIC.md](CASE1_LOGIC.md), 실험 기록은 [EXPERIMENTS.md](EXPERIMENTS.md), Case 2~5 계획은 [PLAN_cases.md](PLAN_cases.md)에 있다.
 
 main의 C++ 엔진과는 따로, **웹 채점 코드를 그대로 써서** 점수를 재고 탐색한 기록을 쌓는 곳이다. 실험 기록은 [EXPERIMENTS.md](EXPERIMENTS.md)에 날짜순으로 덧붙인다.
 
