@@ -1,0 +1,12 @@
+1단계 17940개 (3.7분), 상위 100개 구조의 공개 점수 1175.92 ~ 1180.33
+2단계 60100개 (33.2분), 서로 다른 값 737개. 최저 10개:
+  1170.20 | n21 w(max,0.00341)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)[dl(min,65),-]],urg(min,0.5)[qo(max,2),-]]]
+  1170.22 | n21 w(max,0.0031)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)[dl(min,65),-]],urg(min,0.5)[qo(max,2),-]]]
+  1171.04 | n21 w(max,0.00373)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)[dl(min,65),-]],urg(min,0.5)[qo(max,2),-]]]
+  1171.07 | n21 w(max,0.00376)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)[dl(min,65),-]],urg(min,0.5)[qo(max,2),-]]]
+  1171.08 | n21 w(max,0.00307)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)[dl(min,65),-]],urg(min,0.5)[qo(max,2),-]]]
+  1171.36 | n21 w(max,0.00363)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)[dl(min,65),-]],urg(min,0.5)[qo(max,2),-]]]
+  1171.56 | n21 w(max,0.00405)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)[dl(min,65),-]],urg(min,0.5)[qo(max,2),-]]]
+  1171.67 | n20 w(max,0.00165)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)[dl(min,65)[qo(max,2),-],-]]]
+  1171.68 | n20 w(max,0.00136)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)[dl(min,65)[qo(max,2),-],-]]]
+  1172.00 | n21 w(max,0.00364)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)[dl(min,65),-]],urg(min,0.5)[qo(max,2),-]]]
