@@ -4,3 +4,4 @@ node_modules/
 cpp/*.exe
 cpp/case.txt
 runs/*_arch.jsonl
+gha/out/

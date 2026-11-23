@@ -1,0 +1,38 @@
+# 진홍 브랜치 전용: Case 1 공개 점수 탐색을 20조각으로 나눠 돌린다.
+# 시작: jinhong/gha/trigger_case1.txt 를 고쳐 jinhong-experiments 브랜치에 푸시한다.
+# 교수님 채점 코드는 리포에 두지 않고 실행할 때 웹앱에서 받아 온다(fetch_engine.js).
+name: jinhong-case1-search
+on:
+  push:
+    branches: [jinhong-experiments]
+    paths: ['jinhong/gha/trigger_case1.txt']
+permissions:
+  contents: read
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 엔진 준비와 웹 원본 대조
+        working-directory: jinhong
+        run: |
+          node fetch_engine.js
+          node cpp/dump_case.js
+          g++ -O2 -std=c++17 -ffp-contract=off -pthread cpp/agvx.cpp -o cpp/agvx.exe
+          AGVX_THREADS=4 node cx_verify.js designs/team_1185.csv answer_jinhong_leaderboard.csv
+      - name: 탐색
+        working-directory: jinhong
+        run: AGVX_THREADS=4 node gha_case1.js ${{ matrix.shard }} 20 320
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: case1-shard-${{ matrix.shard }}
+          path: jinhong/gha/out/

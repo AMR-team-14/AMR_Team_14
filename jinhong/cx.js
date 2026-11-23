@@ -37,7 +37,7 @@ class JsEngine {
 class CppEngine {
   constructor(threads) {
     const exe = process.env.AGVX_EXE || path.join(__dirname, 'cpp', 'agvx.exe');
-    this.p = spawn(exe, [path.join(__dirname, 'cpp', 'case.txt'), String(threads || 14)]);
+    this.p = spawn(exe, [path.join(__dirname, 'cpp', 'case.txt'), String(threads || process.env.AGVX_THREADS || 14)]);
     this.buf = ''; this.lines = []; this.waiters = [];
     this.p.stdout.on('data', d => {
       this.buf += d; let i;
