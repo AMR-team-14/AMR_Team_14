@@ -10,12 +10,22 @@ Case 2~5는 통로 방향(dir) · 대수(fleet) · 배차 나무(key)를 함께 
 | 엔진 빌드 | `g++ -O2 -std=c++17 -ffp-contract=off -static -pthread cpp/agvg.cpp -o cpp/agvg.exe` (g++ 위치는 EXPERIMENTS.md 「환경」) |
 | Gurobi | `python -I`로 실행(gurobipy, 학교 라이선스) |
 
+## 한 번에 돌리기
+`node runcase.js N 12 12 12` 가 아래 1~10번을 차례로 돌리고 `caseN/run.log`와 `caseN/answer_caseN.csv`를 남긴다(인자: 케이스 번호, 스레드 수, 1차 · 2차 탐색 분). 실측: Case 3 33.5분(4스레드) · Case 4 42.2분(탐색 15+15분) · Case 5 29.9분. 최종 나무의 루트가 w이면 `node pipe.js N theta caseN/answer_caseN.csv`를 한 번 더 돌린다(Case 5에서 0.19점). 웹 대조와 제출은 따로 한다.
+
+| 케이스 | 기준선(z0 최저) | 최종 공개 점수 | 대수 | 새 시드 1,000개 평균 | 제출 |
+|---|---|---|---|---|---|
+| 2 격자 기본 | 1,251.90 | 617.16 (−50.7%) | 26 | 613.17 | 11/23 제출, 1위 |
+| 3 OHT형 루프 | 1,453.01 | 976.45 (−32.8%) | 22 | 992.87 | 11/23 제출, 1위 |
+| 4 교차로 고밀도 | 1,513.20 | 805.89 (−46.7%) | 16 | 807.11 | 제출 전 |
+| 5 저밀도 병목 | 957.15 | 779.71 (−18.5%) | 21 | 787.70 | 제출 전 |
+
 ## 1. 순서와 걸린 시간 (Case 2 실측, 14스레드 노트북)
 | # | 명령 | 하는 일 | 시간 |
 |---|---|---|---|
 | 1 | `node gx_verify.js N 60` | C++ 엔진과 웹 원본 JS를 무작위 방향 · 대수 · 나무 60개 × 묶음 3개로 대조. **「다른 것 0건」이 아니면 여기서 멈춘다** | 20초 |
 | 2 | `node pipe.js N base` | 기준선: 초기 방향 z0 × 예시 규칙 3개(STTF · 긴급 먼저 · FCFS) × 대수 전부 → `caseN/base.json`, `base_*.csv` | 5초 |
-| 3 | `python -I gurobi/dir_mip.py N caseN/dirs.json 60 0.10` 그리고 `python -I gurobi/dir_mip.py N caseN/dirs_ext.json 30 0.06 ext` | 방향 MIP: 1차 4종(적재 거리 / 적재 + 빈 차 0.5 · 1.0 / 차량 시간), 2차 11종(교차로 가중 1~3배 × 긴급 출발지 가중 0~30) → 방향 후보 약 200개 | 15초 |
+| 3 | (구간이 12개 이하면 `node pipe.js N direnum`으로 강연결 방향을 전부 나열 → `dirs_enum.json`, Case 3은 54개) `python -I gurobi/dir_mip.py N caseN/dirs.json 60 0.10` 그리고 `python -I gurobi/dir_mip.py N caseN/dirs_ext.json 30 0.06 ext` | 방향 MIP: 1차 4종(적재 거리 / 적재 + 빈 차 0.5 · 1.0 / 차량 시간), 2차 11종(교차로 가중 1~3배 × 긴급 출발지 가중 0~30) → 방향 후보 약 200개 | 15초 |
 | 4 | `node pipe.js N dirrank 10` | 1차 후보마다 나무 6종 × 대수를 시뮬레이션(공개 묶음 + 새 시드 묶음 2개)해 다시 순위 → `dirrank.json`, 상위 10개 `dirtop_*.csv` | 1.5분 |
 | 5 | `AGVX_THREADS=7 node pipe.js N search 10 1` (씨앗 1 · 2를 동시에) | 공개 점수 직접 탐색: 방향 비트 1~2개 뒤집기 · 대수 ±1 · 나무 변이 · 엘리트끼리 교환 → `search_s<씨앗>_best.csv` | 10분 |
 | 6 | `node pipe.js N struct <5번의 최저 csv>` | 그 방향에서 해석 가능한 구조 `urg(max)[dl(min,t)[A,B],C]`(A·B·C = 가까운 차 또는 「th보다 먼 차 먼저」)를 좌표 하강으로 훑기 → `struct_<이름>.csv` | 방향 하나당 1~2분 |
