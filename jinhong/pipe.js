@@ -2,6 +2,8 @@
 //   node pipe.js <N> base                       기준선: 초기 방향 z0 × 예시 규칙 3개(STTF · 긴급 먼저 · FCFS) × 대수 전부
 //   node pipe.js <N> dirrank [상위 몇 개=8] [dirs 파일=dirs.json]   방향 후보(Gurobi) × 나무 묶음 × 대수 → 시뮬레이션으로 다시 순위
 //   node pipe.js <N> search <분> [난수 씨앗] [시작 csv...]   공개 시드 점수를 직접 낮추는 탐색(방향 · 대수 · 나무를 함께 바꿈)
+//   node pipe.js <N> transfer <dirs 파일> <csv...>   찾은 나무를 다른 방향 후보에 옮겨 평가
+//   node pipe.js <N> struct <csv> [회전=3]    해석 가능한 구조(긴급 먼저 + 주문 묶음별 '먼 차 먼저')를 좌표 하강으로 훑기
 //   node pipe.js <N> theta <csv...>             루트가 w인 나무의 경계값을 0.00001 간격으로 훑기
 //   node pipe.js <N> safety <csv> [시드0=900001] [개수=1000]   새 시드 반려 건수와 평균
 //   node pipe.js <N> eval <csv...>              공개 점수와 평균 대기 · 긴급 95분위
@@ -148,6 +150,11 @@ async function sweepN(eng, dir, root, ns, extraBlocks = 0, qcut = 150) {
   return out;
 }
 
+// 웹 원본 파서(agvParse_)로 형식을 검사한다. 엔진은 형식을 보지 않으므로, 내보내는 답은 반드시 이 검사를 거친다.
+function webErrs(csvText) {
+  const f = path.join(__dirname, 'web', 'engine_final.js'); if (!fs.existsSync(f)) return ['web/engine_final.js 없음 — node gx_verify.js N 1 을 먼저 실행'];
+  return require(f).agvParse_(P, csvText).errs;
+}
 const CMDS = {
   async base() {
     const eng = new Engine(CN), pr = presets(Z0), ns = []; for (let n = P.nMin; n <= P.nMax; n++) ns.push(n);
@@ -227,6 +234,52 @@ const CMDS = {
     save(); log(`[탐색 끝] ${el()}분, ${gen}세대, 평가 ${evals}개: 최저 공개 ${elite[0].pub.toFixed(2)} | n${elite[0].t.n} ${show(elite[0].t.root)} | ${elite[0].t.dir}`); eng.close();
   },
 
+  // 찾은 나무를 다른 방향 후보에 옮겨 본다: (방향 후보 파일) × (나무 csv들) × 대수 ±2 → 공개 점수 상위를 xfer_*.csv로
+  async transfer() {
+    const [srcName, ...files] = ARGS, eng = new Engine(CN), t0 = Date.now();
+    const dirs = JSON.parse(fs.readFileSync(path.join(OUT, srcName), 'utf8')).cands.filter(c => strong(P, c.dir));
+    const trees = files.map(f => toTree(csvToSpec(fs.readFileSync(f, 'utf8')))), jobs = [], meta = [];
+    for (const c of dirs) for (const [ti, t] of trees.entries()) for (let dn = -2; dn <= 2; dn++) {
+      const x = { dir: c.dir, n: t.n + dn, root: t.root }; if (!valid(x)) continue;
+      jobs.push({ ...toSpec(x), seed0: SEED0, count: NSEED, block: NSEED, qcut: 150 }); meta.push({ c, ti, x });
+    }
+    const r = await eng.run(jobs); meta.forEach((m, i) => { m.pub = r[i] ? r[i][0] : Infinity; });
+    const bestPerDir = new Map();
+    for (const m of meta) if (Number.isFinite(m.pub) && (!bestPerDir.has(m.c.dir) || m.pub < bestPerDir.get(m.c.dir).pub)) bestPerDir.set(m.c.dir, m);
+    const top = [...bestPerDir.values()].sort((a, b) => a.pub - b.pub);
+    log(`[옮겨 보기] ${srcName} 방향 ${dirs.length}개 × 나무 ${trees.length}개 × 대수 5개 = ${jobs.length}건 (${((Date.now() - t0) / 60000).toFixed(1)}분)`);
+    top.slice(0, 10).forEach((m, i) => { log(`  ${i + 1}. ${m.pub.toFixed(2)} | n${m.x.n} 나무 ${m.ti + 1} | ${m.c.variant} Σf·d ${m.c.sumFD} | ${m.c.dir}`); if (i < 6) fs.writeFileSync(path.join(OUT, `xfer_${i + 1}.csv`), specToCsv(toSpec(m.x))); });
+    eng.close();
+  },
+
+  // 구조 훑기: 「긴급 먼저 + 일반 주문을 적재 거리(dl) 경계 하나로 두 묶음으로 나누고, 묶음마다 '몇 m보다 먼 차 먼저'」
+  //  urg(max)[ dl(min,t)[A, B], C ]   A·B·C = 없음(가까운 차) 또는 de(max, th).  한 갈래에 같은 특성을 두 번 쓸 수 없어 dl은 한 번만 쓴다.
+  // 좌표 하강: 한 번에 변수 한두 개를 전부 훑고, 좋아지면 채택. 방향은 csv의 것을 쓴다.
+  async struct() {
+    const [f, rounds = '3'] = ARGS, eng = new Engine(CN), t0 = Date.now(), base = toTree(csvToSpec(fs.readFileSync(f, 'utf8'))), dir = base.dir;
+    const vals = stationDist(dir).vals, full = fullDist(dir);
+    const dls = [...new Set(P.flows.filter(x => x[1] !== P.urgentDest).map(x => full[P.pd[x[0]]][P.pd[x[1]]]))].sort((a, b) => a - b);
+    const deOpt = [-1, ...vals.slice(0, -1)];                      // -1 = 노드 없음(가까운 차)
+    const de = th => th < 0 ? null : N1('de', 'max', th);
+    const mk = S => ({ dir, n: S.n, root: N1('urg', 'max', 0.5, N1('dl', 'min', S.t, de(S.a), de(S.b)), de(S.c)) });
+    const evalAll = async list => { for (const S of list) if (!valid(mk(S))) throw new Error('형식에 안 맞는 나무: ' + show(mk(S).root)); const r = await eng.run(list.map(S => ({ ...toSpec(mk(S)), seed0: SEED0, count: NSEED, block: NSEED, qcut: 150 }))); return r.map(x => x ? x[0] : Infinity); };
+    let cur = { n: base.n, t: dls[Math.floor(dls.length / 2)], a: -1, b: -1, c: -1 }, best = (await evalAll([cur]))[0], evals = 1;
+    log(`[구조 훑기] ${path.basename(f)} 방향 ${dir}, dl 값 ${dls.length}개, de 값 ${deOpt.length}개, 시작 ${best.toFixed(2)}`);
+    const sweep = async (name, list) => { const r = await evalAll(list); evals += list.length; let bi = -1; r.forEach((v, i) => { if (v < best - 1e-9) { best = v; bi = i; } }); if (bi >= 0) { cur = list[bi]; log(`  ${name}: ${best.toFixed(2)} | n${cur.n} 일반 dl ≤ ${cur.t} → de>${cur.a} · dl > ${cur.t} → de>${cur.b} · 긴급 → de>${cur.c} (평가 ${evals}, ${((Date.now() - t0) / 60000).toFixed(1)}분)`); } return bi >= 0; };
+    for (let rd = 0; rd < +rounds; rd++) {
+      let any = false; const ns = []; for (let n = Math.max(P.nMin, cur.n - 3); n <= Math.min(P.nMax, cur.n + 3); n++) ns.push(n);
+      any = await sweep('de 둘(a,b)', deOpt.flatMap(a => deOpt.map(b => ({ ...cur, a, b })))) || any;
+      any = await sweep('dl 경계 × de(a)', dls.flatMap(t => deOpt.map(a => ({ ...cur, t, a })))) || any;
+      any = await sweep('dl 경계 × de(b)', dls.flatMap(t => deOpt.map(b => ({ ...cur, t, b })))) || any;
+      any = await sweep('대수 × de(a)', ns.flatMap(n => deOpt.map(a => ({ ...cur, n, a })))) || any;
+      any = await sweep('대수 × de(b)', ns.flatMap(n => deOpt.map(b => ({ ...cur, n, b })))) || any;
+      any = await sweep('대수 × de(긴급)', ns.flatMap(n => deOpt.map(c => ({ ...cur, n, c })))) || any;
+      if (!any) break;
+    }
+    const outf = path.join(OUT, `struct_${path.basename(f, '.csv')}.csv`); fs.writeFileSync(outf, specToCsv(toSpec(mk(cur))));
+    log(`[구조 훑기 끝] ${best.toFixed(2)} | ${show(mk(cur).root)} n${cur.n} → ${path.basename(outf)} (평가 ${evals}, ${((Date.now() - t0) / 60000).toFixed(1)}분)`); eng.close();
+  },
+
   async theta() {
     const eng = new Engine(CN), t0 = Date.now(), all = [], TH = Array.from({ length: 3001 }, (_, i) => +(i * 0.00001).toFixed(5));
     for (const f of ARGS) {
@@ -245,6 +298,7 @@ const CMDS = {
 
   async safety() {
     const [f, s0 = '900001', cnt = '1000'] = ARGS, eng = new Engine(CN), spec = csvToSpec(fs.readFileSync(f, 'utf8'));
+    const we = webErrs(fs.readFileSync(f, 'utf8')); if (we.length) { log(`[안전 확인] ${path.basename(f)}: 웹 형식 오류 — ${we.join(' / ')}`); eng.close(); return; }
     const pub = (await eng.pub([spec]))[0], r = (await eng.run([{ ...spec, seed0: +s0, count: +cnt, block: NSEED, qcut: 0 }]))[0];
     const bad = r.filter(x => !Number.isFinite(x)).length, ok = r.filter(Number.isFinite), m = ok.length ? mean(ok) : NaN;
     const sd = Math.sqrt(ok.reduce((s, x) => s + (x - m) ** 2, 0) / Math.max(1, ok.length - 1));
@@ -255,11 +309,12 @@ const CMDS = {
   async eval() {
     const eng = new Engine(CN);
     for (const f of ARGS) {
+      const we = webErrs(fs.readFileSync(f, 'utf8')); if (we.length) { log(`${path.basename(f)}: 웹 형식 오류 — ${we.join(' / ')}`); continue; }
       const spec = csvToSpec(fs.readFileSync(f, 'utf8')), d = await eng.detail(spec, SEED0, NSEED);
       log(`${path.basename(f)}: ${d.stable ? `공개 ${round2(d.cost)} (대수 ${spec.n}, 평균 대기 ${d.mean.toFixed(4)}분, 긴급 95분위 ${d.u95.toFixed(4)}분, Σf·d ${d.sumFD}, 최대 대기열 ${d.maxQ})` : JSON.stringify(d)}`);
     }
     eng.close();
   },
 };
-if (!CMDS[CMD]) { console.log('사용: node pipe.js <N> base|dirrank|search|theta|safety|eval ...'); process.exit(1); }
+if (!CMDS[CMD]) { console.log('사용: node pipe.js <N> base|dirrank|search|transfer|theta|safety|eval ...'); process.exit(1); }
 CMDS[CMD]().catch(e => { console.error(e); process.exit(1); });
