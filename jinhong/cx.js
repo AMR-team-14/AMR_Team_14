@@ -72,7 +72,7 @@ class CppEngine {
   close() { this.p.stdin.end(); }
 }
 // AGVX_EXE를 주면 C++ 엔진, 아니면 Node 엔진. (11/23: 스마트 앱 컨트롤이 새 exe를 막아 Node가 기본)
-const Engine = process.env.AGVX_EXE ? CppEngine : JsEngine;
+const Engine = (process.env.AGVX_EXE || (!process.env.AGVX_JS && fs.existsSync(path.join(__dirname, 'cpp', 'agvx.exe')))) ? CppEngine : JsEngine;
 const mean = a => a.reduce((s, x) => s + x, 0) / a.length;
 // 같은 묶음끼리 짝지은 차이의 평균, 표준오차, t
 function paired(a, b) {
