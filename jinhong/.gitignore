@@ -1,3 +1,6 @@
 web/
 runs/*.json
 node_modules/
+cpp/*.exe
+cpp/case.txt
+runs/*_arch.jsonl
