@@ -269,7 +269,7 @@ const CMDS = {
     for (const m of meta) if (Number.isFinite(m.pub) && (!bestPerDir.has(m.c.dir) || m.pub < bestPerDir.get(m.c.dir).pub)) bestPerDir.set(m.c.dir, m);
     const top = [...bestPerDir.values()].sort((a, b) => a.pub - b.pub);
     log(`[옮겨 보기] ${srcName} 방향 ${dirs.length}개 × 나무 ${trees.length}개 × 대수 5개 = ${jobs.length}건 (${((Date.now() - t0) / 60000).toFixed(1)}분)`);
-    top.slice(0, 10).forEach((m, i) => { log(`  ${i + 1}. ${m.pub.toFixed(2)} | n${m.x.n} 나무 ${m.ti + 1} | ${m.c.variant} Σf·d ${m.c.sumFD} | ${m.c.dir}`); if (i < 6) fs.writeFileSync(path.join(OUT, `xfer_${i + 1}.csv`), specToCsv(toSpec(m.x))); });
+    top.slice(0, Math.max(10, +(process.env.XFER_TOP || 0))).forEach((m, i) => { log(`  ${i + 1}. ${m.pub.toFixed(2)} | n${m.x.n} 나무 ${m.ti + 1} | ${m.c.variant} Σf·d ${m.c.sumFD} | ${m.c.dir}`); if (i < +(process.env.XFER_TOP || 6)) fs.writeFileSync(path.join(OUT, `xfer_${i + 1}.csv`), specToCsv(toSpec(m.x))); });
     eng.close();
   },
 
