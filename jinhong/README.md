@@ -18,11 +18,15 @@
 | 케이스 | 워크플로 | 조각 스크립트 | 시작하는 법 | 결과 모으기 |
 |---|---|---|---|---|
 | Case 1 | `.github/workflows/jinhong-case1.yml` · `jinhong-case1-deep.yml` | `gha_case1.js` · `gha_case1_deep.js` | `gha/trigger_case1.txt`를 고쳐 푸시 (11/23 17:21 시작, 20조각 × 3파도) | `gh run download <실행 번호> -D gha/dl` 뒤 `node gha_collect.js` |
-| Case 2 | `.github/workflows/jinhong-case2.yml` | `gha_case2.js` (`pipe.js search`를 씨앗만 바꿔 부른다) | **아직 실행하지 않았다.** 아래 두 가지를 한 뒤 `gha/trigger_case2.txt`를 만들어 푸시 | `gh run download <실행 번호> -D gha/dl2` 뒤 `node gha_case2_collect.js` |
+| Case 2 | `.github/workflows/jinhong-case2.yml` | `gha_case2.js` (`pipe.js search`를 씨앗만 바꿔 부른다) | `gha/trigger_case2.txt`를 고쳐 푸시. **실행 45272859577**(11/24 06:45 시작, 20조각 × 300분, 12:00쯤 끝남) | `gh run download 45272859577 -D gha/dl2` 뒤 `node gha_case2_collect.js` |
 
-Case 2를 실행하기 전에 할 일:
-1. **케이스 데이터를 시크릿으로 넣는다.** Case 1은 채점 코드와 데이터가 웹 페이지 안에 들어 있어 러너가 직접 받아 오지만, Case 2~5의 데이터는 페이지가 서버 호출로 받아 오기 때문에 그 방법을 쓸 수 없다. 리포에 올리지 않으려면 리포 폴더에서 `cmd /c "gh secret set AGV_CASE2_JSON < C:\dev\ie325-amr\cases\final-agv-c2.json"`으로 넣는다(파일 내용이 글자 깨짐 없이 그대로 들어간다). 워크플로는 이 값을 러너 임시 폴더에만 쓰고 아티팩트에는 넣지 않는다.
-2. **Case 1 실행이 끝난 뒤에 시작한다.** 러너는 한 번에 20개까지 도는데 Case 1이 20개를 다 쓰고 있다(2 · 3차 파도가 그 뒤에 줄 서 있다).
+Case 2 실행 기록(11/24):
+- Case 1 두 실행이 06:43에 모두 끝난 뒤 06:45에 시작했다. 20개 조각 모두 러너(리눅스)에서 엔진 빌드를 통과하고 탐색 단계에 들어갔다(06:48 확인). 조각 스크립트는 제출안이 617.16으로 나오지 않으면 탐색 전에 멈추므로, 러너의 엔진과 데이터가 로컬과 같은 값을 낸 것이다. 정확한 값은 끝난 뒤 아티팩트의 `shard_<k>.log` 첫 줄에서 본다.
+- 끝난 뒤: 위 두 명령으로 모은다. 617.16보다 낮은 안이 있으면 `case2/gha_top_1.csv`에 대해 `node pipe.js 2 eval`(웹 형식 검사) → `safety` → 웹 「평가 실행」 대조 순서로 확인한다. 제출은 진홍이 정한다.
+
+Case 2를 다시 실행하기 전에 볼 것:
+1. **케이스 데이터는 시크릿으로 넣는다(11/23 등록함).** Case 1은 채점 코드와 데이터가 웹 페이지 안에 들어 있어 러너가 직접 받아 오지만, Case 2~5의 데이터는 페이지가 서버 호출로 받아 오기 때문에 그 방법을 쓸 수 없다. 리포에 올리지 않으려면 리포 폴더에서 `cmd /c "gh secret set AGV_CASE2_JSON < C:\dev\ie325-amr\cases\final-agv-c2.json"`으로 넣는다(파일 내용이 글자 깨짐 없이 그대로 들어간다). 워크플로는 이 값을 러너 임시 폴더에만 쓰고 아티팩트에는 넣지 않는다.
+2. **러너는 한 번에 20개까지 돈다.** 다른 실행(Case 1 등)이 20개를 쓰고 있으면 그 뒤에 줄을 선다. 같이 돌리려면 조각 수를 줄인다.
 
 Case 2 조각 하나가 하는 일: 엔진을 빌드하고, 제출안이 617.16으로 나오는지 먼저 확인한 뒤(다르면 멈춤), 60분짜리 탐색을 씨앗을 바꿔 5번 돌린다. 시작안은 조각 · 회차마다 세 묶음(제출안만 / + 다른 방향 계열의 구조안 / + 방향 순위 상위 10개)을 번갈아 쓴다. 617.16보다 낮은 안이 나오면 다음 회차의 시작안에 넣는다. 결과는 `search_s<씨앗>_best.csv`와 로그가 아티팩트 `case2-shard-<k>`로 남는다. 모은 뒤에는 반드시 `node pipe.js 2 eval`(웹 형식 검사)과 `safety`를 거친다.
 
