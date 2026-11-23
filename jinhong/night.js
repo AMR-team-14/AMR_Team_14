@@ -26,6 +26,7 @@ function toTree(spec) {
   return { dir: spec.dir, n: spec.n, root: build(1) };
 }
 function toSpec(t) {
+  if (DAG) return toSpecDag(t);
   const out = []; let next = 1; const q = [[t.root, next++]];
   while (q.length) {
     const [nd, id] = q.shift();
@@ -35,12 +36,26 @@ function toSpec(t) {
   }
   return { dir: t.dir, n: t.n, nodes: out.join(';') };
 }
+// 공유 나무(11/24): 웹 검사(agvParse_)는 「서로 다른 기준 id ≤ maxNodes」와 「한 갈래에 같은 특성 한 번」만 본다. 모양이 같은 가지는 id 하나를 여러 곳에서 가리킬 수 있다.
+//  NIGHT_DAG=1 이면 노드 수를 「서로 다른 가지 수」로 세고, 내보낼 때 같은 가지에 같은 id를 준다.
+const DAG = process.env.NIGHT_DAG === '1';
+const canon = nd => nd ? `${nd.f},${nd.d},${nd.th}[${canon(nd.lo)}|${canon(nd.hi)}]` : '-';
+function uniqCount(root) { const s = new Set(); const rec = nd => { if (!nd) return; s.add(canon(nd)); rec(nd.lo); rec(nd.hi); }; rec(root); return s.size; }
+function toSpecDag(t) {
+  const ids = new Map([[canon(t.root), 1]]), out = [], q = [t.root]; let next = 2; const done = new Set();
+  while (q.length) {
+    const nd = q.shift(), c = canon(nd); if (done.has(c)) continue; done.add(c);
+    const idOf = ch => { if (!ch) return 0; const k = canon(ch); if (!ids.has(k)) { ids.set(k, next++); } q.push(ch); return ids.get(k); };
+    const lo = idOf(nd.lo), hi = idOf(nd.hi); out.push(`${ids.get(c)},${nd.f},${nd.d},${nd.th},${lo},${hi}`);
+  }
+  return { dir: t.dir, n: t.n, nodes: out.join(';') };
+}
 const clone = t => JSON.parse(JSON.stringify(t));
 function walk(nd, anc, fn, parent, side) { if (!nd) return; fn(nd, anc, parent, side); walk(nd.lo, anc.concat(nd.f), fn, nd, 'lo'); walk(nd.hi, anc.concat(nd.f), fn, nd, 'hi'); }
 const count = nd => nd ? 1 + count(nd.lo) + count(nd.hi) : 0;
 const depth = nd => nd ? 1 + Math.max(depth(nd.lo), depth(nd.hi)) : 0;
 function valid(t) {
-  if (!t.root || count(t.root) > P.maxNodes || depth(t.root) > 8) return false;
+  if (!t.root || (DAG ? uniqCount(t.root) : count(t.root)) > P.maxNodes || depth(t.root) > 8) return false;
   let ok = true; walk(t.root, [], (nd, anc) => { if (anc.includes(nd.f)) ok = false; });
   return ok && t.n >= P.nMin && t.n <= P.nMax;
 }
@@ -80,6 +95,10 @@ function treeNb(base, dns = [0]) {
       { const t = clone(b), x = nodesOf(t)[k]; if (x.parent) { x.parent[x.side] = null; push(t, `n${dn} 노드 ${k + 1} 삭제`); } }
       { const t = clone(b), x = nodesOf(t)[k]; if (x.parent) { x.parent[x.side] = x.nd.lo || x.nd.hi; push(t, `n${dn} 노드 ${k + 1} 건너뛰기`); } }
       { const t = clone(b), x = nodesOf(t)[k].nd; const s2 = x.lo; x.lo = x.hi; x.hi = s2; if (x.lo || x.hi) push(t, `n${dn} 노드 ${k + 1} 자식 맞바꿈`); }
+      if (DAG) for (let j = 0; j < K; j++) if (j !== k) {   // 다른 가지를 통째로 가져온다(공유라 노드 수가 늘지 않는다): 빈 자리에 붙이기 · 이 노드를 바꾸기
+        for (const s2 of ['lo', 'hi']) if (!nodesOf(b)[k].nd[s2]) { const t = clone(b); nodesOf(t)[k].nd[s2] = clone(nodesOf(b)[j].nd); push(t, `n${dn} 노드 ${k + 1}.${s2} ← 노드 ${j + 1} 가지`); }
+        { const t = clone(b), x = nodesOf(t)[k]; if (x.parent) { x.parent[x.side] = clone(nodesOf(b)[j].nd); push(t, `n${dn} 노드 ${k + 1} ← 노드 ${j + 1} 가지`); } }
+      }
       for (const s2 of ['lo', 'hi']) if (!nodesOf(b)[k].nd[s2]) for (const ft of ['urg', 'w', 'de', 'dl', 'qo']) for (const d of ['min', 'max']) for (const th of grid(ft)) { const t = clone(b); nodesOf(t)[k].nd[s2] = { f: ft, d, th, lo: null, hi: null }; push(t, `n${dn} 노드 ${k + 1}.${s2} + ${ft}(${d},${th})`); }
     }
   }
@@ -109,7 +128,7 @@ const CMDS = {
     const [f, ns0, nb = '0', ...trees] = ARGS, eng = new Engine(CN, TH), base = readT(f), ns = ns0 === '-' ? [base.n] : ns0.split(',').map(Number);
     const list = trees.length ? trees.map(parseShow) : [base.root];
     for (const root of list) {
-      const ts = ns.map(n => ({ dir: base.dir, n, root })); if (!ts.every(valid)) { log(`형식 오류: ${show(root)}`); continue; }
+      const ts = ns.map(n => ({ dir: base.dir, n, root })); if (process.env.NIGHT_RELAX !== "1" && !ts.every(valid)) { log(`형식 오류: ${show(root)}`); continue; }
       const r = await pubs(eng, ts); let ex = '';
       if (+nb) { const bi = r.indexOf(Math.min(...r)), x = (await eng.run([{ ...toSpec(ts[bi]), seed0: 900001, count: NSEED * +nb, block: NSEED, qcut: 0 }]))[0]; ex = ` | 새 시드(n${ns[bi]}, ${nb}묶음) 평균 ${mean(x.filter(Number.isFinite)).toFixed(2)} 반려 ${x.filter(v => !Number.isFinite(v)).length}`; }
       log(`${ns.map((n, i) => `n${n}:${Number.isFinite(r[i]) ? r[i].toFixed(2) : '반려'}`).join(' ')}${ex} | ${show(root)}`);
@@ -219,6 +238,108 @@ const CMDS = {
     fs.writeFileSync(path.join(OUT, `nt_dirls_${tag}.csv`), specToCsv(toSpec(cur)));
     fs.writeFileSync(path.join(OUT, `night_dirls_${tag}.json`), JSON.stringify({ best, trail, top: [...seen.entries()].filter(x => Number.isFinite(x[1])).sort((a2, b2) => a2[1] - b2[1]).slice(0, 60) }));
     log(`[끝 ${tag}] ${best.toFixed(3)} n${cur.n} | ${cur.dir} (평가 ${evals}, ${el()}분)`); eng.close();
+  },
+  // 형식 안 4묶음 구조 전수: w(min,0.01)[ urg(max)[ dl(min,tn)[de>a, de>b], dl(min,tu)[de>c, de>d] ], W ]  (기준 최대 9개)
+  //  일반 쪽 (tn,a,b)를 전수 → 긴급 쪽 (tu,c,d)를 전수 → 반복. 대수는 csv의 대수 ±1.
+  //  node night.js N s4 <꼬리표> <csv(방향 · 대수)> ["W 나무"="urg(max,0.5)"] [반경 상한 m=110]
+  async s4() {
+    const [tag, f, W = 'urg(max,0.5)', cap = '110', form = 'urg', rootw = 'w(min,0.01)'] = ARGS, eng = new Engine(CN, TH), base = readT(f), t0 = Date.now(), el = () => ((Date.now() - t0) / 60000).toFixed(1);   // form: urg = 긴급/일반을 가른다, nourg = 가르지 않는다(dl 경계 하나로 전체를 둘로)
+    const N = P.nodes.length, D = Array.from({ length: N }, (_, i) => { const r = new Float64Array(N).fill(Infinity); r[i] = 0; return r; });
+    P.edges.forEach((e, k) => { const a2 = base.dir[k] === '1' ? e[1] : e[0], b2 = base.dir[k] === '1' ? e[0] : e[1]; D[a2][b2] = e[2]; });
+    for (let k = 0; k < N; k++) for (let i = 0; i < N; i++) { const dik = D[i][k]; if (dik === Infinity) continue; for (let j = 0; j < N; j++) { const d = dik + D[k][j]; if (d < D[i][j]) D[i][j] = d; } }
+    const dls = u => [...new Set(P.flows.filter(x => (x[1] === P.urgentDest) === u).map(x => D[P.pd[x[0]]][P.pd[x[1]]]))].sort((a2, b2) => a2 - b2);
+    const dn = dls(false), du = dls(true), R = [-1, ...stationVals(base.dir).filter(v => v <= +cap)];
+    const de = r => r < 0 ? '-' : `de(max,${r})`;
+    const side = (t, a2, b2) => (a2 < 0 && b2 < 0) ? '-' : (t === null ? de(a2) : `dl(min,${t})[${de(a2)},${de(b2)}]`);   // t === null: 묶음 하나(반경 a)
+    const dall = [...new Set([...dn, ...du])].sort((a2, b2) => a2 - b2);
+    const mk = S => ({ dir: base.dir, n: S.n, root: parseShow(form === 'urg' ? `${rootw}[urg(max,0.5)[${side(S.tn, S.a, S.b)},${side(S.tu, S.c, S.d)}],${W}]` : `${rootw}[${side(S.tn, S.a, S.b)},${W}]`) });
+    const evalAll = async list => { const ts = list.map(mk), ok = ts.map(valid), r = await pubs(eng, ts.filter((_, i) => ok[i])); let k = 0; return ts.map((_, i) => ok[i] ? r[k++] : Infinity); };
+    let cur = { n: base.n, tn: null, a: -1, b: -1, tu: null, c: -1, d: -1 }, best = (await evalAll([cur]))[0], evals = 1;
+    log(`[4묶음 전수 ${tag}] 방향 ${base.dir}, 일반 dl ${dn.length}개 · 긴급 dl ${du.length}개 · 반경 후보 ${R.length}개, W=${W}, 시작 ${best.toFixed(2)}`);
+    const sweep = async (name, list) => { const r = await evalAll(list); evals += list.length; let bi = -1; r.forEach((v, i) => { if (v < best - 1e-9) { best = v; bi = i; } }); if (bi >= 0) { cur = list[bi]; log(`  ${name}: ${best.toFixed(3)} | n${cur.n} ${show(mk(cur).root)} [${el()}분, 평가 ${evals}]`); } return bi >= 0; };
+    for (let rd = 0; rd < 4; rd++) {
+      let any = false;
+      for (const n of [cur.n, cur.n - 1, cur.n + 1, cur.n + 2]) {
+        any = await sweep(`일반 n${n}`, [null, ...(form === 'urg' ? dn : dall).slice(0, -1)].flatMap(tn => R.flatMap(a2 => (tn === null ? [-1] : R).map(b2 => ({ ...cur, n, tn, a: a2, b: b2 }))))) || any;
+        if (form === 'urg') any = await sweep(`긴급 n${n}`, [null, ...du.slice(0, -1)].flatMap(tu => R.flatMap(c => (tu === null ? [-1] : R).map(d => ({ ...cur, n, tu, c, d }))))) || any;
+      }
+      if (!any) break;
+    }
+    const outf = path.join(OUT, `nt_s4_${tag}.csv`); fs.writeFileSync(outf, specToCsv(toSpec(mk(cur))));
+    log(`[끝 ${tag}] ${best.toFixed(3)} | n${cur.n} ${show(mk(cur).root)} → ${path.basename(outf)} (평가 ${evals}, ${el()}분)`); eng.close();
+  },
+  // 방향 여러 개 × 형식 안 4묶음 구조(2차원 좌표 하강): night_dirpf.json에서 (형식 밖 점수 ≤ 상한) 방향만 골라 형식 안 규칙으로 다시 줄 세운다.
+  //  node night.js N dirs4 [형식 밖 상한=830] [줄 수=4] ["W"="urg(max,0.5)"] [반경 상한=110]   → night_dirs4.json, 상위 nt_dirs4_<i>.csv
+  async dirs4() {
+    const [lim = '830', lanes = '4', W = 'urg(max,0.5)', cap = '110'] = ARGS, t0 = Date.now(), el = () => ((Date.now() - t0) / 60000).toFixed(1);
+    const src = JSON.parse(fs.readFileSync(path.join(OUT, 'night_dirpf.json'), 'utf8')).filter(x => x.best <= +lim || x.sttf <= 850), res = []; let next = 0, done = 0;
+    const one = async (eng, c) => {
+      const dir = c.dir, N = P.nodes.length, D = Array.from({ length: N }, (_, i) => { const r = new Float64Array(N).fill(Infinity); r[i] = 0; return r; });
+      P.edges.forEach((e, k) => { const a2 = dir[k] === '1' ? e[1] : e[0], b2 = dir[k] === '1' ? e[0] : e[1]; D[a2][b2] = e[2]; });
+      for (let k = 0; k < N; k++) for (let i = 0; i < N; i++) { const dik = D[i][k]; if (dik === Infinity) continue; for (let j = 0; j < N; j++) { const d = dik + D[k][j]; if (d < D[i][j]) D[i][j] = d; } }
+      const dls = u => [...new Set(P.flows.filter(x => (x[1] === P.urgentDest) === u).map(x => D[P.pd[x[0]]][P.pd[x[1]]]))].sort((a2, b2) => a2 - b2);
+      const dn = dls(false).slice(0, -1), du = dls(true).slice(0, -1), R = [-1, ...stationVals(dir).filter(v => v <= +cap)];
+      const de = r => r < 0 ? '-' : `de(max,${r})`, side = (t, a2, b2) => (a2 < 0 && b2 < 0) ? '-' : `dl(min,${t})[${de(a2)},${de(b2)}]`;
+      const mk = S => ({ dir, n: S.n, root: parseShow(`w(min,0.01)[urg(max,0.5)[${side(S.tn, S.a, S.b)},${side(S.tu, S.c, S.d)}],${W}]`) });
+      let gb = null;
+      for (const n of [c.n - 1, c.n, c.n + 1]) {
+        let cur = { n, tn: dn[dn.length >> 1], a: -1, b: -1, tu: du[du.length >> 1], c: -1, d: -1 }; if (!valid(mk(cur))) continue; let best = (await pubs(eng, [mk(cur)]))[0];
+        const sweep = async list => { const r = await pubs(eng, list.map(mk)); let bi = -1; r.forEach((v, i) => { if (v < best - 1e-9) { best = v; bi = i; } }); if (bi >= 0) cur = list[bi]; return bi >= 0; };
+        for (let rd = 0; rd < 3; rd++) {
+          let any = false;
+          any = await sweep(du.flatMap(tu => R.map(d => ({ ...cur, tu, d })))) || any;
+          any = await sweep(du.flatMap(tu => R.map(c2 => ({ ...cur, tu, c: c2 })))) || any;
+          any = await sweep(dn.flatMap(tn => R.map(a2 => ({ ...cur, tn, a: a2 })))) || any;
+          any = await sweep(dn.flatMap(tn => R.map(b2 => ({ ...cur, tn, b: b2 })))) || any;
+          if (!any) break;
+        }
+        if (!gb || best < gb.best) gb = { best, t: mk(cur) };
+      }
+      return gb && { dir, relaxed: c.best, sttf: c.sttf, best: gb.best, n: gb.t.n, show: show(gb.t.root), spec: toSpec(gb.t) };
+    };
+    log(`[방향 × 형식 안 4묶음] 방향 ${src.length}개, ${lanes}줄, W=${W}`);
+    await Promise.all(Array.from({ length: +lanes }, async () => { const eng = new Engine(CN, Math.max(1, Math.floor(TH / +lanes))); while (next < src.length) { const c = src[next++], r = await one(eng, c); done++; if (r) res.push(r); if (done % 10 === 0) log(`  ${done}/${src.length} (${el()}분) 지금까지 최저 ${Math.min(...res.map(x => x.best)).toFixed(2)}`); } eng.close(); }));
+    res.sort((a2, b2) => a2.best - b2.best);
+    res.slice(0, 15).forEach((r, i) => { log(`  ${i + 1}. ${r.best.toFixed(2)} (형식 밖 ${r.relaxed.toFixed(2)}, 가까운 차 ${r.sttf.toFixed(2)}) n${r.n} | ${r.dir} | ${r.show}`); if (i < 8) fs.writeFileSync(path.join(OUT, `nt_dirs4_${i + 1}.csv`), specToCsv(r.spec)); });
+    fs.writeFileSync(path.join(OUT, 'night_dirs4.json'), JSON.stringify(res, null, 1)); log(`[끝] ${el()}분`);
+  },
+  // 방향 후보 파일 × 나무 여러 개 × 대수 → 방향별 최저 순위.  node night.js N rank <꼬리표> <dirs 파일> <대수들 a,b,c> <csv 또는 "나무 문자열"> ...
+  async rank() {
+    const [tag, srcName, ns0, ...ts] = ARGS, eng = new Engine(CN, TH), ns = ns0.split(',').map(Number);
+    const dirs = [...new Set(JSON.parse(fs.readFileSync(path.join(OUT, srcName), 'utf8')).cands.filter(c => strong(P, c.dir)).map(c => c.dir))];
+    const roots = ts.map(x => /\.csv$/.test(x) ? readT(x).root : parseShow(x)), list = [];
+    for (const dir of dirs) for (const [ti, root] of roots.entries()) for (const n of ns) { const t = { dir, n, root }; if (valid(t)) list.push({ t, ti, note: `나무 ${ti + 1}` }); }
+    const r = await pubs(eng, list.map(c => c.t)); list.forEach((c, i) => c.pub = r[i]);
+    const per = new Map(); for (const c of list) { if (!Number.isFinite(c.pub)) continue; const e = per.get(c.t.dir) || { dir: c.t.dir, by: {} }; if (!e.by[c.ti] || c.pub < e.by[c.ti].pub) e.by[c.ti] = c; per.set(c.t.dir, e); }
+    const rows = [...per.values()].map(e => ({ ...e, best: Math.min(...Object.values(e.by).map(x => x.pub)) })).sort((a2, b2) => a2.best - b2.best);
+    log(`[방향 순위 ${tag}] ${srcName} 방향 ${dirs.length}개 × 나무 ${roots.length}개 × 대수 ${ns.join(',')} = ${list.length}건`);
+    rows.slice(0, 15).forEach((e, i) => log(`  ${i + 1}. ${roots.map((_, ti) => e.by[ti] ? `${e.by[ti].pub.toFixed(2)}(n${e.by[ti].t.n})` : '-').join(' · ')} | ${e.dir}`));
+    fs.writeFileSync(path.join(OUT, `night_rank_${tag}.json`), JSON.stringify(rows.slice(0, 100).map(e => ({ dir: e.dir, best: e.best, by: Object.fromEntries(Object.entries(e.by).map(([k, v]) => [k, { pub: v.pub, n: v.t.n }])) }))));
+    rows.slice(0, 8).forEach((e, i) => { const b = Object.values(e.by).reduce((a2, b2) => a2.pub <= b2.pub ? a2 : b2); fs.writeFileSync(path.join(OUT, `nt_rank_${tag}_${i + 1}.csv`), specToCsv(toSpec(b.t))); });
+    eng.close();
+  },
+  // 나무 2수 이웃(가지치기): 1수 이웃 중 (지금 답 + 여유) 이하인 상위 K개마다 다시 1수 이웃 전수. 좋아지면 거기서 다시(최대 회전).
+  //  node night.js N tt <csv> [여유=1.5] [K=40] [회전=3]   → nt_tt_<i>.csv
+  async tt() {
+    const [f, slack = '1.5', K = '40', rounds = '3'] = ARGS, eng = new Engine(CN, TH), t0 = Date.now(), el = () => ((Date.now() - t0) / 60000).toFixed(1);
+    let cur = readT(f), best = (await pubs(eng, [cur]))[0], evals = 0; const all = [], seen = new Set([JSON.stringify(toSpec(cur))]);
+    const evalList = async list => { const fresh = list.filter(c => { const k = JSON.stringify(toSpec(c.t)); if (seen.has(k)) return false; seen.add(k); return true; }); const r = await pubs(eng, fresh.map(c => c.t)); fresh.forEach((c, i) => c.pub = r[i]); evals += fresh.length; return fresh.filter(c => Number.isFinite(c.pub)); };
+    log(`[나무 2수 이웃] ${path.basename(f)} 시작 ${best.toFixed(3)} | n${cur.n} ${show(cur.root)}`);
+    for (let rd = 0; rd < +rounds; rd++) {
+      const base0 = best, T1 = await evalList(treeNb(cur, [0])); all.push(...T1);
+      const s2 = new Set(), top = T1.sort((a2, b2) => a2.pub - b2.pub).filter(c => c.pub <= best + +slack && !s2.has(c.pub.toFixed(6)) && s2.add(c.pub.toFixed(6))).slice(0, +K);
+      log(`  회전 ${rd + 1}: 1수 이웃 ${T1.length}개 중 ${top.length}개에서 다시 [${el()}분]`);
+      for (const c of top) { const r = await evalList(treeNb(c.t, [0])); all.push(...r.map(x => ({ ...x, note: c.note + ' ⊕ ' + x.note }))); const b = r.reduce((a2, b2) => a2.pub <= b2.pub ? a2 : b2, { pub: Infinity }); if (b.pub < best - 1e-9) { best = b.pub; cur = b.t; log(`    ${c.note}(${c.pub.toFixed(2)}) ⊕ ${b.note} = ${best.toFixed(3)} [${el()}분, 평가 ${evals}]`); } }
+      log(`  회전 ${rd + 1} 끝: ${base0.toFixed(3)} → ${best.toFixed(3)} (평가 ${evals}, ${el()}분)`);
+      if (best >= base0 - 1e-9) break;
+    }
+    saveTop('tt', all, 10); eng.close();
+  },
+  // 나무 문자열 → CSV 파일.  node night.js N mk <방향 · 대수를 줄 csv> <출력 csv> "나무" [대수]
+  async mk() {
+    const [f, outf, tstr, n] = ARGS, base = readT(f), t = { dir: base.dir, n: n ? +n : base.n, root: parseShow(tstr) };
+    if (!valid(t)) { console.log('형식 오류(노드 수 · 갈래 중복 · 대수)'); return; }
+    fs.writeFileSync(outf, specToCsv(toSpec(t))); console.log(`${outf}: 서로 다른 기준 ${uniqCount(t.root)}개(펼치면 ${count(t.root)}개)`);
   },
   async wfine() {
     const [f, hw = '0.3', step = '0.0002'] = ARGS, eng = new Engine(CN, TH), base = readT(f), t0 = Date.now(), all = [];

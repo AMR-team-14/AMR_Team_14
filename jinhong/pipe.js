@@ -55,7 +55,21 @@ function toTree(spec) {
   const build = id => id && m[id] ? { f: m[id].f, d: m[id].d, th: m[id].th, lo: build(m[id].lo), hi: build(m[id].hi) } : null;
   return { dir: spec.dir, n: spec.n, root: build(1) };
 }
+// 공유 나무(PIPE_DAG=1, 11/24): 웹 검사는 서로 다른 기준 id 수만 센다 → 모양이 같은 가지는 id 하나로 내보내고, 노드 수도 서로 다른 가지 수로 센다.
+const DAG = process.env.PIPE_DAG === '1';
+const canon = nd => nd ? `${nd.f},${nd.d},${nd.th}[${canon(nd.lo)}|${canon(nd.hi)}]` : '-';
+function uniqCount(root) { const s = new Set(); const rec = nd => { if (!nd) return; s.add(canon(nd)); rec(nd.lo); rec(nd.hi); }; rec(root); return s.size; }
+function toSpecDag(t) {
+  const ids = new Map([[canon(t.root), 1]]), out = [], q = [t.root]; let next = 2; const done = new Set();
+  while (q.length) {
+    const nd = q.shift(), c = canon(nd); if (done.has(c)) continue; done.add(c);
+    const idOf = ch => { if (!ch) return 0; const k = canon(ch); if (!ids.has(k)) ids.set(k, next++); q.push(ch); return ids.get(k); };
+    const lo = idOf(nd.lo), hi = idOf(nd.hi); out.push(`${ids.get(c)},${nd.f},${nd.d},${nd.th},${lo},${hi}`);
+  }
+  return { dir: t.dir, n: t.n, nodes: out.join(';') };
+}
 function toSpec(t) {
+  if (DAG) return toSpecDag(t);
   const out = []; let next = 1; const q = [[t.root, next++]];
   while (q.length) {
     const [nd, id] = q.shift();
@@ -70,7 +84,7 @@ function walk(nd, anc, fn, parent, side) { if (!nd) return; fn(nd, anc, parent, 
 const count = nd => nd ? 1 + count(nd.lo) + count(nd.hi) : 0;
 function depth(nd) { return nd ? 1 + Math.max(depth(nd.lo), depth(nd.hi)) : 0; }
 function valid(t) {
-  if (!t.root || count(t.root) > P.maxNodes || depth(t.root) > 8) return false; // 웹 agvKey_는 8단계까지만 본다
+  if (!t.root || (DAG ? uniqCount(t.root) : count(t.root)) > P.maxNodes || depth(t.root) > 8) return false; // 웹 agvKey_는 8단계까지만 본다
   let ok = true; walk(t.root, [], (nd, anc) => { if (anc.includes(nd.f)) ok = false; });
   return ok && t.n >= P.nMin && t.n <= P.nMax;
 }
@@ -95,6 +109,7 @@ function mutator(rnd) {
     else if (k < 0.91) { if (x.parent) x.parent[x.side] = (rnd() < 0.5 ? nd.lo : nd.hi) || nd.lo || nd.hi; }
     else if (k < 0.96) { const nn = randNode(x.anc, t.dir); if (nn) { nn[rnd() < 0.5 ? 'lo' : 'hi'] = nd; if (x.parent) x.parent[x.side] = nn; else t.root = nn; } }
     else { const y = pick(nodes); if (y.parent && x.parent && y !== x) x.parent[x.side] = clone(y.nd); }
+    if (DAG && rnd() < 0.25) { const slots = []; walk(t.root, [], n2 => { for (const s of ['lo', 'hi']) if (!n2[s]) slots.push([n2, s]); }); if (slots.length) { const [p2, s2] = pick(slots); p2[s2] = clone(pick(nodes).nd); } }   // 공유: 있는 가지를 빈 자리에 붙인다
   }
   function flipDir(t, nflip) {
     for (let tries = 0; tries < 30; tries++) {

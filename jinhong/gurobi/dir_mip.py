@@ -54,7 +54,7 @@ def floyd(bits):
                 if dik + Dk[j] < Di[j]: Di[j] = dik + Dk[j]
     return D
 
-def build(variant, we, pm=1.0, wu=0.0):
+def build(variant, we, pm=1.0, wu=0.0, wl=1.0, wa=0.0):   # wl: 적재 시간 가중(대기 비용에는 빈 차 이동만 들어가므로 1보다 작게), wa: 모든 출발지로 빈 차가 가는 시간 가중
     m = gp.Model(); m.Params.OutputFlag = 0
     z = m.addVars(M, vtype=GRB.BINARY, name="z")
     orig = [s for s in range(nd) if out_[s] > 0]
@@ -90,19 +90,21 @@ def build(variant, we, pm=1.0, wu=0.0):
     else:  # time(분/시간): 거리/속도 + 교차로 진입마다 p
         fac = 60.0 / P["at"]
         tj = lambda a: (pm * P["p"] if isJ[head[a]] else 0.0)
-        obj = fac * (gp.quicksum((ln[k, s] / P["vc"] + tj((k, s))) * x[o, k, s] for o in orig for k, s in arcs)
+        obj = fac * (wl * gp.quicksum((ln[k, s] / P["vc"] + tj((k, s))) * x[o, k, s] for o in orig for k, s in arcs)
                      + gp.quicksum((ln[a] / P["ve"] + tj(a)) * e[a] for a in arcs))
-        if wu > 0:  # 긴급 주문의 출발지로 빈 차가 가는 시간: 각 스테이션에서(도착 주문 수 비율로) 긴급 출발지까지
-            ud = P["urgentDest"]; uos = sorted({o for o, d, f in F if d == ud}); tot = sum(in_)
-            for uo in uos:
-                fu = sum(f for o, d, f in F if o == uo and d == ud)
+        if wu > 0 or wa > 0:  # 출발지로 빈 차가 가는 시간: 각 스테이션에서(도착 주문 수 비율로) 그 출발지까지. 긴급 주문은 wu, 일반 주문은 wa
+            ud = P["urgentDest"]; tot = sum(in_)
+            wts = {}
+            for o, d, f in F: wts[o] = wts.get(o, 0.0) + f * (wu if d == ud else wa)
+            for uo in sorted(o for o in wts if wts[o] > 0):
+                fu = wts[uo]
                 u = m.addVars(arcs, lb=0.0)
                 for v in range(N):
                     b = sum(in_[s2] for s2 in range(nd) if pd[s2] == v and s2 != uo) - ((tot - in_[uo]) if v == pd[uo] else 0.0)
                     m.addConstr(gp.quicksum(u[a] for a in outA[v]) - gp.quicksum(u[a] for a in inA[v]) == b)
                 for k in range(M):
                     m.addConstr(u[k, 0] <= tot * (1 - z[k])); m.addConstr(u[k, 1] <= tot * z[k])
-                obj = obj + wu * fac * (fu / tot) * gp.quicksum((ln[a] / P["ve"] + tj(a)) * u[a] for a in arcs)
+                obj = obj + fac * (fu / tot) * gp.quicksum((ln[a] / P["ve"] + tj(a)) * u[a] for a in arcs)
     m.setObjective(obj, GRB.MINIMIZE)
     return m, z
 
@@ -113,11 +115,15 @@ if len(sys.argv) > 5 and sys.argv[5] == "ext":   # 2차 후보: 교차로 가중
     VARS = [("time", 0, pm, wu) for pm in (1, 2, 3) for wu in (0, 3, 10, 30) if not (pm == 1 and wu == 0)]
 if len(sys.argv) > 5 and sys.argv[5] == "ext2":  # 3차 후보: 2차에서 좋았던 근처를 더 촘촘히
     VARS = [("time", 0, pm, wu) for pm in (1.5, 2, 2.5, 3, 4) for wu in (0, 1.5, 5, 7, 10, 15, 20)]
-for variant, we, pm, wu in VARS:
-    m, z = build(variant, we, pm, wu)
-    m.Params.PoolSearchMode = 2; m.Params.PoolSolutions = POOL; m.Params.PoolGap = GAP; m.Params.TimeLimit = 40
+if len(sys.argv) > 5 and sys.argv[5] == "ext3":  # 4차 후보(11/24 밤샘): 적재 가중 wl을 낮추고(대기는 빈 차 이동에서 나온다) 일반 출발지 가중 wa를 더한다
+    VARS = [("time", 0, pm, wu, wl, wa) for wl in (0.3, 0.6) for pm in (2, 3) for wu, wa in ((10, 0), (20, 0), (5, 2), (10, 2))]
+TL = float(sys.argv[6]) if len(sys.argv) > 6 else 40
+for var in VARS:
+    variant, we, pm, wu = var[:4]; wl, wa = (var[4], var[5]) if len(var) > 4 else (1.0, 0.0)
+    m, z = build(variant, we, pm, wu, wl, wa)
+    m.Params.PoolSearchMode = 2; m.Params.PoolSolutions = POOL; m.Params.PoolGap = GAP; m.Params.TimeLimit = TL
     m.optimize()
-    tag = variant + (f"{we}" if variant == "both" else "") + (f"_p{pm}u{wu}" if (pm != 1 or wu) else "")
+    tag = variant + (f"{we}" if variant == "both" else "") + (f"_p{pm}u{wu}" if (pm != 1 or wu) else "") + (f"_l{wl}a{wa}" if (wl != 1 or wa) else "")
     print(f"[{tag}] 상태 {m.Status}, 최적 {m.ObjVal:.2f}, 하한 {m.ObjBound:.2f}, 풀 {m.SolCount}개, {m.Runtime:.1f}초")
     for i in range(m.SolCount):
         m.Params.SolutionNumber = i
