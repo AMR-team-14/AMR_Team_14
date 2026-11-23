@@ -25,7 +25,10 @@ const specCsv = s => [`dir,${s.dir}`, `fleet,${s.n}`, ...s.nodes.split(';').map(
   const P = loadCase(c), W = webEngine(), eng = new Engine(/\.json$/.test(c) ? P : c), rnd = makeRng(20261123);
   const M = P.edges.length, pick = a => a[Math.floor(rnd() * a.length)];
   const dvals = [...new Set(P.pd.flatMap(a => P.pd.map(b => 0)))]; // 자리 표시(거리 값은 방향마다 달라 아래에서 무작위 수로 뽑는다)
-  const randDir = () => { for (;;) { let s = ''; for (let k = 0; k < M; k++) s += rnd() < 0.5 ? '1' : '0'; if (strong(P, s)) return s; } };
+  // 강연결인 무작위 방향: 초기 방향 z0에서 통로를 하나씩 뒤집되 강연결이 유지될 때만 받아들인다(긴 루프 · 병목 지도에서는 완전 무작위 방향이 강연결일 확률이 거의 0이다)
+  const z0s = P.z0.join('');
+  const randDir = () => { const b = z0s.split(''); for (let t = 0; t < 4 * M; t++) { const k = Math.floor(rnd() * M); b[k] = b[k] === '1' ? '0' : '1'; if (!strong(P, b.join(''))) b[k] = b[k] === '1' ? '0' : '1'; } return b.join(''); };
+  const badDir = () => { const b = randDir().split(''); for (let t = 0; t < 50; t++) { const k = Math.floor(rnd() * M); b[k] = b[k] === '1' ? '0' : '1'; if (!strong(P, b.join(''))) return b.join(''); b[k] = b[k] === '1' ? '0' : '1'; } return b.join(''); };   // 강연결이 아닌 방향(양쪽 모두 반려여야 한다)
   const TH = { urg: () => 0.5, w: () => pick([0, 0.001, 0.05, 0.5, 1, 2, 3.3]), de: () => Math.round(rnd() * 300), dl: () => Math.round(rnd() * 300), qo: () => pick([0, 1, 2, 3]) };
   const randTree = (anc, depth) => {
     const fs2 = ['urg', 'w', 'de', 'dl', 'qo'].filter(f => !anc.includes(f)); const f = pick(fs2);
@@ -40,7 +43,7 @@ const specCsv = s => [`dir,${s.dir}`, `fleet,${s.n}`, ...s.nodes.split(';').map(
   while (specs.length < nTarget + files.length) {
     let root; do { root = randTree([], 0); } while (count(root) > P.maxNodes);
     const n = P.nMin + Math.floor(rnd() * Math.min(P.nMax - P.nMin + 1, 30));
-    specs.push({ ...toSpec({ n, root }), dir: fixed || (rnd() < 0.2 ? z0 : randDir()), tag: 'rand' + specs.length });
+    specs.push({ ...toSpec({ n, root }), dir: fixed || (rnd() < 0.15 ? z0 : rnd() < 0.1 ? badDir() : randDir()), tag: 'rand' + specs.length });
   }
   const S0 = P.seeds[0], BL = [[S0, P.seeds.length], [101, 3], [777777, 2]];
   let worst = 0, n = 0, nInf = 0, nFin = 0, bad = 0; const t0 = Date.now();

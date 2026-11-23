@@ -36,6 +36,8 @@ function evalAll(files) {     // 웹 형식 검사를 통과한 것만, 공개 �
   log('3 방향 MIP 2차: ' + lines(run('python', ['-I', 'gurobi/dir_mip.py', N, C('dirs_ext.json'), '30', '0.06', 'ext'])).filter(l => /후보/.test(l)).join(' | '));
   log('4 방향 순위 1차:\n' + lines(pipe('dirrank', '10')).filter(l => /^\s+[1-5]\. |z0:/.test(l)).join('\n'));
   log('4 방향 순위 2차:\n' + lines(pipe('dirrank', '6', 'dirs_ext.json')).filter(l => /^\s+[1-3]\. /.test(l)).join('\n'));
+  log('4 방향 전수: ' + last(pipe('direnum')));
+  if (has('dirs_enum.json')) log('4 방향 순위(전수):\n' + lines(pipe('dirrank', '6', 'dirs_enum.json')).filter(l => /^\s+[1-5]\. /.test(l)).join('\n'));
   // 5 구조 훑기: 서로 다른 방향 3개(1차 상위 + 2차 상위)
   const structs = [], doneDir = new Set();
   const doStruct = f => {
@@ -44,9 +46,9 @@ function evalAll(files) {     // 웹 형식 검사를 통과한 것만, 공개 �
     const o = C(`struct_${path.basename(f, '.csv')}.csv`); if (fs.existsSync(path.join(__dirname, o))) structs.push(o);
   };
   log('5 구조 훑기(방향 3개)');
-  for (const f of ['dirtop_1.csv', 'dirtop_ext_1.csv', 'dirtop_2.csv', 'dirtop_ext_2.csv', 'dirtop_3.csv'].filter(has).map(C)) { if (doneDir.size >= 3) break; doStruct(f); }
+  for (const f of ['dirtop_enum_1.csv', 'dirtop_1.csv', 'dirtop_ext_1.csv', 'dirtop_enum_2.csv', 'dirtop_2.csv', 'dirtop_ext_2.csv', 'dirtop_3.csv'].filter(has).map(C)) { if (doneDir.size >= 3) break; doStruct(f); }
   // 6 1차 탐색
-  const starts1 = [...structs, ...['dirtop_1.csv', 'dirtop_2.csv', 'dirtop_3.csv', 'dirtop_4.csv', 'dirtop_ext_1.csv'].filter(has).map(C)];
+  const starts1 = [...structs, ...['dirtop_1.csv', 'dirtop_2.csv', 'dirtop_3.csv', 'dirtop_4.csv', 'dirtop_ext_1.csv', 'dirtop_enum_1.csv', 'dirtop_enum_2.csv', 'dirtop_enum_3.csv'].filter(has).map(C)];
   log(`6 1차 탐색(씨앗 1 · 2, ${M1}분)`);
   (await searchPair(M1, [1, 2], starts1)).forEach(o => log('  ' + lines(o).filter(l => /1세대 점검|탐색 끝/.test(l)).join('\n  ')));
   // 7 탐색 최저안의 방향에서 구조 훑기 + 방향 옮겨 보기
@@ -55,7 +57,7 @@ function evalAll(files) {     // 웹 형식 검사를 통과한 것만, 공개 �
   log('7 중간 순위: ' + cand.slice(0, 3).map(c => `${c.pub} ${path.basename(c.f)}`).join(' | '));
   if (cand.length) doStruct(cand[0].f);
   cand = evalAll([...structs, ...sfiles()]);
-  for (const src of ['dirs_ext.json', 'dirs.json']) {
+  for (const src of ['dirs_ext.json', 'dirs.json', 'dirs_enum.json'].filter(has)) {
     log(`  옮겨 보기 ${src}:\n` + lines(pipe('transfer', src, ...cand.slice(0, 2).map(c => c.f))).filter(l => /^\s+[1-3]\. /.test(l)).join('\n'));
     if (has('xfer_1.csv')) { const keep = C(`xfer_${src.replace('.json', '')}_1.csv`); fs.copyFileSync(path.join(OUT, 'xfer_1.csv'), path.join(__dirname, keep)); doStruct(keep); }
   }

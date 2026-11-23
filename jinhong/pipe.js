@@ -35,6 +35,15 @@ function stationDist(bits) {
   ddCache.set(bits, r); return r;
 }
 
+// 구간(chain): 차수 2인 노드(스테이션 · 굽이)로 이어진 통로 묶음. 한 칸만 뒤집으면 막다른 길이 생겨 강연결이 깨지므로 구간째 뒤집는다.
+const CHAINS = (() => {
+  const N = P.nodes.length, inc = Array.from({ length: N }, () => []), par = P.edges.map((_, k) => k);
+  P.edges.forEach((e, k) => { inc[e[0]].push(k); inc[e[1]].push(k); });
+  const find = x => par[x] === x ? x : (par[x] = find(par[x]));
+  inc.forEach(l => { if (l.length === 2) par[find(l[0])] = find(l[1]); });
+  const g = new Map(); P.edges.forEach((_, k) => { const r = find(k); if (!g.has(r)) g.set(r, []); g.get(r).push(k); });
+  return [...g.values()];
+})();
 // ── 나무(중첩 객체 {f,d,th,lo,hi}) ──
 const FEATS = ['urg', 'w', 'de', 'dl', 'qo'];
 const WGRID = [0, 0.001, 0.02, 0.05, 0.1, 0.2, 0.3, 0.5, 0.75, 1, 1.25, 1.5, 2, 2.5, 3, 3.5, 4, 5, 6.5, 8];
@@ -89,7 +98,7 @@ function mutator(rnd) {
   function flipDir(t, nflip) {
     for (let tries = 0; tries < 30; tries++) {
       const b = t.dir.split('');
-      for (let j = 0; j < nflip; j++) { const k = Math.floor(rnd() * M); b[k] = b[k] === '1' ? '0' : '1'; }
+      for (let j = 0; j < nflip; j++) for (const k of CHAINS[Math.floor(rnd() * CHAINS.length)]) b[k] = b[k] === '1' ? '0' : '1';   // 교차로 사이 구간 전체를 뒤집는다
       const s = b.join(''); if (s !== t.dir && strong(P, s)) { t.dir = s; return true; }
     }
     return false;
@@ -168,6 +177,18 @@ const CMDS = {
       if (best) fs.writeFileSync(path.join(OUT, `base_${name}.csv`), specToCsv(toSpec({ dir: Z0, n: best.n, root })));
     }
     fs.writeFileSync(path.join(OUT, 'base.json'), JSON.stringify(res, null, 1)); eng.close();
+  },
+
+  // 구간 수가 적은 지도(2^구간 ≤ 4096)는 강연결인 방향을 전부 나열한다 → dirs_enum.json (dirrank 가 읽는다)
+  async direnum() {
+    const K = CHAINS.length; if (K > 12) { log(`[방향 전수] 구간 ${K}개 → 너무 많아 건너뜀`); return; }
+    const cands = [];
+    for (let m = 0; m < (1 << K); m++) {
+      const b = Z0.split(''); for (let c = 0; c < K; c++) if (m >> c & 1) for (const k of CHAINS[c]) b[k] = b[k] === '1' ? '0' : '1';
+      const d = b.join(''); if (strong(P, d)) cands.push({ dir: d, variant: m === 0 ? 'z0' : 'enum', sumFD: stationDist(d).fd, emptyLB: 0, chg: [...d].filter((x, i) => x !== Z0[i]).length });
+    }
+    fs.writeFileSync(path.join(OUT, 'dirs_enum.json'), JSON.stringify({ cands }));
+    log(`[방향 전수] 구간 ${K}개, 2^${K} = ${1 << K}개 중 강연결 ${cands.length}개 → dirs_enum.json`);
   },
 
   async dirrank() {

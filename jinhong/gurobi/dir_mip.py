@@ -113,7 +113,7 @@ if len(sys.argv) > 5 and sys.argv[5] == "ext":   # 2차 후보: 교차로 가중
     VARS = [("time", 0, pm, wu) for pm in (1, 2, 3) for wu in (0, 3, 10, 30) if not (pm == 1 and wu == 0)]
 for variant, we, pm, wu in VARS:
     m, z = build(variant, we, pm, wu)
-    m.Params.PoolSearchMode = 2; m.Params.PoolSolutions = POOL; m.Params.PoolGap = GAP; m.Params.TimeLimit = 120
+    m.Params.PoolSearchMode = 2; m.Params.PoolSolutions = POOL; m.Params.PoolGap = GAP; m.Params.TimeLimit = 40
     m.optimize()
     tag = variant + (f"{we}" if variant == "both" else "") + (f"_p{pm}u{wu}" if (pm != 1 or wu) else "")
     print(f"[{tag}] 상태 {m.Status}, 최적 {m.ObjVal:.2f}, 하한 {m.ObjBound:.2f}, 풀 {m.SolCount}개, {m.Runtime:.1f}초")
