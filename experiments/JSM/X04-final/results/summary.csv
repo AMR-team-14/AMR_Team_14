@@ -1,0 +1,8 @@
+tree,notation,nodes,fleet,rejected,average,costSD,costP95,avgWait,urgent95,maxQueue,endQueueMax,deltaVsBaseline,deltaSE
+DM_final.csv,"de(min,65)[qo(max,1)[-,urg(max,0.5)[w(min,2.8),w(min,2.6)]],qo(max,1)[urg(min,0.5),dl(min,65)[w(min,0.95),-]]]",9,19,0,1195.6217,11.7482,1215.3,3.8275,5.1929,35,20,,
+LG_final.csv,"dl(max,90)[de(min,65)[qo(max,3)[-,w(max,4.1)],qo(max,1)[urg(min,0.5),w(min,0.85)[urg(max,0.5),urg(min,0.5)]]],-]",9,19,0,1204.2927,13.786,1228.787,3.82,5.2874,37,24,,
+QG_final.csv,"qo(max,5)[de(min,65)[-,dl(min,65)[w(min,1)[-,urg(min,0.5)],-]],de(min,65)[w(min,4),w(min,0.85)[urg(min,0.5),-]]]",9,19,0,1213.807,15.3115,1240.078,3.792,5.4111,43,20,,
+ref_B1185.csv,"de(min,65)[qo(max,1)[-,urg(max,0.5)[-,w(min,2.45)]],dl(min,65)[qo(max,1)[urg(min,0.5),w(min,0.75)[urg(max,0.5),-]],-]]",9,18,0,1190.5755,12.779,1212.777,3.9493,5.168,47,22,,
+ref_B1185.csv,"de(min,65)[qo(max,1)[-,urg(max,0.5)[-,w(min,2.45)]],dl(min,65)[qo(max,1)[urg(min,0.5),w(min,0.75)[urg(max,0.5),-]],-]]",9,19,0,1191.3132,11.5999,1211.13,3.7875,5.1908,37,20,,
+UG_final.csv,"urg(max,0.5)[de(min,115)[-,dl(min,50)[qo(max,1)[w(max,3.5),w(max,2)],w(max,2.4)]],de(min,90)[-,w(min,0.8)]]",9,19,0,1236.7875,15.1953,1262.774,4.2289,5.1943,44,26,,
+WG_final.csv,"w(max,0.05)[dl(min,50)[de(max,180)[qo(min,1),qo(max,1)],-],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)]]",9,21,0,1186.482,15.1999,1211.935,3.4525,5.185,31,15,,
