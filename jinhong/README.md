@@ -1,6 +1,32 @@
 # jinhong/ — 진홍의 실험 브랜치 (`jinhong-experiments`)
 
-**지금 상태(11/23 18:20):** Case 1 리더보드 1위 1,170.20(`answer_jinhong_leaderboard.csv`, 21대). 논리 과정은 [CASE1_LOGIC.md](CASE1_LOGIC.md), 실험 기록은 [EXPERIMENTS.md](EXPERIMENTS.md), Case 2~5 계획은 [PLAN_cases.md](PLAN_cases.md)에 있다.
+**지금 상태(11/23 20:30):** Case 1 · 2를 제출했고 둘 다 리더보드 1위다. Case 3~5는 진행 중이다. Case 2~5 계획은 [PLAN_cases.md](PLAN_cases.md), 공통 순서는 [PIPELINE.md](PIPELINE.md)에 있다.
+
+## Case별 결과 한눈에
+| 케이스 | 제출 점수 · 순위 | 기준선 대비 | 답 파일 | 기록 | 다시 돌리는 명령 |
+|---|---|---|---|---|---|
+| Case 1 | **1,170.20** · 1위 (11/23 18:15 제출, 2위 1,178.00) | 팀 기존 최고 1,185.42 → 1,170.20 | [answer_jinhong_leaderboard.csv](answer_jinhong_leaderboard.csv) (21대) | [CASE1_LOGIC.md](CASE1_LOGIC.md) · [EXPERIMENTS.md](EXPERIMENTS.md) | `node fetch_engine.js && node cpp/dump_case.js` 뒤 `node cx_verify.js designs/team_1185.csv answer_jinhong_leaderboard.csv` |
+| Case 2 | **617.16** · 1위 (11/23 19:53 제출, 2위 779.98) | 초기 방향 + FCFS 1,251.90 → 617.16 (−634.74, −50.7%) | [case2/answer_case2.csv](case2/answer_case2.csv) (26대, 기준 3개) | [case2/NOTES.md](case2/NOTES.md) | `node pipe.js 2 eval case2/answer_case2.csv` 와 `node pipe.js 2 safety case2/answer_case2.csv 900001 1000` |
+| Case 3 | 진행 중 | | | | |
+| Case 4 | 진행 중 | | | | |
+| Case 5 | 진행 중 | | | | |
+
+- 숫자는 기록 파일에 적힌 것 그대로다. Case 1은 공개 시드 점수(리더보드)이고, 새 시드 평균이 가장 좋은 안은 `answer_jinhong_best.csv`로 따로 둔다(CASE1_LOGIC.md 6절).
+- 다시 돌리려면 케이스 데이터가 로컬에 있어야 한다. Case 1은 `fetch_engine.js`가 웹앱에서 받아 오고, Case 2~5는 웹앱 「② 데이터 내려받기」로 받은 JSON을 `C:\dev\ie325-amr\cases\`에 둔다(리포에는 올리지 않는다). 엔진 빌드는 PIPELINE.md 0절.
+
+## GitHub Actions 탐색 (공개 점수를 더 낮추는 계산을 러너에서)
+| 케이스 | 워크플로 | 조각 스크립트 | 시작하는 법 | 결과 모으기 |
+|---|---|---|---|---|
+| Case 1 | `.github/workflows/jinhong-case1.yml` · `jinhong-case1-deep.yml` | `gha_case1.js` · `gha_case1_deep.js` | `gha/trigger_case1.txt`를 고쳐 푸시 (11/23 17:21 시작, 20조각 × 3파도) | `gh run download <실행 번호> -D gha/dl` 뒤 `node gha_collect.js` |
+| Case 2 | `.github/workflows/jinhong-case2.yml` | `gha_case2.js` (`pipe.js search`를 씨앗만 바꿔 부른다) | **아직 실행하지 않았다.** 아래 두 가지를 한 뒤 `gha/trigger_case2.txt`를 만들어 푸시 | `gh run download <실행 번호> -D gha/dl2` 뒤 `node gha_case2_collect.js` |
+
+Case 2를 실행하기 전에 할 일:
+1. **케이스 데이터를 시크릿으로 넣는다.** Case 1은 채점 코드와 데이터가 웹 페이지 안에 들어 있어 러너가 직접 받아 오지만, Case 2~5의 데이터는 페이지가 서버 호출로 받아 오기 때문에 그 방법을 쓸 수 없다. 리포에 올리지 않으려면 리포 폴더에서 `cmd /c "gh secret set AGV_CASE2_JSON < C:\dev\ie325-amr\cases\final-agv-c2.json"`으로 넣는다(파일 내용이 글자 깨짐 없이 그대로 들어간다). 워크플로는 이 값을 러너 임시 폴더에만 쓰고 아티팩트에는 넣지 않는다.
+2. **Case 1 실행이 끝난 뒤에 시작한다.** 러너는 한 번에 20개까지 도는데 Case 1이 20개를 다 쓰고 있다(2 · 3차 파도가 그 뒤에 줄 서 있다).
+
+Case 2 조각 하나가 하는 일: 엔진을 빌드하고, 제출안이 617.16으로 나오는지 먼저 확인한 뒤(다르면 멈춤), 60분짜리 탐색을 씨앗을 바꿔 5번 돌린다. 시작안은 조각 · 회차마다 세 묶음(제출안만 / + 다른 방향 계열의 구조안 / + 방향 순위 상위 10개)을 번갈아 쓴다. 617.16보다 낮은 안이 나오면 다음 회차의 시작안에 넣는다. 결과는 `search_s<씨앗>_best.csv`와 로그가 아티팩트 `case2-shard-<k>`로 남는다. 모은 뒤에는 반드시 `node pipe.js 2 eval`(웹 형식 검사)과 `safety`를 거친다.
+
+Case 1의 논리 과정은 [CASE1_LOGIC.md](CASE1_LOGIC.md), 실험 기록은 [EXPERIMENTS.md](EXPERIMENTS.md)에 있다.
 
 main의 C++ 엔진과는 따로, **웹 채점 코드를 그대로 써서** 점수를 재고 탐색한 기록을 쌓는 곳이다. 실험 기록은 [EXPERIMENTS.md](EXPERIMENTS.md)에 날짜순으로 덧붙인다.
 

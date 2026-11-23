@@ -1,0 +1,44 @@
+# 진홍 브랜치 전용: Case 2 공개 점수 탐색을 20조각으로 나눠 돌린다(조각마다 pipe.js search를 씨앗만 바꿔 60분 × 5회).
+# 시작: jinhong/gha/trigger_case2.txt 를 만들거나 고쳐 jinhong-experiments 브랜치에 푸시한다.
+# 시작 전에 (1) 시크릿 AGV_CASE2_JSON 에 케이스 JSON(final-agv-c2.json) 내용을 넣고 (2) Case 1 실행이 끝났는지 본다(러너 동시 20개).
+# 케이스 데이터는 리포에 두지 않는다. Case 1과 달리 웹 페이지 안에 들어 있지 않아(서버 호출로 내려옴) 시크릿으로 넣는다.
+# main은 건드리지 않는다(읽기 권한만, 결과는 아티팩트).
+name: jinhong-case2-search
+on:
+  push:
+    branches: [jinhong-experiments]
+    paths: ['jinhong/gha/trigger_case2.txt']
+permissions:
+  contents: read
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 케이스 데이터 넣기(러너 임시 폴더, 아티팩트에는 넣지 않음)
+        env:
+          CASE_JSON: ${{ secrets.AGV_CASE2_JSON }}
+        run: |
+          if [ -z "$CASE_JSON" ]; then echo "::error::시크릿 AGV_CASE2_JSON 이 없다. jinhong/README.md 의 「GitHub Actions 탐색」을 본다."; exit 1; fi
+          mkdir -p "$RUNNER_TEMP/cases"
+          printf '%s' "$CASE_JSON" > "$RUNNER_TEMP/cases/final-agv-c2.json"
+          echo "AGV_CASES=$RUNNER_TEMP/cases" >> "$GITHUB_ENV"
+      - name: 엔진 빌드
+        working-directory: jinhong
+        run: g++ -O2 -std=c++17 -ffp-contract=off -pthread cpp/agvg.cpp -o cpp/agvg.exe
+      - name: 탐색(제출안 617.16 확인 뒤 시작)
+        working-directory: jinhong
+        run: AGVX_THREADS=4 node gha_case2.js ${{ matrix.shard }} 20 300 60
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: case2-shard-${{ matrix.shard }}
+          path: jinhong/gha/out/c2/
