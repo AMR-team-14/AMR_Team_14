@@ -1,0 +1,86 @@
+# 진홍 브랜치 전용: Case 1 1차 파도(실행 45138033289)가 끝나길 기다렸다가, 그 결과 주변을 2차 · 3차로 더 깊게 판다.
+# 시작: jinhong/gha/trigger_case1_deep.txt 를 고쳐 jinhong-experiments 브랜치에 푸시한다.
+name: jinhong-case1-deep
+on:
+  push:
+    branches: [jinhong-experiments]
+    paths: ['jinhong/gha/trigger_case1_deep.txt']
+permissions:
+  contents: read
+  actions: read
+env:
+  FIRST_RUN: '45138033289'
+jobs:
+  wait:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - name: 1차 파도가 끝날 때까지 기다림
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          until [ "$(gh run view $FIRST_RUN --repo ${{ github.repository }} --json status --jq .status)" = "completed" ]; do sleep 120; done
+  wave2:
+    needs: wait
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 엔진 준비와 1차 결과 받기
+        working-directory: jinhong
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node fetch_engine.js
+          node cpp/dump_case.js
+          g++ -O2 -std=c++17 -ffp-contract=off -pthread cpp/agvx.cpp -o cpp/agvx.exe
+          AGVX_THREADS=4 node cx_verify.js designs/team_1185.csv answer_jinhong_leaderboard.csv
+          gh run download $FIRST_RUN --repo ${{ github.repository }} -D gha/in
+      - name: 심층 탐색
+        working-directory: jinhong
+        run: AGVX_THREADS=4 node gha_case1_deep.js ${{ matrix.shard }} 20 240
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: case1-w2-shard-${{ matrix.shard }}
+          path: jinhong/gha/out/
+  wave3:
+    needs: wave2
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: case1-w2-shard-*
+          path: jinhong/gha/in
+      - name: 엔진 준비
+        working-directory: jinhong
+        run: |
+          node fetch_engine.js
+          node cpp/dump_case.js
+          g++ -O2 -std=c++17 -ffp-contract=off -pthread cpp/agvx.cpp -o cpp/agvx.exe
+          AGVX_THREADS=4 node cx_verify.js designs/team_1185.csv answer_jinhong_leaderboard.csv
+      - name: 심층 탐색
+        working-directory: jinhong
+        run: AGVX_THREADS=4 node gha_case1_deep.js ${{ matrix.shard }} 20 240
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: case1-w3-shard-${{ matrix.shard }}
+          path: jinhong/gha/out/
