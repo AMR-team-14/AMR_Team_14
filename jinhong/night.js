@@ -110,6 +110,27 @@ function dirNb(base, kk = 2) {
   for (let a = 0; a < C; a++) { add([a]); if (kk >= 2) for (let b = a + 1; b < C; b++) { add([a, b]); if (kk >= 3) for (let c = b + 1; c < C; c++) add([a, b, c]); } }
   return list;
 }
+// 방향 하나의 「규칙을 맞춘 뒤 점수」(형식 밖 상한): 적재 거리 묶음별 반경 좌표 하강. dirls2가 방향 국소 탐색의 목적함수로 쓴다.
+async function pfOne(eng, dir, n0, tpl, ncand) {
+  const N = P.nodes.length, D = Array.from({ length: N }, (_, i) => { const r = new Float64Array(N).fill(Infinity); r[i] = 0; return r; });
+  P.edges.forEach((e, k) => { const a2 = dir[k] === '1' ? e[1] : e[0], b2 = dir[k] === '1' ? e[0] : e[1]; D[a2][b2] = e[2]; });
+  for (let k = 0; k < N; k++) for (let i = 0; i < N; i++) { const dik = D[i][k]; if (dik === Infinity) continue; for (let j = 0; j < N; j++) { const d = dik + D[k][j]; if (d < D[i][j]) D[i][j] = d; } }
+  const DD = (x, y) => D[P.pd[x]][P.pd[y]];
+  const mk = urg => { const m = new Map(); for (const [o, d, r] of P.flows) if ((d === P.urgentDest) === urg) { const dl = DD(o, d); if (!m.has(dl)) m.set(dl, { dl, flows: [], os: new Set() }); const g = m.get(dl); g.flows.push(`${P.depts[o]}→${P.depts[d]}`); g.os.add(o); } return [...m.values()].sort((a2, b2) => a2.dl - b2.dl).map(g => { const all = [...new Set([...g.os].flatMap(o => P.pd.map((_, x) => DD(x, o))))].sort((a2, b2) => a2 - b2).slice(0, -1); const pk = ncand < all.length ? [...new Set(Array.from({ length: ncand }, (_, i) => all[Math.round(i * (all.length - 1) / (ncand - 1))]))] : all; return { ...g, r: -1, cand: [-1, ...pk] }; }); };
+  const GN = mk(false), GU = mk(true);
+  const dlTree = G => { const rec = (lo, hi) => { if (lo === hi) return G[lo].r < 0 ? '-' : `de(max,${G[lo].r})`; const mid = (lo + hi) >> 1; return `dl(min,${G[mid].dl})[${rec(lo, mid)},${rec(mid + 1, hi)}]`; }; return rec(0, G.length - 1); };
+  const build = n => ({ dir, n, root: parseShow(tpl.replace('{N}', dlTree(GN)).replace('{U}', dlTree(GU))) });
+  const ns = [n0 - 1, n0, n0 + 1].filter(n => n >= P.nMin && n <= P.nMax), r0 = await pubs(eng, ns.map(build)); let bi0 = 0; r0.forEach((v, i) => { if (v < r0[bi0]) bi0 = i; });
+  if (!Number.isFinite(r0[bi0])) return null;
+  let n = ns[bi0], best = r0[bi0]; const sttf = best;
+  for (let rd = 0; rd < 4; rd++) {
+    let any = false;
+    for (const g of [...GU, ...GN]) { const old = g.r, list = g.cand.filter(c => c !== old), ts = list.map(c => { g.r = c; return build(n); }); g.r = old; const r = await pubs(eng, ts); let bi = -1; r.forEach((v, i) => { if (v < best - 1e-9) { best = v; bi = i; } }); if (bi >= 0) { g.r = list[bi]; any = true; } }
+    const cand = [n - 1, n + 1].filter(x => x >= P.nMin && x <= P.nMax), rn = await pubs(eng, cand.map(build)); rn.forEach((v, i) => { if (v < best - 1e-9) { best = v; n = cand[i]; any = true; } });
+    if (!any) break;
+  }
+  return { dir, n, sttf, best, radii: [...GU.filter(g => g.r >= 0).map(g => '★' + g.flows.join(',') + '=' + g.r), ...GN.filter(g => g.r >= 0).map(g => g.flows.join(',') + '=' + g.r)].join(' | ') };
+}
 // show() 형식 문자열 → 나무.  예: "w(min,0.01)[urg(max,0.5)[-,de(max,20)],de(min,65)]"
 function parseShow(str) {
   let i = 0;
@@ -187,19 +208,19 @@ const CMDS = {
   // 방향 전수 × 규칙 재적합(형식 밖 상한으로 선별): 방향마다 가까운 차 먼저로 대수를 잡고, 적재 거리 묶음별 반경을 좌표 하강으로 맞춘다.
   //  node night.js N dirpf <dirs 파일> "<틀>" [반경 후보 수=3] [줄 수=4]   → night_dirpf.json (점수 순)
   async dirpf() {
-    const [srcName, tpl, ncand = '3', lanes = '4'] = ARGS, t0 = Date.now(), el = () => ((Date.now() - t0) / 60000).toFixed(1);
-    const dirs = JSON.parse(fs.readFileSync(path.join(OUT, srcName), 'utf8')).cands.map(c => c.dir).filter(d => strong(P, d));
+    const [srcName, tpl, ncand = '3', lanes = '4', nlo = '17', nhi = '26', mode = 'first'] = ARGS, t0 = Date.now(), el = () => ((Date.now() - t0) / 60000).toFixed(1);   // mode: first = 작은 반경부터 ncand개, spread = 전체 거리에서 고르게 ncand개
+    const dirs = [...new Set(srcName.split('+').flatMap(sn => JSON.parse(fs.readFileSync(path.join(OUT, sn), 'utf8')).cands.map(c => c.dir)))].filter(d => strong(P, d));
     const tot = P.flows.reduce((s2, x) => s2 + x[2], 0), res = [], seenScore = new Set(); let next = 0, done = 0;
     const one = async (eng, dir) => {
       const N = P.nodes.length, D = Array.from({ length: N }, (_, i) => { const r = new Float64Array(N).fill(Infinity); r[i] = 0; return r; });
       P.edges.forEach((e, k) => { const a2 = dir[k] === '1' ? e[1] : e[0], b2 = dir[k] === '1' ? e[0] : e[1]; D[a2][b2] = e[2]; });
       for (let k = 0; k < N; k++) for (let i = 0; i < N; i++) { const dik = D[i][k]; if (dik === Infinity) continue; for (let j = 0; j < N; j++) { const d = dik + D[k][j]; if (d < D[i][j]) D[i][j] = d; } }
       const DD = (x, y) => D[P.pd[x]][P.pd[y]];
-      const mk = urg => { const m = new Map(); for (const [o, d, r] of P.flows) if ((d === P.urgentDest) === urg) { const dl = DD(o, d); if (!m.has(dl)) m.set(dl, { dl, flows: [], rate: 0, os: new Set() }); const g = m.get(dl); g.flows.push(`${P.depts[o]}→${P.depts[d]}`); g.rate += r; g.os.add(o); } return [...m.values()].sort((a2, b2) => a2.dl - b2.dl).map(g => ({ ...g, r: -1, cand: [-1, ...[...new Set([...g.os].flatMap(o => P.pd.map((_, x) => DD(x, o))))].sort((a2, b2) => a2 - b2).slice(0, +ncand)] })); };
+      const mk = urg => { const m = new Map(); for (const [o, d, r] of P.flows) if ((d === P.urgentDest) === urg) { const dl = DD(o, d); if (!m.has(dl)) m.set(dl, { dl, flows: [], rate: 0, os: new Set() }); const g = m.get(dl); g.flows.push(`${P.depts[o]}→${P.depts[d]}`); g.rate += r; g.os.add(o); } return [...m.values()].sort((a2, b2) => a2.dl - b2.dl).map(g => { const all = [...new Set([...g.os].flatMap(o => P.pd.map((_, x) => DD(x, o))))].sort((a2, b2) => a2 - b2).slice(0, -1); const pk = mode === 'spread' && +ncand < all.length ? [...new Set(Array.from({ length: +ncand }, (_, i) => all[Math.round(i * (all.length - 1) / (+ncand - 1))]))] : all.slice(0, +ncand); return { ...g, r: -1, cand: [-1, ...pk] }; }); };
       const GN = mk(false), GU = mk(true);
       const dlTree = G => { const rec = (lo, hi) => { if (lo === hi) return G[lo].r < 0 ? '-' : `de(max,${G[lo].r})`; const mid = (lo + hi) >> 1; return `dl(min,${G[mid].dl})[${rec(lo, mid)},${rec(mid + 1, hi)}]`; }; return rec(0, G.length - 1); };
       const build = n => ({ dir, n, root: parseShow(tpl.replace('{N}', dlTree(GN)).replace('{U}', dlTree(GU))) });
-      const ns = []; for (let n = Math.max(P.nMin, 17); n <= Math.min(P.nMax, 26); n++) ns.push(n);
+      const ns = []; for (let n = Math.max(P.nMin, +nlo); n <= Math.min(P.nMax, +nhi); n++) ns.push(n);
       const r0 = await pubs(eng, ns.map(build)); let bi0 = 0; r0.forEach((v, i) => { if (v < r0[bi0]) bi0 = i; });
       if (!Number.isFinite(r0[bi0])) return null;
       let n = ns[bi0], best = r0[bi0]; const sttf = best, key = r0.map(v => Number.isFinite(v) ? v.toFixed(5) : 'x').join(',');
@@ -340,6 +361,28 @@ const CMDS = {
     const [f, outf, tstr, n] = ARGS, base = readT(f), t = { dir: base.dir, n: n ? +n : base.n, root: parseShow(tstr) };
     if (!valid(t)) { console.log('형식 오류(노드 수 · 갈래 중복 · 대수)'); return; }
     fs.writeFileSync(outf, specToCsv(toSpec(t))); console.log(`${outf}: 서로 다른 기준 ${uniqCount(t.root)}개(펼치면 ${count(t.root)}개)`);
+  },
+  // 방향 국소 탐색(목적 = 규칙을 맞춘 뒤 점수): 1구간 뒤집기 이웃 전부 + 상위 8개끼리의 2구간 → 가장 낮은 곳으로.
+  //  node night.js N dirls2 <꼬리표> <csv> "<틀>" [반경 수=7] [줄=13] [걸음=8]   → night_dirls2_<꼬리표>.json (지나온 · 본 방향 상위)
+  async dirls2() {
+    const [tag, f, tpl, ncand = '7', lanes = '13', steps = '8'] = ARGS, t0 = Date.now(), el = () => ((Date.now() - t0) / 60000).toFixed(1), base = readT(f);
+    const engs = Array.from({ length: +lanes }, () => new Engine(CN, Math.max(1, Math.floor(TH / +lanes)))), seen = new Map();
+    const evalMany = async list => { let next = 0; await Promise.all(engs.map(async eng => { while (next < list.length) { const c = list[next++]; if (seen.has(c.dir)) continue; seen.set(c.dir, null); const r = await pfOne(eng, c.dir, c.n, tpl, +ncand); seen.set(c.dir, r); } })); return list.map(c => seen.get(c.dir)).filter(Boolean); };
+    const flip = (dir, cs) => { const b = dir.split(''); for (const c of cs) for (const k of CHAINS[c]) b[k] = b[k] === '1' ? '0' : '1'; return b.join(''); };
+    let cur = (await evalMany([{ dir: base.dir, n: base.n }]))[0]; const trail = [cur];
+    log(`[방향 국소 탐색 · 규칙 재적합 ${tag}] 시작 ${cur.best.toFixed(2)} (가까운 차 ${cur.sttf.toFixed(2)}) n${cur.n} | ${cur.radii}`);
+    for (let st = 0; st < +steps; st++) {
+      const C = CHAINS.length, singles = []; for (let a2 = 0; a2 < C; a2++) { const d = flip(cur.dir, [a2]); if (strong(P, d)) singles.push({ dir: d, n: cur.n, cs: [a2] }); }
+      const r1 = await evalMany(singles), top = singles.map(c => ({ c, r: seen.get(c.dir) })).filter(x => x.r).sort((a2, b2) => a2.r.best - b2.r.best).slice(0, 8), pairs = [];
+      for (let i = 0; i < top.length; i++) for (let j = i + 1; j < top.length; j++) { const d = flip(cur.dir, [top[i].c.cs[0], top[j].c.cs[0]]); if (strong(P, d)) pairs.push({ dir: d, n: cur.n }); }
+      const r2 = await evalMany(pairs), b = [...r1, ...r2].reduce((a2, b2) => a2.best <= b2.best ? a2 : b2, { best: Infinity });
+      log(`  걸음 ${st + 1}: 이웃 ${r1.length + r2.length}개 최저 ${b.best.toFixed(2)} (지금 ${cur.best.toFixed(2)}) [${el()}분]`);
+      if (!(b.best < cur.best - 0.02)) break;
+      cur = b; trail.push(cur); log(`    → ${cur.best.toFixed(2)} n${cur.n} | ${cur.dir} | ${cur.radii}`);
+    }
+    const all = [...seen.values()].filter(Boolean).sort((a2, b2) => a2.best - b2.best);
+    fs.writeFileSync(path.join(OUT, `night_dirls2_${tag}.json`), JSON.stringify({ trail, top: all.slice(0, 40) }, null, 1));
+    log(`[끝 ${tag}] ${cur.best.toFixed(2)} | 본 방향 ${all.length}개, 상위: ` + all.slice(0, 6).map(x => x.best.toFixed(2)).join(' ') + ` (${el()}분)`); engs.forEach(e => e.close());
   },
   async wfine() {
     const [f, hw = '0.3', step = '0.0002'] = ARGS, eng = new Engine(CN, TH), base = readT(f), t0 = Date.now(), all = [];
