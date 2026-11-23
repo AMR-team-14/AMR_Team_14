@@ -384,6 +384,56 @@ const CMDS = {
     fs.writeFileSync(path.join(OUT, `night_dirls2_${tag}.json`), JSON.stringify({ trail, top: all.slice(0, 40) }, null, 1));
     log(`[끝 ${tag}] ${cur.best.toFixed(2)} | 본 방향 ${all.length}개, 상위: ` + all.slice(0, 6).map(x => x.best.toFixed(2)).join(' ') + ` (${el()}분)`); engs.forEach(e => e.close());
   },
+  // 방향 국소 탐색(형식 안 · 규칙을 방향에 맞춰 다시 고름): 이웃 방향마다 「일반 주문 중 적재 거리 상위 k묶음(또는 하위 k묶음)은 R m 넘는 차 먼저」 나무 묶음을 평가해 최저를 그 방향의 점수로 쓴다.
+  //  방향이 바뀌면 dl 값이 바뀌므로 경계값을 방향마다 다시 계산한다(회전 10에서 찾은 재배치 규칙을 방향 탐색의 목적함수로).
+  //  node night.js N dirls3 <꼬리표> <csv(방향 · 대수)> [걸음=4] [반경들=45,60,75,90,105,120] [k 상위=4] [k 하위=2]
+  async dirls3() {
+    const [tag, f, steps = '4', rs0 = '45,60,75,90,105,120', kh = '4', kl = '2'] = ARGS, eng = new Engine(CN, TH), t0 = Date.now(), el = () => ((Date.now() - t0) / 60000).toFixed(1), base = readT(f), RS = rs0.split(',').map(Number);
+    const family = (dir, n) => {
+      const N = P.nodes.length, D = Array.from({ length: N }, (_, i) => { const r = new Float64Array(N).fill(Infinity); r[i] = 0; return r; });
+      P.edges.forEach((e, k) => { const a2 = dir[k] === '1' ? e[1] : e[0], b2 = dir[k] === '1' ? e[0] : e[1]; D[a2][b2] = e[2]; });
+      for (let k = 0; k < N; k++) for (let i = 0; i < N; i++) { const dik = D[i][k]; if (dik === Infinity) continue; for (let j = 0; j < N; j++) { const d = dik + D[k][j]; if (d < D[i][j]) D[i][j] = d; } }
+      const dn = [...new Set(P.flows.filter(x => x[1] !== P.urgentDest).map(x => D[P.pd[x[0]]][P.pd[x[1]]]))].sort((a2, b2) => a2 - b2), out = [];
+      for (let k = 1; k <= +kh; k++) { const i = dn.length - k - 1; if (i < 0) break; for (const R of RS) out.push({ dir, n, root: parseShow(`urg(max,0.5)[dl(min,${dn[i]})[-,de(max,${R})],-]`) }); }
+      for (let k = 1; k <= +kl; k++) { const i = k - 1; if (i >= dn.length - 1) break; for (const R of RS) out.push({ dir, n, root: parseShow(`urg(max,0.5)[dl(min,${dn[i]})[de(max,${R}),-],-]`) }); }
+      return out;
+    };
+    const score = async cands => { const fam = cands.map(c => family(c.dir, c.n)), flat = fam.flat(), r = await pubs(eng, flat); let k = 0; return cands.map((c, i) => { let b = { pub: Infinity }; for (const t of fam[i]) { const v = r[k++]; if (v < b.pub) b = { pub: v, t }; } return { ...c, ...b }; }); };
+    let cur = (await score([{ dir: base.dir, n: base.n, note: '시작' }]))[0], evals = 0; const seen = new Set([cur.dir]), all = [cur];
+    log(`[방향 국소 탐색 · 재배치 규칙 묶음 ${tag}] 시작 ${cur.pub.toFixed(3)} n${cur.n} ${show(cur.t.root)}`);
+    for (let st = 0; st < +steps; st++) {
+      const nb = dirNb({ dir: cur.dir, n: cur.n, root: cur.t.root }, 2).filter(c => !seen.has(c.t.dir)).map(c => ({ dir: c.t.dir, n: cur.n, note: c.note })); nb.forEach(c => seen.add(c.dir));
+      const r = (await score(nb)).filter(c => Number.isFinite(c.pub)).sort((a2, b2) => a2.pub - b2.pub); all.push(...r.slice(0, 40));
+      const ex = (await score(r.slice(0, 10).flatMap(c => [-1, 1].map(dn => ({ dir: c.dir, n: c.n + dn, note: c.note + ` 대수 ${dn}` }))).filter(c => c.n >= P.nMin && c.n <= P.nMax))).filter(c => Number.isFinite(c.pub)); all.push(...ex);
+      const b = [...r.slice(0, 1), ...ex].reduce((a2, b2) => a2.pub <= b2.pub ? a2 : b2, { pub: Infinity });
+      if (!(b.pub < cur.pub - 1e-9)) { log(`  걸음 ${st + 1}: 더 낮은 이웃 없음(이웃 ${nb.length}개 최저 ${b.pub.toFixed(3)}) [${el()}분]`); break; }
+      cur = b; log(`  걸음 ${st + 1}: ${b.note} → ${b.pub.toFixed(3)} n${b.n} ${show(b.t.root)} [${el()}분]`);
+    }
+    fs.writeFileSync(path.join(OUT, `nt_dirls3_${tag}.csv`), specToCsv(toSpec(cur.t)));
+    const s2 = new Set(), top = all.sort((a2, b2) => a2.pub - b2.pub).filter(c => !s2.has(c.pub.toFixed(6)) && s2.add(c.pub.toFixed(6))).slice(0, 6); top.forEach((c, i) => fs.writeFileSync(path.join(OUT, `nt_dirls3_${tag}_${i + 1}.csv`), specToCsv(toSpec(c.t))));
+    log(`[끝 ${tag}] ${cur.pub.toFixed(3)} n${cur.n} | ${cur.dir} | ${show(cur.t.root)} | 상위: ${top.map(c => c.pub.toFixed(2)).join(' ')} (${el()}분)`); eng.close();
+  },
+  // 방향 파일 전체 × 「재배치 규칙 하나」 묶음(형식 안): 방향마다 일반 주문의 적재 거리 상위 k묶음 / 하위 k묶음에 R m 넘는 차 먼저, 대수 여러 개 → 방향별 최저.
+  //  node night.js N famscan <꼬리표> <dirs 파일> <대수들> [반경들] [k 상위=4] [k 하위=2] ["틀: {R} 자리에 규칙"="urg(max,0.5)[{R},-]"]
+  async famscan() {
+    const [tag, srcName, ns0, rs0 = '20,45,65,85,110,130,150,180', kh = '4', kl = '2', tpl = 'urg(max,0.5)[{R},-]'] = ARGS, eng = new Engine(CN, TH), t0 = Date.now(), ns = ns0.split(',').map(Number), RS = rs0.split(',').map(Number);
+    const dirs = [...new Set(JSON.parse(fs.readFileSync(path.join(OUT, srcName), 'utf8')).cands.map(c => c.dir))].filter(d => strong(P, d)), list = [];
+    for (const dir of dirs) {
+      const N = P.nodes.length, D = Array.from({ length: N }, (_, i) => { const r = new Float64Array(N).fill(Infinity); r[i] = 0; return r; });
+      P.edges.forEach((e, k) => { const a2 = dir[k] === '1' ? e[1] : e[0], b2 = dir[k] === '1' ? e[0] : e[1]; D[a2][b2] = e[2]; });
+      for (let k = 0; k < N; k++) for (let i = 0; i < N; i++) { const dik = D[i][k]; if (dik === Infinity) continue; for (let j = 0; j < N; j++) { const d = dik + D[k][j]; if (d < D[i][j]) D[i][j] = d; } }
+      const dn = [...new Set(P.flows.filter(x => x[1] !== P.urgentDest).map(x => D[P.pd[x[0]]][P.pd[x[1]]]))].sort((a2, b2) => a2 - b2), rules = ['-'];
+      for (let k = 1; k <= +kh; k++) { const i = dn.length - k - 1; if (i < 0) break; for (const R of RS) rules.push(`dl(min,${dn[i]})[-,de(max,${R})]`); }
+      for (let k = 1; k <= +kl; k++) { const i = k - 1; if (i >= dn.length - 1) break; for (const R of RS) rules.push(`dl(min,${dn[i]})[de(max,${R}),-]`); }
+      for (const rule of rules) for (const n of ns) { const t = { dir, n, root: parseShow(tpl.replace('{R}', rule)) }; if (valid(t)) list.push({ t, note: rule }); }
+    }
+    log(`[재배치 규칙 묶음 선별 ${tag}] 방향 ${dirs.length}개, 평가 ${list.length}건`);
+    const r = await pubs(eng, list.map(c => c.t)); list.forEach((c, i) => c.pub = r[i]);
+    const per = new Map(); for (const c of list) if (Number.isFinite(c.pub) && (!per.has(c.t.dir) || c.pub < per.get(c.t.dir).pub)) per.set(c.t.dir, c);
+    const s2 = new Set(), top = [...per.values()].sort((a2, b2) => a2.pub - b2.pub).filter(c => !s2.has(c.pub.toFixed(6)) && s2.add(c.pub.toFixed(6)));
+    top.slice(0, 12).forEach((c, i) => { log(`  ${i + 1}. ${c.pub.toFixed(2)} n${c.t.n} | ${c.t.dir} | ${c.note}`); if (i < 8) fs.writeFileSync(path.join(OUT, `nt_fam_${tag}_${i + 1}.csv`), specToCsv(toSpec(c.t))); });
+    log(`[끝] ${((Date.now() - t0) / 60000).toFixed(1)}분`); eng.close();
+  },
   async wfine() {
     const [f, hw = '0.3', step = '0.0002'] = ARGS, eng = new Engine(CN, TH), base = readT(f), t0 = Date.now(), all = [];
     const b0 = (await pubs(eng, [base]))[0]; log(`[w 미세 훑기] ${path.basename(f)} 기준 ${b0.toFixed(3)} | ${show(base.root)}`);
