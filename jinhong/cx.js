@@ -15,7 +15,26 @@ function csvToSpec(text) {
 }
 function specToCsv(s) { return [`dir,${DIR}`, `fleet,${s.n}`, ...s.nodes.split(';').map(x => 'key,' + x)].join('\n') + '\n'; }
 
-class Engine {
+// Node 엔진(jsim.js) 워커 풀. 실행 파일이 필요 없어 기본으로 쓴다. 인터페이스는 C++ 판과 같다.
+class JsEngine {
+  constructor(threads) {
+    const { Worker } = require('worker_threads');
+    this.ws = Array.from({ length: threads || 10 }, () => new Worker(path.join(__dirname, 'jsim.js')));
+    this.idle = [...this.ws]; this.q = []; this.cb = new Map(); this.tid = 0;
+    this.ws.forEach(w => w.on('message', m => { this.cb.get(m.tid)(m.v); this.cb.delete(m.tid); this.idle.push(w); this._pump(); }));
+  }
+  _pump() { while (this.idle.length && this.q.length) this.idle.pop().postMessage(this.q.shift()); }
+  _task(t) { return new Promise(res => { t.tid = this.tid++; this.cb.set(t.tid, res); this.q.push(t); this._pump(); }); }
+  async run(jobs) {
+    return Promise.all(jobs.map(j => {
+      const block = j.block || 5, nb = Math.ceil(j.count / block);
+      return Promise.all(Array.from({ length: nb }, (_, b) => this._task({ n: j.n, nodes: j.nodes, seed0: j.seed0 + b * block, cnt: Math.min(block, j.count - b * block), qcut: j.qcut || 0 })));
+    }));
+  }
+  close() { this.ws.forEach(w => w.terminate()); }
+}
+
+class CppEngine {
   constructor(threads) {
     const exe = process.env.AGVX_EXE || path.join(__dirname, 'cpp', 'agvx.exe');
     this.p = spawn(exe, [path.join(__dirname, 'cpp', 'case.txt'), String(threads || 14)]);
@@ -52,6 +71,8 @@ class Engine {
   }
   close() { this.p.stdin.end(); }
 }
+// AGVX_EXE를 주면 C++ 엔진, 아니면 Node 엔진. (11/23: 스마트 앱 컨트롤이 새 exe를 막아 Node가 기본)
+const Engine = process.env.AGVX_EXE ? CppEngine : JsEngine;
 const mean = a => a.reduce((s, x) => s + x, 0) / a.length;
 // 같은 묶음끼리 짝지은 차이의 평균, 표준오차, t
 function paired(a, b) {
