@@ -1,0 +1,280 @@
+// night — 11/23 밤샘 루프용 실험 도구(Case 4 · 5). pipe.js의 나무 · 구간 코드를 그대로 쓴다.
+//   node night.js <N> wfine <csv> [반폭=0.3] [간격=0.0002]   나무의 w 노드마다 경계값을 촘촘히 훑어 공개 점수 분포를 본다
+//   node night.js <N> dirnb <csv> [k=2]                      방향 이웃 전수(구간 1~k개 뒤집기, 나무 · 대수 고정)
+//   node night.js <N> nb <csv>                               나무 1수 이웃 전수(노드별 특성 · 방향 · 경계값, 노드 추가 · 삭제) + 대수 ±1
+// 결과: caseN/night_<명령>.log, 상위안은 caseN/nt_<명령>_<i>.csv
+const fs = require('fs'), path = require('path');
+const { Engine, loadCase, strong, csvToSpec, specToCsv, mean, round2 } = require('./gx.js');
+const [CN, CMD, ...ARGS] = process.argv.slice(2);
+const OUT = path.join(__dirname, 'case' + CN), P = loadCase(CN), SEED0 = P.seeds[0], NSEED = P.seeds.length;
+const logf = path.join(OUT, `night_${CMD}.log`);
+const log = s => { console.log(s); fs.appendFileSync(logf, s + '\n'); };
+const TH = +(process.env.AGVX_THREADS || 13);
+
+const CHAINS = (() => {
+  const N = P.nodes.length, inc = Array.from({ length: N }, () => []), par = P.edges.map((_, k) => k);
+  P.edges.forEach((e, k) => { inc[e[0]].push(k); inc[e[1]].push(k); });
+  const find = x => par[x] === x ? x : (par[x] = find(par[x]));
+  inc.forEach(l => { if (l.length === 2) par[find(l[0])] = find(l[1]); });
+  const g = new Map(); P.edges.forEach((_, k) => { const r = find(k); if (!g.has(r)) g.set(r, []); g.get(r).push(k); });
+  return [...g.values()];
+})();
+function toTree(spec) {
+  const m = {};
+  for (const s of spec.nodes.split(';')) { const [id, f, d, th, lo, hi] = s.split(','); m[id] = { f, d, th: +th, lo: +lo, hi: +hi }; }
+  const build = id => id && m[id] ? { f: m[id].f, d: m[id].d, th: m[id].th, lo: build(m[id].lo), hi: build(m[id].hi) } : null;
+  return { dir: spec.dir, n: spec.n, root: build(1) };
+}
+function toSpec(t) {
+  const out = []; let next = 1; const q = [[t.root, next++]];
+  while (q.length) {
+    const [nd, id] = q.shift();
+    const lo = nd.lo ? next++ : 0, hi = nd.hi ? next++ : 0;
+    out.push(`${id},${nd.f},${nd.d},${nd.th},${lo},${hi}`);
+    if (nd.lo) q.push([nd.lo, lo]); if (nd.hi) q.push([nd.hi, hi]);
+  }
+  return { dir: t.dir, n: t.n, nodes: out.join(';') };
+}
+const clone = t => JSON.parse(JSON.stringify(t));
+function walk(nd, anc, fn, parent, side) { if (!nd) return; fn(nd, anc, parent, side); walk(nd.lo, anc.concat(nd.f), fn, nd, 'lo'); walk(nd.hi, anc.concat(nd.f), fn, nd, 'hi'); }
+const count = nd => nd ? 1 + count(nd.lo) + count(nd.hi) : 0;
+const depth = nd => nd ? 1 + Math.max(depth(nd.lo), depth(nd.hi)) : 0;
+function valid(t) {
+  if (!t.root || count(t.root) > P.maxNodes || depth(t.root) > 8) return false;
+  let ok = true; walk(t.root, [], (nd, anc) => { if (anc.includes(nd.f)) ok = false; });
+  return ok && t.n >= P.nMin && t.n <= P.nMax;
+}
+function show(nd) { if (!nd) return '-'; const s = `${nd.f}(${nd.d},${nd.th})`; return nd.lo || nd.hi ? `${s}[${show(nd.lo)},${show(nd.hi)}]` : s; }
+const nodesOf = t => { const a = []; walk(t.root, [], (nd, anc, parent, side) => a.push({ nd, anc, parent, side })); return a; };
+function stationVals(bits) {
+  const N = P.nodes.length, D = Array.from({ length: N }, (_, i) => { const r = new Float64Array(N).fill(Infinity); r[i] = 0; return r; });
+  P.edges.forEach((e, k) => { const a = bits[k] === '1' ? e[1] : e[0], b = bits[k] === '1' ? e[0] : e[1]; D[a][b] = e[2]; });
+  for (let k = 0; k < N; k++) for (let i = 0; i < N; i++) { const dik = D[i][k]; if (dik === Infinity) continue; for (let j = 0; j < N; j++) { const d = dik + D[k][j]; if (d < D[i][j]) D[i][j] = d; } }
+  const set = new Set([0]); for (const a of P.pd) for (const b of P.pd) set.add(D[a][b]);
+  return [...set].filter(Number.isFinite).sort((a, b) => a - b);
+}
+const J = t => ({ ...toSpec(t), seed0: SEED0, count: NSEED, block: NSEED, qcut: 150 });
+async function pubs(eng, list) { const out = []; for (let i = 0; i < list.length; i += 4000) { const r = await eng.run(list.slice(i, i + 4000).map(J)); r.forEach(x => out.push(x ? x[0] : Infinity)); } return out; }
+function stats(v) {
+  const ok = v.filter(Number.isFinite).sort((a, b) => a - b), m = mean(ok), sd = Math.sqrt(ok.reduce((s, x) => s + (x - m) ** 2, 0) / Math.max(1, ok.length - 1));
+  const q = p => ok[Math.floor(p * (ok.length - 1))];
+  return `n ${v.length} 안정 ${ok.length} 서로 다른 값 ${new Set(ok.map(x => x.toFixed(6))).size} | 평균 ${m.toFixed(2)} sd ${sd.toFixed(2)} | 최저 ${ok[0].toFixed(2)} 1% ${q(0.01).toFixed(2)} 10% ${q(0.1).toFixed(2)} 중앙 ${q(0.5).toFixed(2)}`;
+}
+function saveTop(tag, cands, k = 5) {
+  const seen = new Set(), top = cands.filter(c => Number.isFinite(c.pub)).sort((a, b) => a.pub - b.pub).filter(c => !seen.has(c.pub.toFixed(6)) && seen.add(c.pub.toFixed(6))).slice(0, k);
+  top.forEach((c, i) => { log(`  ${i + 1}. ${c.pub.toFixed(3)} | n${c.t.n} ${show(c.t.root)} | ${c.t.dir}${c.note ? ' | ' + c.note : ''}`); fs.writeFileSync(path.join(OUT, `nt_${tag}_${i + 1}.csv`), specToCsv(toSpec(c.t))); });
+  return top;
+}
+const readT = f => toTree(csvToSpec(fs.readFileSync(f, 'utf8')));
+
+// 이웃 생성기(전수): 나무 1수 이웃, 방향 1~k구간 뒤집기 이웃
+const WG0 = [0, 0.001, 0.005, 0.01, 0.02, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.75, 0.9, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 5, 6.5, 8];
+function treeNb(base, dns = [0]) {
+  const vals = stationVals(base.dir), list = [], grid = ft => ft === 'urg' ? [0.5] : ft === 'w' ? WG0 : ft === 'qo' ? [0, 1, 2, 3, 4, 5, 6] : vals;
+  const push = (t, note) => { if (valid(t)) list.push({ t, note }); };
+  for (const dn of dns) {
+    const b = clone(base); b.n += dn; const K = nodesOf(b).length;
+    if (dn) push(clone(b), `대수 ${dn}`);
+    for (let k = 0; k < K; k++) {
+      for (const ft of ['urg', 'w', 'de', 'dl', 'qo']) for (const d of ['min', 'max']) for (const th of grid(ft)) { const t = clone(b), x = nodesOf(t)[k].nd; if (x.f === ft && x.d === d && x.th === th) continue; x.f = ft; x.d = d; x.th = th; push(t, `n${dn} 노드 ${k + 1} → ${ft}(${d},${th})`); }
+      { const t = clone(b), x = nodesOf(t)[k]; if (x.parent) { x.parent[x.side] = null; push(t, `n${dn} 노드 ${k + 1} 삭제`); } }
+      { const t = clone(b), x = nodesOf(t)[k]; if (x.parent) { x.parent[x.side] = x.nd.lo || x.nd.hi; push(t, `n${dn} 노드 ${k + 1} 건너뛰기`); } }
+      { const t = clone(b), x = nodesOf(t)[k].nd; const s2 = x.lo; x.lo = x.hi; x.hi = s2; if (x.lo || x.hi) push(t, `n${dn} 노드 ${k + 1} 자식 맞바꿈`); }
+      for (const s2 of ['lo', 'hi']) if (!nodesOf(b)[k].nd[s2]) for (const ft of ['urg', 'w', 'de', 'dl', 'qo']) for (const d of ['min', 'max']) for (const th of grid(ft)) { const t = clone(b); nodesOf(t)[k].nd[s2] = { f: ft, d, th, lo: null, hi: null }; push(t, `n${dn} 노드 ${k + 1}.${s2} + ${ft}(${d},${th})`); }
+    }
+  }
+  return list;
+}
+function dirNb(base, kk = 2) {
+  const C = CHAINS.length, list = [];
+  const add = cs => { const b = base.dir.split(''); for (const c of cs) for (const k of CHAINS[c]) b[k] = b[k] === '1' ? '0' : '1'; const d = b.join(''); if (strong(P, d)) list.push({ t: { ...clone(base), dir: d }, note: '구간 ' + cs.join('+') }); };
+  for (let a = 0; a < C; a++) { add([a]); if (kk >= 2) for (let b = a + 1; b < C; b++) { add([a, b]); if (kk >= 3) for (let c = b + 1; c < C; c++) add([a, b, c]); } }
+  return list;
+}
+// show() 형식 문자열 → 나무.  예: "w(min,0.01)[urg(max,0.5)[-,de(max,20)],de(min,65)]"
+function parseShow(str) {
+  let i = 0;
+  const node = () => {
+    if (str[i] === '-') { i++; return null; }
+    const m = /^([a-z]+)\((min|max),([-0-9.]+)\)/.exec(str.slice(i)); if (!m) throw new Error('나무 문자열 오류: ' + str.slice(i));
+    i += m[0].length; const nd = { f: m[1], d: m[2], th: +m[3], lo: null, hi: null };
+    if (str[i] === '[') { i++; nd.lo = node(); if (str[i] !== ',') throw new Error('쉼표 필요: ' + str.slice(i)); i++; nd.hi = node(); if (str[i] !== ']') throw new Error('] 필요: ' + str.slice(i)); i++; }
+    return nd;
+  };
+  return node();
+}
+const CMDS = {
+  // 임의 나무 평가: node night.js N ev <csv(방향 · 기본 대수)> <대수들 a,b,c 또는 -> <새 시드 묶음 수> "나무" ...   → 공개 점수(대수별) + 새 시드 평균
+  async ev() {
+    const [f, ns0, nb = '0', ...trees] = ARGS, eng = new Engine(CN, TH), base = readT(f), ns = ns0 === '-' ? [base.n] : ns0.split(',').map(Number);
+    const list = trees.length ? trees.map(parseShow) : [base.root];
+    for (const root of list) {
+      const ts = ns.map(n => ({ dir: base.dir, n, root })); if (!ts.every(valid)) { log(`형식 오류: ${show(root)}`); continue; }
+      const r = await pubs(eng, ts); let ex = '';
+      if (+nb) { const bi = r.indexOf(Math.min(...r)), x = (await eng.run([{ ...toSpec(ts[bi]), seed0: 900001, count: NSEED * +nb, block: NSEED, qcut: 0 }]))[0]; ex = ` | 새 시드(n${ns[bi]}, ${nb}묶음) 평균 ${mean(x.filter(Number.isFinite)).toFixed(2)} 반려 ${x.filter(v => !Number.isFinite(v)).length}`; }
+      log(`${ns.map((n, i) => `n${n}:${Number.isFinite(r[i]) ? r[i].toFixed(2) : '반려'}`).join(' ')}${ex} | ${show(root)}`);
+    }
+    eng.close();
+  },
+  // 흐름 묶음별 '건너뛰기 반경' 상한 진단(형식 밖): 한 갈래에 dl을 여러 번 써서 적재 거리 값마다 de(max,r)을 따로 준다.
+  //  엔진은 형식을 보지 않으므로 「형식이 허락한다면 어디까지 내려가나」를 잰다. 제출용이 아니다.
+  //  node night.js N perflow <csv> "<틀: {N} 일반 dl 나무, {U} 긴급 dl 나무>" "<일반 기본 잎>" "<긴급 기본 잎>"
+  async perflow() {
+    const [f, tpl, defN = '-', defU = '-'] = ARGS, eng = new Engine(CN, TH), base = readT(f), t0 = Date.now(), nd = P.pd.length;
+    const N = P.nodes.length, D = Array.from({ length: N }, (_, i) => { const r = new Float64Array(N).fill(Infinity); r[i] = 0; return r; });
+    P.edges.forEach((e, k) => { const a2 = base.dir[k] === '1' ? e[1] : e[0], b2 = base.dir[k] === '1' ? e[0] : e[1]; D[a2][b2] = e[2]; });
+    for (let k = 0; k < N; k++) for (let i = 0; i < N; i++) { const dik = D[i][k]; if (dik === Infinity) continue; for (let j = 0; j < N; j++) { const d = dik + D[k][j]; if (d < D[i][j]) D[i][j] = d; } }
+    const DD = (x, y) => D[P.pd[x]][P.pd[y]];
+    const mkGroups = urg => { const m = new Map(); for (const [o, d, r] of P.flows) if ((d === P.urgentDest) === urg) { const dl = DD(o, d); if (!m.has(dl)) m.set(dl, { dl, flows: [], rate: 0 }); const g = m.get(dl); g.flows.push(`${P.depts[o]}→${P.depts[d]}`); g.rate += r; g.os = (g.os || new Set()).add(o); } return [...m.values()].sort((a2, b2) => a2.dl - b2.dl).map(g => ({ ...g, r: -1, cand: [-1, ...[...new Set([...g.os].flatMap(o => P.pd.map((_, x) => DD(x, o))))].sort((a2, b2) => a2 - b2).slice(0, -1)] })); };
+    const GN = mkGroups(false), GU = mkGroups(true), tot = P.flows.reduce((s2, x) => s2 + x[2], 0);
+    const dlTree = (G, def) => { const rec = (lo, hi) => { if (lo === hi) return G[lo].r < 0 ? def : `de(max,${G[lo].r})`; const mid = (lo + hi) >> 1; return `dl(min,${G[mid].dl})[${rec(lo, mid)},${rec(mid + 1, hi)}]`; }; return rec(0, G.length - 1); };
+    const build = n => ({ dir: base.dir, n, root: parseShow(tpl.replace('{N}', dlTree(GN, defN)).replace('{U}', dlTree(GU, defU))) });
+    let n = base.n, best = (await pubs(eng, [build(n)]))[0], evals = 1;
+    log(`[흐름별 반경 상한] ${path.basename(f)} | 일반 묶음 ${GN.length}개 · 긴급 묶음 ${GU.length}개 | 반경 없음 = ${best.toFixed(2)} (지금 답 ${(await pubs(eng, [base]))[0].toFixed(2)})`);
+    for (let rd = 0; rd < 6; rd++) {
+      let any = false;
+      for (const g of [...GU, ...GN]) {
+        const old = g.r, list = g.cand.filter(c => c !== old), ts = list.map(c => { g.r = c; return build(n); }); g.r = old;
+        const r = await pubs(eng, ts); evals += ts.length; let bi = -1; r.forEach((v, i) => { if (v < best - 1e-9) { best = v; bi = i; } });
+        if (bi >= 0) { g.r = list[bi]; any = true; log(`  ${g.flows.join(',')} (dl ${g.dl}, ${(100 * g.rate / tot).toFixed(1)}%) → ${g.r}m 넘는 차 먼저: ${best.toFixed(2)}`); }
+      }
+      for (const dn of [-1, 1]) { const v = (await pubs(eng, [build(n + dn)]))[0]; evals++; if (v < best - 1e-9) { best = v; n += dn; any = true; log(`  대수 ${n}: ${best.toFixed(2)}`); } }
+      if (!any) break;
+    }
+    const fin = build(n), x = (await eng.run([{ ...toSpec(fin), seed0: 900001, count: NSEED * 40, block: NSEED, qcut: 0 }, { ...toSpec(base), seed0: 900001, count: NSEED * 40, block: NSEED, qcut: 0 }]));
+    log(`[끝] 형식 밖 최저 ${best.toFixed(2)} (n${n}, 평가 ${evals}, ${((Date.now() - t0) / 60000).toFixed(1)}분) | 새 시드 40묶음 평균: 형식 밖 ${mean(x[0]).toFixed(2)} · 지금 답 ${mean(x[1]).toFixed(2)}`);
+    log('  반경: ' + [...GU.map(g => '★' + g.flows.join(',') + '=' + g.r), ...GN.map(g => g.flows.join(',') + '=' + g.r)].join(' | '));
+    fs.writeFileSync(path.join(OUT, 'night_perflow.json'), JSON.stringify({ best, n, GU, GN: GN, show: show(fin.root) }, (k, v) => v instanceof Set ? [...v] : v)); eng.close();
+  },
+  // 곱 이웃: (방향 이웃 상위 × 나무 1수 이웃 전수) + (나무 이웃 상위 × 방향 이웃 전수). 좋아지면 그 자리에서 다시(최대 회전 수).
+  //  node night.js N prod <csv> [방향 여유=3] [나무 여유=1] [상위 개수=30] [회전=3]
+  async prod() {
+    const [f, dslack = '3', tslack = '1', topk = '30', rounds = '3'] = ARGS, eng = new Engine(CN, TH), t0 = Date.now(), el = () => ((Date.now() - t0) / 60000).toFixed(1);
+    let cur = readT(f), best = (await pubs(eng, [cur]))[0], evals = 0; const all = [], seen = new Set();
+    const evalList = async list => { const fresh = list.filter(c => { const k = JSON.stringify(toSpec(c.t)); if (seen.has(k)) return false; seen.add(k); return true; }); const r = await pubs(eng, fresh.map(c => c.t)); fresh.forEach((c, i) => c.pub = r[i]); evals += fresh.length; return fresh.filter(c => Number.isFinite(c.pub)); };
+    const uniq = (list, slack, k) => { const s2 = new Set(); return list.sort((a2, b2) => a2.pub - b2.pub).filter(c => c.pub <= best + slack && !s2.has(c.pub.toFixed(6)) && s2.add(c.pub.toFixed(6))).slice(0, k); };
+    log(`[곱 이웃] ${path.basename(f)} 시작 ${best.toFixed(3)} | n${cur.n} ${show(cur.root)}`);
+    for (let rd = 0; rd < +rounds; rd++) {
+      const base0 = best, D1 = await evalList(dirNb(cur, 2)), T1 = await evalList(treeNb(cur, [0, -1, 1])); all.push(...D1, ...T1);
+      const dTop = uniq(D1, +dslack, +topk), tTop = uniq(T1, +tslack, +topk);
+      log(`  회전 ${rd + 1}: 방향 이웃 ${D1.length}개(상위 ${dTop.length}개 선택), 나무 이웃 ${T1.length}개(상위 ${tTop.length}개 선택) [${el()}분]`);
+      for (const c of dTop) { const r = await evalList(treeNb(c.t, [0])); all.push(...r); const b = r.reduce((a2, b2) => a2.pub <= b2.pub ? a2 : b2, { pub: Infinity }); if (b.pub < best - 1e-9) { best = b.pub; cur = b.t; log(`    방향(${c.note}, ${c.pub.toFixed(2)}) × 나무(${b.note}) = ${best.toFixed(3)} [${el()}분, 평가 ${evals}]`); } }
+      for (const c of tTop) { const r = await evalList(dirNb(c.t, 2)); all.push(...r); const b = r.reduce((a2, b2) => a2.pub <= b2.pub ? a2 : b2, { pub: Infinity }); if (b.pub < best - 1e-9) { best = b.pub; cur = b.t; log(`    나무(${c.note}, ${c.pub.toFixed(2)}) × 방향(${b.note}) = ${best.toFixed(3)} [${el()}분, 평가 ${evals}]`); } }
+      log(`  회전 ${rd + 1} 끝: ${base0.toFixed(3)} → ${best.toFixed(3)} (평가 ${evals}, ${el()}분)`);
+      if (best >= base0 - 1e-9) break;
+    }
+    saveTop('prod', all, 10); eng.close();
+  },
+  // 방향 전수 × 규칙 재적합(형식 밖 상한으로 선별): 방향마다 가까운 차 먼저로 대수를 잡고, 적재 거리 묶음별 반경을 좌표 하강으로 맞춘다.
+  //  node night.js N dirpf <dirs 파일> "<틀>" [반경 후보 수=3] [줄 수=4]   → night_dirpf.json (점수 순)
+  async dirpf() {
+    const [srcName, tpl, ncand = '3', lanes = '4'] = ARGS, t0 = Date.now(), el = () => ((Date.now() - t0) / 60000).toFixed(1);
+    const dirs = JSON.parse(fs.readFileSync(path.join(OUT, srcName), 'utf8')).cands.map(c => c.dir).filter(d => strong(P, d));
+    const tot = P.flows.reduce((s2, x) => s2 + x[2], 0), res = [], seenScore = new Set(); let next = 0, done = 0;
+    const one = async (eng, dir) => {
+      const N = P.nodes.length, D = Array.from({ length: N }, (_, i) => { const r = new Float64Array(N).fill(Infinity); r[i] = 0; return r; });
+      P.edges.forEach((e, k) => { const a2 = dir[k] === '1' ? e[1] : e[0], b2 = dir[k] === '1' ? e[0] : e[1]; D[a2][b2] = e[2]; });
+      for (let k = 0; k < N; k++) for (let i = 0; i < N; i++) { const dik = D[i][k]; if (dik === Infinity) continue; for (let j = 0; j < N; j++) { const d = dik + D[k][j]; if (d < D[i][j]) D[i][j] = d; } }
+      const DD = (x, y) => D[P.pd[x]][P.pd[y]];
+      const mk = urg => { const m = new Map(); for (const [o, d, r] of P.flows) if ((d === P.urgentDest) === urg) { const dl = DD(o, d); if (!m.has(dl)) m.set(dl, { dl, flows: [], rate: 0, os: new Set() }); const g = m.get(dl); g.flows.push(`${P.depts[o]}→${P.depts[d]}`); g.rate += r; g.os.add(o); } return [...m.values()].sort((a2, b2) => a2.dl - b2.dl).map(g => ({ ...g, r: -1, cand: [-1, ...[...new Set([...g.os].flatMap(o => P.pd.map((_, x) => DD(x, o))))].sort((a2, b2) => a2 - b2).slice(0, +ncand)] })); };
+      const GN = mk(false), GU = mk(true);
+      const dlTree = G => { const rec = (lo, hi) => { if (lo === hi) return G[lo].r < 0 ? '-' : `de(max,${G[lo].r})`; const mid = (lo + hi) >> 1; return `dl(min,${G[mid].dl})[${rec(lo, mid)},${rec(mid + 1, hi)}]`; }; return rec(0, G.length - 1); };
+      const build = n => ({ dir, n, root: parseShow(tpl.replace('{N}', dlTree(GN)).replace('{U}', dlTree(GU))) });
+      const ns = []; for (let n = Math.max(P.nMin, 17); n <= Math.min(P.nMax, 26); n++) ns.push(n);
+      const r0 = await pubs(eng, ns.map(build)); let bi0 = 0; r0.forEach((v, i) => { if (v < r0[bi0]) bi0 = i; });
+      if (!Number.isFinite(r0[bi0])) return null;
+      let n = ns[bi0], best = r0[bi0]; const sttf = best, key = r0.map(v => Number.isFinite(v) ? v.toFixed(5) : 'x').join(',');
+      if (seenScore.has(key)) return { dup: true }; seenScore.add(key);
+      for (let rd = 0; rd < 5; rd++) {
+        let any = false;
+        for (const g of [...GU, ...GN]) { const old = g.r, list = g.cand.filter(c => c !== old), ts = list.map(c => { g.r = c; return build(n); }); g.r = old; const r = await pubs(eng, ts); let bi = -1; r.forEach((v, i) => { if (v < best - 1e-9) { best = v; bi = i; } }); if (bi >= 0) { g.r = list[bi]; any = true; } }
+        const rn = await pubs(eng, [build(n - 1), build(n + 1)].filter(valid)); const cand = [n - 1, n + 1].filter(x => x >= P.nMin && x <= P.nMax); rn.forEach((v, i) => { if (v < best - 1e-9) { best = v; n = cand[i]; any = true; } });
+        if (!any) break;
+      }
+      return { dir, n, sttf, best, radii: [...GU.map(g => '★' + g.flows.join(',') + '=' + g.r), ...GN.filter(g => g.r >= 0).map(g => g.flows.join(',') + '=' + g.r)].join(' | '), show: show(build(n).root) };
+    };
+    log(`[방향 전수 × 규칙 재적합] ${srcName} 강연결 ${dirs.length}개, 반경 후보 ${ncand}개, ${lanes}줄`);
+    await Promise.all(Array.from({ length: +lanes }, async () => { const eng = new Engine(CN, Math.max(1, Math.floor(TH / +lanes))); while (next < dirs.length) { const d = dirs[next++], r = await one(eng, d); done++; if (r && !r.dup) res.push(r); if (done % 50 === 0) log(`  ${done}/${dirs.length} (${el()}분) 지금까지 최저 ${Math.min(...res.map(x => x.best)).toFixed(2)}`); } eng.close(); }));
+    res.sort((a2, b2) => a2.best - b2.best);
+    log(`  서로 다른 방향 ${res.length}개 (${el()}분). 상위:`);
+    res.slice(0, 20).forEach((r, i) => log(`  ${i + 1}. ${r.best.toFixed(2)} (가까운 차 먼저 ${r.sttf.toFixed(2)}) n${r.n} | ${r.dir} | ${r.radii}`));
+    fs.writeFileSync(path.join(OUT, 'night_dirpf.json'), JSON.stringify(res, null, 1));
+  },
+  // 방향 국소 탐색(가장 가파른 내리막): 나무 · 대수를 고정하고 1~2구간 뒤집기 이웃 전수 → 가장 낮은 곳으로 → 반복
+  //  node night.js N dirls <꼬리표> <csv> ["나무 문자열" | -] [대수 | -] [최대 걸음=12]   → nt_dirls_<꼬리표>.csv, 지나온 방향은 night_dirls_<꼬리표>.json
+  async dirls() {
+    const [tag, f, tstr = '-', n0 = '-', maxStep = '12'] = ARGS, eng = new Engine(CN, TH), t0 = Date.now(), el = () => ((Date.now() - t0) / 60000).toFixed(1);
+    let cur = readT(f); if (tstr !== '-') cur.root = parseShow(tstr); if (n0 !== '-') cur.n = +n0;
+    let best = (await pubs(eng, [cur]))[0], evals = 1; const trail = [{ pub: best, dir: cur.dir }], seen = new Map();
+    log(`[방향 국소 탐색 ${tag}] ${path.basename(f)} n${cur.n} ${show(cur.root)} 시작 ${best.toFixed(3)}`);
+    for (let st = 0; st < +maxStep; st++) {
+      const nb = dirNb(cur, 2).filter(c => !seen.has(c.t.dir)), r = await pubs(eng, nb.map(c => c.t)); evals += nb.length; nb.forEach((c, i) => { c.pub = r[i]; seen.set(c.t.dir, r[i]); });
+      // 대수 ±1도 같이 본다(상위 12개 방향에서)
+      const top = nb.filter(c => Number.isFinite(c.pub)).sort((a2, b2) => a2.pub - b2.pub).slice(0, 12), ex = top.flatMap(c => [-1, 1].map(dn => ({ t: { ...clone(c.t), n: c.t.n + dn }, note: c.note + ` 대수 ${dn}` }))).filter(c => valid(c.t));
+      const r2 = await pubs(eng, ex.map(c => c.t)); evals += ex.length; ex.forEach((c, i) => c.pub = r2[i]);
+      const b = [...top, ...ex].reduce((a2, b2) => a2.pub <= b2.pub ? a2 : b2, { pub: Infinity });
+      if (!(b.pub < best - 1e-9)) { log(`  걸음 ${st + 1}: 더 낮은 이웃 없음(이웃 최저 ${b.pub.toFixed(3)}) [${el()}분, 평가 ${evals}]`); break; }
+      best = b.pub; cur = b.t; trail.push({ pub: best, dir: cur.dir, n: cur.n, note: b.note }); log(`  걸음 ${st + 1}: ${b.note} → ${best.toFixed(3)} n${cur.n} [${el()}분]`);
+    }
+    fs.writeFileSync(path.join(OUT, `nt_dirls_${tag}.csv`), specToCsv(toSpec(cur)));
+    fs.writeFileSync(path.join(OUT, `night_dirls_${tag}.json`), JSON.stringify({ best, trail, top: [...seen.entries()].filter(x => Number.isFinite(x[1])).sort((a2, b2) => a2[1] - b2[1]).slice(0, 60) }));
+    log(`[끝 ${tag}] ${best.toFixed(3)} n${cur.n} | ${cur.dir} (평가 ${evals}, ${el()}분)`); eng.close();
+  },
+  async wfine() {
+    const [f, hw = '0.3', step = '0.0002'] = ARGS, eng = new Engine(CN, TH), base = readT(f), t0 = Date.now(), all = [];
+    const b0 = (await pubs(eng, [base]))[0]; log(`[w 미세 훑기] ${path.basename(f)} 기준 ${b0.toFixed(3)} | ${show(base.root)}`);
+    const K = nodesOf(base).length;
+    for (let k = 0; k < K; k++) {
+      const nd0 = nodesOf(base)[k].nd; if (nd0.f !== 'w') continue;
+      const lo = Math.max(0, nd0.th - +hw), hi = nd0.th + +hw, list = [];
+      for (let th = lo; th <= hi + 1e-12; th += +step) { const t = clone(base); nodesOf(t)[k].nd.th = +th.toFixed(6); list.push({ t, note: `노드 ${k + 1} th ${th.toFixed(6)}` }); }
+      const r = await pubs(eng, list.map(c => c.t)); list.forEach((c, i) => c.pub = r[i]); all.push(...list);
+      log(`  노드 ${k + 1} w(${nd0.d},${nd0.th}) ${lo.toFixed(4)}~${hi.toFixed(4)}: ${stats(r)} [${((Date.now() - t0) / 60000).toFixed(1)}분]`);
+      // 가까운 구간(±0.05)만 따로
+      const near = list.filter(c => Math.abs(nodesOf(c.t)[k].nd.th - nd0.th) <= 0.05).map(c => c.pub); if (near.length > 20) log(`    ±0.05 안: ${stats(near)}`);
+    }
+    saveTop('wfine', all); eng.close();
+  },
+  async dirnb() {
+    const [f, kk = '2'] = ARGS, eng = new Engine(CN, TH), base = readT(f), t0 = Date.now(), C = CHAINS.length, list = [];
+    const flip = (dir, cs) => { const b = dir.split(''); for (const c of cs) for (const k of CHAINS[c]) b[k] = b[k] === '1' ? '0' : '1'; return b.join(''); };
+    const add = cs => { const d = flip(base.dir, cs); if (strong(P, d)) list.push({ t: { ...clone(base), dir: d }, note: '구간 ' + cs.join('+') }); };
+    for (let a = 0; a < C; a++) { add([a]); if (+kk >= 2) for (let b = a + 1; b < C; b++) { add([a, b]); if (+kk >= 3) for (let c = b + 1; c < C; c++) add([a, b, c]); } }
+    const b0 = (await pubs(eng, [base]))[0]; log(`[방향 이웃] ${path.basename(f)} 기준 ${b0.toFixed(3)}, 구간 ${C}개, 강연결 이웃 ${list.length}개(≤${kk}개 뒤집기)`);
+    const r = await pubs(eng, list.map(c => c.t)); list.forEach((c, i) => c.pub = r[i]);
+    log(`  ${stats(r)} [${((Date.now() - t0) / 60000).toFixed(1)}분]`);
+    log(`  한 구간 뒤집기 상위: ` + list.filter(c => !c.note.includes('+') && Number.isFinite(c.pub)).sort((a, b) => a.pub - b.pub).slice(0, 8).map(c => `${c.note.slice(3)}:${c.pub.toFixed(1)}`).join(' '));
+    saveTop('dirnb', list, 8); fs.writeFileSync(path.join(OUT, 'night_dirnb_all.json'), JSON.stringify(list.filter(c => Number.isFinite(c.pub)).sort((a, b) => a.pub - b.pub).slice(0, 300).map(c => ({ pub: c.pub, dir: c.t.dir, note: c.note })))); eng.close();
+  },
+  // 나무 1수 이웃 전수: 노드마다 (특성 × 방향 × 경계값 전부), 빈 자리마다 새 노드 전부, 노드 삭제 · 자식 맞바꾸기, 대수 ±1
+  async nb() {
+    const eng = new Engine(CN, TH), t0 = Date.now();
+    for (const f of ARGS) {
+      const base = readT(f), vals = stationVals(base.dir), list = [];
+      const WG = [0, 0.001, 0.005, 0.01, 0.02, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5, 0.6, 0.75, 0.9, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 5, 6.5, 8];
+      const grid = ft => ft === 'urg' ? [0.5] : ft === 'w' ? WG : ft === 'qo' ? [0, 1, 2, 3, 4, 5, 6] : vals;
+      const push = (t, note) => { if (valid(t)) list.push({ t, note }); };
+      for (const dn of [0, -1, 1]) {
+        const b = clone(base); b.n += dn; const K = nodesOf(b).length;
+        if (dn) push(clone(b), `대수 ${dn}`);
+        for (let k = 0; k < K; k++) {
+          for (const ft of ['urg', 'w', 'de', 'dl', 'qo']) for (const d of ['min', 'max']) for (const th of grid(ft)) { const t = clone(b), x = nodesOf(t)[k].nd; if (x.f === ft && x.d === d && x.th === th) continue; x.f = ft; x.d = d; x.th = th; push(t, `n${dn} 노드 ${k + 1} → ${ft}(${d},${th})`); }
+          { const t = clone(b), x = nodesOf(t)[k]; if (x.parent) { x.parent[x.side] = null; push(t, `n${dn} 노드 ${k + 1} 삭제`); } }
+          { const t = clone(b), x = nodesOf(t)[k]; if (x.parent) { x.parent[x.side] = x.nd.lo || x.nd.hi; push(t, `n${dn} 노드 ${k + 1} 건너뛰기`); } }
+          { const t = clone(b), x = nodesOf(t)[k].nd; const s = x.lo; x.lo = x.hi; x.hi = s; if (x.lo || x.hi) push(t, `n${dn} 노드 ${k + 1} 자식 맞바꿈`); }
+          for (const s of ['lo', 'hi']) if (!nodesOf(b)[k].nd[s]) for (const ft of ['urg', 'w', 'de', 'dl', 'qo']) for (const d of ['min', 'max']) for (const th of grid(ft)) { const t = clone(b); nodesOf(t)[k].nd[s] = { f: ft, d, th, lo: null, hi: null }; push(t, `n${dn} 노드 ${k + 1}.${s} + ${ft}(${d},${th})`); }
+        }
+      }
+      const b0 = (await pubs(eng, [base]))[0]; const r = await pubs(eng, list.map(c => c.t)); list.forEach((c, i) => c.pub = r[i]);
+      log(`[나무 이웃] ${path.basename(f)} 기준 ${b0.toFixed(3)} | ${stats(r)} [${((Date.now() - t0) / 60000).toFixed(1)}분]`);
+      const tag = 'nb_' + path.basename(f, '.csv'); saveTop(tag, list, 8);
+      fs.writeFileSync(path.join(OUT, `night_${tag}.json`), JSON.stringify(list.filter(c => Number.isFinite(c.pub)).sort((a, b) => a.pub - b.pub).slice(0, 200).map(c => ({ pub: c.pub, note: c.note, spec: toSpec(c.t) }))));
+    }
+    eng.close();
+  },
+};
+module.exports = { parseShow, CHAINS, toTree, toSpec, clone, walk, valid, show, nodesOf, stationVals, pubs, stats, P };
+if (require.main === module) {
+  if (!CMDS[CMD]) { console.log('사용: node night.js <N> wfine|dirnb|nb ...'); process.exit(1); }
+  CMDS[CMD]().catch(e => { console.error(e); process.exit(1); });
+}

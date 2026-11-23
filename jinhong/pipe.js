@@ -78,6 +78,7 @@ function show(nd) { if (!nd) return '-'; const s = `${nd.f}(${nd.d},${nd.th})`; 
 const keyOf = t => { const s = toSpec(t); return s.dir + '|' + s.n + '|' + s.nodes; };
 function makeRng(seed) { let s = seed | 0; return () => { s = (s + 0x6D2B79F5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
 
+const NODIR = process.env.PIPE_NODIR === '1', NOFLEET = process.env.PIPE_NOFLEET === '1';   // 밤샘 루프(11/23): 방향 · 대수를 고정한 탐색
 function mutator(rnd) {
   const pick = a => a[Math.floor(rnd() * a.length)];
   const grid = (f, dir) => f === 'urg' ? [0.5] : f === 'w' ? WGRID : f === 'qo' ? QGRID : stationDist(dir).vals;
@@ -109,10 +110,10 @@ function mutator(rnd) {
       const t = clone(t0), r = rnd();
       if (r < 0.42) { const k = 1 + Math.min(3, Math.floor(-Math.log(1 - rnd()))); for (let j = 0; j < k; j++) treeOp(t); }
       else if (r < 0.57) { if (t.root.f !== 'w') continue; t.root.th = +(Math.floor(rnd() * 600) * 0.00001).toFixed(5); }
-      else if (r < 0.67) t.n += rnd() < 0.5 ? -1 : 1;
-      else if (r < 0.87) { if (!flipDir(t, rnd() < 0.7 ? 1 : 2)) continue; if (rnd() < 0.3) treeOp(t); }
-      else if (r < 0.94 && elite && elite.length > 1) { const o = pick(elite).t; if (rnd() < 0.5) t.dir = o.dir; else { t.root = clone(o.root); if (rnd() < 0.5) t.n = o.n; } }
-      else { treeOp(t); t.n += rnd() < 0.5 ? -1 : 1; }
+      else if (r < 0.67) { if (NOFLEET) { treeOp(t); } else t.n += rnd() < 0.5 ? -1 : 1; }
+      else if (r < 0.87) { if (NODIR) { treeOp(t); if (rnd() < 0.5) treeOp(t); } else { if (!flipDir(t, rnd() < 0.7 ? 1 : 2)) continue; if (rnd() < 0.3) treeOp(t); } }   // PIPE_NODIR=1: 방향을 고정하고 나무 · 대수만 바꾼다
+      else if (r < 0.94 && elite && elite.length > 1) { const o = pick(elite).t; if (rnd() < 0.5 && !NODIR) t.dir = o.dir; else { t.root = clone(o.root); if (rnd() < 0.5) t.n = o.n; } }
+      else { treeOp(t); if (NOFLEET) treeOp(t); else t.n += rnd() < 0.5 ? -1 : 1; }
       if (valid(t)) return t;
     }
     return null;
@@ -220,7 +221,7 @@ const CMDS = {
 
   async search() {
     const minutes = +(ARGS[0] || 20), seed = +(ARGS[1] || 1), starts = ARGS.slice(2), LAMBDA = 560, ELITE = 24, QCUT = 150;
-    const rnd = makeRng(seed), mut = mutator(rnd), eng = new Engine(CN), prefix = path.join(OUT, `search_s${seed}`);
+    const rnd = makeRng(seed), mut = mutator(rnd), eng = new Engine(CN), prefix = path.join(OUT, `search_${process.env.PIPE_TAG || ''}s${seed}`);   // PIPE_TAG: 결과 파일 이름 앞에 붙는 꼬리표
     const files = starts.length ? starts : fs.readdirSync(OUT).filter(f => /^dirtop_\d+\.csv$/.test(f)).map(f => path.join(OUT, f));
     let elite = files.map(f => ({ t: toTree(csvToSpec(fs.readFileSync(f, 'utf8'))) })).filter(e => valid(e.t));
     const seen = new Set(elite.map(e => keyOf(e.t)));
