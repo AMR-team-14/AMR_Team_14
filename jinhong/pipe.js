@@ -181,7 +181,7 @@ const CMDS = {
 
   // 구간 수가 적은 지도(2^구간 ≤ 4096)는 강연결인 방향을 전부 나열한다 → dirs_enum.json (dirrank 가 읽는다)
   async direnum() {
-    const K = CHAINS.length; if (K > 12) { log(`[방향 전수] 구간 ${K}개 → 너무 많아 건너뜀`); return; }
+    const K = CHAINS.length; if (K > +(ARGS[0] || 12)) { log(`[방향 전수] 구간 ${K}개 → 너무 많아 건너뜀`); return; }
     const cands = [];
     for (let m = 0; m < (1 << K); m++) {
       const b = Z0.split(''); for (let c = 0; c < K; c++) if (m >> c & 1) for (const k of CHAINS[c]) b[k] = b[k] === '1' ? '0' : '1';
@@ -302,6 +302,32 @@ const CMDS = {
     log(`[구조 훑기 끝] ${best.toFixed(2)} | ${show(mk(cur).root)} n${cur.n} → ${path.basename(outf)} (평가 ${evals}, ${((Date.now() - t0) / 60000).toFixed(1)}분)`); eng.close();
   },
 
+  // 수치 경계값 다듬기: 나무의 모든 노드 경계값을 하나씩 촘촘히 훑는다(좌표 하강). w는 0~0.03(0.0001 간격) + 0~6(0.01 간격), de·dl은 그 방향의 거리 값 전부, qo는 0~8. 대수 ±2도 본다.
+  async wsweep() {
+    const eng = new Engine(CN), t0 = Date.now();
+    for (const f of ARGS) {
+      let cur = toTree(csvToSpec(fs.readFileSync(f, 'utf8'))), best = (await eng.pub([toSpec(cur)]))[0], evals = 1; const start = best;
+      const WG = [...new Set([...Array.from({ length: 301 }, (_, i) => +(i * 0.0001).toFixed(4)), ...Array.from({ length: 601 }, (_, i) => +(i * 0.01).toFixed(2))])];
+      const nodesOf = t => { const a = []; walk(t.root, [], nd => a.push(nd)); return a; };
+      for (let rd = 0; rd < 4; rd++) {
+        let any = false; const K = nodesOf(cur).length;
+        for (let k = 0; k <= K; k++) {
+          const list = [];
+          if (k === K) { for (let dn = -2; dn <= 2; dn++) if (dn) { const t = clone(cur); t.n += dn; if (valid(t)) list.push(t); } }
+          else { const f0 = nodesOf(cur)[k].f, grid = f0 === 'w' ? WG : f0 === 'qo' ? [0, 1, 2, 3, 4, 5, 6, 7, 8] : f0 === 'urg' ? [] : stationDist(cur.dir).vals; for (const th of grid) for (const d of ['min', 'max']) { const t = clone(cur), nd = nodesOf(t)[k]; if (nd.th === th && nd.d === d) continue; nd.th = th; nd.d = d; list.push(t); } }
+          if (!list.length) continue;
+          const r = await eng.run(list.map(t => ({ ...toSpec(t), seed0: SEED0, count: NSEED, block: NSEED, qcut: 150 }))); evals += list.length;
+          let bi = -1; r.forEach((x, i) => { const v = x ? x[0] : Infinity; if (v < best - 1e-9) { best = v; bi = i; } });
+          if (bi >= 0) { cur = list[bi]; any = true; log(`  ${path.basename(f)} 노드 ${k + 1}: ${best.toFixed(2)} | n${cur.n} ${show(cur.root)}`); }
+        }
+        if (!any) break;
+      }
+      const outf = path.join(OUT, `ws_${path.basename(f, '.csv')}.csv`); fs.writeFileSync(outf, specToCsv(toSpec(cur)));
+      log(`[경계값 다듬기] ${path.basename(f)}: ${start.toFixed(2)} → ${best.toFixed(2)} (평가 ${evals}, ${((Date.now() - t0) / 60000).toFixed(1)}분) → ${path.basename(outf)}`);
+    }
+    eng.close();
+  },
+
   async theta() {
     const eng = new Engine(CN), t0 = Date.now(), all = [], TH = Array.from({ length: 3001 }, (_, i) => +(i * 0.00001).toFixed(5));
     for (const f of ARGS) {
@@ -338,5 +364,5 @@ const CMDS = {
     eng.close();
   },
 };
-if (!CMDS[CMD]) { console.log('사용: node pipe.js <N> base|dirrank|search|transfer|theta|safety|eval ...'); process.exit(1); }
+if (!CMDS[CMD]) { console.log('사용: node pipe.js <N> base|direnum|dirrank|search|struct|transfer|wsweep|theta|safety|eval ...'); process.exit(1); }
 CMDS[CMD]().catch(e => { console.error(e); process.exit(1); });

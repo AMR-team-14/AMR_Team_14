@@ -111,6 +111,8 @@ z0 = "".join(str(b) for b in P["z0"])
 VARS = [("load", 0, 1, 0), ("both", 0.5, 1, 0), ("both", 1.0, 1, 0), ("time", 0, 1, 0)]
 if len(sys.argv) > 5 and sys.argv[5] == "ext":   # 2차 후보: 교차로 가중(pm) · 긴급 출발지 가중(wu)
     VARS = [("time", 0, pm, wu) for pm in (1, 2, 3) for wu in (0, 3, 10, 30) if not (pm == 1 and wu == 0)]
+if len(sys.argv) > 5 and sys.argv[5] == "ext2":  # 3차 후보: 2차에서 좋았던 근처를 더 촘촘히
+    VARS = [("time", 0, pm, wu) for pm in (1.5, 2, 2.5, 3, 4) for wu in (0, 1.5, 5, 7, 10, 15, 20)]
 for variant, we, pm, wu in VARS:
     m, z = build(variant, we, pm, wu)
     m.Params.PoolSearchMode = 2; m.Params.PoolSolutions = POOL; m.Params.PoolGap = GAP; m.Params.TimeLimit = 40
