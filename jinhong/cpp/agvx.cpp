@@ -39,7 +39,8 @@ struct Case {
 
 struct TNode { int f = 0, dirMax = 0; double th = 0; int lo = 0, hi = 0; bool used = false; };
 enum { F_URG, F_W, F_DE, F_DL, F_QO };
-struct Design { int n = 0; vector<TNode> tree; };
+// hasTab: 제출 형식 밖의 가상 정책(차 위치 × 출발 부서 우선순위 표)을 나무보다 먼저 본다. 「형식의 한계」를 재는 실험 전용이다.
+struct Design { int n = 0; vector<TNode> tree; bool hasTab = false; double tf[8][8] = {}, to[8][8] = {}; };
 
 struct Req { int o, d; double t; int id; };
 enum { IDLE, DRV, WQ, CRS, LD, UL };
@@ -68,11 +69,26 @@ static inline bool keyLess(const double* a, int al, const double* b, int bl) {
   return false;
 }
 
+// 부서 쌍마다 지나는 교차로와 그때까지의 거리를 미리 계산해 둔다(주행마다 경로를 걷지 않기 위해).
+struct Route { int nl = 0; int jn[16]; double la[16]; double total = 0; };
+static Route ROUTE[8][8];
+static std::atomic<long long> G_STEPS{0}, G_SEEDS{0}, G_DISP{0}, G_KEYS{0};
+void buildRoutes() {
+  for (int x = 0; x < C.nd; x++) for (int y = 0; y < C.nd; y++) {
+    Route& r = ROUTE[x][y]; int a = C.pd[x], b = C.pd[y], c = a; r.nl = 0;
+    while (c != b) { c = C.NX[c][b]; if (c != b && C.jidx[c] >= 0) { r.jn[r.nl] = C.jidx[c]; r.la[r.nl] = C.D[a][c]; r.nl++; } }
+    r.total = C.D[a][b];
+  }
+}
+
+// 빠른 판: 사건 순서와 실수 연산 순서는 웹 원본과 같다. 바꾼 것은 자료 배치뿐이다.
+//  - 차의 다음 사건 시각을 작은 배열(tact)에 따로 둔다. 쉬는 차 · 교차로 대기 차는 +무한대.
+//  - 빈 차 수 · 교차로 대기 수를 들고 있다가 0이면 배차 · 교차로 처리를 건너뛴다.
 void simulate(const Design& ds, uint32_t seed, Out& out, int qcut, Diag* dg) {
-  const auto& D = C.D; const auto& NX = C.NX; const auto& PD = C.pd; const auto& F = C.F;
-  const int nd = C.nd, nF = (int)F.size();
+  const auto& D = C.D; const auto& PD = C.pd; const auto& F = C.F;
+  const int nd = C.nd, nF = (int)F.size(), n = ds.n;
   double RATE = 0; for (int f = 0; f < nF; f++) RATE += F[f].rate;
-  const double fac = 60 / C.at, mean = 60 / (C.alpha * RATE);
+  const double fac = 60 / C.at, mean = 60 / (C.alpha * RATE), INF = INFINITY;
   uint32_t rs = seed;
   auto R = [&]() -> double {
     rs += 0x6D2B79F5u;
@@ -83,34 +99,37 @@ void simulate(const Design& ds, uint32_t seed, Out& out, int qcut, Diag* dg) {
   auto EXP = [&]() -> double {
     int k = 0;
     for (;;) {
-      double u = R(), prev = u; int n = 1;
-      for (;;) { double v = R(); if (v < prev) { prev = v; n++; } else break; }
-      if (n % 2 == 1) return k + u;
+      double u = R(), prev = u; int m = 1;
+      for (;;) { double v = R(); if (v < prev) { prev = v; m++; } else break; }
+      if (m % 2 == 1) return k + u;
       k++;
     }
   };
-  struct Jx { int busy = -1; vector<int> q; size_t head = 0; };
-  vector<Jx> J(C.Jn.size());
-  vector<Veh> V(ds.n);
+  struct Jx { int busy = -1; int q[64]; unsigned head = 0, tail = 0; }; // 원형 대기열(동시에 기다리는 차는 대수 30 이하)
+  Jx J[16];
+  struct V2 { int node, st, ph, to, k, fresh, vloc; const Route* rt; double spd, pos, d1, wq0, tdisp; Req req; };
+  V2 V[32]; double tact[32];
   vector<Req> q; q.reserve(512);
-  for (int i = 0; i < ds.n; i++) { V[i].id = i; V[i].node = i % nd; V[i].st = IDLE; V[i].t1 = 0; }
-  double t = 0; int serial = 0;
+  for (int i = 0; i < n; i++) { V[i].node = i % nd; V[i].st = IDLE; tact[i] = INF; }
+  int nIdle = n, nWq = 0;
+  double t = 0; int serial = 0; long long steps = 0, ndisp = 0, nkeys = 0;
   double next = EXP() * mean;
 
-  auto startLeg = [&](Veh& v) {
-    double d1 = v.k < v.nl ? v.la[v.k] : v.total;
-    v.st = DRV; v.d1 = d1; v.t1 = t + (d1 - v.pos) / v.spd * fac;
+  auto startLeg = [&](int i) {
+    V2& v = V[i];
+    double d1 = v.k < v.rt->nl ? v.rt->la[v.k] : v.rt->total;
+    v.st = DRV; v.d1 = d1; tact[i] = t + (d1 - v.pos) / v.spd * fac;
   };
-  auto travel = [&](Veh& v, int ph, int to, double spd) {
-    int a = PD[v.node], b = PD[to], c = a; v.nl = 0;
-    while (c != b) { c = NX[c][b]; if (c != b && C.jidx[c] >= 0) { v.ln[v.nl] = c; v.la[v.nl] = D[a][c]; v.nl++; } }
-    v.ph = ph; v.to = to; v.spd = spd; v.total = D[a][b]; v.k = 0; v.pos = 0;
-    startLeg(v);
+  auto travel = [&](int i, int ph, int to, double spd) {
+    V2& v = V[i];
+    v.rt = &ROUTE[v.node][to]; v.ph = ph; v.to = to; v.spd = spd; v.k = 0; v.pos = 0;
+    startLeg(i);
   };
-  auto handle = [&](Veh& v) {
+  auto handle = [&](int i) {
+    V2& v = V[i];
     if (v.st == DRV) {
       v.pos = v.d1;
-      if (v.k < v.nl) { v.st = WQ; v.wq0 = t; J[C.jidx[v.ln[v.k]]].q.push_back(v.id); return; }
+      if (v.k < v.rt->nl) { v.st = WQ; tact[i] = INF; v.wq0 = t; Jx& jj = J[v.rt->jn[v.k]]; jj.q[jj.tail++ & 63] = i; nWq++; return; }
       v.node = v.to;
       if (v.ph == 0) {
         const Req& r = v.req; double w = t - r.t;
@@ -118,44 +137,45 @@ void simulate(const Design& ds, uint32_t seed, Out& out, int qcut, Diag* dg) {
           out.ws.push_back(w); if (r.d == C.urgentDest) out.wu.push_back(w);
           if (dg) {
             int fr = v.fresh, o = r.o;
-            dg->cnt[fr][o]++; dg->wsum[fr][o] += w; dg->qsum[fr][o] += v.tdisp - r.t; dg->desum[fr][o] += v.total;
+            dg->cnt[fr][o]++; dg->wsum[fr][o] += w; dg->qsum[fr][o] += v.tdisp - r.t; dg->desum[fr][o] += v.rt->total;
             dg->pair[fr][v.vloc][o]++;
-            if (r.d == C.urgentDest) dg->urg.push_back(array<double, 5>{w, (double)fr, (double)v.vloc, v.total, v.tdisp - r.t});
+            if (r.d == C.urgentDest) dg->urg.push_back(array<double, 5>{w, (double)fr, (double)v.vloc, v.rt->total, v.tdisp - r.t});
           }
         }
-        v.st = LD; v.t1 = t + C.tl * fac;
-      } else { v.st = UL; v.t1 = t + C.tu * fac; }
+        v.st = LD; tact[i] = t + C.tl * fac;
+      } else { v.st = UL; tact[i] = t + C.tu * fac; }
     } else if (v.st == CRS) {
-      J[C.jidx[v.ln[v.k]]].busy = -1; v.k++; startLeg(v);
+      J[v.rt->jn[v.k]].busy = -1; v.k++; startLeg(i);
     } else if (v.st == LD) {
-      travel(v, 1, v.req.d, C.vc);
+      travel(i, 1, v.req.d, C.vc);
     } else if (v.st == UL) {
-      v.st = IDLE;
+      v.st = IDLE; tact[i] = INF; nIdle++;
     }
   };
+  const int nJ = (int)C.Jn.size();
   auto grant = [&]() {
-    for (size_t g = 0; g < J.size(); g++) {
+    if (!nWq) return;
+    for (int g = 0; g < nJ; g++) {
       Jx& jj = J[g];
-      if (jj.busy >= 0 || jj.head >= jj.q.size()) continue;
-      Veh& v = V[jj.q[jj.head++]];
-      if (jj.head == jj.q.size()) { jj.q.clear(); jj.head = 0; }
-      v.st = CRS; v.t1 = t + C.p * fac; jj.busy = v.id;
+      if (jj.busy >= 0 || jj.head == jj.tail) continue;
+      int i = jj.q[jj.head++ & 63];
+      V[i].st = CRS; tact[i] = t + C.p * fac; jj.busy = i; nWq--;
     }
   };
-  int idle[64], qo[16];
+  int idle[32], qo[16];
   double key[16], bk[16];
   auto dispatch = [&]() {
-    for (;;) {
-      int ni = 0;
-      for (int m = 0; m < ds.n; m++) if (V[m].st == IDLE) idle[ni++] = m;
-      if (!ni || q.empty()) return;
+    while (nIdle && !q.empty()) {
+      int ni = 0; ndisp++; nkeys += (long long)nIdle * (long long)q.size();
+      for (int m = 0; m < n; m++) if (V[m].st == IDLE) idle[ni++] = m;
       for (int m = 0; m < nd; m++) qo[m] = 0;
       for (size_t m = 0; m < q.size(); m++) qo[q[m].o]++;
       int bv = -1, bb = -1, bl = 0;
       for (int a = 0; a < ni; a++) for (int b = 0; b < (int)q.size(); b++) {
-        const Veh& v = V[idle[a]]; const Req& r = q[b];
+        const V2& v = V[idle[a]]; const Req& r = q[b];
         double de = D[PD[v.node]][PD[r.o]];
         int kl = 0, id = 1;
+        if (ds.hasTab) key[kl++] = ((t - r.t) <= 1e-9 ? ds.tf : ds.to)[v.node][r.o];
         for (int g = 0; g < 8 && id; g++) {
           const TNode& nn = ds.tree[id]; int side;
           if (nn.f == F_URG) side = r.d == C.urgentDest ? 1 : 0;
@@ -167,21 +187,20 @@ void simulate(const Design& ds, uint32_t seed, Out& out, int qcut, Diag* dg) {
           key[kl++] = nn.dirMax ? 1 - side : side;
           id = side ? nn.hi : nn.lo;
         }
-        key[kl++] = de; key[kl++] = r.t; key[kl++] = r.id; key[kl++] = v.id;
+        key[kl++] = de; key[kl++] = r.t; key[kl++] = r.id; key[kl++] = idle[a];
         if (bv < 0 || keyLess(key, kl, bk, bl)) { memcpy(bk, key, sizeof(double) * kl); bl = kl; bv = idle[a]; bb = b; }
       }
-      Veh& vv = V[bv]; Req rr = q[bb]; q.erase(q.begin() + bb);
-      vv.req = rr; vv.tdisp = t; vv.fresh = (t - rr.t) <= 1e-9 ? 1 : 0; vv.vloc = vv.node;
-      travel(vv, 0, rr.o, C.ve);
+      V2& vv = V[bv]; Req rr = q[bb]; q.erase(q.begin() + bb);
+      vv.req = rr; vv.tdisp = t; vv.fresh = (t - rr.t) <= 1e-9 ? 1 : 0; vv.vloc = vv.node; nIdle--;
+      travel(bv, 0, rr.o, C.ve);
     }
   };
-  auto due = [&](const Veh& v) { return v.st != IDLE && v.st != WQ && v.t1 <= t; };
 
   for (;;) {
     double tn = next;
-    for (int m = 0; m < ds.n; m++) if (V[m].st != IDLE && V[m].st != WQ && V[m].t1 < tn) tn = V[m].t1;
+    for (int m = 0; m < n; m++) if (tact[m] < tn) tn = tact[m];
     if (tn > C.T) break;
-    t = tn;
+    t = tn; steps++;
     while (next <= t) {
       double u = R() * RATE; int k = 0;
       while (k < nF - 1 && u >= F[k].rate) { u -= F[k].rate; k++; }
@@ -189,18 +208,19 @@ void simulate(const Design& ds, uint32_t seed, Out& out, int qcut, Diag* dg) {
       next = next + EXP() * mean;
     }
     for (;;) {
-      for (int i = 0; i < ds.n; i++) while (due(V[i])) handle(V[i]);
+      for (int i = 0; i < n; i++) while (tact[i] <= t) handle(i);
       grant();
       dispatch();
       bool any = false;
-      for (int i = 0; i < ds.n; i++) if (due(V[i])) { any = true; break; }
+      for (int i = 0; i < n; i++) if (tact[i] <= t) { any = true; break; }
       if (!any) break;
     }
     if ((int)q.size() > out.maxQ) out.maxQ = (int)q.size();
-    if ((int)q.size() > C.qcap || (qcut > 0 && (int)q.size() > qcut)) { out.unstable = true; out.endQ = (int)q.size(); return; }
+    if ((int)q.size() > C.qcap || (qcut > 0 && (int)q.size() > qcut)) { out.unstable = true; out.endQ = (int)q.size(); G_STEPS += steps; G_DISP += ndisp; G_KEYS += nkeys; G_SEEDS++; return; }
   }
   out.endQ = (int)q.size();
   if (out.endQ > C.endQmax) out.unstable = true;
+  G_STEPS += steps; G_DISP += ndisp; G_KEYS += nkeys; G_SEEDS++;
 }
 
 // 웹 agvEvaluate_와 같은 집계: 시드들의 대기시간을 한데 모아 평균과 긴급 95분위를 한 번 계산
@@ -222,8 +242,18 @@ double blockCost(const Design& ds, uint32_t seed0, int cnt, int qcut, double* me
   return C.cAGV * ds.n + C.cW * lam * mean + C.cU * u95;
 }
 
-bool parseNodes(const string& s, Design& ds) {
+bool parseNodes(const string& s0, Design& ds) {
   ds.tree.assign(64, TNode());
+  string s = s0;
+  if (!s.empty() && s[0] == 'T') { // T<도착 표 49칸>.<대기 표 49칸>#<나무>  (칸은 '.'로 구분, 값이 작을수록 먼저)
+    size_t h = s.find('#'); if (h == string::npos) return false;
+    string tb = s.substr(1, h - 1); s = s.substr(h + 1);
+    stringstream ts(tb); string x; vector<double> v;
+    while (getline(ts, x, '.')) v.push_back(atof(x.c_str()));
+    if ((int)v.size() != 2 * C.nd * C.nd) return false;
+    for (int a = 0; a < C.nd; a++) for (int b = 0; b < C.nd; b++) { ds.tf[a][b] = v[a * C.nd + b]; ds.to[a][b] = v[C.nd * C.nd + a * C.nd + b]; }
+    ds.hasTab = true;
+  }
   stringstream ss(s); string item;
   while (getline(ss, item, ';')) {
     if (item.empty()) continue;
@@ -253,6 +283,7 @@ void loadCase(const char* path) {
   C.T = rd(); C.warm = rd(); C.qcap = (int)rd(); C.endQmax = (int)rd(); C.cAGV = rd(); C.cW = rd(); C.cU = rd();
   char buf[64]; for (int i = 0; i < C.nd; i++) { if (fscanf(fp, "%63s", buf) == 1) C.depts.push_back(buf); }
   fclose(fp);
+  buildRoutes();
 }
 
 struct Job { string id; Design ds; uint32_t seed0; int count, block, qcut; vector<double> res; };

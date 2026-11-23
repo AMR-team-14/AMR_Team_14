@@ -17,7 +17,7 @@ function specToCsv(s) { return [`dir,${DIR}`, `fleet,${s.n}`, ...s.nodes.split('
 
 class Engine {
   constructor(threads) {
-    const exe = path.join(__dirname, 'cpp', 'agvx.exe');
+    const exe = process.env.AGVX_EXE || path.join(__dirname, 'cpp', 'agvx.exe');
     this.p = spawn(exe, [path.join(__dirname, 'cpp', 'case.txt'), String(threads || 14)]);
     this.buf = ''; this.lines = []; this.waiters = [];
     this.p.stdout.on('data', d => {
