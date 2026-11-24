@@ -1,12 +1,5 @@
 # Case 1 실험 메모
 
-기존 기록 42개를 [original/](original/)에서 볼 수 있다.
-- [README.md](original/experiments/younbean/Q01-aged-backlog/README.md)
-- [README.md](original/experiments/younbean/Q02-aged-backlog-keep-urgent/README.md)
-- [README.md](original/experiments/younbean/Q03-backlog-demand-profiles/README.md)
-- [README.md](original/experiments/younbean/README.md)
-- [sort_supply.md](original/experiments/younbean/sort_supply.md)
-- [submission_validation.md](original/experiments/younbean/submission_validation.md)
-- [method_a_local_optimality_report.md](original/method_a_local_optimality_report.md)
+19대 팀 트리에서 대수만 18대로 내리면 새 3,600시드 평균 차이는 −0.218이었고 표준오차는 0.217이었다. 19대에서 대기 기준을 바꾼 후보는 선별 240시드에서 −1.23이었지만 새 3,600시드에서 +0.594였다. 두 결과를 근거로 19대 기존 트리를 유지했다. [검증 기록](original/experiments/younbean/submission_validation.md)
 
-새 실험의 결론에는 기준안, 비교 조건, 결과 근거를 남긴다.
+웹과 로컬 C++에서 같은 답안과 공개 시드 번호를 썼을 때 점수가 달랐다. 요청 입력과 집계 방식을 함께 기록하면 점수를 다시 비교할 수 있다.
