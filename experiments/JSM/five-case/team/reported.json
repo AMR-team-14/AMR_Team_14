@@ -1,0 +1,15 @@
+{
+ "3:jinhong:answer_case3.csv": {"score": "962.70", "how": "jinhong NOTES 11/24 web 평가 실행, pooled 11-15", "same": true},
+ "3:jinhong:answer_case3_97315.csv": {"score": "973.15", "how": "jinhong NOTES 회전 8, pooled 11-15", "same": true},
+ "3:jinhong:answer_case3_97606.csv": {"score": "976.06", "how": "jinhong NOTES 회전 5, pooled 11-15", "same": true},
+ "3:jinhong:answer_case3_97645.csv": {"score": "976.45", "how": "jinhong NOTES 11/23, pooled 11-15", "same": true},
+ "3:jinhong:cand_97315.csv": {"score": "973.15", "how": "filename + NOTES 회전 8", "same": true},
+ "3:jinhong:cand_97606.csv": {"score": "976.06", "how": "filename + NOTES 회전 5", "same": true},
+ "3:jinhong:cand_97082.csv": {"score": "970.82", "how": "filename + NOTES 회전 9", "same": true},
+ "3:jinhong:cand_96271.csv": {"score": "962.71", "how": "filename only (not described in NOTES)", "same": true},
+ "3:jinhong:cand_D2_97625.csv": {"score": "976.25", "how": "filename + NOTES 회전 7", "same": true},
+ "3:minjae:ans_c3.csv": {"score": "1007.52", "how": "minjae best_case_3.json public_5_seeds mean_cost = mean of per-seed costs (different aggregation)", "same": false},
+ "2:jinhong:answer_case2.csv": {"score": "613.62", "how": "inputs.json baseline", "same": true},
+ "2:jinhong:answer_case2_61716.csv": {"score": "617.16", "how": "jinhong NOTES, pooled 11-15", "same": true},
+ "2:jinhong:cand_617.csv": {"score": "617.16", "how": "jinhong NOTES (5-node version)", "same": true}
+}

@@ -1,0 +1,35 @@
+{
+ "batch": "B1",
+ "planned": 527,
+ "returned": 527,
+ "missing": [],
+ "failed": [],
+ "problems": [],
+ "speed": {
+  "local": {
+   "tasks": 8,
+   "cpuSeconds": 1.9,
+   "msPerEval": 234.8,
+   "evals": 8
+  },
+  "github": {
+   "tasks": 42,
+   "cpuSeconds": 11.1,
+   "msPerEval": 263.7,
+   "evals": 42
+  },
+  "kaggle": {
+   "tasks": 477,
+   "cpuSeconds": 145.5,
+   "msPerEval": 304.9,
+   "evals": 477
+  }
+ },
+ "rows": {
+  "1": 1,
+  "2": 43,
+  "3": 481,
+  "4": 1,
+  "5": 1
+ }
+}

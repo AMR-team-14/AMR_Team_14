@@ -48,6 +48,7 @@ function saveCandidate(c, cand, label, origin) {
   const rel = `experiments/case${c}/candidates/${cand.sha.slice(0, 12)}.csv`;
   const file = path.join(REPO, rel);
   if (!fs.existsSync(file)) fs.writeFileSync(file, cand.text);
+  if (label === null) return rel;
   const idx = path.join(dir, 'index.csv');
   const head = 'candidate_sha256,label,fleet,dir,origin\n';
   const old = fs.existsSync(idx) ? fs.readFileSync(idx, 'utf8') : head;

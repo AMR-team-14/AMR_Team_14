@@ -80,6 +80,19 @@ function neighbours(nodes, maxNodes, T, r) {
       }
     }
   }
+  // Insert a new root above the current tree (needed to reach e.g. a w-root tree from an urg-root start).
+  if (nodes.length < maxNodes) {
+    const below = new Set(nodes.map(n => n.f));
+    for (const f of L.FEATS) {
+      if (below.has(f)) continue;
+      for (const th of quantiles(T.sets[f], 4)) for (const mx of ['min', 'max']) for (const side of ['lo', 'hi']) {
+        out.push({kind: 'root', apply: ns => {
+          for (const y of ns) { y.id += 1; if (y.lo) y.lo += 1; if (y.hi) y.hi += 1; }
+          ns.push({id: 1, f, mx, th, lo: side === 'lo' ? 2 : 0, hi: side === 'hi' ? 2 : 0});
+        }});
+      }
+    }
+  }
   for (let i = out.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [out[i], out[j]] = [out[j], out[i]]; }
   return out;
 }
@@ -114,7 +127,7 @@ function climb(c, dir, fleet, startNodes, budget, seed, cache, counter) {
       const v = score(ns);
       used += counter.n - before;
       if (v === undefined) break;
-      if (v && v.score < cur.score - 1e-9) {
+      if (v && v.score < cur.score - 0.01) {
         steps.push({kind: mv.kind, score: +v.score.toFixed(4), evals: used});
         cur = v; improved = true; break;
       }
@@ -126,8 +139,9 @@ function climb(c, dir, fleet, startNodes, budget, seed, cache, counter) {
 
 function runSearch(task) {
   const {case: c, dir, fleet, budget, seed} = task;
-  const starts = startTrees(c, dir);
+  let starts = startTrees(c, dir);
   if (task.transplant) starts.transplant = L.parseDesign(task.transplant).nodes;
+  if (task.only) starts = {[task.only]: starts[task.only]};
   const cache = new Map();
   const counter = {n: 0, max: budget * Object.keys(starts).length};
   const results = [];
