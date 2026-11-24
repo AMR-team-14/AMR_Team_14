@@ -1,0 +1,19 @@
+S2 19대: 서로 다른 값 746개, 최저 1178.76, 5% 1190.47, 중앙값 1202.23 (0.5분)
+S2 20대: 서로 다른 값 617개, 최저 1171.67, 5% 1177.46, 중앙값 1193.03 (1.1분)
+S2 21대: 서로 다른 값 580개, 최저 1177.76, 5% 1180.69, 중앙값 1189.52 (1.7분)
+S2 22대: 서로 다른 값 450개, 최저 1178.74, 5% 1183.72, 중앙값 1189.91 (2.3분)
+→ 유리한 대수: 20, 21
+S3-1: 구조 8970개 × 대수 2 = 17940개, 최저 1175.92 (4.8분)
+S3-2: 하위 600개 × 루트 경계값 61개 = 36600개 (10.0분). 전체 70784개 중 최저 12개:
+  1171.67 | n20 w(max,0.0017)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)[dl(min,65)[qo(max,2),-],-]]]
+  1171.68 | n20 w(max,0.0014)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)[dl(min,65)[qo(max,2),-],-]]]
+  1172.70 | n21 w(max,0.0022)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)[dl(min,65),-]],urg(min,0.5)[qo(max,2),-]]]
+  1172.85 | n21 w(max,0.003)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)[dl(min,65),-]],urg(min,0.5)[qo(max,2),-]]]
+  1173.42 | n20 w(max,0.0018)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)[dl(min,65)[qo(max,2),-],-]]]
+  1173.46 | n20 w(max,0.00135)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)[dl(min,65)[qo(max,2),-],-]]]
+  1173.68 | n21 w(max,0.0024)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)[dl(min,65),-]],urg(min,0.5)[qo(max,2),-]]]
+  1173.92 | n21 w(max,0.00005)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[dl(max,90),urg(max,0.5)[dl(min,50),-]],urg(min,0.5)]]
+  1174.07 | n20 w(max,0.0005)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)[dl(min,65)[qo(max,1),-],-]]]
+  1174.09 | n20 w(max,0.0006)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)[dl(min,65)[qo(max,1),-],-]]]
+  1174.24 | n21 w(max,0.00105)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)[dl(max,50),-]],urg(min,0.5)[qo(max,2),-]]]
+  1174.56 | n21 w(max,0)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[dl(max,90),urg(max,0.5)[dl(min,50),-]],urg(min,0.5)]]

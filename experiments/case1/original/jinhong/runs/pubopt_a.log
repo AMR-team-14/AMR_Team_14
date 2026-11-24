@@ -1,0 +1,3 @@
+시작 answer_jinhong_submitted.csv: 공개 1177.97
+세대 1 (0.1분, 평가 420): 공개 1177.97 → 1175.81 | n20 w(max,0.00055)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)[dl(min,65)[qo(max,2),-],-]]]
+세대 2 (0.2분, 평가 840): 공개 1175.81 → 1171.67 | n20 w(max,0.00174)[dl(min,50)[de(max,180),-],de(min,65)[qo(max,1)[-,urg(max,0.5)],urg(min,0.5)[dl(min,65)[qo(max,2),-],-]]]
