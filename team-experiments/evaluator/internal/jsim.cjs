@@ -37,7 +37,7 @@ function parseSpec(n, nodes) {
 
 const key = new Float64Array(16), bk = new Float64Array(16);
 // 반환: {unstable, maxQ, endQ}. 대기시간은 ws · wu 배열에 덧붙인다.
-function simulate(ds, seed, qcut, ws, wu) {
+function simulate(ds, seed, qcut, ws, wu, onDispatch) {
   const n = ds.n, f_ = ds.f, mx = ds.mx, th = ds.th, lo = ds.lo, hi = ds.hi, tab = ds.tab;
   let rs = seed | 0;
   const R = () => { rs = (rs + 0x6D2B79F5) | 0; let t = Math.imul(rs ^ (rs >>> 15), 1 | rs); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
@@ -97,6 +97,7 @@ function simulate(ds, seed, qcut, ws, wu) {
           if (less) { for (let c = 0; c < kl; c++) bk[c] = key[c]; bl = kl; bv = vi; bb = b; }
         }
       }
+      if (onDispatch) onDispatch(qi_[bb], bv, t);
       vro[bv] = qo_[bb]; vrd[bv] = qd_[bb]; vrtm[bv] = qt_[bb];
       for (let m = bb; m < ql - 1; m++) { qo_[m] = qo_[m + 1]; qd_[m] = qd_[m + 1]; qt_[m] = qt_[m + 1]; qi_[m] = qi_[m + 1]; }
       ql--; nIdle--;
