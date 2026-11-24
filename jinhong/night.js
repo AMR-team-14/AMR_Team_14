@@ -273,7 +273,7 @@ const CMDS = {
     const de = r => r < 0 ? '-' : `de(max,${r})`;
     const side = (t, a2, b2) => (a2 < 0 && b2 < 0) ? '-' : (t === null ? de(a2) : `dl(min,${t})[${de(a2)},${de(b2)}]`);   // t === null: 묶음 하나(반경 a)
     const dall = [...new Set([...dn, ...du])].sort((a2, b2) => a2 - b2);
-    const mk = S => ({ dir: base.dir, n: S.n, root: parseShow(form === 'urg' ? `${rootw}[urg(max,0.5)[${side(S.tn, S.a, S.b)},${side(S.tu, S.c, S.d)}],${W}]` : `${rootw}[${side(S.tn, S.a, S.b)},${W}]`) });
+    const mk = S => ({ dir: base.dir, n: S.n, root: parseShow(form === 'urg0' ? `urg(max,0.5)[${side(S.tn, S.a, S.b)},${side(S.tu, S.c, S.d)}]` : form === 'urg' ? `${rootw}[urg(max,0.5)[${side(S.tn, S.a, S.b)},${side(S.tu, S.c, S.d)}],${W}]` : `${rootw}[${side(S.tn, S.a, S.b)},${W}]`) });   // urg0: 루트 w 없이(대기 주문도 같은 규칙)
     const evalAll = async list => { const ts = list.map(mk), ok = ts.map(valid), r = await pubs(eng, ts.filter((_, i) => ok[i])); let k = 0; return ts.map((_, i) => ok[i] ? r[k++] : Infinity); };
     let cur = { n: base.n, tn: null, a: -1, b: -1, tu: null, c: -1, d: -1 }, best = (await evalAll([cur]))[0], evals = 1;
     log(`[4묶음 전수 ${tag}] 방향 ${base.dir}, 일반 dl ${dn.length}개 · 긴급 dl ${du.length}개 · 반경 후보 ${R.length}개, W=${W}, 시작 ${best.toFixed(2)}`);
@@ -281,8 +281,8 @@ const CMDS = {
     for (let rd = 0; rd < 4; rd++) {
       let any = false;
       for (const n of [cur.n, cur.n - 1, cur.n + 1, cur.n + 2]) {
-        any = await sweep(`일반 n${n}`, [null, ...(form === 'urg' ? dn : dall).slice(0, -1)].flatMap(tn => R.flatMap(a2 => (tn === null ? [-1] : R).map(b2 => ({ ...cur, n, tn, a: a2, b: b2 }))))) || any;
-        if (form === 'urg') any = await sweep(`긴급 n${n}`, [null, ...du.slice(0, -1)].flatMap(tu => R.flatMap(c => (tu === null ? [-1] : R).map(d => ({ ...cur, n, tu, c, d }))))) || any;
+        any = await sweep(`일반 n${n}`, [null, ...(form !== 'nourg' ? dn : dall).slice(0, -1)].flatMap(tn => R.flatMap(a2 => (tn === null ? [-1] : R).map(b2 => ({ ...cur, n, tn, a: a2, b: b2 }))))) || any;
+        if (form !== 'nourg') any = await sweep(`긴급 n${n}`, [null, ...du.slice(0, -1)].flatMap(tu => R.flatMap(c => (tu === null ? [-1] : R).map(d => ({ ...cur, n, tu, c, d }))))) || any;
       }
       if (!any) break;
     }
@@ -432,6 +432,7 @@ const CMDS = {
     const per = new Map(); for (const c of list) if (Number.isFinite(c.pub) && (!per.has(c.t.dir) || c.pub < per.get(c.t.dir).pub)) per.set(c.t.dir, c);
     const s2 = new Set(), top = [...per.values()].sort((a2, b2) => a2.pub - b2.pub).filter(c => !s2.has(c.pub.toFixed(6)) && s2.add(c.pub.toFixed(6)));
     top.slice(0, 12).forEach((c, i) => { log(`  ${i + 1}. ${c.pub.toFixed(2)} n${c.t.n} | ${c.t.dir} | ${c.note}`); if (i < 8) fs.writeFileSync(path.join(OUT, `nt_fam_${tag}_${i + 1}.csv`), specToCsv(toSpec(c.t))); });
+    fs.writeFileSync(path.join(OUT, `night_famscan_${tag}.json`), JSON.stringify({ cands: top.slice(0, 400).map(c => ({ dir: c.t.dir, pub: c.pub, n: c.t.n, note: c.note })) }));   // 다음 단계(상위만 다시 넓게)가 읽는다
     log(`[끝] ${((Date.now() - t0) / 60000).toFixed(1)}분`); eng.close();
   },
   async wfine() {
