@@ -1,7 +1,7 @@
 // Run from this directory with Node.js. Input blobs are pinned by Git hash in inputs.json.
 const fs = require('node:fs');
 const path = require('node:path');
-const inputs = require('./inputs.json');
+const inputs = require('./internal/inputs.json');
 function network(p, bits) {
   const n = p.nodes.length;
   const D = Array.from({length:n}, (_,i) => Array.from({length:n}, (_,j) => i === j ? 0 : Infinity));
@@ -18,7 +18,7 @@ function network(p, bits) {
   if (D.some(row => row.includes(Infinity))) throw Error('Disconnected');
   return {D,NX};
 }
-const simulation = fs.readFileSync(path.join(__dirname,'jsim.cjs'),'utf8');
+const simulation = fs.readFileSync(path.join(__dirname,'internal','jsim.cjs'),'utf8');
 function engine(p, bits) {
   const module = {exports:{}};
   const resolve = name => {

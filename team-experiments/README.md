@@ -24,12 +24,12 @@
 | source | 재현 명령과 원시 로그의 고정 경로 |
 
 ## 공통 평가기
-evaluator/score.cjs는 팀의 웹 방식 엔진과 고정된 케이스 입력으로 답안 하나를 평가한다. 기존 답안의 dir, fleet, key 행 형식을 그대로 받는다. 저장소 루트에서 아래처럼 실행한다.
+evaluator/score.cjs는 진홍 브랜치의 웹 방식 엔진과 고정된 케이스 입력으로 답안 하나를 평가한다. 기존 답안의 dir, fleet, key 행 형식을 그대로 받는다. 저장소 루트에서 아래처럼 실행한다.
 
     node team-experiments/evaluator/score.cjs 2 answer.csv 11 5
     node team-experiments/evaluator/score.cjs 2 --baseline 11 5
 
-출력의 pooled_cost는 지정한 시드들의 픽업을 합쳐 계산한 비용이다. 반려 시드는 rejected에 표시한다. 기준표는 evaluator/fleet-pilot.csv에 있다. 공식 채점과의 일치 여부는 케이스별 제출 기록으로 따로 확인한다.
+출력의 pooled_cost는 지정한 시드들의 픽업을 합쳐 계산한 비용이다. 반려 시드는 rejected에 표시한다. 기준표는 evaluator/internal/fleet-pilot.csv에 있다. 공식 채점과의 일치 여부는 케이스별 제출 기록으로 따로 확인한다.
 
 ## 수집 범위와 호출 시점
 collect.mjs는 원격 브랜치의 최신 커밋에서 결과·표·로그·압축 자료·문서 등 지원 확장자의 파일을 수집한다. 파일 내용은 그대로 보존하고, 대량 후보 trees 폴더는 Git 트리 단위로 색인한다. 브랜치에서 삭제된 과거 파일과 GitHub Actions에만 남은 아티팩트는 이 목록의 범위 밖이다. 원본을 실행하지 않는다.
