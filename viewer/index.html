@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>배차 트리 뷰어</title>
+<style>
+:root{color-scheme:light;--ink:#182820;--muted:#475e53;--line:#b3cbbe;--green:#15533e;--surface:#fff}
+*{box-sizing:border-box}body{margin:0;background:#edf4ef;color:var(--ink);font:16px/1.55 "Malgun Gothic",system-ui,sans-serif}
+main{max-width:1160px;margin:auto;padding:26px 14px 52px}
+header{background:#153c31;color:#fff;padding:clamp(18px,4vw,34px);border-radius:18px}
+h1{margin:0;font-size:clamp(25px,4vw,40px);letter-spacing:-.05em}header p{color:#dbece3;margin:.5em 0 0}
+.controls,.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;margin-top:16px;padding:clamp(12px,3vw,22px)}
+.controls{display:flex;align-items:end;gap:12px;flex-wrap:wrap}.field{display:grid;gap:4px;max-width:100%}
+label{font-weight:700}button,input,select{font:inherit;max-width:100%}
+select,button,input::file-selector-button{padding:7px 10px;border-radius:7px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+button,input::file-selector-button{cursor:pointer}button{background:var(--green);color:#fff}
+:focus-visible{outline:3px solid #925623;outline-offset:3px}
+#status{min-height:1.5em;color:#8b2b23;margin:8px 0 0}.panel h2{margin:0;font-size:20px}
+.meta{color:var(--muted);margin:.4em 0 1em;overflow-wrap:anywhere}
+.viewport{overflow:auto;border:1px solid var(--line);border-radius:12px;background:#f7faf8}
+#graph{width:max-content;min-width:100%;padding:20px;display:flex;justify-content:center}
+.tree{display:flex;flex-direction:column;align-items:center;position:relative}
+.node,.leaf{border:1px solid var(--line);border-radius:9px;background:white;padding:7px 11px;text-align:center;min-width:112px}
+.node strong{display:block;color:var(--green)}.node small{color:var(--muted)}
+.leaf{min-width:82px;color:var(--muted);font-size:.8em;border-style:dashed}
+.children{display:flex;margin-top:10px}.branch{position:relative;display:flex;flex-direction:column;align-items:center;padding:0 6px;min-width:104px}
+.branch:before{content:"";position:absolute;left:0;right:0;top:0;border-top:1px solid #739183}
+.branch:first-child:before{left:50%}.branch:last-child:before{right:50%}
+.edge{font-size:.8rem;color:var(--muted);border-left:1px solid #739183;padding:3px 0 4px 5px;white-space:nowrap}
+.edge.preferred{color:#15533e;font-weight:700}
+.legend{color:var(--muted);font-size:.88rem;margin:.7em 0 0}
+</style>
+</head>
+<body>
+<main>
+<header><h1>배차 트리 뷰어</h1><p>케이스를 고르면 대표 답안이 열립니다. 같은 형식의 CSV 파일을 넣어 나만의 트리도 볼 수 있습니다.</p></header>
+<div class="controls">
+<div class="field"><label for="case">케이스</label><select id="case"></select></div>
+<button id="baseline" type="button">대표 답안 보기</button>
+<div class="field"><label for="answer">내 답안 CSV</label><input id="answer" type="file" accept=".csv,text/csv"></div>
+</div>
+<p id="status" role="status" aria-live="polite"></p>
+<section class="panel" id="panel" aria-labelledby="heading">
+<h2 id="heading"></h2><p class="meta" id="meta"></p>
+<div class="viewport" tabindex="0" aria-label="배차 트리 도표. 넓은 트리는 가로로 스크롤할 수 있습니다."><div id="graph"></div></div>
+<p class="legend">굵게 표시한 가지가 해당 노드의 우선 분기입니다. 시각화 결과는 답안의 구조를 보여줍니다.</p>
+</section>
+</main>
+<script id="presets" type="application/json">[{"label":"고정 통로","answer":"dir,000011110000000111100000000110101\nfleet,19\nkey,1,de,min,65,2,3\nkey,2,qo,max,1,0,4\nkey,3,dl,min,65,5,0\nkey,4,urg,max,0.5,0,6\nkey,5,qo,max,1,7,8\nkey,6,w,min,2.85,0,0\nkey,7,urg,min,0.5,9,0\nkey,8,w,min,0.65,0,0\nkey,9,w,min,6.90,0,0\n","edges":33,"fixedDir":"000011110000000111100000000110101","nMin":1,"nMax":30,"maxNodes":9},{"label":"격자형 통로","answer":"dir,001011101110010001101000111001110101\nfleet,25\nkey,1,urg,max,0.5,2,3\nkey,2,de,max,222.50,0,4\nkey,3,qo,max,3,0,5\nkey,4,w,max,4.40,0,6\nkey,5,dl,max,92.50,7,8\nkey,6,dl,min,180,0,0\nkey,7,de,min,160,0,0\nkey,8,w,max,0.50,0,9\nkey,9,de,min,137.50,0,0\n","edges":36,"fixedDir":"","nMin":1,"nMax":30,"maxNodes":9},{"label":"루프형 통로","answer":"dir,1111111100000000011101011001101\nfleet,21\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.20,0,0\nkey,6,w,max,2.40,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n","edges":31,"fixedDir":"","nMin":1,"nMax":30,"maxNodes":9},{"label":"고밀도 교차로","answer":"dir,0000111111111111111011111111000111100000110000001110000000010100011110100111\nfleet,17\nkey,1,de,min,96.20,2,3\nkey,2,urg,max,0.5,0,4\nkey,3,qo,max,1,5,6\nkey,4,w,min,1,0,0\nkey,5,w,max,4.60,7,8\nkey,6,w,min,0.20,9,0\nkey,7,dl,min,75,0,0\nkey,8,urg,max,0.5,0,0\nkey,9,urg,max,0.5,0,0\n","edges":76,"fixedDir":"","nMin":1,"nMax":25,"maxNodes":9},{"label":"두 구역의 병목","answer":"dir,000111100111100001010010010011\nfleet,22\nkey,1,de,max,245,2,3\nkey,2,qo,max,4,0,4\nkey,3,dl,min,110,5,0\nkey,4,urg,max,0.5,0,6\nkey,5,qo,max,1,7,8\nkey,6,w,min,2.20,0,0\nkey,7,urg,min,0.5,0,0\nkey,8,w,min,0.80,9,0\nkey,9,urg,max,0.5,0,0\n","edges":30,"fixedDir":"","nMin":1,"nMax":30,"maxNodes":9,"paired":[20,21]}]</script>
+<script>
+const presets = JSON.parse(document.getElementById('presets').textContent);
+const features = { urg:'긴급 여부', w:'대기시간', de:'공차 거리', dl:'적재 거리', qo:'출발지 대기 건수' };
+const casePicker = document.getElementById('case');
+const uploader = document.getElementById('answer');
+const status = document.getElementById('status');
+const panel = document.getElementById('panel');
+const graph = document.getElementById('graph');
+let request = 0;
+
+function element(tag, text, className) {
+  const node = document.createElement(tag);
+  if (text) node.textContent = text;
+  if (className) node.className = className;
+  return node;
+}
+
+function parse(csv, preset) {
+  const rows = csv.replace(/^\uFEFF/, '').trim().split(/\r?\n/).filter(row => row.trim())
+    .map(row => row.split(',').map(field => field.trim()));
+  const [direction, fleetRow, ...rules] = rows;
+  if (direction?.length !== 2 || direction[0] !== 'dir' || !/^[01]+$/.test(direction[1]) || direction[1].length !== preset.edges) {
+    throw Error('선택한 케이스의 통로 방향 비트 수와 CSV의 dir 행을 확인하세요.');
+  }
+  if (preset.fixedDir && direction[1] !== preset.fixedDir) throw Error('이 케이스의 통로 방향은 고정입니다.');
+  if (preset.paired?.length === 2 && direction[1][preset.paired[0]] !== direction[1][preset.paired[1]]) throw Error('평행 차선의 방향 비트는 서로 같아야 합니다.');
+  const fleet = Number(fleetRow?.[1]);
+  if (fleetRow?.length !== 2 || fleetRow[0] !== 'fleet' || !/^\d+$/.test(fleetRow[1]) || fleet < preset.nMin || fleet > preset.nMax) {
+    throw Error('선택한 케이스의 차량 대수 범위와 CSV의 fleet 행을 확인하세요.');
+  }
+  if (!rules.length || rules.length > preset.maxNodes) throw Error('허용 노드 수를 확인하세요.');
+  const nodes = new Map();
+  for (const [type,id,feature,mode,value,lo,hi,...extra] of rules) {
+    if (type !== 'key' || ![id,lo,hi].every(part => /^\d+$/.test(part)) || !Object.hasOwn(features,feature)
+        || !['min','max'].includes(mode) || !value || !Number.isFinite(Number(value)) || extra.length
+        || Number(id) < 1 || Number(id) > rules.length || nodes.has(Number(id))
+        || (feature === 'urg' && Number(value) !== 0.5)) throw Error('key 행의 노드 번호, 변수, 우선순위와 임계값을 확인하세요.');
+    nodes.set(Number(id),{ id,feature,mode,value,lo:Number(lo),hi:Number(hi) });
+  }
+  const visited = new Set();
+  function check(id, path) {
+    if (!id) return;
+    const node = nodes.get(id);
+    if (!node || visited.has(id) || path.has(node.feature)) throw Error('트리의 자식 참조, 순환 또는 경로 내 변수 중복을 확인하세요.');
+    visited.add(id);
+    const next = new Set([...path,node.feature]);
+    check(node.lo,next); check(node.hi,next);
+  }
+  check(1,new Set());
+  if (visited.size !== nodes.size) throw Error('루트에서 연결되지 않은 노드가 있습니다.');
+  return { nodes,fleet,direction:direction[1] };
+}
+
+function draw(id, nodes) {
+  if (!id) return element('div','종료','leaf');
+  const node = nodes.get(id);
+  const tree = element('div',null,'tree');
+  const card = element('div',null,'node');
+  card.append(element('strong',node.id + '. ' + features[node.feature]),element('small',node.feature + ' · ' + node.mode + ' · ' + node.value));
+  tree.append(card);
+  if (!node.lo && !node.hi) return tree;
+  const children = element('div',null,'children');
+  for (const [side,child] of [['lo',node.lo],['hi',node.hi]]) {
+    const preferred = (side === 'lo') === (node.mode === 'min');
+    const branch = element('div',null,'branch');
+    branch.append(element('span',(side === 'lo' ? '≤ ' : '> ') + node.value + (preferred ? ' · 우선' : ''),'edge' + (preferred ? ' preferred' : '')),draw(child,nodes));
+    children.append(branch);
+  }
+  tree.append(children);
+  return tree;
+}
+function show(csv, label) {
+  try {
+    const preset = presets[Number(casePicker.value)-1];
+    const {nodes,fleet,direction} = parse(csv,preset);
+    document.getElementById('heading').textContent = label;
+    document.getElementById('meta').textContent = fleet + '대 · 규칙 ' + nodes.size + '개 · 방향 ' + direction;
+    graph.replaceChildren(draw(1,nodes));
+    status.textContent = '';
+    panel.hidden = false;
+  } catch (error) {
+    panel.hidden = true;
+    status.textContent = error.message;
+  }
+}
+function baseline() {
+  request++;
+  uploader.value = '';
+  show(presets[Number(casePicker.value)-1].answer,'Case ' + casePicker.value + ' 대표 답안');
+}
+presets.forEach((preset, i) => casePicker.add(new Option('Case ' + (i+1) + ' · ' + preset.label,i+1)));
+casePicker.addEventListener('change',baseline);
+document.getElementById('baseline').addEventListener('click',baseline);
+uploader.addEventListener('change',async () => {
+  const file = uploader.files[0];
+  const current = ++request;
+  if (!file) return;
+  try {
+    if (file.size > 65536) throw Error('65,536바이트 이하의 답안 CSV를 선택하세요.');
+    const contents = await file.text();
+    if (current === request) show(contents,file.name);
+  } catch (error) {
+    if (current === request) {
+      panel.hidden = true;
+      status.textContent = error.message;
+    }
+  }
+});
+baseline();
+</script>
+</body>
+</html>
