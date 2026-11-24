@@ -1,0 +1,6 @@
+answer_case5.csv n21: 서로 다른 값 9개, 최저 779.71 (경계값 0.01029), 원래 779.90 [0.2분]
+  1. 779.71 | 경계값 0.01029 | n21 w(min,0.01029)[urg(max,0.5)[dl(max,40)[de(max,20),-],dl(min,75)[-,de(max,20)]],de(min,65)[urg(max,0.5),dl(max,40)]]
+  2. 779.90 | 경계값 0 | n21 w(min,0)[urg(max,0.5)[dl(max,40)[de(max,20),-],dl(min,75)[-,de(max,20)]],de(min,65)[urg(max,0.5),dl(max,40)]]
+  3. 779.91 | 경계값 0.0036 | n21 w(min,0.0036)[urg(max,0.5)[dl(max,40)[de(max,20),-],dl(min,75)[-,de(max,20)]],de(min,65)[urg(max,0.5),dl(max,40)]]
+  4. 779.92 | 경계값 0.00815 | n21 w(min,0.00815)[urg(max,0.5)[dl(max,40)[de(max,20),-],dl(min,75)[-,de(max,20)]],de(min,65)[urg(max,0.5),dl(max,40)]]
+  5. 779.92 | 경계값 0.00592 | n21 w(min,0.00592)[urg(max,0.5)[dl(max,40)[de(max,20),-],dl(min,75)[-,de(max,20)]],de(min,65)[urg(max,0.5),dl(max,40)]]

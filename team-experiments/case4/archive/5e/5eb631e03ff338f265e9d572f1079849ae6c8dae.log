@@ -1,0 +1,2 @@
+  answer_case4.csv 노드 2: 805.89 | n16 urg(max,0.5)[w(max,0.78)[dl(max,30)[de(max,15),-],de(min,75)[dl(min,45),dl(max,60)]],de(min,135)[w(min,0.75),-]]
+[경계값 다듬기] answer_case4.csv: 805.89 → 805.89 (평가 7681, 4.0분) → ws_answer_case4.csv

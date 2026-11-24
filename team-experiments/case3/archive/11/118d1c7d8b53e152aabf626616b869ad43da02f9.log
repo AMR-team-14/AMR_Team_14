@@ -1,0 +1,7 @@
+answer_case3.csv n22: 서로 다른 값 28개, 최저 976.45 (경계값 0), 원래 976.45 [2.1분]
+case3/search_s2_best.csv: 루트가 w가 아니라 건너뜀
+  1. 976.45 | 경계값 0 | n22 w(min,0)[qo(max,0)[-,dl(min,80)[de(max,60),-]],de(min,160)[urg(max,0.5)[dl(min,260),-],urg(min,0.5)[dl(min,100),-]]]
+  2. 976.71 | 경계값 0.00226 | n22 w(min,0.00226)[qo(max,0)[-,dl(min,80)[de(max,60),-]],de(min,160)[urg(max,0.5)[dl(min,260),-],urg(min,0.5)[dl(min,100),-]]]
+  3. 976.71 | 경계값 0.00155 | n22 w(min,0.00155)[qo(max,0)[-,dl(min,80)[de(max,60),-]],de(min,160)[urg(max,0.5)[dl(min,260),-],urg(min,0.5)[dl(min,100),-]]]
+  4. 977.75 | 경계값 0.00432 | n22 w(min,0.00432)[qo(max,0)[-,dl(min,80)[de(max,60),-]],de(min,160)[urg(max,0.5)[dl(min,260),-],urg(min,0.5)[dl(min,100),-]]]
+  5. 977.80 | 경계값 0.01745 | n22 w(min,0.01745)[qo(max,0)[-,dl(min,80)[de(max,60),-]],de(min,160)[urg(max,0.5)[dl(min,260),-],urg(min,0.5)[dl(min,100),-]]]

@@ -1,0 +1,9 @@
+{
+  "engineCommit": "3fb0d205c",
+  "seeds": "2001-2200",
+  "trees": 60,
+  "evaluations": 252,
+  "runner": "github-actions",
+  "seconds": null,
+  "finishedAt": "2026-11-21T20:58:44.875Z"
+}

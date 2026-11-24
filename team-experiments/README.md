@@ -1,16 +1,37 @@
-# 팀 실험 기록
-에이전트에게 이 폴더를 읽히면 된다. 팀원이 배치를 마쳤을 때 결과를 자기 브랜치의 case1~case5 중 해당 폴더에 추가하고, 결과 파일만 담은 풀 리퀘스트(PR)를 main으로 연다. 기존 원시 로그는 원래 위치에 두고 결과에서 커밋과 경로를 가리킨다.
+# 팀 실험 결과 모음
+각 케이스의 inventory.csv에서 기존 답안, 점수표, 원시 로그와 실험 메모를 찾을 수 있다. 여러 케이스를 다루거나 파일명만으로 소속을 알기 어려운 자료는 shared에 모았다. 팀원은 쓰던 탐색기를 그대로 사용하고, 최종 후보를 비교할 때 같은 입력과 채점 방식을 쓰면 된다.
 
-## 왜 함께 기록하나
-Case 1에서 진홍과 윤빈이 같은 19대·9노드 답안을 공개 시드 11~15로 평가했다. 웹 방식은 1185.42, 팀 C++ 방식은 1190.9692였다. 요청 생성과 집계 방식이 달라 같은 열에 넣으면 순위 해석이 흔들린다. 윤빈은 기존 트리 18대도 평가했다. 승민의 기존 실행은 별도 중복 건수에서 제외했다. Case 3에서는 민재와 진홍이 루프 방향을 열거했고, Case 5에서는 두 사람 모두 구역 간 재배치를 살폈다. 이 두 사례는 탐색 주제가 겹친다. Case 2·4를 포함해 팀원 전원의 개별 실행이 동일했다는 집계는 아직 없다. 모든 팀원이 직접 평가기를 만들었다는 근거도 없다.
+## 원하는 결과 찾기
+| 열 | 읽는 법 |
+|---|---|
+| original_path | 원래 파일명과 실험 폴더. summary.csv는 요약, raw.jsonl.gz는 압축된 원시 기록인 경우가 많다. |
+| branches | 해당 경로에서 똑같은 파일이 발견된 브랜치. 작성자 명단과는 다를 수 있다. |
+| git_object | 원본 내용의 Git 식별자. 바이트가 같은 파일은 한 번 저장한다. |
+| local_file | 이 폴더 기준 실제 사본 경로. 대량 후보 trees 폴더는 다음 열로 연다. |
+| permalink | 수집 당시 커밋에 고정한 원본 링크. 폴더 링크는 그 안의 후보 전체를 연다. |
 
-[Case 1 원본 대조](https://github.com/AMR-team-14/AMR_Team_14/blob/younbean/experiments/younbean/submission_validation.md) · [진홍의 케이스별 기록](https://github.com/AMR-team-14/AMR_Team_14/tree/jinhong-experiments/jinhong) · [민재의 방법론](https://github.com/AMR-team-14/AMR_Team_14/blob/main/REPORT_METHODOLOGY_AND_OPTIMALITY.md)
+## 새 결과를 남길 때
+자기 브랜치의 team-experiments/caseN/submissions/에 배치별 결과표를 올리면 수집기가 찾는다. 기존 개인 실험 폴더에 있는 기록도 함께 수집한다. 팀원이나 팀원의 에이전트는 아래 열을 사용한다. 예전 자료는 원래 형식으로 보존한다.
 
-## 공통 평가 방법
-팀 비교용 기준으로 진홍의 웹 방식 구현을 제안한다. evaluator 안에 엔진, 고정 입력, 실행 예시, 기존 기준표를 함께 두었다. 임시 사본에서 node pilot.cjs를 실행하면 다섯 케이스의 기준 대수와 ±1대를 평가한다. 생성된 fleet-pilot.csv를 보관본과 비교한다. 새 후보도 같은 요청 생성, 통로 방향, 주문 합산, 반려 판정을 사용한다. 개별 탐색기를 써도 최종 비교표에는 공통 방식으로 재평가한 점수를 올린다. 공식 웹과 일치 여부는 케이스별 기준안부터 확인한다.
+| 열 | 담을 내용 |
+|---|---|
+| case, batch, author | 케이스 번호, 배치 이름, 실행 담당자 |
+| hypothesis | 이 실험에서 확인하려던 질문 |
+| direction, fleet, candidate | 통로 방향, 차량 대수, 트리까지 포함한 답안 원본 경로와 해시 |
+| input, engine | 입력 파일 해시와 평가기 커밋 |
+| seeds, aggregation | 시드 목록과 점수를 합산한 방식 |
+| score, rejected | 총비용과 반려된 시드 목록. 반려된 묶음의 비용은 비워 둔다. |
+| source | 재현 명령과 원시 로그의 고정 경로 |
 
-## 결과 파일 규약
-배치마다 caseN/작성자-배치.json 한 개를 추가한다. 최상위 값은 행 객체 배열이다. 각 행의 필수 필드는 candidate(방향·대수·트리를 포함한 후보의 해시), input(입력 해시), engine(평가기 버전), aggregation(집계 방식), seeds(실행 순서대로 정수 배열), score(유한 숫자 또는 반려 시 null), source(고정 커밋과 원본 경로)다. 동일 케이스에서 앞의 다섯 조건이 같으면 기존 결과를 먼저 확인한다. 이력이 불완전한 옛 기록은 원문으로 인용하고 확인된 값만 비교한다.
+## 공통 평가기
+evaluator/score.cjs는 팀의 웹 방식 엔진과 고정된 케이스 입력으로 답안 하나를 평가한다. 기존 답안의 dir, fleet, key 행 형식을 그대로 받는다. 저장소 루트에서 아래처럼 실행한다.
 
-## 병합 담당자
-merge-agent.yml.template은 수동 호출형 GitHub Actions 작업이다. 팀 합의 뒤 main의 .github/workflows/merge-experiment.yml에 설치한다. 병합할 PR 번호를 지정한 시점에만 동작한다. 같은 저장소의 main 대상 PR에서 새 결과 JSON만 검사한 뒤 검사한 커밋을 병합한다. 충돌이나 보호 규칙으로 실패하면 그 사유를 확인한다. 현재 템플릿에는 예약, 반복 조회, Claude 호출이 없다.
+    node team-experiments/evaluator/score.cjs 2 answer.csv 11 5
+    node team-experiments/evaluator/score.cjs 2 --baseline 11 5
+
+출력의 pooled_cost는 지정한 시드들의 픽업을 합쳐 계산한 비용이다. 반려 시드는 rejected에 표시한다. 기준표는 evaluator/fleet-pilot.csv에 있다. 공식 채점과의 일치 여부는 케이스별 제출 기록으로 따로 확인한다.
+
+## 수집 범위와 호출 시점
+collect.mjs는 원격 브랜치의 최신 커밋에서 결과·표·로그·압축 자료·문서 등 지원 확장자의 파일을 수집한다. 파일 내용은 그대로 보존하고, 대량 후보 trees 폴더는 Git 트리 단위로 색인한다. 브랜치에서 삭제된 과거 파일과 GitHub Actions에만 남은 아티팩트는 이 목록의 범위 밖이다. 원본을 실행하지 않는다.
+
+collect.yml.template은 수동 실행용 GitHub Actions 작업이다. 관리자가 기본 브랜치의 .github/workflows/에 설치한 뒤 Run workflow를 눌렀을 때만 브랜치 목록을 갱신하고 jsm의 수집 폴더를 업데이트한다. 언어 모델 호출, 제출, 타 브랜치 병합 기능은 없다.

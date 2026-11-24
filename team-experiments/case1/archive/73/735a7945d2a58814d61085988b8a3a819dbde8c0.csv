@@ -1,0 +1,4 @@
+policy,seeds,disqualified,mean_cost,mean_wait,urgent_p95,mean_worst_5pct,maxQ,endQmax
+01_baseline,3600,0,1191.704754,3.788514,5.193671,1217.081125,36,20
+02_budget_control,3600,0,1194.984733,3.788836,5.226141,1221.174526,36,21
+03_aged_backlog,3600,0,1194.961688,3.788729,5.226020,1221.286901,36,21
