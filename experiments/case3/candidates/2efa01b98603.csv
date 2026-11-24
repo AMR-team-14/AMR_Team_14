@@ -1,0 +1,11 @@
+dir,0011111111000000110110111101001
+fleet,23
+key,1,de,min,160,2,0
+key,2,dl,min,200,3,4
+key,3,urg,max,0.5,5,6
+key,4,w,max,1,0,7
+key,5,qo,min,6,0,8
+key,6,qo,max,2,9,0
+key,7,qo,max,1,0,0
+key,8,w,max,0.03,0,0
+key,9,w,min,3.5,0,0
