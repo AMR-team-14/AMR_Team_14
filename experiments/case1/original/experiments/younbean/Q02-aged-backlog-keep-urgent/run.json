@@ -1,0 +1,47 @@
+{
+  "id": "Q02-aged-backlog-keep-urgent",
+  "status": "done",
+  "runner": "agv_opt --yb-backlog-keep-urgent",
+  "engine_base": "f565cdf",
+  "fleets": [
+    19
+  ],
+  "seeds": {
+    "discovery": "37001-37320",
+    "selection": "38001-38600",
+    "validation": "39001-42600"
+  },
+  "gates": {
+    "empty_distance_at_most": 65,
+    "origin_waiting_at_least": 2,
+    "urgent": false
+  },
+  "tuning": {
+    "thresholds_minutes": [
+      0.5,
+      1,
+      1.5,
+      2,
+      2.5,
+      3,
+      4,
+      5,
+      6,
+      8,
+      10,
+      12,
+      16,
+      19.9,
+      24
+    ],
+    "fine": "three best active points ±0.25 by 0.05 minutes",
+    "selected_virtual_minutes": 0.45,
+    "selected_legal_minutes": 1.5,
+    "predeclared_example_minutes": 4
+  },
+  "outcomes": {
+    "primary": "official cost formula (local simulator)",
+    "late_general_minutes": 8,
+    "late_denominator": "ordinary arrivals after warmup with 8 minutes left"
+  }
+}

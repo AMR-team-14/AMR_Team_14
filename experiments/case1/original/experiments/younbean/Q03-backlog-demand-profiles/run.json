@@ -1,0 +1,67 @@
+{
+  "id": "Q03-backlog-demand-profiles",
+  "status": "done",
+  "runner": "agv_opt --yb-backlog-demand-profiles",
+  "engine_base": "4f2357b",
+  "fleets": [
+    19
+  ],
+  "seeds": "43001-44200",
+  "age_minutes": 4,
+  "schedule": {
+    "block_starts": [
+      480,
+      840,
+      1200,
+      1560,
+      1920,
+      2280
+    ],
+    "block_length_minutes": 90,
+    "focal_observation_minutes": 60,
+    "profiles": [
+      {
+        "id": "normal",
+        "origins": [],
+        "surge_minutes": 0,
+        "arrival_rate_multiple": 1
+      },
+      {
+        "id": "short_recv",
+        "origins": [
+          "RECV"
+        ],
+        "surge_minutes": 10,
+        "arrival_rate_multiple": 3,
+        "recovery_rate_multiple": 0.75
+      },
+      {
+        "id": "sustained_recv",
+        "origins": [
+          "RECV"
+        ],
+        "surge_minutes": 40,
+        "arrival_rate_multiple": 1.5,
+        "recovery_rate_multiple": 0.6
+      },
+      {
+        "id": "sustained_recv_pack",
+        "origins": [
+          "RECV",
+          "PACK"
+        ],
+        "surge_minutes": 40,
+        "arrival_rate_multiple": 1.5,
+        "recovery_rate_multiple": 0.6
+      }
+    ]
+  },
+  "observation": {
+    "late_pickup_minutes": 8,
+    "scope": "ordinary requests; RECV used as focal reference for normal"
+  },
+  "controls": {
+    "virtual": "keeps all nine baseline nodes",
+    "submission": "matched eight-node control for backlog gates 2 and 3"
+  }
+}

@@ -1,0 +1,5 @@
+profile,seeds,target_arrivals_first10,target_arrivals_first40,target_arrivals_full90
+normal,1200,45685,181926,408301
+short_recv,1200,136836,238270,408301
+sustained_recv,1200,68303,272295,408301
+sustained_recv_pack,1200,125345,500110,750437

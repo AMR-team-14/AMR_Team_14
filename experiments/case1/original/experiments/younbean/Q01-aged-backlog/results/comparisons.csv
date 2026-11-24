@@ -1,0 +1,4 @@
+comparison,paired,rejected,delta_cost,standard_error,seeds_changed,delta_wait,delta_urgent_p95,decision
+02_minus_01,3600,0,3.279979,0.131740,3532,0.000322,0.032471,not_confirmed
+03_minus_02,3600,0,-0.023045,0.031586,148,-0.000107,-0.000121,not_confirmed
+03_minus_01,3600,0,3.256934,0.133880,3532,0.000215,0.032350,not_confirmed

@@ -1,0 +1,27 @@
+{
+  "id": "Q01-aged-backlog",
+  "status": "done",
+  "runner": "agv_opt --yb-aged-backlog",
+  "engine_base": "82db896a31b96f5d3715b7763c3729bce983c1fd",
+  "fleets": [
+    19
+  ],
+  "baseline": "01_baseline.csv",
+  "matched_control": "02_budget_control.csv",
+  "candidate": "03_aged_backlog.csv",
+  "seeds": {
+    "discovery": "31001-31240",
+    "selection": "32001-32500",
+    "validation": "33001-36600"
+  },
+  "tuning": {
+    "coarse_minutes": "0-12 by 0.25, plus 13, 14, 16, 20, 24",
+    "fine_minutes": "+/-0.25 by 0.05 around the five best active coarse points",
+    "planned_example_minutes": 4,
+    "selected_minutes": 19.9
+  },
+  "metrics": {
+    "delta": "candidate minus reference; negative means lower cost",
+    "adoption": "zero disqualifications and paired mean + 2*SE < 0 against both references"
+  }
+}
