@@ -22,6 +22,8 @@ node simulator/score.cjs 2 experiments/case2/best-answer.csv 1 500 --trace
 
 ## 배차 트리 시각화
 
-[Case 1~5 배차 트리 뷰어](viewer/index.html)를 내려받아 브라우저에서 열면 대표 답안과 직접 선택한 CSV를 볼 수 있다. 파일은 브라우저에서만 읽는다.
+[Case 1~5 배차 트리 뷰어 바로 열기](https://amr-team-14.github.io/AMR_Team_14/tree-viewer/)
 
-대표 답안 또는 케이스 명세가 바뀌면 저장소 루트에서 `node viewer/refresh-presets.cjs`를 실행해 뷰어의 내장 데이터를 갱신한다.
+케이스별 대표 답안과 내 CSV의 트리를 볼 수 있다. 파일은 브라우저에서만 읽는다. 오프라인에서는 [뷰어 HTML](viewer/index.html)을 내려받아 연다.
+
+대표 답안이나 명세가 바뀌면 `node viewer/refresh-presets.cjs`로 내장 데이터를 갱신하고, 갱신한 HTML을 Pages 배포 경로인 jsm의 `docs/tree-viewer/index.html`에도 반영한다.
