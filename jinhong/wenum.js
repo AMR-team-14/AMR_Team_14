@@ -24,7 +24,8 @@ const show = W => !W ? '-' : `${W[0][0]}(${W[0][1]},${W[0][2]})` + (W[1] ? (W[1]
   const eng = new Engine(CN, +(process.env.AGVX_THREADS || 14)), t0 = Date.now(), ths = ths0 ? ths0.split(',').map(Number) : [m[1].th], el = () => ((Date.now() - t0) / 60000).toFixed(1);
   const Ws = [null]; for (const a of atoms) Ws.push([a]);
   for (const a of atoms) for (const b of atoms) if (b[0] !== a[0]) { Ws.push([a, 'lo', b]); Ws.push([a, 'hi', b]); }
-  const roots3 = atoms.filter(a => a[0] === 'urg' || (a[0] === 'de' && [65, 85, 110, 150].includes(a[2])) || (a[0] === 'qo' && a[2] === 1));
+  const DE3 = (process.env.WENUM_DE || '65,85,110,150').split(',').map(Number), QO3 = process.env.WENUM_NOQO !== '1';   // 기준 3개짜리의 뿌리로 쓸 de 경계값 · qo(1) 사용 여부
+  const roots3 = atoms.filter(a => a[0] === 'urg' || (a[0] === 'de' && DE3.includes(a[2])) || (QO3 && a[0] === 'qo' && a[2] === 1));
   for (const a of roots3) for (const b of atoms) if (b[0] !== a[0]) for (const c of atoms) if (c[0] !== a[0]) Ws.push([a, 'both', b, c]);
   console.log(`대기 가지 후보 ${Ws.length}개 × 루트 경계값 ${ths.length}개 (기본 조각 ${atoms.length}개)`);
   const all = [];
