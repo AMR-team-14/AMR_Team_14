@@ -1,0 +1,3 @@
+Vendored team candidate files (unchanged bytes) used as fixed inputs.
+jinhong__*  AMR-team-14/AMR_Team_14 jinhong-experiments @ 98597c1a874a5812db7c52e9a2ae01f654a0a400  jinhong/caseN/<name>
+minjae__*   AMR-team-14/AMR_Team_14 main @ 8a384c2caad7f1f803d09d865d91145f34f90420  <name> (repository root)

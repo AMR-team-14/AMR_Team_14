@@ -1,0 +1,44 @@
+name: JSM five-case batch
+# Runs only when experiments/JSM/five-case/request.txt changes on jsm.
+# request.txt: one line "<batch> <workers>", e.g. "B1 4". Results come back as an artifact; nothing is committed.
+on:
+  push:
+    branches: [jsm]
+    paths: ['experiments/JSM/five-case/request.txt']
+permissions:
+  contents: read
+concurrency:
+  group: jsm-five-case
+  cancel-in-progress: false
+jobs:
+  run:
+    if: github.ref == 'refs/heads/jsm'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: experiments/JSM/five-case
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Run assigned tasks
+        working-directory: experiments/JSM/five-case
+        run: |
+          set -euo pipefail
+          read -r BATCH WANT < request.txt
+          NP=$(nproc)
+          echo "nproc=$NP cpu.max=$(cat /sys/fs/cgroup/cpu.max 2>/dev/null || echo n/a)"
+          W=$(( WANT < NP ? WANT : NP )); W=$(( W > 4 ? 4 : W ))
+          node run.cjs "jobs/$BATCH.jsonl" --env github --workers "$W" --out out/github
+          printf '%s %s %s\n' "$GITHUB_SHA" "$GITHUB_RUN_ID" "$GITHUB_RUN_ATTEMPT" > out/github/run.txt
+          echo "BATCH=$BATCH" >> "$GITHUB_ENV"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jsm-five-case-${{ env.BATCH }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: experiments/JSM/five-case/out/github/
+          if-no-files-found: error
+          retention-days: 30
