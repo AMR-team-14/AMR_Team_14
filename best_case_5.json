@@ -1,45 +1,48 @@
 {
   "case": "c5",
   "title": "기말 AGV/OHT Case 5 — 저밀도 병목 + 수요 불균형",
-  "dir": "000111100111100001010010010011",
+  "dir": "000111100111100001000010010011",
   "fleet": 22,
-  "n_nodes": 9,
+  "n_nodes": 7,
   "key_rows": [
-    "key,1,de,max,245,2,3",
-    "key,2,qo,max,4,0,4",
-    "key,3,dl,min,110,5,0",
-    "key,4,urg,max,0.5,0,6",
-    "key,5,qo,max,1,7,8",
-    "key,6,w,min,2.20,0,0",
-    "key,7,urg,min,0.5,0,0",
-    "key,8,w,min,0.80,9,0",
-    "key,9,urg,max,0.5,0,0"
+    "key,1,de,min,95.85,2,3",
+    "key,2,urg,max,0.5,0,4",
+    "key,3,urg,min,0.5,5,6",
+    "key,4,dl,max,45.10,0,0",
+    "key,5,w,max,0.63,7,0",
+    "key,6,w,min,0.67,0,0",
+    "key,7,dl,max,66.65,0,0"
   ],
   "validation_3600_seeds": {
     "seed_range": "3001..6600",
-    "mean_cost": 836.9227,
-    "std_cost": 14.1152,
-    "p95_cost": 861.0408,
-    "p99_cost": 877.1836,
-    "worst_max_cost": 915.3528,
-    "robust_risk_obj": 854.8431,
-    "mean_w_bar": 1.9996,
-    "mean_u95": 3.8311,
-    "max_u95": 4.5516,
-    "max_queue": 15,
+    "mean_cost": 814.4054,
+    "agv_cost": 330.0000,
+    "w_cost": 97.3670,
+    "u95_cost": 387.0384,
+    "std_cost": 21.2124,
+    "p95_cost": 853.6850,
+    "p99_cost": 892.0914,
+    "cvar95_cost": 875.5966,
+    "worst_max_cost": 913.1283,
+    "composite_score": 945.7449,
+    "mean_w_bar": 1.5725,
+    "mean_u95": 3.8704,
+    "max_u95": 4.7256,
+    "max_queue": 16,
     "max_end_queue": 5,
     "disqualifications": 0
   },
   "public_5_seeds": {
-    "mean_cost": 836.4891,
-    "mean_w_bar": 1.9757,
-    "mean_u95": 3.8415,
+    "mean_cost": 821.4547,
+    "mean_w_bar": 1.5693,
+    "mean_u95": 3.9428,
     "disqualifications": 0
   },
   "checks": {
     "dir_scc_ok": true,
     "strict_tree_ok": true,
-    "fast_vs_brute_err": 0.000000000
+    "fast_vs_brute_err": 0.000000000,
+    "total_sim_evals": 11791827
   },
-  "elapsed_sec": 305.09
+  "elapsed_sec": 13420.30
 }

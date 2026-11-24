@@ -1,39 +1,39 @@
 {
   "case": "c3",
   "title": "기말 AGV/OHT Case 3 — OHT형 루프",
-  "dir": "1111111100000000011101011001101",
-  "fleet": 21,
+  "dir": "1111111100000000011111011001101",
+  "fleet": 20,
   "n_nodes": 9,
   "key_rows": [
     "key,1,de,min,160,2,3",
     "key,2,urg,max,0.5,4,5",
     "key,3,urg,min,0.5,6,7",
-    "key,4,qo,max,1,0,8",
-    "key,5,w,min,3.20,0,0",
-    "key,6,w,max,2.40,9,0",
-    "key,7,w,min,0.35,0,0",
-    "key,8,dl,min,320,0,0",
-    "key,9,dl,min,140,0,0"
+    "key,4,qo,max,2,0,8",
+    "key,5,w,min,2.85,0,0",
+    "key,6,w,max,0.50,9,0",
+    "key,7,w,min,0.90,0,0",
+    "key,8,dl,min,220,0,0",
+    "key,9,dl,min,40,0,0"
   ],
   "validation_3600_seeds": {
     "seed_range": "3001..6600",
-    "mean_cost": 1006.1959,
-    "std_cost": 16.5120,
-    "p95_cost": 1033.9305,
-    "p99_cost": 1043.1008,
-    "worst_max_cost": 1071.9367,
-    "robust_risk_obj": 1025.5346,
-    "mean_w_bar": 2.2172,
-    "mean_u95": 5.6269,
-    "max_u95": 6.2047,
-    "max_queue": 21,
-    "max_end_queue": 11,
+    "mean_cost": 1001.0887,
+    "std_cost": 16.5425,
+    "p95_cost": 1028.9085,
+    "p99_cost": 1040.1270,
+    "worst_max_cost": 1061.0153,
+    "robust_score": 1008.3069,
+    "mean_w_bar": 2.3222,
+    "mean_u95": 5.6649,
+    "max_u95": 6.1370,
+    "max_queue": 25,
+    "max_end_queue": 14,
     "disqualifications": 0
   },
   "public_5_seeds": {
-    "mean_cost": 1007.5227,
-    "mean_w_bar": 2.2398,
-    "mean_u95": 5.6271,
+    "mean_cost": 1011.0395,
+    "mean_w_bar": 2.3771,
+    "mean_u95": 5.7326,
     "disqualifications": 0
   },
   "checks": {
@@ -41,5 +41,5 @@
     "strict_tree_ok": true,
     "fast_vs_brute_err": 0.000000000
   },
-  "elapsed_sec": 324.72
+  "elapsed_sec": 351.62
 }

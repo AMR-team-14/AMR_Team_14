@@ -1,45 +1,47 @@
 {
   "case": "c4",
   "title": "기말 AGV/OHT Case 4 — 교차로 고밀도",
-  "dir": "0000111111111111111011111111000111100000110000001110000000010100011110100111",
-  "fleet": 17,
-  "n_nodes": 9,
+  "dir": "1111111111011111111000001111110111100000110011101101000100010110011111101111",
+  "fleet": 16,
+  "n_nodes": 6,
   "key_rows": [
     "key,1,de,min,96.20,2,3",
     "key,2,urg,max,0.5,0,4",
-    "key,3,qo,max,1,5,6",
-    "key,4,w,min,1,0,0",
-    "key,5,w,max,4.60,7,8",
-    "key,6,w,min,0.20,9,0",
-    "key,7,dl,min,75,0,0",
-    "key,8,urg,max,0.5,0,0",
-    "key,9,urg,max,0.5,0,0"
+    "key,3,urg,min,0.5,5,0",
+    "key,4,w,min,0.80,6,0",
+    "key,5,w,max,3.50,0,0",
+    "key,6,dl,min,30,0,0"
   ],
   "validation_3600_seeds": {
     "seed_range": "3001..6600",
-    "mean_cost": 837.9685,
-    "std_cost": 9.0527,
-    "p95_cost": 848.8496,
-    "p99_cost": 856.0472,
-    "worst_max_cost": 866.1190,
-    "robust_risk_obj": 847.3829,
-    "mean_w_bar": 2.0043,
-    "mean_u95": 4.9855,
-    "max_u95": 5.2261,
-    "max_queue": 15,
-    "max_end_queue": 7,
+    "mean_cost": 798.8583,
+    "agv_cost": 240.0000,
+    "w_cost": 82.2841,
+    "u95_cost": 476.5743,
+    "std_cost": 7.9728,
+    "p95_cost": 814.7390,
+    "p99_cost": 825.3114,
+    "cvar95_cost": 821.0782,
+    "worst_max_cost": 844.4813,
+    "composite_score": 922.0200,
+    "mean_w_bar": 1.9536,
+    "mean_u95": 4.7657,
+    "max_u95": 5.1610,
+    "max_queue": 18,
+    "max_end_queue": 9,
     "disqualifications": 0
   },
   "public_5_seeds": {
-    "mean_cost": 841.1828,
-    "mean_w_bar": 2.0045,
-    "mean_u95": 5.0175,
+    "mean_cost": 797.8793,
+    "mean_w_bar": 1.9546,
+    "mean_u95": 4.7555,
     "disqualifications": 0
   },
   "checks": {
     "dir_scc_ok": true,
     "strict_tree_ok": true,
-    "fast_vs_brute_err": 0.000000000
+    "fast_vs_brute_err": 0.000000000,
+    "total_sim_evals": 2701870
   },
-  "elapsed_sec": 361.98
+  "elapsed_sec": 2630.27
 }
