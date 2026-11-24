@@ -1,7 +1,3 @@
 # Case 1 실험 메모
 
-기존 기록 3개를 [original/](original/)에서 볼 수 있다.
-- [method_a_local_optimality_report.md](original/method_a_local_optimality_report.md)
-- [민재의 케이스별 방법론](../../REPORT_METHODOLOGY_AND_OPTIMALITY.md)
-
-새 실험의 결론에는 기준안, 비교 조건, 결과 근거를 남긴다.
+고정 방향에서 차량 대수와 트리를 비교했다. 19대·9노드의 로컬 새 3,600시드 평균은 1,194.08이었다. 탐색에는 트리 성장과 2~3개 하위 트리 교체, 임계값 미세 조정을 썼다. [케이스 답안](original/ans_c1.csv) · [기술 보고서](../../legacy/REPORT_METHODOLOGY_AND_OPTIMALITY.md)
