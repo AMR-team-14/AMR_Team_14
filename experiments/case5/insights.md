@@ -1,6 +1,3 @@
 # Case 5 실험 메모
 
-기존 기록 76개를 [original/](original/)에서 볼 수 있다.
-- [NOTES.md](original/jinhong/case5/NOTES.md)
-
-새 실험의 결론에는 기준안, 비교 조건, 결과 근거를 남긴다.
+대기 가지를 1~3노드로 처음부터 열거하고 후보의 이웃을 다시 탐색해 23대에서 공개 점수 770.94를 얻었다. 기존 기록의 새 200묶음에서는 평균 785.76, 반려 0이었다. [상세 로그와 분석](original/jinhong/case5/NOTES.md)

@@ -1,6 +1,3 @@
 # Case 3 실험 메모
 
-기존 기록 77개를 [original/](original/)에서 볼 수 있다.
-- [NOTES.md](original/jinhong/case3/NOTES.md)
-
-새 실험의 결론에는 기준안, 비교 조건, 결과 근거를 남긴다.
+루프 방향 후보를 비교하고 방향별 차량 및 배차 규칙을 다듬었다. 기존 로드맵의 공개 점수는 962.70이다. [상세 로그와 분석](original/jinhong/case3/NOTES.md)

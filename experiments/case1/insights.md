@@ -1,8 +1,3 @@
 # Case 1 실험 메모
 
-기존 기록 45개를 [original/](original/)에서 볼 수 있다.
-- [CASE1_LOGIC.md](original/jinhong/CASE1_LOGIC.md)
-- [method_a_local_optimality_report.md](original/method_a_local_optimality_report.md)
-- [진홍의 전체 실험 기록](../../jinhong/EXPERIMENTS.md)
-
-새 실험의 결론에는 기준안, 비교 조건, 결과 근거를 남긴다.
+루트 대기 경계를 0에 가깝게 두어 막 들어온 주문과 대기 중인 주문을 나눴다. 21대 공개 점수 1,170.20인 안과 새 시드 평균을 기준으로 고른 후보를 따로 보관했다. [Case 1 기록](../../legacy/jinhong/EXPERIMENTS.md)

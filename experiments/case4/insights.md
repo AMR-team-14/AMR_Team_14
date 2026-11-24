@@ -1,6 +1,3 @@
 # Case 4 실험 메모
 
-기존 기록 67개를 [original/](original/)에서 볼 수 있다.
-- [NOTES.md](original/jinhong/case4/NOTES.md)
-
-새 실험의 결론에는 기준안, 비교 조건, 결과 근거를 남긴다.
+기존 제출 기록은 18대 801.44다. 17대 800.79는 미제출 로컬 후보로 기록했다. 대기 가지를 다시 열거한 회전은 801.252로 800.79를 넘지 못했다. [상세 로그와 분석](original/jinhong/case4/NOTES.md)

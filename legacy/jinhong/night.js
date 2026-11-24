@@ -404,7 +404,7 @@ const CMDS = {
     for (let st = 0; st < +steps; st++) {
       const nb = dirNb({ dir: cur.dir, n: cur.n, root: cur.t.root }, 2).filter(c => !seen.has(c.t.dir)).map(c => ({ dir: c.t.dir, n: cur.n, note: c.note })); nb.forEach(c => seen.add(c.dir));
       const r = (await score(nb)).filter(c => Number.isFinite(c.pub)).sort((a2, b2) => a2.pub - b2.pub); all.push(...r.slice(0, 40));
-      const ex = (await score(r.slice(0, 10).flatMap(c => [-1, 1].map(dn => ({ dir: c.dir, n: c.n + dn, note: c.note + ` 대수 ${dn}` }))).filter(c => c.n >= P.nMin && c.n <= P.nMax))).filter(c => Number.isFinite(c.pub)); all.push(...ex);
+      const ex = process.env.NIGHT_FIXN ? [] : (await score(r.slice(0, 10).flatMap(c => [-1, 1].map(dn => ({ dir: c.dir, n: c.n + dn, note: c.note + ` 대수 ${dn}` }))).filter(c => c.n >= P.nMin && c.n <= P.nMax))).filter(c => Number.isFinite(c.pub)); all.push(...ex);   // NIGHT_FIXN=1: 대수 고정(다른 대수의 골짜기로 되돌아가지 않게)
       const b = [...r.slice(0, 1), ...ex].reduce((a2, b2) => a2.pub <= b2.pub ? a2 : b2, { pub: Infinity });
       if (!(b.pub < cur.pub - 1e-9)) { log(`  걸음 ${st + 1}: 더 낮은 이웃 없음(이웃 ${nb.length}개 최저 ${b.pub.toFixed(3)}) [${el()}분]`); break; }
       cur = b; log(`  걸음 ${st + 1}: ${b.note} → ${b.pub.toFixed(3)} n${b.n} ${show(b.t.root)} [${el()}분]`);

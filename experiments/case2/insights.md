@@ -1,6 +1,3 @@
 # Case 2 실험 메모
 
-기존 기록 49개를 [original/](original/)에서 볼 수 있다.
-- [NOTES.md](original/jinhong/case2/NOTES.md)
-
-새 실험의 결론에는 기준안, 비교 조건, 결과 근거를 남긴다.
+격자 방향과 트리를 함께 비교했다. 기존 로드맵에 기록된 웹 점수는 613.62다. 기존 방향 후보, 탐색 로그, 답안을 보관했다. [상세 로그와 분석](original/jinhong/case2/NOTES.md)
