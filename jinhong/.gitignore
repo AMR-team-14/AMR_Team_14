@@ -6,3 +6,4 @@ cpp/case.txt
 runs/*_arch.jsonl
 gha/out/
 case*/*.out
+gha/dl*/
