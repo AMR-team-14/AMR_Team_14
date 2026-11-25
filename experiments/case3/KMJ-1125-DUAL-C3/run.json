@@ -1,0 +1,54 @@
+{
+  "experiment_id": "KMJ-1125-DUAL-C3",
+  "case": 3,
+  "purpose": "이중 체제 w<=eps 분기 및 8노드 트리 빔 탐색 최적화",
+  "recorded_at_kst": "2026-11-25 23:26",
+  "answer": {
+    "file": "answer.csv",
+    "sha256": "ec439b87e2d0232fa99fa638e79623d1023b9904d54a4c9cd941c77067723aaf",
+    "dir": "1111111100000000011111011001101",
+    "fleet": 21,
+    "tree_nodes": 8
+  },
+  "evaluator": {
+    "script": "simulator/score.cjs",
+    "commit": "7926d0db8039d51a99529ee2670bfd7bb16b0812",
+    "input_path": "jinhong/case3/answer_case3.csv",
+    "input_sha": "003e218af65293d21f68d2d8f16c3a44616fac02",
+    "options": "--trace"
+  },
+  "aggregation": "시드 묶음의 워밍업 이후 완료 픽업 기록을 합쳐 비용을 한 번 계산(반려 시드가 있으면 비용 칸을 비움)",
+  "seeds_evaluated": [
+    "11~15",
+    "1~500"
+  ],
+  "seeds_used_for_search": "미확인",
+  "source_commit": "미확인",
+  "note": "",
+  "results": [
+    {
+      "case": 3,
+      "fleet": 21,
+      "first_seed": 11,
+      "seeds": 5,
+      "pooled_cost": 983.677,
+      "rejected": [],
+      "dispatch_count": 24211,
+      "dispatch_sha256": "1d87f7ba765fa4da2f7f2bf721915e66fb69ed5368e4cb29243b5f66f1b69974"
+    },
+    {
+      "case": 3,
+      "fleet": 21,
+      "first_seed": 1,
+      "seeds": 500,
+      "pooled_cost": 982.6767,
+      "rejected": [],
+      "dispatch_count": 2416378,
+      "dispatch_sha256": "ff7027614bed41540c5e932e634af32e74c886a80de778a804e86166adcfc75e"
+    }
+  ],
+  "reproduce": [
+    "node simulator/score.cjs 3 experiments/case3/KMJ-1125-DUAL-C3/answer.csv 11 5 --trace",
+    "node simulator/score.cjs 3 experiments/case3/KMJ-1125-DUAL-C3/answer.csv 1 500 --trace"
+  ]
+}

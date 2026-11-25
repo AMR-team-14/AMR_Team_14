@@ -1,0 +1,54 @@
+{
+  "experiment_id": "KMJ-1125-DUAL-C5",
+  "case": 5,
+  "purpose": "이중 체제 w<=eps 분기 및 유휴차 보존 트리를 통한 대폭 개선",
+  "recorded_at_kst": "2026-11-25 23:26",
+  "answer": {
+    "file": "answer.csv",
+    "sha256": "75e12532fa957d7ed9f6327ea692a0817c191f1d9b1087badbad75a8ed58f619",
+    "dir": "111000011011100001000001100011",
+    "fleet": 21,
+    "tree_nodes": 6
+  },
+  "evaluator": {
+    "script": "simulator/score.cjs",
+    "commit": "7926d0db8039d51a99529ee2670bfd7bb16b0812",
+    "input_path": "jinhong/case5/answer_case5.csv",
+    "input_sha": "ef656f279b90e17fa0fa1b6ae4c3d26513e0db52",
+    "options": "--trace"
+  },
+  "aggregation": "시드 묶음의 워밍업 이후 완료 픽업 기록을 합쳐 비용을 한 번 계산(반려 시드가 있으면 비용 칸을 비움)",
+  "seeds_evaluated": [
+    "11~15",
+    "1~500"
+  ],
+  "seeds_used_for_search": "미확인",
+  "source_commit": "미확인",
+  "note": "",
+  "results": [
+    {
+      "case": 5,
+      "fleet": 21,
+      "first_seed": 11,
+      "seeds": 5,
+      "pooled_cost": 785.013,
+      "rejected": [],
+      "dispatch_count": 25781,
+      "dispatch_sha256": "8232cd02ad4b45c9fbddd93a550260b5d05b61fb9a014a231fbe56fa77acf31f"
+    },
+    {
+      "case": 5,
+      "fleet": 21,
+      "first_seed": 1,
+      "seeds": 500,
+      "pooled_cost": 782.267,
+      "rejected": [],
+      "dispatch_count": 2581022,
+      "dispatch_sha256": "18dd3b9a1575c5795613083565b0c30aaaf366e71b428868c082b3cc30d08f73"
+    }
+  ],
+  "reproduce": [
+    "node simulator/score.cjs 5 experiments/case5/KMJ-1125-DUAL-C5/answer.csv 11 5 --trace",
+    "node simulator/score.cjs 5 experiments/case5/KMJ-1125-DUAL-C5/answer.csv 1 500 --trace"
+  ]
+}
