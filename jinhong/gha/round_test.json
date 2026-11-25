@@ -1,0 +1,5 @@
+{ "round": "test", "minutes": 11,
+  "jobs": [
+    { "case": 4, "stage": "A", "shards": 12, "ns": [18], "starts": "gha/starts_case4_r1.json", "seed0": 9000, "kh": 4, "rs": "75,90,105", "kmin": 4, "kmax": 9, "expect": { "file": "case4/answer_case4.csv", "pub": 792.33 } },
+    { "case": 5, "stage": "B", "shards": 8, "starts": "gha/starts_case5_r1.json", "seed0": 9500, "ga": 2.5, "ttMin": 4, "wenumMin": 5, "nodir": true, "expect": { "file": "case5/answer_case5.csv", "pub": 770.94 } }
+  ] }

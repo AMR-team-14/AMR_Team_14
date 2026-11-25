@@ -58,7 +58,7 @@ function family(dir) {   // 이 방향의 규칙 묶음(나무 문자열 = 엔�
     const c = cache.get(cur); if (!mins.has(cur)) mins.set(cur, { pub: c.pub, nodes: c.nodes }); it++;
     if (c.pub < best.pub - 1e-9) { best = { dir: cur, pub: c.pub }; log(`  [${el().toFixed(1)}분, 바닥 ${mins.size}개, 평가 ${evals}] 새 최저 ${c.pub.toFixed(2)} | ${cur} | ${c.nodes}`); }
     if (it % 10 === 0) { const top = save(); log(`  [${el().toFixed(1)}분] 바닥 ${mins.size}개, 평가 ${evals}, 상위: ${top.slice(0, 6).map(x => x.pub.toFixed(2)).join(' ')}`); }
-    if (POOL.length) { let nd0 = null; while (pi < POOL.length && !nd0) { const d = POOL[pi++]; if (strong(P, d) && !mins.has(d)) nd0 = d; } if (!nd0) break; cur = nd0; const c0 = (await score([cur]))[0]; log(`  [${el().toFixed(1)}분] 출발점 ${pi}/${POOL.length}: ${c0.pub.toFixed(2)}`); continue; }   // ILS_POOL: 차는 대신 풀의 다음 방향에서 다시 내려간다
+    if (pi < POOL.length) { let nd0 = null; while (pi < POOL.length && !nd0) { const d = POOL[pi++]; if (strong(P, d) && !mins.has(d)) nd0 = d; } if (nd0) { cur = nd0; const c0 = (await score([cur]))[0]; log(`  [${el().toFixed(1)}분] 출발점 ${pi}/${POOL.length}: ${c0.pub.toFixed(2)}`); continue; } }   // ILS_POOL: 풀이 남아 있으면 차는 대신 풀의 다음 방향에서 다시 내려간다(다 쓰면 아래의 차기로 넘어간다)
     // 차기: 최저 바닥(절반) 또는 지금 바닥에서 구간 3~7개를 무작위로 뒤집는다
     const base = rnd() < 0.5 ? best.dir : cur; let nd = null;
     for (let tr = 0; tr < 200 && !nd; tr++) { let d = base; if (CYC) { const k0 = +(process.env.ILS_KMIN || 2), k1 = +(process.env.ILS_KMAX || 4), m = k0 + Math.floor(rnd() * (k1 - k0 + 1)); for (let j = 0; j < m; j++) { const cy = cycleNb(d); d = cy[Math.floor(rnd() * cy.length)]; } }   // 순환 2~4개를 잇달아 뒤집는다

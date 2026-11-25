@@ -1,0 +1,52 @@
+# 진홍 브랜치 전용: 분산 탐색 한 회차를 20조각으로 돌린다. 회차 명세는 jinhong/gha/round.json(케이스 · 단계 · 조각 수 · 분 · 출발점).
+# 시작: jinhong/gha/round.json 을 고쳐 jinhong-experiments 브랜치에 푸시한다. 회차마다 워크플로를 새로 만들지 않는다.
+# 케이스 데이터는 리포에 두지 않는다(시크릿 AGV_CASE2_JSON ~ AGV_CASE5_JSON). main은 건드리지 않는다(읽기 권한만, 결과는 아티팩트).
+# 조각 스크립트 jinhong/gha_run.js 는 깃허브 전용 값에 기대지 않는다(조각 번호 · AGV_CASES · AGVX_THREADS만 받는다).
+name: jinhong-search
+on:
+  push:
+    branches: [jinhong-experiments]
+    paths: ['jinhong/gha/round.json']
+permissions:
+  contents: read
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 케이스 데이터 넣기(러너 임시 폴더, 아티팩트에는 넣지 않음)
+        env:
+          C2: ${{ secrets.AGV_CASE2_JSON }}
+          C3: ${{ secrets.AGV_CASE3_JSON }}
+          C4: ${{ secrets.AGV_CASE4_JSON }}
+          C5: ${{ secrets.AGV_CASE5_JSON }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/cases"
+          [ -n "$C2" ] && printf '%s' "$C2" > "$RUNNER_TEMP/cases/final-agv-c2.json"
+          [ -n "$C3" ] && printf '%s' "$C3" > "$RUNNER_TEMP/cases/final-agv-c3.json"
+          [ -n "$C4" ] && printf '%s' "$C4" > "$RUNNER_TEMP/cases/final-agv-c4.json"
+          [ -n "$C5" ] && printf '%s' "$C5" > "$RUNNER_TEMP/cases/final-agv-c5.json"
+          ls "$RUNNER_TEMP/cases" | sed 's/^/케이스 파일: /'
+          echo "AGV_CASES=$RUNNER_TEMP/cases" >> "$GITHUB_ENV"
+      - name: 엔진 빌드
+        working-directory: jinhong
+        run: |
+          g++ -O2 -std=c++17 -ffp-contract=off -pthread cpp/agvg.cpp -o cpp/agvg.exe
+          g++ -O2 -std=c++17 -ffp-contract=off -pthread cpp/agvg_tail.cpp -o cpp/agvg_tail.exe
+      - name: 탐색(제출안 재현 확인 뒤 시작)
+        working-directory: jinhong
+        run: AGVX_THREADS=4 node gha_run.js ${{ matrix.shard }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: search-shard-${{ matrix.shard }}
+          path: jinhong/gha/out/
+          if-no-files-found: ignore
