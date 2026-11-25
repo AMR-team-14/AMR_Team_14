@@ -1,4 +1,4 @@
-{ "round": "r1", "minutes": 270,
+{ "round": "r1b", "minutes": 270,
   "note": "11/25 첫 회차: Case 4 넓게(출발 방향 86개 + 순환 큰 차기, 17 · 18 · 19대) 12조각, Case 5 깊게(바닥 8개 × 유전 탐색 ↔ 나무 이웃 ↔ 대기 가지 재전수) 8조각",
   "jobs": [
     { "case": 4, "stage": "A", "shards": 12, "ns": [18, 17, 19], "starts": "gha/starts_case4_r1.json", "seed0": 1000, "kh": 4, "rs": "75,90,105", "kmin": 4, "kmax": 9, "expect": { "file": "case4/answer_case4.csv", "pub": 792.33 } },

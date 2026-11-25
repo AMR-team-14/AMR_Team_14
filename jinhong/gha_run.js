@@ -21,7 +21,7 @@ const say = x => { console.log(x); fs.appendFileSync(logF, x + '\n'); };
 const pubOf = async file => { const eng = new Engine(CN); const v = (await eng.pub([readSpec(file)]))[0]; eng.close(); return v; };
 // 도구 하나를 끝까지(또는 제한 시간까지) 돌린다. 출력은 러너 로그로 바로 흘려보낸다.
 function run(script, args, env = {}, limitMin = 60) {
-  const r = spawnSync(process.execPath, [script, ...args.map(String)], { cwd: HERE, env: { ...process.env, ...env }, stdio: 'inherit', timeout: Math.max(1, limitMin) * 60000, killSignal: 'SIGKILL' });
+  const r = spawnSync(process.execPath, [script, ...args.map(String)], { cwd: HERE, env: { ...process.env, ...env }, stdio: 'inherit', timeout: Math.round(Math.max(1, limitMin) * 60000), killSignal: 'SIGKILL' });   // timeout은 정수여야 한다(소수면 RangeError — r1 첫 시도에서 Case 4 조각이 여기서 멈췄다)
   if (r.error) say(`  (${script} ${args[1] || ''}: ${r.error.code === 'ETIMEDOUT' ? `제한 ${limitMin.toFixed(0)}분에 끊음` : r.error.message})`);
   return r.status === 0;
 }
