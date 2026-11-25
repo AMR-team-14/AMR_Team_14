@@ -1,0 +1,54 @@
+{
+  "experiment_id": "PJH-1125-79233",
+  "case": 4,
+  "purpose": "Case 4 1위 격차 벌리기: 793.82 안의 대기 가지를 나무 이웃으로 고정점까지 다듬은 안",
+  "recorded_at_kst": "2026-11-25 09:27",
+  "answer": {
+    "file": "answer.csv",
+    "sha256": "d5152c1e93b668b3b9efcc675dfa4bd9815ca2c942037d27dc014e3e2b1408f7",
+    "dir": "1111111111011111111000001110100111100000110010011101101100011110011111101111",
+    "fleet": 18,
+    "tree_nodes": 9
+  },
+  "evaluator": {
+    "script": "simulator/score.cjs",
+    "commit": "84da1a3734e125a69e4c310aa186568f6e80471f",
+    "input_path": "jinhong/case4/answer_case4.csv",
+    "input_sha": "ffbf512fd55c4134c9ff05d4d0ca9758dfcb20d1",
+    "options": "--trace"
+  },
+  "aggregation": "시드 묶음의 워밍업 이후 완료 픽업 기록을 합쳐 비용을 한 번 계산(반려 시드가 있으면 비용 칸을 비움)",
+  "seeds_evaluated": [
+    "11~15",
+    "1~500"
+  ],
+  "seeds_used_for_search": "11~15 (공개 확인 시드에 맞춰 탐색)",
+  "source_commit": "jinhong-experiments@18fccf0374",
+  "note": "",
+  "results": [
+    {
+      "case": 4,
+      "fleet": 18,
+      "first_seed": 11,
+      "seeds": 5,
+      "pooled_cost": 792.3266,
+      "rejected": [],
+      "dispatch_count": 17787,
+      "dispatch_sha256": "b3933dcd65824cfa15e8a04b91769d03f68cc3d7e8069bf71b359cccfc39383a"
+    },
+    {
+      "case": 4,
+      "fleet": 18,
+      "first_seed": 1,
+      "seeds": 500,
+      "pooled_cost": 797.3505,
+      "rejected": [],
+      "dispatch_count": 1755795,
+      "dispatch_sha256": "b8959ed77be3a6fa17c2e67fe5a138a2c6f1599aaddcde75a7a46bef9d99583f"
+    }
+  ],
+  "reproduce": [
+    "node simulator/score.cjs 4 experiments/case4/PJH-1125-79233/answer.csv 11 5 --trace",
+    "node simulator/score.cjs 4 experiments/case4/PJH-1125-79233/answer.csv 1 500 --trace"
+  ]
+}
