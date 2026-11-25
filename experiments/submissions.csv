@@ -17,6 +17,7 @@ case,submission_id,submitted_at_kst,dashboard_score,used_total,remaining,seed_if
 4,PJH-C4-04,2026-11-24 21:20,801.44,4,56,,"화면 「채점 완료: 801.44 · 남은 제출 56회」. jinhong-experiments@5788d8f6d0"
 4,PJH-C4-05,2026-11-25 08:43,796.66,5,55,,"화면 「채점 완료: 796.66 · 남은 제출 55회」. jinhong-experiments@0f8f4626ac"
 4,PJH-C4-06,2026-11-25 08:58,793.82,6,54,,"화면 「채점 완료: 793.82 · 남은 제출 54회」. 답안 experiments/case4/PJH-1125-79382"
+4,PJH-C4-07,2026-11-25 09:25,792.33,7,53,,"화면 「채점 완료: 792.33 (내 최고기록 갱신) · 남은 제출 53회」. 답안 experiments/case4/PJH-1125-79233"
 5,PJH-C5-01,2026-11-23 23:13,779.71,1,59,,"화면 「채점 완료: 779.71 · 남은 제출 59회」. jinhong-experiments jinhong/case5/NOTES.md"
 5,PJH-C5-02,2026-11-24 01:23,776.10,2,58,,"화면 「채점 완료: 776.1 · 남은 제출 58회」. jinhong-experiments jinhong/case5/NOTES.md"
 5,PJH-C5-03,2026-11-24 05:54,771.43,3,57,,"화면 「채점 완료: 771.43 · 남은 제출 57회」. jinhong-experiments jinhong/case5/NOTES.md"
