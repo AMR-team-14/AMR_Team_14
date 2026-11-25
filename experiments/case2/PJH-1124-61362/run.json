@@ -1,0 +1,54 @@
+{
+  "experiment_id": "PJH-1124-61362",
+  "case": 2,
+  "purpose": "Case 2 리더보드 제출안(613.62, 11/24 12:50 제출)을 공통 평가기로 다시 채점",
+  "recorded_at_kst": "2026-11-25 09:07",
+  "answer": {
+    "file": "answer.csv",
+    "sha256": "6f8788c2ef4628e6901ad59c9f20dd888f3d3ccf8915954029c69578ac3485cc",
+    "dir": "001011111110000001101000111101110101",
+    "fleet": 24,
+    "tree_nodes": 6
+  },
+  "evaluator": {
+    "script": "simulator/score.cjs",
+    "commit": "84da1a3734e125a69e4c310aa186568f6e80471f",
+    "input_path": "jinhong/case2/answer_case2.csv",
+    "input_sha": "ce9687136f4bd22aa41c82659ed31c2132432007",
+    "options": "--trace"
+  },
+  "aggregation": "시드 묶음의 워밍업 이후 완료 픽업 기록을 합쳐 비용을 한 번 계산(반려 시드가 있으면 비용 칸을 비움)",
+  "seeds_evaluated": [
+    "11~15",
+    "1~500"
+  ],
+  "seeds_used_for_search": "11~15 (공개 확인 시드에 맞춰 탐색 — 리더보드 점수가 과제 점수라서). 1~500은 탐색에 쓰지 않음",
+  "source_commit": "jinhong-experiments@755e16124d",
+  "note": "",
+  "results": [
+    {
+      "case": 2,
+      "fleet": 24,
+      "first_seed": 11,
+      "seeds": 5,
+      "pooled_cost": 613.6186,
+      "rejected": [],
+      "dispatch_count": 24214,
+      "dispatch_sha256": "c6d0ebf21e072eef4e40d81a7e4245837cafe9215b579b94930b0e66ebd64b56"
+    },
+    {
+      "case": 2,
+      "fleet": 24,
+      "first_seed": 1,
+      "seeds": 500,
+      "pooled_cost": 616.0472,
+      "rejected": [],
+      "dispatch_count": 2416459,
+      "dispatch_sha256": "4e9b427b9294f59e70898449f36d834bb34ae85a3c834c252445ef53bd8e8024"
+    }
+  ],
+  "reproduce": [
+    "node simulator/score.cjs 2 experiments/case2/PJH-1124-61362/answer.csv 11 5 --trace",
+    "node simulator/score.cjs 2 experiments/case2/PJH-1124-61362/answer.csv 1 500 --trace"
+  ]
+}

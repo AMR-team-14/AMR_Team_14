@@ -8,3 +8,5 @@
 - [이전 작업 파일](legacy/)에서 공통 구조에 편입하지 않은 문서와 코드를 찾을 수 있다.
 
 최종 답안은 저장소 루트에서 `node simulator/score.cjs <케이스> <답안 경로> 1 500 --trace`로 평가한다. 새 실험은 `experiments/caseN/<실험ID>/`에 run.json, answer.csv, results.csv, logs/로 저장한다.
+
+실험 한 건을 양식대로 남길 때는 `node experiments/record.cjs <케이스> <답안 경로> <실험ID> "<실행 목적>" --src <원본 커밋> --search "<탐색에 쓴 시드>"`를 쓴다. 시드 11~15와 1~500을 `--trace`로 돌려 run.json · answer.csv · results.csv · logs/를 만든다(`--quick`은 11~15만).
