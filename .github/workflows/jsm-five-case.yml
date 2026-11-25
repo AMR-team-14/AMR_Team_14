@@ -48,3 +48,30 @@ jobs:
           path: experiments/common/five-case/out/github/
           if-no-files-found: error
           retention-days: 30
+
+  summarize:
+    needs: run
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: experiments/common/five-case
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: jsm-five-case-*
+          path: artifacts
+      - name: Summarize coverage, failures and costs
+        run: |
+          read -r BATCH WANT < experiments/common/five-case/overnight-request.txt
+          node experiments/common/five-case/summarize-batch.cjs "$BATCH" artifacts > summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: batch-summary
+          path: summary.json
+          if-no-files-found: error
