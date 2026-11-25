@@ -1,0 +1,54 @@
+{
+  "experiment_id": "KMJ-1125-119189",
+  "case": 1,
+  "purpose": "Case 1 최종 최적화 답안 (19대 9노드) 공통 평가기 평가",
+  "recorded_at_kst": "2026-11-25 13:13",
+  "answer": {
+    "file": "answer.csv",
+    "sha256": "7cbc51aa6435df67a20ca8ca9b8739a3ff7a9ab4a5cd8d610d04b79afc62feeb",
+    "dir": "000011110000000111100000000110101",
+    "fleet": 19,
+    "tree_nodes": 9
+  },
+  "evaluator": {
+    "script": "simulator/score.cjs",
+    "commit": "7926d0db8039d51a99529ee2670bfd7bb16b0812",
+    "input_path": "jinhong/answer_jinhong_best.csv",
+    "input_sha": "5aa85fdd7f26d7d61b6ef0ac0ed391e202ae2b2c",
+    "options": "--trace"
+  },
+  "aggregation": "시드 묶음의 워밍업 이후 완료 픽업 기록을 합쳐 비용을 한 번 계산(반려 시드가 있으면 비용 칸을 비움)",
+  "seeds_evaluated": [
+    "11~15",
+    "1~500"
+  ],
+  "seeds_used_for_search": "11~15, 3001~3500",
+  "source_commit": "origin/DOE1119",
+  "note": "",
+  "results": [
+    {
+      "case": 1,
+      "fleet": 19,
+      "first_seed": 11,
+      "seeds": 5,
+      "pooled_cost": 1191.8896,
+      "rejected": [],
+      "dispatch_count": 42738,
+      "dispatch_sha256": "8bd28e4dfcf73af65e5a81935190f3da601ca3624b29234b9be171ac89320d81"
+    },
+    {
+      "case": 1,
+      "fleet": 19,
+      "first_seed": 1,
+      "seeds": 500,
+      "pooled_cost": 1193.0528,
+      "rejected": [],
+      "dispatch_count": 4259802,
+      "dispatch_sha256": "358008554fae962cc83cb7038d5a6611bef74bcce98c8ca780b580c5f1893e92"
+    }
+  ],
+  "reproduce": [
+    "node simulator/score.cjs 1 experiments/case1/KMJ-1125-119189/answer.csv 11 5 --trace",
+    "node simulator/score.cjs 1 experiments/case1/KMJ-1125-119189/answer.csv 1 500 --trace"
+  ]
+}
