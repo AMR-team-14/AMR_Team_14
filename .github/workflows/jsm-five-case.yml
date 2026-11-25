@@ -1,0 +1,50 @@
+name: JSM overnight experiments
+# Runs only when experiments/common/five-case/overnight-request.txt changes on jsm.
+# overnight-request.txt: one line "<batch> <workers>", e.g. "B1 4". Results come back as an artifact; nothing is committed.
+on:
+  push:
+    branches: [jsm]
+    paths: ['experiments/common/five-case/overnight-request.txt']
+permissions:
+  contents: read
+concurrency:
+  group: jsm-five-case
+  cancel-in-progress: false
+jobs:
+  run:
+    if: github.ref == 'refs/heads/jsm'
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: experiments/common/five-case
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Run assigned tasks
+        working-directory: experiments/common/five-case
+        run: |
+          set -euo pipefail
+          read -r BATCH WANT < overnight-request.txt
+          NP=$(nproc)
+          echo "nproc=$NP cpu.max=$(cat /sys/fs/cgroup/cpu.max 2>/dev/null || echo n/a)"
+          W=$(( WANT < NP ? WANT : NP )); W=$(( W > 4 ? 4 : W ))
+          node run.cjs "jobs/$BATCH-g${{ matrix.shard }}.jsonl" --env github --workers "$W" --out out/github
+          printf '%s %s %s\n' "$GITHUB_SHA" "$GITHUB_RUN_ID" "$GITHUB_RUN_ATTEMPT" > out/github/run.txt
+          echo "BATCH=$BATCH" >> "$GITHUB_ENV"
+          RESULT_FILE="out/github/$BATCH-github.jsonl" TASK_FILE="jobs/$BATCH-g${{ matrix.shard }}.jsonl" node -e 'const fs = require("node:fs"); const read = p => fs.readFileSync(p, "utf8").trim().split(/\r?\n/).map(JSON.parse); const tasks = read(process.env.TASK_FILE); const results = read(process.env.RESULT_FILE); if (results.length !== tasks.length || results.some(row => row.out.status !== "done")) process.exitCode = 1;'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jsm-five-case-${{ env.BATCH }}-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.shard }}
+          path: experiments/common/five-case/out/github/
+          if-no-files-found: error
+          retention-days: 30
