@@ -1,0 +1,54 @@
+{
+  "experiment_id": "KMJ-1125-FH-C1-V2",
+  "case": 1,
+  "purpose": "Case 1 U95-방어형 헝가리안 오라클+Simplex 기반 n=18 신기록",
+  "recorded_at_kst": "2026-11-25 14:50",
+  "answer": {
+    "file": "answer.csv",
+    "sha256": "bd9ed9b0e61575ce1008c171e48e107d433aa66f760eb19a0f309c4db57ff82c",
+    "dir": "000011110000000111100000000110101",
+    "fleet": 18,
+    "tree_nodes": 9
+  },
+  "evaluator": {
+    "script": "simulator/score.cjs",
+    "commit": "7926d0db8039d51a99529ee2670bfd7bb16b0812",
+    "input_path": "jinhong/answer_jinhong_best.csv",
+    "input_sha": "5aa85fdd7f26d7d61b6ef0ac0ed391e202ae2b2c",
+    "options": "--trace"
+  },
+  "aggregation": "시드 묶음의 워밍업 이후 완료 픽업 기록을 합쳐 비용을 한 번 계산(반려 시드가 있으면 비용 칸을 비움)",
+  "seeds_evaluated": [
+    "11~15",
+    "1~500"
+  ],
+  "seeds_used_for_search": "1~60 (시드11~15 1185.94)",
+  "source_commit": "kmj",
+  "note": "",
+  "results": [
+    {
+      "case": 1,
+      "fleet": 18,
+      "first_seed": 11,
+      "seeds": 5,
+      "pooled_cost": 1185.9436,
+      "rejected": [],
+      "dispatch_count": 42734,
+      "dispatch_sha256": "4ea0b32d2c66c05e47d05652f367c0e7b7042a5f480563bf6fb67bdab98a23ce"
+    },
+    {
+      "case": 1,
+      "fleet": 18,
+      "first_seed": 1,
+      "seeds": 500,
+      "pooled_cost": 1192.3022,
+      "rejected": [],
+      "dispatch_count": 4259440,
+      "dispatch_sha256": "945d56d521f36e28c941ecd14a09688945aaa7f8d9967a0aed0913ad8c868b1c"
+    }
+  ],
+  "reproduce": [
+    "node simulator/score.cjs 1 experiments/case1/KMJ-1125-FH-C1-V2/answer.csv 11 5 --trace",
+    "node simulator/score.cjs 1 experiments/case1/KMJ-1125-FH-C1-V2/answer.csv 1 500 --trace"
+  ]
+}

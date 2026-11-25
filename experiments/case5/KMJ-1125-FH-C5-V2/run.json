@@ -1,0 +1,54 @@
+{
+  "experiment_id": "KMJ-1125-FH-C5-V2",
+  "case": 5,
+  "purpose": "Case 5 Link-State+Simplex 기반 n=21 신기록",
+  "recorded_at_kst": "2026-11-25 14:50",
+  "answer": {
+    "file": "answer.csv",
+    "sha256": "40239b5104a324068e20876370383e03f147e4bd6bb472387be984c2c1cf4e22",
+    "dir": "000111100111100001000010010011",
+    "fleet": 21,
+    "tree_nodes": 7
+  },
+  "evaluator": {
+    "script": "simulator/score.cjs",
+    "commit": "7926d0db8039d51a99529ee2670bfd7bb16b0812",
+    "input_path": "jinhong/case5/answer_case5.csv",
+    "input_sha": "ef656f279b90e17fa0fa1b6ae4c3d26513e0db52",
+    "options": "--trace"
+  },
+  "aggregation": "시드 묶음의 워밍업 이후 완료 픽업 기록을 합쳐 비용을 한 번 계산(반려 시드가 있으면 비용 칸을 비움)",
+  "seeds_evaluated": [
+    "11~15",
+    "1~500"
+  ],
+  "seeds_used_for_search": "1~60 (시드11~15 814.06)",
+  "source_commit": "kmj",
+  "note": "",
+  "results": [
+    {
+      "case": 5,
+      "fleet": 21,
+      "first_seed": 11,
+      "seeds": 5,
+      "pooled_cost": 814.0583,
+      "rejected": [],
+      "dispatch_count": 25781,
+      "dispatch_sha256": "d2397aab6deed8971ac8c5300bf99f72bab0fbd8efedac53e21fdcd0cc4be96e"
+    },
+    {
+      "case": 5,
+      "fleet": 21,
+      "first_seed": 1,
+      "seeds": 500,
+      "pooled_cost": 812.2789,
+      "rejected": [],
+      "dispatch_count": 2581025,
+      "dispatch_sha256": "b904449482ec9f8a4208c014bcb1558b9d32fde7f8d93e440ad9f5aa4fffce20"
+    }
+  ],
+  "reproduce": [
+    "node simulator/score.cjs 5 experiments/case5/KMJ-1125-FH-C5-V2/answer.csv 11 5 --trace",
+    "node simulator/score.cjs 5 experiments/case5/KMJ-1125-FH-C5-V2/answer.csv 1 500 --trace"
+  ]
+}

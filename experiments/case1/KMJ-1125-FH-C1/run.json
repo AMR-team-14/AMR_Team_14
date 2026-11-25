@@ -1,0 +1,54 @@
+{
+  "experiment_id": "KMJ-1125-FH-C1",
+  "case": 1,
+  "purpose": "Case 1 Flow+Hungarian 설계 기반 n=18 답안 평가",
+  "recorded_at_kst": "2026-11-25 14:37",
+  "answer": {
+    "file": "answer.csv",
+    "sha256": "e6706c558b9969e1ad217e15fdf272c897d20accc7e22bea2dc9cddb38a1e497",
+    "dir": "000011110000000111100000000110101",
+    "fleet": 18,
+    "tree_nodes": 9
+  },
+  "evaluator": {
+    "script": "simulator/score.cjs",
+    "commit": "7926d0db8039d51a99529ee2670bfd7bb16b0812",
+    "input_path": "jinhong/answer_jinhong_best.csv",
+    "input_sha": "5aa85fdd7f26d7d61b6ef0ac0ed391e202ae2b2c",
+    "options": "--trace"
+  },
+  "aggregation": "시드 묶음의 워밍업 이후 완료 픽업 기록을 합쳐 비용을 한 번 계산(반려 시드가 있으면 비용 칸을 비움)",
+  "seeds_evaluated": [
+    "11~15",
+    "1~500"
+  ],
+  "seeds_used_for_search": "1~50 (헝가리안 오라클+CART)",
+  "source_commit": "kmj",
+  "note": "",
+  "results": [
+    {
+      "case": 1,
+      "fleet": 18,
+      "first_seed": 11,
+      "seeds": 5,
+      "pooled_cost": 1189.6871,
+      "rejected": [],
+      "dispatch_count": 42740,
+      "dispatch_sha256": "5c8142d576bb1367a18167a4979bd8160e69a920f8140e8c0be7b5751046935f"
+    },
+    {
+      "case": 1,
+      "fleet": 18,
+      "first_seed": 1,
+      "seeds": 500,
+      "pooled_cost": 1192.7184,
+      "rejected": [],
+      "dispatch_count": 4259376,
+      "dispatch_sha256": "5f6c998166c58569639ec24d6f137a13dd8b3d14f74eb05c1bb80e1cee4ac159"
+    }
+  ],
+  "reproduce": [
+    "node simulator/score.cjs 1 experiments/case1/KMJ-1125-FH-C1/answer.csv 11 5 --trace",
+    "node simulator/score.cjs 1 experiments/case1/KMJ-1125-FH-C1/answer.csv 1 500 --trace"
+  ]
+}
