@@ -1,0 +1,54 @@
+{
+  "experiment_id": "KMJ-1127-V3-C4",
+  "case": 4,
+  "purpose": "v3 도메인 인사이트 기반 무좀비 강건 공동 최적화",
+  "recorded_at_kst": "2026-11-27 00:50",
+  "answer": {
+    "file": "answer.csv",
+    "sha256": "aa3a1559a568bc7024f3c2992b670d7ac7a54584cef1a2d49f94704265a493f7",
+    "dir": "1111111111011111111000001111110111100000110011011101000100011110011111101111",
+    "fleet": 18,
+    "tree_nodes": 8
+  },
+  "evaluator": {
+    "script": "simulator/score.cjs",
+    "commit": "7926d0db8039d51a99529ee2670bfd7bb16b0812",
+    "input_path": "jinhong/case4/answer_case4.csv",
+    "input_sha": "ffbf512fd55c4134c9ff05d4d0ca9758dfcb20d1",
+    "options": "--trace"
+  },
+  "aggregation": "시드 묶음의 워밍업 이후 완료 픽업 기록을 합쳐 비용을 한 번 계산(반려 시드가 있으면 비용 칸을 비움)",
+  "seeds_evaluated": [
+    "11~15",
+    "1~500"
+  ],
+  "seeds_used_for_search": "sp8,sp16,tr64+va64,ho128,audit(1..500,11..15,3001..3500)",
+  "source_commit": "local:alternating_flow_beam_sa.cpp(v3-robust)",
+  "note": "v3 robust engine: n=18, 8n active (0 zombie), unscaled 1-flip dir + w,min,0.00068 -> 1..500=791.5536 (-5.12pt), 11..15=798.2064 (-11.06pt), OOS=791.0503",
+  "results": [
+    {
+      "case": 4,
+      "fleet": 18,
+      "first_seed": 11,
+      "seeds": 5,
+      "pooled_cost": 798.2064,
+      "rejected": [],
+      "dispatch_count": 17787,
+      "dispatch_sha256": "daef4c4272cde3c7f6e95dd382d0cdde4a3c0d60da68b0adf4fc7b6af0db0e90"
+    },
+    {
+      "case": 4,
+      "fleet": 18,
+      "first_seed": 1,
+      "seeds": 500,
+      "pooled_cost": 791.5536,
+      "rejected": [],
+      "dispatch_count": 1755798,
+      "dispatch_sha256": "41797b9b2cae2bcbe296dd89e356ae013988136ab2c0e3fb0d965676a3e4b64a"
+    }
+  ],
+  "reproduce": [
+    "node simulator/score.cjs 4 experiments/case4/KMJ-1127-V3-C4/answer.csv 11 5 --trace",
+    "node simulator/score.cjs 4 experiments/case4/KMJ-1127-V3-C4/answer.csv 1 500 --trace"
+  ]
+}
