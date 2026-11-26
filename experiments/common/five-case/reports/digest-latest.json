@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T09:24:45.504Z",
+ "generated": "2026-11-26T09:53:29.890Z",
  "method": {
   "alpha": 0.05,
   "minBlocks": 3,
@@ -199,6 +199,155 @@
  ],
  "cases": {
   "3": {
+   "objective": "public seeds 11-15 score (graded as is)",
+   "publicRanking": [
+    {
+     "rank": 1,
+     "sha12": "00fad1b682e2",
+     "labels": [
+      "case3-baseline",
+      "jinhong:answer_case3.csv"
+     ],
+     "fleet": 22,
+     "dir": "D1",
+     "score": 962.7048,
+     "vsTeam": 0.0048,
+     "heldOutBlocks": 33,
+     "heldOutMean": 978.27,
+     "rejectedBlocks": 0
+    },
+    {
+     "rank": 2,
+     "sha12": "2fcf90e69eb4",
+     "labels": [
+      "search:c3-B0-n23-search:transplant",
+      "c3-B0-n23-search"
+     ],
+     "fleet": 23,
+     "dir": "D1",
+     "score": 969.4107,
+     "vsTeam": 6.7107,
+     "heldOutBlocks": 30,
+     "heldOutMean": 976.23,
+     "rejectedBlocks": 0
+    },
+    {
+     "rank": 3,
+     "sha12": "ed5f5d03d37d",
+     "labels": [
+      "jinhong:cand_97082.csv",
+      "jinhong:cand_97082"
+     ],
+     "fleet": 22,
+     "dir": "D1",
+     "score": 970.821,
+     "vsTeam": 8.121,
+     "heldOutBlocks": 34,
+     "heldOutMean": 988,
+     "rejectedBlocks": 0
+    },
+    {
+     "rank": 4,
+     "sha12": "a5c1da947d90",
+     "labels": [
+      "search:c3-B0-n21-search:transplant",
+      "c3-B0-n21-search"
+     ],
+     "fleet": 21,
+     "dir": "D1",
+     "score": 971.2163,
+     "vsTeam": 8.5163,
+     "heldOutBlocks": 30,
+     "heldOutMean": 978.78,
+     "rejectedBlocks": 0
+    },
+    {
+     "rank": 5,
+     "sha12": "859269dbb6c6",
+     "labels": [
+      "search:c3-D2-n21-search:transplant",
+      "c3-D2-n21-search"
+     ],
+     "fleet": 21,
+     "dir": "D2",
+     "score": 972.4246,
+     "vsTeam": 9.7246,
+     "heldOutBlocks": 29,
+     "heldOutMean": 983.03,
+     "rejectedBlocks": 0
+    },
+    {
+     "rank": 6,
+     "sha12": "2336589ad919",
+     "labels": [
+      "jinhong:answer_case3_97315.csv"
+     ],
+     "fleet": 22,
+     "dir": "D1",
+     "score": 973.1501,
+     "vsTeam": 10.4501,
+     "heldOutBlocks": 4,
+     "heldOutMean": 987.49,
+     "rejectedBlocks": 0
+    },
+    {
+     "rank": 7,
+     "sha12": "f5d9cca6b020",
+     "labels": [
+      "search:c3-D2-n22-search:transplant",
+      "c3-D2-n22-search"
+     ],
+     "fleet": 22,
+     "dir": "D2",
+     "score": 973.671,
+     "vsTeam": 10.971,
+     "heldOutBlocks": 30,
+     "heldOutMean": 981.77,
+     "rejectedBlocks": 0
+    },
+    {
+     "rank": 8,
+     "sha12": "4592869026de",
+     "labels": [
+      "c3-B0-n21-transplant-base"
+     ],
+     "fleet": 21,
+     "dir": "D1",
+     "score": 974.3433,
+     "vsTeam": 11.6433,
+     "heldOutBlocks": 33,
+     "heldOutMean": 978.47,
+     "rejectedBlocks": 0
+    },
+    {
+     "rank": 9,
+     "sha12": "b3debb316487",
+     "labels": [
+      "c3-D2-n22-transplant-base"
+     ],
+     "fleet": 22,
+     "dir": "D2",
+     "score": 975.1069,
+     "vsTeam": 12.4069,
+     "heldOutBlocks": 4,
+     "heldOutMean": 980.55,
+     "rejectedBlocks": 0
+    },
+    {
+     "rank": 10,
+     "sha12": "3a0a134f1d3c",
+     "labels": [
+      "c3-B0-n23-transplant-base"
+     ],
+     "fleet": 23,
+     "dir": "D1",
+     "score": 975.942,
+     "vsTeam": 13.242,
+     "heldOutBlocks": 4,
+     "heldOutMean": 978.87,
+     "rejectedBlocks": 0
+    }
+   ],
    "candidates": 400,
    "searchTasks": {
     "B2:github": {
@@ -789,72 +938,7 @@
     "2fcf90e69eb4",
     "f5d9cca6b020"
    ],
-   "ocba": {
-    "budgetBlocks": 480,
-    "nextStart": 2420001,
-    "alloc": [
-     {
-      "sha12": "2fcf90e69eb4",
-      "role": "current-best",
-      "blocks": 151
-     },
-     {
-      "sha12": "00fad1b682e2",
-      "role": "challenger",
-      "blocks": 8
-     },
-     {
-      "sha12": "d8d70e5cdecd",
-      "role": "challenger",
-      "blocks": 53
-     },
-     {
-      "sha12": "5623b55f0873",
-      "role": "challenger",
-      "blocks": 26
-     },
-     {
-      "sha12": "2cf90a821cce",
-      "role": "challenger",
-      "blocks": 31
-     },
-     {
-      "sha12": "4592869026de",
-      "role": "challenger",
-      "blocks": 2
-     },
-     {
-      "sha12": "3a0a134f1d3c",
-      "role": "challenger",
-      "blocks": 110
-     },
-     {
-      "sha12": "36ec49d47f50",
-      "role": "challenger",
-      "blocks": 16
-     },
-     {
-      "sha12": "b3debb316487",
-      "role": "challenger",
-      "blocks": 30
-     },
-     {
-      "sha12": "e89491c9b1e6",
-      "role": "challenger",
-      "blocks": 46
-     },
-     {
-      "sha12": "a5c1da947d90",
-      "role": "challenger",
-      "blocks": 4
-     },
-     {
-      "sha12": "f5d9cca6b020",
-      "role": "challenger",
-      "blocks": 3
-     }
-    ]
-   },
+   "ocba": null,
    "effects": [
     {
      "ev": "c3.effect.a6901ec21c7d.55725d4e0e7b",
@@ -1442,6 +1526,24 @@
    }
   },
   "4": {
+   "objective": "public seeds 11-15 score (graded as is)",
+   "publicRanking": [
+    {
+     "rank": 1,
+     "sha12": "a88dfee925e7",
+     "labels": [
+      "case4-baseline",
+      "published-tree-fleet-18"
+     ],
+     "fleet": 18,
+     "dir": "D1",
+     "score": 801.467,
+     "vsTeam": 10.197,
+     "heldOutBlocks": 200,
+     "heldOutMean": 802.96,
+     "rejectedBlocks": 0
+    }
+   ],
    "candidates": 2,
    "searchTasks": {
     "overnight-45:kaggle": {
@@ -1466,8 +1568,12 @@
      "score": 801.467,
      "source": "experiments/common/five-case/raw/B1-local.jsonl"
     },
-    "teamBest": null,
-    "diffVsTeam": null,
+    "teamBest": {
+     "key": "4:jinhong:leaderboard-1125",
+     "score": 791.27,
+     "same": true
+    },
+    "diffVsTeam": 10.197,
     "top5": [
      {
       "sha12": "a88dfee925e7",
@@ -1603,6 +1709,24 @@
    }
   },
   "5": {
+   "objective": "public seeds 11-15 score (graded as is)",
+   "publicRanking": [
+    {
+     "rank": 1,
+     "sha12": "dd48afb957ba",
+     "labels": [
+      "case5-baseline",
+      "published-tree-fleet-23"
+     ],
+     "fleet": 23,
+     "dir": "D1",
+     "score": 771.4315,
+     "vsTeam": 0.6115,
+     "heldOutBlocks": 200,
+     "heldOutMean": 787.23,
+     "rejectedBlocks": 0
+    }
+   ],
    "candidates": 3,
    "searchTasks": {
     "overnight-45:kaggle": {
@@ -1627,8 +1751,12 @@
      "score": 771.4315,
      "source": "experiments/common/five-case/raw/B1-local.jsonl"
     },
-    "teamBest": null,
-    "diffVsTeam": null,
+    "teamBest": {
+     "key": "5:jinhong:leaderboard-1125",
+     "score": 770.82,
+     "same": true
+    },
+    "diffVsTeam": 0.6115,
     "top5": [
      {
       "sha12": "dd48afb957ba",
@@ -1899,5 +2027,5 @@
    "status": "ok"
   }
  ],
- "evidenceCount": 568
+ "evidenceCount": 571
 }
