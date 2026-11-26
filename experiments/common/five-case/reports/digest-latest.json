@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T13:05:12.258Z",
+ "generated": "2026-11-26T13:07:53.147Z",
  "method": {
   "alpha": 0.05,
   "minBlocks": 3,
@@ -388,7 +388,7 @@
    ],
    "teamPool": {
     "answers": 13,
-    "updated": "2026-11-26T13:05:12.000Z"
+    "updated": "2026-11-26T13:07:52.850Z"
    },
    "candidates": 1,
    "searchTasks": {},
@@ -630,7 +630,7 @@
    ],
    "teamPool": {
     "answers": 39,
-    "updated": "2026-11-26T13:05:12.000Z"
+    "updated": "2026-11-26T13:07:52.850Z"
    },
    "candidates": 33,
    "searchTasks": {},
@@ -2008,7 +2008,7 @@
    ],
    "teamPool": {
     "answers": 403,
-    "updated": "2026-11-26T13:05:12.000Z"
+    "updated": "2026-11-26T13:07:52.850Z"
    },
    "candidates": 454,
    "searchTasks": {
@@ -3374,7 +3374,7 @@
    ],
    "teamPool": {
     "answers": 22,
-    "updated": "2026-11-26T13:05:12.000Z"
+    "updated": "2026-11-26T13:07:52.850Z"
    },
    "candidates": 130,
    "searchTasks": {
@@ -3785,7 +3785,7 @@
    ],
    "teamPool": {
     "answers": 13,
-    "updated": "2026-11-26T13:05:12.000Z"
+    "updated": "2026-11-26T13:07:52.850Z"
    },
    "candidates": 192,
    "searchTasks": {
