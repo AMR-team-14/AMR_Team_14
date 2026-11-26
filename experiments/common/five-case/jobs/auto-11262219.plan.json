@@ -1,0 +1,27 @@
+{
+ "batch": "auto-11262219",
+ "created": "2026-11-26T13:19:27.440Z",
+ "reason": "C4 D5 통로(18대)와 C5 1위 인접 4141dd3f34bf 트리는 아직 탐색 안 함",
+ "experiments": [
+  {
+   "case": 4,
+   "type": "search",
+   "fleet": 18,
+   "dir": "sha12:f0eb6f93b611",
+   "start": "transplant:55e571f4da46",
+   "budget": 240,
+   "repeats": 8,
+   "why": "D5 통로는 17대로만 있고 18대 탐색이 없음. 1위(D2) 트리에서 시작"
+  },
+  {
+   "case": 5,
+   "type": "search",
+   "fleet": 23,
+   "dir": "sha12:4141dd3f34bf",
+   "start": "transplant:4141dd3f34bf",
+   "budget": 240,
+   "repeats": 8,
+   "why": "공개 2위(1위와 0.0537 차이)는 transplant 탐색을 한 적 없음"
+  }
+ ]
+}
