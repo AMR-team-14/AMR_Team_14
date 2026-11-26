@@ -75,3 +75,11 @@ jobs:
           name: batch-summary
           path: summary.json
           if-no-files-found: error
+
+  analyze:
+    needs: summarize
+    if: always()
+    permissions:
+      contents: write
+    uses: ./.github/workflows/jsm-analyze.yml
+    secrets: inherit

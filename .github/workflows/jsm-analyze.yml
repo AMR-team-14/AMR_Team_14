@@ -1,0 +1,87 @@
+name: JSM Claude analysis
+# Analyzes Case 3-5 results with Claude Code on the owner's subscription (CLAUDE_CODE_OAUTH_TOKEN from `claude setup-token`).
+# Runs (1) right after "JSM overnight experiments" finishes (called from jsm-five-case.yml),
+#      (2) when collected results (GitHub + Kaggle) are pushed to jsm, or when this workflow/prompt changes.
+# Writes report.md to the job summary and an artifact, then commits it (plus this run's summary.json) to jsm
+# under experiments/common/five-case/reports/. Claude itself only reads; the push is a plain git step.
+on:
+  workflow_call:
+  push:
+    branches: [jsm]
+    paths:
+      - 'experiments/case3/JSM-*.csv'
+      - 'experiments/case4/JSM-*.csv'
+      - 'experiments/case5/JSM-*.csv'
+      - 'experiments/common/five-case/raw/**'
+      - 'experiments/JSM/five-case/raw/**'
+      - 'experiments/common/five-case/claude-analysis-prompt.md'
+      - '.github/workflows/jsm-analyze.yml'
+permissions:
+  contents: write
+concurrency:
+  group: jsm-analyze
+  cancel-in-progress: false
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          sparse-checkout: |
+            experiments/case3
+            experiments/case4
+            experiments/case5
+            experiments/common/five-case
+            simulator
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      # Only present when called from jsm-five-case.yml in the same run (batch-summary + per-shard logs).
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          path: artifacts
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+      - name: Analyze
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          claude -p "$(cat experiments/common/five-case/claude-analysis-prompt.md)" \
+            --allowedTools "Read,Glob,Grep,Write,Bash(node:*),Bash(ls:*),Bash(head:*),Bash(wc:*)" \
+            --max-turns 40 > claude-log.txt
+          test -s report.md
+      - name: Publish report
+        if: always()
+        run: |
+          if [ -s report.md ]; then cat report.md >> "$GITHUB_STEP_SUMMARY"
+          else echo "report.md가 없습니다. claude-report 아티팩트의 claude-log.txt를 확인하세요." >> "$GITHUB_STEP_SUMMARY"; fi
+      - name: Commit report to jsm
+        if: always() && github.ref == 'refs/heads/jsm'
+        run: |
+          [ -s report.md ] || { echo "no report"; exit 0; }
+          DIR=experiments/common/five-case/reports
+          read -r BATCH _ < experiments/common/five-case/overnight-request.txt || BATCH=manual
+          NAME="$(TZ=Asia/Seoul date +%m%d-%H%M)-$BATCH-${{ github.run_id }}"
+          mkdir -p "$DIR"; cp report.md "$DIR/$NAME.md"
+          [ -f artifacts/batch-summary/summary.json ] && cp artifacts/batch-summary/summary.json "$DIR/$NAME-summary.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4; do
+            git fetch --depth=1 origin jsm && git reset -q --mixed FETCH_HEAD
+            git add -f "$DIR/$NAME"*
+            git commit -q -m "Claude analysis $NAME [skip ci]" && git push origin HEAD:jsm && exit 0
+            sleep $((i*5))
+          done
+          exit 1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: claude-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            report.md
+            claude-log.txt
+          if-no-files-found: warn
+          retention-days: 30
