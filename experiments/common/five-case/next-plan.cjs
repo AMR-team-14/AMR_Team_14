@@ -42,6 +42,13 @@ for (const c of [1, 2, 3, 4, 5]) {
   if (fs.existsSync(d)) for (const f of fs.readdirSync(d).filter(f => /^[0-9a-f]{12}\.csv$/.test(f)))
     if (!known.has(f.slice(0, 12))) known.set(f.slice(0, 12), {case: c, text: fs.readFileSync(path.join(d, f), 'utf8')});
 }
+// designs that were only ever written into job files (evaluated, never saved as candidate files)
+for (const f of fs.readdirSync(path.join(L.HERE, 'jobs')).filter(f => f.endsWith('.jsonl')))
+  for (const line of fs.readFileSync(path.join(L.HERE, 'jobs', f), 'utf8').split(/\r?\n/)) {
+    if (!line.includes('"candSha"')) continue;
+    const t = JSON.parse(line);
+    if (t.design && !known.has(t.candSha.slice(0, 12))) known.set(t.candSha.slice(0, 12), {case: t.case, text: t.design});
+  }
 const design = (c, ref) => {
   const k = String(ref).replace(/^sha12:/, '').slice(0, 12);
   const a = known.get(k);
