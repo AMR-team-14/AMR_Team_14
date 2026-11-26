@@ -371,8 +371,122 @@
           7,
           9
         ]
+      },
+      {
+        "id": "KMJ-12346",
+        "family": "KMJ",
+        "kept_source_nodes": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ]
       }
-    ]
+    ],
+    "KMJ": {
+      "source_commit": "380f4a987fbd6720327379de82e371fc3a28e6b9",
+      "source_answer": "https://github.com/AMR-team-14/AMR_Team_14/blob/380f4a987fbd6720327379de82e371fc3a28e6b9/experiments/case1/KMJ-1125-DUAL-C1/answer.csv",
+      "source_answer_sha256": "a7a7524e077698ecd1d0802a9f355977f6e0e50b1eb0b455e34e53b649e91785",
+      "method": "Check all six root-connected five-node prunings of the late-shared 9-node answer. Reuse identical decision rules after testing threshold equivalence on Case 1 feasible distances.",
+      "available_empty_distances_m": [
+        0,
+        25,
+        50,
+        65,
+        90,
+        115,
+        140,
+        155,
+        180,
+        205
+      ],
+      "available_loaded_distances_m": [
+        25,
+        50,
+        65,
+        90,
+        115
+      ],
+      "equivalent_thresholds": {
+        "de": [
+          65,
+          89
+        ],
+        "dl": [
+          65,
+          82.5
+        ]
+      },
+      "equivalents": [
+        {
+          "kmj_shape": "KMJ-12345",
+          "equivalent_yb_shape": "YB-12345",
+          "fleets": [
+            18,
+            19,
+            20,
+            21
+          ]
+        },
+        {
+          "kmj_shape": "KMJ-12357",
+          "equivalent_yb_shape": "YB-12357",
+          "fleets": [
+            18,
+            19,
+            20,
+            21
+          ]
+        },
+        {
+          "kmj_shape": "KMJ-12358",
+          "equivalent_yb_shape": "YB-12358",
+          "fleets": [
+            18,
+            19,
+            20,
+            21
+          ]
+        },
+        {
+          "kmj_shape": "KMJ-13578",
+          "equivalent_yb_shape": "YB-13578",
+          "fleets": [
+            18,
+            19,
+            20,
+            21
+          ]
+        },
+        {
+          "kmj_shape": "KMJ-13589",
+          "equivalent_yb_shape": "YB-13589",
+          "fleets": [
+            18,
+            19,
+            20,
+            21
+          ]
+        }
+      ],
+      "new_five_node_shape": "KMJ-12346",
+      "distinct_threshold": {
+        "feature": "w",
+        "before": 2.45,
+        "after": 2.713
+      },
+      "shared_reference": {
+        "original_fleet": 18,
+        "original_nodes": 9,
+        "shared_seed_range": [
+          1,
+          500
+        ],
+        "shared_pooled_cost": 1191.7988,
+        "shared_rejected_count": 0
+      }
+    }
   },
   "reuse": {
     "main_index": "https://github.com/AMR-team-14/AMR_Team_14/blob/22adb496866fc59427089de5f4eba374a0e678a2/experiments/case1/index.csv",
@@ -1365,6 +1479,74 @@
       "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-9node-n21.json",
       "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-9node-n21.csv 1 50 --trace",
       "status": "completed"
+    },
+    {
+      "id": "KMJ-12346-n18",
+      "role": "5-node-candidate",
+      "family": "KMJ",
+      "shape": "KMJ-12346",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/KMJ-12346-n18.csv",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/KMJ-12346-n18.json",
+      "answer_sha256": "f0ff58cf5db16453610d643785217d56e92976cc3e601d6f0e105417f2be6ad7",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/KMJ-12346-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "KMJ-12346-n19",
+      "role": "5-node-candidate",
+      "family": "KMJ",
+      "shape": "KMJ-12346",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/KMJ-12346-n19.csv",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/KMJ-12346-n19.json",
+      "answer_sha256": "9d633b1f7521cd53d3815374a0e866e8f43806f12ccb5f97cfd7aba2c7f0d435",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/KMJ-12346-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "KMJ-12346-n20",
+      "role": "5-node-candidate",
+      "family": "KMJ",
+      "shape": "KMJ-12346",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/KMJ-12346-n20.csv",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/KMJ-12346-n20.json",
+      "answer_sha256": "ff36d9859bd5f32e31384dcf9d9ac7466dd34f46b0d0a6da460dfa4579089cd1",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/KMJ-12346-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "KMJ-12346-n21",
+      "role": "5-node-candidate",
+      "family": "KMJ",
+      "shape": "KMJ-12346",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/KMJ-12346-n21.csv",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/KMJ-12346-n21.json",
+      "answer_sha256": "df4c8672609347af006f5cd751431b5282ec0bc58ca1a3684981d3e8b59b4a22",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/KMJ-12346-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "KMJ-9node-n18",
+      "role": "reference",
+      "family": "KMJ",
+      "shape": "KMJ-9node",
+      "fleet": 18,
+      "nodes": 9,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/KMJ-9node-n18.csv",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/KMJ-9node-n18.json",
+      "answer_sha256": "a7a7524e077698ecd1d0802a9f355977f6e0e50b1eb0b455e34e53b649e91785",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/KMJ-9node-n18.csv 1 50 --trace",
+      "status": "completed"
     }
-  ]
+  ],
+  "team_branch_updates_during_work": {
+    "kmj": "380f4a987fbd6720327379de82e371fc3a28e6b9"
+  }
 }
