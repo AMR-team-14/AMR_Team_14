@@ -1,0 +1,1847 @@
+{
+ "generated": "2026-11-26T09:17:50.500Z",
+ "method": {
+  "alpha": 0.05,
+  "minBlocks": 3,
+  "publicSeeds": "11-15",
+  "heldOut": "all other 5-seed blocks",
+  "paired": "common random numbers: same seed block for both candidates",
+  "multiplicity": "Holm across comparisons vs current best",
+  "screening": "eliminate i if some j is better with one-sided Bonferroni alpha/(k-1)",
+  "ocba": "Chen et al. OCBA, sigma from paired differences"
+ },
+ "sources": {
+  "total": 26,
+  "new": [
+   "experiments/common/five-case/raw/B1-github.jsonl",
+   "experiments/common/five-case/raw/B1-kaggle.jsonl",
+   "experiments/common/five-case/raw/B1-local.jsonl",
+   "experiments/common/five-case/raw/B2-github.jsonl",
+   "experiments/common/five-case/raw/B2-kaggle.jsonl",
+   "experiments/common/five-case/raw/B2-local.jsonl",
+   "experiments/common/five-case/raw/github/45360075037/jsm-five-case-B1-45360075037-1/B1-github.jsonl",
+   "experiments/common/five-case/raw/github/45360658878/jsm-five-case-B2-45360658878-1/B2-github.jsonl",
+   "experiments/common/five-case/raw/github/45361708457/jsm-five-case-B2h-45361708457-1/B2-github.jsonl",
+   "experiments/common/five-case/raw/github/45363331998/jsm-five-case-B3-45363331998-1/B3-github.jsonl",
+   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-0/overnight-1125-github.jsonl",
+   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-1/overnight-1125-github.jsonl",
+   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-2/overnight-1125-github.jsonl",
+   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-3/overnight-1125-github.jsonl",
+   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-4/overnight-1125-github.jsonl",
+   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-5/overnight-1125-github.jsonl",
+   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-6/overnight-1125-github.jsonl",
+   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-7/overnight-1125-github.jsonl",
+   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-0/overnight-45-github.jsonl",
+   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-1/overnight-45-github.jsonl",
+   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-2/overnight-45-github.jsonl",
+   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-3/overnight-45-github.jsonl",
+   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-4/overnight-45-github.jsonl",
+   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-5/overnight-45-github.jsonl",
+   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-6/overnight-45-github.jsonl",
+   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-7/overnight-45-github.jsonl"
+  ],
+  "conflicts": []
+ },
+ "coverage": [
+  {
+   "batch": "B1",
+   "cases": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "envs": {
+    "local": {
+     "planned": 8,
+     "returned": 8,
+     "failed": 0,
+     "rejectedBlocks": 0,
+     "cpuMs": 1878,
+     "evals": 8,
+     "missing": 0,
+     "missingReason": null,
+     "msPerEval": 234.75
+    },
+    "github": {
+     "planned": 42,
+     "returned": 42,
+     "failed": 0,
+     "rejectedBlocks": 0,
+     "cpuMs": 11077,
+     "evals": 42,
+     "missing": 0,
+     "missingReason": null,
+     "msPerEval": 263.74
+    },
+    "kaggle": {
+     "planned": 477,
+     "returned": 477,
+     "failed": 0,
+     "rejectedBlocks": 0,
+     "cpuMs": 145459,
+     "evals": 477,
+     "missing": 0,
+     "missingReason": null,
+     "msPerEval": 304.95
+    }
+   }
+  },
+  {
+   "batch": "B2",
+   "cases": [
+    2,
+    3
+   ],
+   "envs": {
+    "github": {
+     "planned": 166,
+     "returned": 166,
+     "failed": 0,
+     "rejectedBlocks": 0,
+     "cpuMs": 1786035,
+     "evals": 17848,
+     "missing": 0,
+     "missingReason": null,
+     "msPerEval": 100.07
+    },
+    "kaggle": {
+     "planned": 26,
+     "returned": 26,
+     "failed": 0,
+     "rejectedBlocks": 0,
+     "cpuMs": 3414650,
+     "evals": 12102,
+     "missing": 0,
+     "missingReason": null,
+     "msPerEval": 282.16
+    },
+    "local": {
+     "planned": 5,
+     "returned": 5,
+     "failed": 0,
+     "rejectedBlocks": 0,
+     "cpuMs": 489921,
+     "evals": 1868,
+     "missing": 0,
+     "missingReason": null,
+     "msPerEval": 262.27
+    }
+   }
+  },
+  {
+   "batch": "B3",
+   "cases": [
+    2,
+    3
+   ],
+   "envs": {
+    "github": {
+     "planned": 415,
+     "returned": 415,
+     "failed": 0,
+     "rejectedBlocks": 0,
+     "cpuMs": 78534,
+     "evals": 415,
+     "missing": 0,
+     "missingReason": null,
+     "msPerEval": 189.24
+    },
+    "kaggle": {
+     "planned": 145,
+     "returned": 0,
+     "failed": 0,
+     "rejectedBlocks": 0,
+     "cpuMs": 0,
+     "evals": 0,
+     "missing": 145,
+     "missingReason": "not-collected",
+     "msPerEval": null
+    }
+   }
+  },
+  {
+   "batch": "overnight-1125",
+   "cases": [
+    2,
+    3
+   ],
+   "envs": {
+    "github": {
+     "planned": 1514,
+     "returned": 1514,
+     "failed": 0,
+     "rejectedBlocks": 0,
+     "cpuMs": 8533347,
+     "evals": 56630,
+     "missing": 0,
+     "missingReason": null,
+     "msPerEval": 150.69
+    },
+    "kaggle": {
+     "planned": 374,
+     "returned": 0,
+     "failed": 0,
+     "rejectedBlocks": 0,
+     "cpuMs": 0,
+     "evals": 0,
+     "missing": 374,
+     "missingReason": "not-collected",
+     "msPerEval": null
+    }
+   }
+  },
+  {
+   "batch": "overnight-45",
+   "cases": [
+    4,
+    5
+   ],
+   "envs": {
+    "github": {
+     "planned": 1000,
+     "returned": 1000,
+     "failed": 0,
+     "rejectedBlocks": 0,
+     "cpuMs": 218053,
+     "evals": 1000,
+     "missing": 0,
+     "missingReason": null,
+     "msPerEval": 218.05
+    },
+    "kaggle": {
+     "planned": 317,
+     "returned": 0,
+     "failed": 0,
+     "rejectedBlocks": 0,
+     "cpuMs": 0,
+     "evals": 0,
+     "missing": 317,
+     "missingReason": "not-collected",
+     "msPerEval": null
+    }
+   }
+  }
+ ],
+ "cases": {
+  "3": {
+   "candidates": 400,
+   "withPublic": 400,
+   "withHeldOut": 100,
+   "engines": [
+    "jsim:e2dc473b4509+ev1"
+   ],
+   "public": {
+    "best": {
+     "sha12": "00fad1b682e2",
+     "labels": [
+      "case3-baseline",
+      "jinhong:answer_case3.csv",
+      "search:c3-B0-n22-search:transplant"
+     ],
+     "fleet": 22,
+     "dir": "D1",
+     "score": 962.7048,
+     "source": "experiments/common/five-case/raw/B1-local.jsonl"
+    },
+    "teamBest": {
+     "key": "3:jinhong:answer_case3.csv",
+     "score": 962.7,
+     "same": true
+    },
+    "diffVsTeam": 0.0048,
+    "top5": [
+     {
+      "sha12": "00fad1b682e2",
+      "fleet": 22,
+      "dir": "D1",
+      "score": 962.7048
+     },
+     {
+      "sha12": "2fcf90e69eb4",
+      "fleet": 23,
+      "dir": "D1",
+      "score": 969.4107
+     },
+     {
+      "sha12": "ed5f5d03d37d",
+      "fleet": 22,
+      "dir": "D1",
+      "score": 970.821
+     },
+     {
+      "sha12": "a5c1da947d90",
+      "fleet": 21,
+      "dir": "D1",
+      "score": 971.2163
+     },
+     {
+      "sha12": "859269dbb6c6",
+      "fleet": 21,
+      "dir": "D2",
+      "score": 972.4246
+     }
+    ]
+   },
+   "heldOut": [
+    {
+     "sha12": "2fcf90e69eb4",
+     "labels": [
+      "search:c3-B0-n23-search:transplant",
+      "c3-B0-n23-search"
+     ],
+     "fleet": 23,
+     "dir": "D1",
+     "tree12": "598a9116756d",
+     "pub": 969.4107,
+     "blocks": 30,
+     "seedRange": "2410001-2410200",
+     "mean": 976.23,
+     "p95": 986.37,
+     "sd": 7.01,
+     "adjMean": 976.73,
+     "pubMinusHeld": -6.82,
+     "cost": {
+      "veh": 345,
+      "wait": 117.14,
+      "urgent": 514.09
+     }
+    },
+    {
+     "sha12": "e89491c9b1e6",
+     "labels": [
+      "c3-D2-n23-transplant-base"
+     ],
+     "fleet": 23,
+     "dir": "D2",
+     "tree12": "5d44afb4e8fc",
+     "pub": 980.9421,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 978.24,
+     "p95": 981.63,
+     "sd": 5.59,
+     "adjMean": 977.05,
+     "pubMinusHeld": 2.7,
+     "cost": {
+      "veh": 345,
+      "wait": 115.04,
+      "urgent": 518.2
+     }
+    },
+    {
+     "sha12": "3a0a134f1d3c",
+     "labels": [
+      "c3-B0-n23-transplant-base"
+     ],
+     "fleet": 23,
+     "dir": "D1",
+     "tree12": "5d44afb4e8fc",
+     "pub": 975.942,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 978.87,
+     "p95": 982.85,
+     "sd": 8.67,
+     "adjMean": 977.68,
+     "pubMinusHeld": -2.92,
+     "cost": {
+      "veh": 345,
+      "wait": 114.29,
+      "urgent": 519.57
+     }
+    },
+    {
+     "sha12": "00fad1b682e2",
+     "labels": [
+      "case3-baseline",
+      "jinhong:answer_case3.csv",
+      "search:c3-B0-n22-search:transplant"
+     ],
+     "fleet": 22,
+     "dir": "D1",
+     "tree12": "5d44afb4e8fc",
+     "pub": 962.7048,
+     "blocks": 33,
+     "seedRange": "2400001-2410195",
+     "mean": 978.27,
+     "p95": 986.83,
+     "sd": 6.37,
+     "adjMean": 977.95,
+     "pubMinusHeld": -15.56,
+     "cost": {
+      "veh": 330,
+      "wait": 119.05,
+      "urgent": 528.45
+     }
+    },
+    {
+     "sha12": "a5c1da947d90",
+     "labels": [
+      "search:c3-B0-n21-search:transplant",
+      "c3-B0-n21-search"
+     ],
+     "fleet": 21,
+     "dir": "D1",
+     "tree12": "9362bd9b4060",
+     "pub": 971.2163,
+     "blocks": 30,
+     "seedRange": "2410001-2410200",
+     "mean": 978.78,
+     "p95": 988.29,
+     "sd": 7.54,
+     "adjMean": 979.06,
+     "pubMinusHeld": -7.57,
+     "cost": {
+      "veh": 315,
+      "wait": 125,
+      "urgent": 538.79
+     }
+    },
+    {
+     "sha12": "b3debb316487",
+     "labels": [
+      "c3-D2-n22-transplant-base"
+     ],
+     "fleet": 22,
+     "dir": "D2",
+     "tree12": "5d44afb4e8fc",
+     "pub": 975.1069,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 980.55,
+     "p95": 983.39,
+     "sd": 4.55,
+     "adjMean": 979.35,
+     "pubMinusHeld": -5.44,
+     "cost": {
+      "veh": 330,
+      "wait": 119.79,
+      "urgent": 530.75
+     }
+    },
+    {
+     "sha12": "4592869026de",
+     "labels": [
+      "c3-B0-n21-transplant-base"
+     ],
+     "fleet": 21,
+     "dir": "D1",
+     "tree12": "5d44afb4e8fc",
+     "pub": 974.3433,
+     "blocks": 33,
+     "seedRange": "2400001-2410200",
+     "mean": 978.47,
+     "p95": 988.08,
+     "sd": 6.8,
+     "adjMean": 979.9,
+     "pubMinusHeld": -4.12,
+     "cost": {
+      "veh": 315,
+      "wait": 125.05,
+      "urgent": 538.42
+     }
+    },
+    {
+     "sha12": "f5d9cca6b020",
+     "labels": [
+      "search:c3-D2-n22-search:transplant",
+      "c3-D2-n22-search"
+     ],
+     "fleet": 22,
+     "dir": "D2",
+     "tree12": "2eca1fe81435",
+     "pub": 973.671,
+     "blocks": 30,
+     "seedRange": "2410001-2410200",
+     "mean": 981.77,
+     "p95": 994.49,
+     "sd": 8.79,
+     "adjMean": 981.35,
+     "pubMinusHeld": -8.1,
+     "cost": {
+      "veh": 330,
+      "wait": 120.03,
+      "urgent": 531.74
+     }
+    },
+    {
+     "sha12": "36ec49d47f50",
+     "labels": [
+      "c3-D2-n21-transplant-base"
+     ],
+     "fleet": 21,
+     "dir": "D2",
+     "tree12": "5d44afb4e8fc",
+     "pub": 980.54,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 983.77,
+     "p95": 984.5,
+     "sd": 3.3,
+     "adjMean": 982.58,
+     "pubMinusHeld": -3.23,
+     "cost": {
+      "veh": 315,
+      "wait": 126.67,
+      "urgent": 542.1
+     }
+    },
+    {
+     "sha12": "859269dbb6c6",
+     "labels": [
+      "search:c3-D2-n21-search:transplant",
+      "c3-D2-n21-search"
+     ],
+     "fleet": 21,
+     "dir": "D2",
+     "tree12": "ea586089147f",
+     "pub": 972.4246,
+     "blocks": 29,
+     "seedRange": "2410006-2410195",
+     "mean": 983.03,
+     "p95": 992.22,
+     "sd": 7.08,
+     "adjMean": 984.53,
+     "pubMinusHeld": -10.61,
+     "cost": {
+      "veh": 315,
+      "wait": 127.23,
+      "urgent": 540.8
+     }
+    },
+    {
+     "sha12": "898cd4781bd3",
+     "labels": [
+      "jinhong:cand_D2_97625.csv"
+     ],
+     "fleet": 22,
+     "dir": "D2",
+     "tree12": "b55a27913cbd",
+     "pub": 976.2541,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 987.26,
+     "p95": 990.74,
+     "sd": 6.15,
+     "adjMean": 986.07,
+     "pubMinusHeld": -11.01,
+     "cost": {
+      "veh": 330,
+      "wait": 119.7,
+      "urgent": 537.56
+     }
+    },
+    {
+     "sha12": "2336589ad919",
+     "labels": [
+      "jinhong:answer_case3_97315.csv"
+     ],
+     "fleet": 22,
+     "dir": "D1",
+     "tree12": "6a71d9605645",
+     "pub": 973.1501,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 987.49,
+     "p95": 988.81,
+     "sd": 3.56,
+     "adjMean": 986.29,
+     "pubMinusHeld": -14.33,
+     "cost": {
+      "veh": 330,
+      "wait": 122.24,
+      "urgent": 535.24
+     }
+    },
+    {
+     "sha12": "14a1e94e4dba",
+     "labels": [
+      "search:c3-D2-n23-search:transplant",
+      "c3-D2-n23-search"
+     ],
+     "fleet": 23,
+     "dir": "D2",
+     "tree12": "f2ca167add42",
+     "pub": 977.7307,
+     "blocks": 30,
+     "seedRange": "2410001-2410200",
+     "mean": 985.69,
+     "p95": 998.58,
+     "sd": 7.35,
+     "adjMean": 987.53,
+     "pubMinusHeld": -7.96,
+     "cost": {
+      "veh": 345,
+      "wait": 115.83,
+      "urgent": 524.86
+     }
+    },
+    {
+     "sha12": "ed5f5d03d37d",
+     "labels": [
+      "jinhong:cand_97082.csv",
+      "jinhong:cand_97082"
+     ],
+     "fleet": 22,
+     "dir": "D1",
+     "tree12": "78cb66d2f79f",
+     "pub": 970.821,
+     "blocks": 34,
+     "seedRange": "2400001-2410200",
+     "mean": 988,
+     "p95": 996.64,
+     "sd": 6.54,
+     "adjMean": 988,
+     "pubMinusHeld": -17.18,
+     "cost": {
+      "veh": 330,
+      "wait": 122.69,
+      "urgent": 535.31
+     }
+    },
+    {
+     "sha12": "5623b55f0873",
+     "labels": [
+      "jinhong:answer_case3_97645.csv"
+     ],
+     "fleet": 22,
+     "dir": "D1",
+     "tree12": "6a81e947f82c",
+     "pub": 976.4453,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 990.34,
+     "p95": 992.82,
+     "sd": 4.19,
+     "adjMean": 989.15,
+     "pubMinusHeld": -13.89,
+     "cost": {
+      "veh": 330,
+      "wait": 124.57,
+      "urgent": 535.76
+     }
+    }
+   ],
+   "heldOutTotal": 100,
+   "currentBest": {
+    "sha12": "2fcf90e69eb4",
+    "labels": [
+     "search:c3-B0-n23-search:transplant",
+     "c3-B0-n23-search"
+    ],
+    "fleet": 23,
+    "dir": "D1",
+    "adjMean": 976.73,
+    "rawMean": 976.23,
+    "blocks": 30,
+    "basis": "paired"
+   },
+   "vsBest": [
+    {
+     "ev": "c3.vsbest.00fad1b682e2",
+     "sha12": "00fad1b682e2",
+     "labels": [
+      "case3-baseline",
+      "jinhong:answer_case3.csv"
+     ],
+     "fleet": 22,
+     "dir": "D1",
+     "n": 19,
+     "diff": 2.04,
+     "ci": [
+      -0.23,
+      4.32
+     ],
+     "p": 0.0755,
+     "holmP": 0.0755,
+     "verdict": "indistinct",
+     "blocksBetter": 5
+    },
+    {
+     "ev": "c3.vsbest.a5c1da947d90",
+     "sha12": "a5c1da947d90",
+     "labels": [
+      "search:c3-B0-n21-search:transplant",
+      "c3-B0-n21-search"
+     ],
+     "fleet": 21,
+     "dir": "D1",
+     "n": 20,
+     "diff": 3.2,
+     "ci": [
+      0.65,
+      5.75
+     ],
+     "p": 0.0167,
+     "holmP": 0.0334,
+     "verdict": "worse",
+     "blocksBetter": 6
+    },
+    {
+     "ev": "c3.vsbest.f5d9cca6b020",
+     "sha12": "f5d9cca6b020",
+     "labels": [
+      "search:c3-D2-n22-search:transplant",
+      "c3-D2-n22-search"
+     ],
+     "fleet": 22,
+     "dir": "D2",
+     "n": 20,
+     "diff": 4.36,
+     "ci": [
+      1.48,
+      7.23
+     ],
+     "p": 0.005,
+     "holmP": 0.0151,
+     "verdict": "worse",
+     "blocksBetter": 5
+    },
+    {
+     "ev": "c3.vsbest.4592869026de",
+     "sha12": "4592869026de",
+     "labels": [
+      "c3-B0-n21-transplant-base"
+     ],
+     "fleet": 21,
+     "dir": "D1",
+     "n": 19,
+     "diff": 4.53,
+     "ci": [
+      1.9,
+      7.16
+     ],
+     "p": 0.002,
+     "holmP": 0.0078,
+     "verdict": "worse",
+     "blocksBetter": 3
+    },
+    {
+     "ev": "c3.vsbest.859269dbb6c6",
+     "sha12": "859269dbb6c6",
+     "labels": [
+      "search:c3-D2-n21-search:transplant",
+      "c3-D2-n21-search"
+     ],
+     "fleet": 21,
+     "dir": "D2",
+     "n": 19,
+     "diff": 8.02,
+     "ci": [
+      5.75,
+      10.3
+     ],
+     "p": 0,
+     "holmP": 0,
+     "verdict": "worse",
+     "blocksBetter": 2
+    },
+    {
+     "ev": "c3.vsbest.14a1e94e4dba",
+     "sha12": "14a1e94e4dba",
+     "labels": [
+      "search:c3-D2-n23-search:transplant",
+      "c3-D2-n23-search"
+     ],
+     "fleet": 23,
+     "dir": "D2",
+     "n": 26,
+     "diff": 9.68,
+     "ci": [
+      7.98,
+      11.38
+     ],
+     "p": 0,
+     "holmP": 0,
+     "verdict": "worse",
+     "blocksBetter": 0
+    },
+    {
+     "ev": "c3.vsbest.ed5f5d03d37d",
+     "sha12": "ed5f5d03d37d",
+     "labels": [
+      "jinhong:cand_97082.csv",
+      "jinhong:cand_97082"
+     ],
+     "fleet": 22,
+     "dir": "D1",
+     "n": 24,
+     "diff": 11.28,
+     "ci": [
+      9.62,
+      12.94
+     ],
+     "p": 0,
+     "holmP": 0,
+     "verdict": "worse",
+     "blocksBetter": 0
+    }
+   ],
+   "vsBestTotal": 7,
+   "screeningSubset": [
+    "00fad1b682e2",
+    "d8d70e5cdecd",
+    "5623b55f0873",
+    "2cf90a821cce",
+    "4592869026de",
+    "3a0a134f1d3c",
+    "36ec49d47f50",
+    "b3debb316487",
+    "e89491c9b1e6",
+    "a5c1da947d90",
+    "2fcf90e69eb4",
+    "f5d9cca6b020"
+   ],
+   "ocba": {
+    "budgetBlocks": 480,
+    "nextStart": 2420001,
+    "alloc": [
+     {
+      "sha12": "2fcf90e69eb4",
+      "role": "current-best",
+      "blocks": 151
+     },
+     {
+      "sha12": "00fad1b682e2",
+      "role": "challenger",
+      "blocks": 8
+     },
+     {
+      "sha12": "d8d70e5cdecd",
+      "role": "challenger",
+      "blocks": 53
+     },
+     {
+      "sha12": "5623b55f0873",
+      "role": "challenger",
+      "blocks": 26
+     },
+     {
+      "sha12": "2cf90a821cce",
+      "role": "challenger",
+      "blocks": 31
+     },
+     {
+      "sha12": "4592869026de",
+      "role": "challenger",
+      "blocks": 2
+     },
+     {
+      "sha12": "3a0a134f1d3c",
+      "role": "challenger",
+      "blocks": 110
+     },
+     {
+      "sha12": "36ec49d47f50",
+      "role": "challenger",
+      "blocks": 16
+     },
+     {
+      "sha12": "b3debb316487",
+      "role": "challenger",
+      "blocks": 30
+     },
+     {
+      "sha12": "e89491c9b1e6",
+      "role": "challenger",
+      "blocks": 46
+     },
+     {
+      "sha12": "a5c1da947d90",
+      "role": "challenger",
+      "blocks": 4
+     },
+     {
+      "sha12": "f5d9cca6b020",
+      "role": "challenger",
+      "blocks": 3
+     }
+    ]
+   },
+   "effects": [
+    {
+     "ev": "c3.effect.a6901ec21c7d.55725d4e0e7b",
+     "factor": "dir",
+     "a": {
+      "sha12": "a6901ec21c7d",
+      "fleet": 22,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "55725d4e0e7b",
+      "fleet": 22,
+      "dir": "D4"
+     },
+     "n": 4,
+     "diffAminusB": -386.18,
+     "ci": [
+      -387.25,
+      -385.11
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.f324f7bde4f6.bba30f1451ee",
+     "factor": "dir",
+     "a": {
+      "sha12": "f324f7bde4f6",
+      "fleet": 23,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "bba30f1451ee",
+      "fleet": 23,
+      "dir": "D4"
+     },
+     "n": 4,
+     "diffAminusB": -388.7,
+     "ci": [
+      -391.4,
+      -385.99
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.36ec49d47f50.6d129d8fb3ea",
+     "factor": "dir",
+     "a": {
+      "sha12": "36ec49d47f50",
+      "fleet": 21,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "6d129d8fb3ea",
+      "fleet": 21,
+      "dir": "D4"
+     },
+     "n": 4,
+     "diffAminusB": -427.95,
+     "ci": [
+      -430.99,
+      -424.91
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.36ec49d47f50.7a47f438e19e",
+     "factor": "dir",
+     "a": {
+      "sha12": "36ec49d47f50",
+      "fleet": 21,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "7a47f438e19e",
+      "fleet": 21,
+      "dir": "D5"
+     },
+     "n": 4,
+     "diffAminusB": -351.99,
+     "ci": [
+      -354.79,
+      -349.19
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.e89491c9b1e6.4e5dd950eec2",
+     "factor": "dir",
+     "a": {
+      "sha12": "e89491c9b1e6",
+      "fleet": 23,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "4e5dd950eec2",
+      "fleet": 23,
+      "dir": "D5"
+     },
+     "n": 4,
+     "diffAminusB": -372.42,
+     "ci": [
+      -375.39,
+      -369.44
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.f5db63052a21.db537f6dde31",
+     "factor": "dir",
+     "a": {
+      "sha12": "f5db63052a21",
+      "fleet": 23,
+      "dir": "D4"
+     },
+     "b": {
+      "sha12": "db537f6dde31",
+      "fleet": 23,
+      "dir": "D6"
+     },
+     "n": 4,
+     "diffAminusB": 362.06,
+     "ci": [
+      358.98,
+      365.14
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c3.effect.1698a271ff4b.895984c32cc0",
+     "factor": "dir",
+     "a": {
+      "sha12": "1698a271ff4b",
+      "fleet": 22,
+      "dir": "D4"
+     },
+     "b": {
+      "sha12": "895984c32cc0",
+      "fleet": 22,
+      "dir": "D6"
+     },
+     "n": 4,
+     "diffAminusB": 356.66,
+     "ci": [
+      353.61,
+      359.7
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c3.effect.7059069266e0.55725d4e0e7b",
+     "factor": "dir",
+     "a": {
+      "sha12": "7059069266e0",
+      "fleet": 22,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "55725d4e0e7b",
+      "fleet": 22,
+      "dir": "D4"
+     },
+     "n": 4,
+     "diffAminusB": -386.33,
+     "ci": [
+      -390.1,
+      -382.56
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.d1294e427d28.93c5a03a49bc",
+     "factor": "dir",
+     "a": {
+      "sha12": "d1294e427d28",
+      "fleet": 23,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "93c5a03a49bc",
+      "fleet": 23,
+      "dir": "D6"
+     },
+     "n": 4,
+     "diffAminusB": -52,
+     "ci": [
+      -52.52,
+      -51.48
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.d494b1ea72c4.ef1f77289648",
+     "factor": "dir",
+     "a": {
+      "sha12": "d494b1ea72c4",
+      "fleet": 22,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "ef1f77289648",
+      "fleet": 22,
+      "dir": "D4"
+     },
+     "n": 4,
+     "diffAminusB": -383.59,
+     "ci": [
+      -387.49,
+      -379.69
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.55ac0a617a1a.fd8009a2ee45",
+     "factor": "dir",
+     "a": {
+      "sha12": "55ac0a617a1a",
+      "fleet": 21,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "fd8009a2ee45",
+      "fleet": 21,
+      "dir": "D5"
+     },
+     "n": 4,
+     "diffAminusB": -328.66,
+     "ci": [
+      -332.17,
+      -325.15
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.9eb73aa2bd5d.ef1f77289648",
+     "factor": "dir",
+     "a": {
+      "sha12": "9eb73aa2bd5d",
+      "fleet": 22,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "ef1f77289648",
+      "fleet": 22,
+      "dir": "D4"
+     },
+     "n": 4,
+     "diffAminusB": -382.05,
+     "ci": [
+      -387.49,
+      -376.6
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.ef1f77289648.d2486e9ae6cc",
+     "factor": "dir",
+     "a": {
+      "sha12": "ef1f77289648",
+      "fleet": 22,
+      "dir": "D4"
+     },
+     "b": {
+      "sha12": "d2486e9ae6cc",
+      "fleet": 22,
+      "dir": "D6"
+     },
+     "n": 4,
+     "diffAminusB": 324.79,
+     "ci": [
+      320.16,
+      329.43
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c3.effect.d1294e427d28.785b31efa836",
+     "factor": "dir",
+     "a": {
+      "sha12": "d1294e427d28",
+      "fleet": 23,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "785b31efa836",
+      "fleet": 23,
+      "dir": "D5"
+     },
+     "n": 4,
+     "diffAminusB": -330.52,
+     "ci": [
+      -335.27,
+      -325.76
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.e89491c9b1e6.f5db63052a21",
+     "factor": "dir",
+     "a": {
+      "sha12": "e89491c9b1e6",
+      "fleet": 23,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "f5db63052a21",
+      "fleet": 23,
+      "dir": "D4"
+     },
+     "n": 4,
+     "diffAminusB": -451.29,
+     "ci": [
+      -457.86,
+      -444.72
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.4592869026de.7a47f438e19e",
+     "factor": "dir",
+     "a": {
+      "sha12": "4592869026de",
+      "fleet": 21,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "7a47f438e19e",
+      "fleet": 21,
+      "dir": "D5"
+     },
+     "n": 4,
+     "diffAminusB": -358.58,
+     "ci": [
+      -364.11,
+      -353.06
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.b3debb316487.1698a271ff4b",
+     "factor": "dir",
+     "a": {
+      "sha12": "b3debb316487",
+      "fleet": 22,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "1698a271ff4b",
+      "fleet": 22,
+      "dir": "D4"
+     },
+     "n": 4,
+     "diffAminusB": -441.25,
+     "ci": [
+      -448.08,
+      -434.42
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.785b31efa836.93c5a03a49bc",
+     "factor": "dir",
+     "a": {
+      "sha12": "785b31efa836",
+      "fleet": 23,
+      "dir": "D5"
+     },
+     "b": {
+      "sha12": "93c5a03a49bc",
+      "fleet": 23,
+      "dir": "D6"
+     },
+     "n": 4,
+     "diffAminusB": 278.52,
+     "ci": [
+      274.19,
+      282.85
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c3.effect.b3debb316487.1e5c492488fd",
+     "factor": "dir",
+     "a": {
+      "sha12": "b3debb316487",
+      "fleet": 22,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "1e5c492488fd",
+      "fleet": 22,
+      "dir": "D3"
+     },
+     "n": 4,
+     "diffAminusB": -326.62,
+     "ci": [
+      -331.81,
+      -321.44
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c3.effect.bba30f1451ee.daf0f0e9d006",
+     "factor": "dir",
+     "a": {
+      "sha12": "bba30f1451ee",
+      "fleet": 23,
+      "dir": "D4"
+     },
+     "b": {
+      "sha12": "daf0f0e9d006",
+      "fleet": 23,
+      "dir": "D6"
+     },
+     "n": 4,
+     "diffAminusB": 338.36,
+     "ci": [
+      332.76,
+      343.96
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    }
+   ],
+   "effectsTotal": 443,
+   "effectsSummary": {
+    "dir": {
+     "a-better": 93,
+     "a-worse": 39,
+     "indistinct": 9
+    },
+    "tree": {
+     "a-better": 178,
+     "a-worse": 18,
+     "indistinct": 16
+    },
+    "fleet": {
+     "a-better": 22,
+     "a-worse": 16,
+     "indistinct": 52
+    }
+   },
+   "search": {
+    "B2": {
+     "runs": 72,
+     "evals": 31621,
+     "localOptimum": 72,
+     "best": {
+      "score": 962.7048,
+      "sha12": "00fad1b682e2",
+      "fleet": 22,
+      "dir": "D1",
+      "start": "transplant"
+     },
+     "byFleet": {
+      "21": {
+       "runs": 24,
+       "min": 971.22,
+       "mean": 1180.29
+      },
+      "22": {
+       "runs": 24,
+       "min": 962.7,
+       "mean": 1180.19
+      },
+      "23": {
+       "runs": 24,
+       "min": 969.41,
+       "mean": 1182.99
+      }
+     }
+    },
+    "overnight-1125": {
+     "runs": 234,
+     "evals": 55116,
+     "localOptimum": 234,
+     "best": {
+      "score": 1024.2547,
+      "sha12": "fe83f7dd5a4c",
+      "fleet": 21,
+      "dir": "D31",
+      "start": "longFar"
+     },
+     "byFleet": {
+      "21": {
+       "runs": 78,
+       "min": 1024.25,
+       "mean": 1343.04
+      },
+      "22": {
+       "runs": 78,
+       "min": 1027.49,
+       "mean": 1323.68
+      },
+      "23": {
+       "runs": 78,
+       "min": 1028.99,
+       "mean": 1310.89
+      }
+     }
+    }
+   },
+   "bestSearchCandidates": [
+    {
+     "score": 962.7048,
+     "sha12": "00fad1b682e2",
+     "fleet": 22,
+     "dir": "D1",
+     "start": "transplant",
+     "heldOutBlocks": 33
+    },
+    {
+     "score": 1024.2547,
+     "sha12": "fe83f7dd5a4c",
+     "fleet": 21,
+     "dir": "D31",
+     "start": "longFar",
+     "heldOutBlocks": 0
+    }
+   ],
+   "dirLegend": {
+    "D1": "1111111100000000011111011001101",
+    "D2": "1111111100000000011101011001101",
+    "D3": "0011111111000000110110111101001",
+    "D4": "0000011111111000110010101110001",
+    "D5": "0000011111111000111010101110001",
+    "D6": "0000000011111111101000100110010",
+    "D7": "0011111111000000110000111101001",
+    "D8": "0000011111111000110000101110001",
+    "D9": "0000000011111111100000100110010",
+    "D10": "1111111100000000011001011001101",
+    "D11": "0000011111111000111000101110001",
+    "D12": "1100000000111111001001000010110",
+    "D13": "0000000111111110111000100110000",
+    "D14": "0011111111000000110100111101001",
+    "D15": "1111100000000111000101010001110",
+    "D16": "1111100100000110010101010001100",
+    "D17": "0011100111000110110100110101000",
+    "D18": "0000000111111110110100100110000",
+    "D19": "1111100100000110011101010001100",
+    "D20": "1100000000111111001101000010110",
+    "D21": "1100000100111110011101000010100",
+    "D22": "1111111000000001000011011001111",
+    "D23": "0011111011000001100010111101011",
+    "D24": "1111111100000000010011011001101",
+    "D25": "0000000011111111100010100110010",
+    "D26": "1111111000000001001011011001111",
+    "D27": "1111111100000000011011011001101",
+    "D28": "1100011100111000011011001010101",
+    "D29": "1100000000111111001011000010110",
+    "D30": "0000000011111111101010100110010",
+    "D31": "1111111100000000010111011001101",
+    "D32": "1111100000000111000111010001110",
+    "D33": "0011100011000111100110110101010",
+    "D34": "1111100000000111001111010001110",
+    "D35": "1100000000111111001111000010110",
+    "D36": "0000000011111111101110100110010",
+    "D37": "0000000111111110110000100110000",
+    "D38": "1100000100111110011001000010100",
+    "D39": "0011100011000111100100110101010",
+    "D40": "1111100000000111001101010001110",
+    "D41": "0000000111111110111100100110000",
+    "D42": "0000011011111001100010101110011",
+    "D43": "0000011011111001101010101110011",
+    "D44": "0011111011000001100110111101011",
+    "D45": "1111111000000001001111011001111"
+   }
+  },
+  "4": {
+   "candidates": 2,
+   "withPublic": 1,
+   "withHeldOut": 2,
+   "engines": [
+    "jsim:e2dc473b4509+ev1"
+   ],
+   "public": {
+    "best": {
+     "sha12": "a88dfee925e7",
+     "labels": [
+      "case4-baseline",
+      "published-tree-fleet-18"
+     ],
+     "fleet": 18,
+     "dir": "D1",
+     "score": 801.467,
+     "source": "experiments/common/five-case/raw/B1-local.jsonl"
+    },
+    "teamBest": null,
+    "diffVsTeam": null,
+    "top5": [
+     {
+      "sha12": "a88dfee925e7",
+      "fleet": 18,
+      "dir": "D1",
+      "score": 801.467
+     }
+    ]
+   },
+   "heldOut": [
+    {
+     "sha12": "a88dfee925e7",
+     "labels": [
+      "case4-baseline",
+      "published-tree-fleet-18"
+     ],
+     "fleet": 18,
+     "dir": "D1",
+     "tree12": "c0752916b514",
+     "pub": 801.467,
+     "blocks": 200,
+     "seedRange": "2450001-2451000",
+     "mean": 802.96,
+     "p95": 809.02,
+     "sd": 3.38,
+     "adjMean": 802.96,
+     "pubMinusHeld": -1.5,
+     "cost": {
+      "veh": 270,
+      "wait": 81.22,
+      "urgent": 451.74
+     }
+    },
+    {
+     "sha12": "03b542a9976c",
+     "labels": [
+      "published-tree-fleet-17"
+     ],
+     "fleet": 17,
+     "dir": "D1",
+     "tree12": "c0752916b514",
+     "pub": null,
+     "blocks": 200,
+     "seedRange": "2450001-2451000",
+     "mean": 807.77,
+     "p95": 816.8,
+     "sd": 6.03,
+     "adjMean": 807.77,
+     "pubMinusHeld": null,
+     "cost": {
+      "veh": 255,
+      "wait": 85.83,
+      "urgent": 466.94
+     }
+    }
+   ],
+   "heldOutTotal": 2,
+   "currentBest": {
+    "sha12": "a88dfee925e7",
+    "labels": [
+     "case4-baseline",
+     "published-tree-fleet-18"
+    ],
+    "fleet": 18,
+    "dir": "D1",
+    "adjMean": 802.96,
+    "rawMean": 802.96,
+    "blocks": 200,
+    "basis": "reference"
+   },
+   "vsBest": [
+    {
+     "ev": "c4.vsbest.03b542a9976c",
+     "sha12": "03b542a9976c",
+     "labels": [
+      "published-tree-fleet-17"
+     ],
+     "fleet": 17,
+     "dir": "D1",
+     "n": 200,
+     "diff": 4.8,
+     "ci": [
+      4.2,
+      5.4
+     ],
+     "p": 0,
+     "holmP": 0,
+     "verdict": "worse",
+     "blocksBetter": 28
+    }
+   ],
+   "vsBestTotal": 1,
+   "screeningSubset": [
+    "a88dfee925e7"
+   ],
+   "ocba": null,
+   "effects": [
+    {
+     "ev": "c4.effect.a88dfee925e7.03b542a9976c",
+     "factor": "fleet",
+     "a": {
+      "sha12": "a88dfee925e7",
+      "fleet": 18,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "03b542a9976c",
+      "fleet": 17,
+      "dir": "D1"
+     },
+     "n": 200,
+     "diffAminusB": -4.8,
+     "ci": [
+      -5.4,
+      -4.2
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 172
+    }
+   ],
+   "effectsTotal": 1,
+   "effectsSummary": {
+    "fleet": {
+     "a-better": 1,
+     "a-worse": 0,
+     "indistinct": 0
+    }
+   },
+   "search": {},
+   "bestSearchCandidates": [],
+   "dirLegend": {
+    "D1": "0011011111111110011011000111110111100000010010111110000110011100011111100101"
+   }
+  },
+  "5": {
+   "candidates": 3,
+   "withPublic": 1,
+   "withHeldOut": 3,
+   "engines": [
+    "jsim:e2dc473b4509+ev1"
+   ],
+   "public": {
+    "best": {
+     "sha12": "dd48afb957ba",
+     "labels": [
+      "case5-baseline",
+      "published-tree-fleet-23"
+     ],
+     "fleet": 23,
+     "dir": "D1",
+     "score": 771.4315,
+     "source": "experiments/common/five-case/raw/B1-local.jsonl"
+    },
+    "teamBest": null,
+    "diffVsTeam": null,
+    "top5": [
+     {
+      "sha12": "dd48afb957ba",
+      "fleet": 23,
+      "dir": "D1",
+      "score": 771.4315
+     }
+    ]
+   },
+   "heldOut": [
+    {
+     "sha12": "a528e43bafdd",
+     "labels": [
+      "published-tree-fleet-24"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "tree12": "b7df5e7f92fe",
+     "pub": null,
+     "blocks": 200,
+     "seedRange": "2450001-2451000",
+     "mean": 785.47,
+     "p95": 798.74,
+     "sd": 7.74,
+     "adjMean": 785.47,
+     "pubMinusHeld": null,
+     "cost": {
+      "veh": 360,
+      "wait": 96.9,
+      "urgent": 328.56
+     }
+    },
+    {
+     "sha12": "dd48afb957ba",
+     "labels": [
+      "case5-baseline",
+      "published-tree-fleet-23"
+     ],
+     "fleet": 23,
+     "dir": "D1",
+     "tree12": "b7df5e7f92fe",
+     "pub": 771.4315,
+     "blocks": 200,
+     "seedRange": "2450001-2451000",
+     "mean": 787.23,
+     "p95": 805.54,
+     "sd": 10.04,
+     "adjMean": 787.23,
+     "pubMinusHeld": -15.79,
+     "cost": {
+      "veh": 345,
+      "wait": 99.69,
+      "urgent": 342.54
+     }
+    },
+    {
+     "sha12": "19b730ac721c",
+     "labels": [
+      "published-tree-fleet-22"
+     ],
+     "fleet": 22,
+     "dir": "D1",
+     "tree12": "b7df5e7f92fe",
+     "pub": null,
+     "blocks": 200,
+     "seedRange": "2450001-2451000",
+     "mean": 799,
+     "p95": 819.3,
+     "sd": 12.15,
+     "adjMean": 799,
+     "pubMinusHeld": null,
+     "cost": {
+      "veh": 330,
+      "wait": 103.47,
+      "urgent": 365.53
+     }
+    }
+   ],
+   "heldOutTotal": 3,
+   "currentBest": {
+    "sha12": "a528e43bafdd",
+    "labels": [
+     "published-tree-fleet-24"
+    ],
+    "fleet": 24,
+    "dir": "D1",
+    "adjMean": 785.47,
+    "rawMean": 785.47,
+    "blocks": 200,
+    "basis": "reference"
+   },
+   "vsBest": [
+    {
+     "ev": "c5.vsbest.dd48afb957ba",
+     "sha12": "dd48afb957ba",
+     "labels": [
+      "case5-baseline",
+      "published-tree-fleet-23"
+     ],
+     "fleet": 23,
+     "dir": "D1",
+     "n": 200,
+     "diff": 1.76,
+     "ci": [
+      1.11,
+      2.41
+     ],
+     "p": 0,
+     "holmP": 0,
+     "verdict": "worse",
+     "blocksBetter": 82
+    },
+    {
+     "ev": "c5.vsbest.19b730ac721c",
+     "sha12": "19b730ac721c",
+     "labels": [
+      "published-tree-fleet-22"
+     ],
+     "fleet": 22,
+     "dir": "D1",
+     "n": 200,
+     "diff": 13.54,
+     "ci": [
+      12.48,
+      14.59
+     ],
+     "p": 0,
+     "holmP": 0,
+     "verdict": "worse",
+     "blocksBetter": 7
+    }
+   ],
+   "vsBestTotal": 2,
+   "screeningSubset": [
+    "a528e43bafdd"
+   ],
+   "ocba": null,
+   "effects": [
+    {
+     "ev": "c5.effect.dd48afb957ba.19b730ac721c",
+     "factor": "fleet",
+     "a": {
+      "sha12": "dd48afb957ba",
+      "fleet": 23,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "19b730ac721c",
+      "fleet": 22,
+      "dir": "D1"
+     },
+     "n": 200,
+     "diffAminusB": -11.78,
+     "ci": [
+      -12.6,
+      -10.95
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 198
+    },
+    {
+     "ev": "c5.effect.19b730ac721c.a528e43bafdd",
+     "factor": "fleet",
+     "a": {
+      "sha12": "19b730ac721c",
+      "fleet": 22,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "a528e43bafdd",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "n": 200,
+     "diffAminusB": 13.54,
+     "ci": [
+      12.48,
+      14.59
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 7
+    },
+    {
+     "ev": "c5.effect.dd48afb957ba.a528e43bafdd",
+     "factor": "fleet",
+     "a": {
+      "sha12": "dd48afb957ba",
+      "fleet": 23,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "a528e43bafdd",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "n": 200,
+     "diffAminusB": 1.76,
+     "ci": [
+      1.11,
+      2.41
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 82
+    }
+   ],
+   "effectsTotal": 3,
+   "effectsSummary": {
+    "fleet": {
+     "a-better": 1,
+     "a-worse": 2,
+     "indistinct": 0
+    }
+   },
+   "search": {},
+   "bestSearchCandidates": [],
+   "dirLegend": {
+    "D1": "111000010000011110100001101100"
+   }
+  }
+ },
+ "citedEvidence": [],
+ "evidenceCount": 568
+}

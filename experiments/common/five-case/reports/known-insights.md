@@ -1,36 +1,40 @@
-# 누적 인사이트 (낮을수록 좋음, 평가기 jsim:e2dc473b4509+ev1)
+# 누적 인사이트 (낮을수록 좋음, 평가기 jsim:e2dc473b4509+ev1, digest 2026-11-26T09:17:50Z)
 
 ## Case 3
 확인된 인사이트
-- 공개(11-15) 최저 962.7048 = baseline(fleet 22), 팀 기록과 동일. 탐색은 못 넘음.
-- dir이 비용을 좌우: 변형 dir ~972~975, F4 1058, 나머지 1309~1382. 39개 dir 국소 탐색 최저 1024.3(overnight-1125).
-- 대수 21/22/23 차이는 구별 불가(B3: n21 transplant −0.17±2.10, 2410001~, 20시드).
-- 트리 교체·시작규칙 변경은 baseline dir에서 개선 없음.
-- 별도 시드 baseline 978.80 (공개 대비 약 +16).
-- longFar/shortFar 시작규칙 탐색 최저점은 거의 같음(1024.3/1024.5).
+- 공개(11-15) 최저 962.7048 = baseline(fleet 22/D1), 팀 기록 962.7과 동일. 탐색은 못 넘음.
+- 별도 시드 최고는 23/D1(2fcf90e69eb4, adjMean 976.73)이나 baseline과 구별 안 됨 [ev:c3.vsbest.00fad1b682e2=indistinct]
+- 21/D1 탐색 후보는 최고보다 나쁨 [ev:c3.vsbest.a5c1da947d90=worse]; 22/D2 탐색 후보도 나쁨 [ev:c3.vsbest.f5d9cca6b020=worse]
+- dir이 비용을 좌우: D1 vs D4 −386.18 [ev:c3.effect.a6901ec21c7d.55725d4e0e7b=a-better], D2 vs D6 −52 [ev:c3.effect.d1294e427d28.93c5a03a49bc=a-better]. dir 쌍 요약 a-better 93/a-worse 39/indistinct 9
+- 대수 쌍 효과는 52/90이 구별 안 됨(a-better 22, a-worse 16)
+- 공개 대비 별도 시드 악화: baseline −15.56(공개−별도), 최고 후보 −6.82 → 공개 최저는 과적합 경향
+- overnight-1125 탐색(234회) 최저 1024.2547(21/D31), baseline 못 넘음
 검증 필요 가설
-- baseline dir이 전역 최적 근방인지(dir당 국소 탐색 1회뿐).
-- jinhong 후보의 별도 시드 상승이 과적합인지(baseline도 +16).
-분석에 반영한 결과 출처
-- case3/JSM-B1·B2.csv, raw B1/B2-check, github 45360075037·45360658878·45361708457·45363331998(B3)·45637202992(overnight-1125), team/reported.json
+- 23/D1 이득이 트리 때문인지 대수 때문인지(동시에 다름)
+- baseline dir이 전역 최적 근방인지(dir당 국소 탐색 1회뿐)
+다음 확인할 것
+- 시드 2420001~ 480블록 OCBA(2fcf 151, 3a0a 110, d8d7 53 …)로 2fcf vs baseline 재판정
 
 ## Case 4
 확인된 인사이트
-- 공개 최저 801.4670 = baseline fleet 18 (팀 기록 없음).
-- fleet 17은 18보다 나쁨: +4.80±0.60 (2450001~2450996, 200블록 쌍).
-- 별도 시드 baseline 평균 802.96, p95 809.02 (과적합 작음).
+- 공개 최저 801.467 = baseline fleet 18 (팀 기록 없음).
+- fleet 17은 18보다 나쁨, +4.8 CI [4.2, 5.4] [ev:c4.vsbest.03b542a9976c=worse]
+- 별도 시드 baseline 평균 802.96, p95 809.02, 공개−별도 −1.5(과적합 작음).
 검증 필요 가설
-- 트리·통로 탐색 개선 여부(search 128건 누락, 데이터 없음).
-분석에 반영한 결과 출처
-- case4/JSM-B1.csv, raw B1-check, github 45639996221(overnight-45)
+- 트리·통로 탐색 개선 여부(search 데이터 없음, overnight-45 결과가 digest search에 안 잡힘)
+- fleet 19 이상 효과 데이터 없음
+다음 확인할 것
+- 트리/통로 탐색 결과 집계 경로 확인, kaggle 317건 회수
 
 ## Case 5
 확인된 인사이트
 - 공개 최저 771.4315 = baseline fleet 23 (팀 기록 없음).
-- 22→23 −11.78±0.82, 23→24 −1.76±0.65 (200블록 쌍): 24는 이득 작음. 평균 23: 787.23, 24: 785.47.
-- 별도 시드 평균은 공개보다 약 +16.
+- 별도 시드 최고는 fleet 24(adjMean 785.47); 23은 1.76 나쁨, CI [1.11, 2.41] [ev:c5.vsbest.dd48afb957ba=worse]
+- 22→23 −11.78 [ev:c5.effect.dd48afb957ba.19b730ac721c=a-better]; 23→24 이득은 작음(1.76)
+- 24는 긴급비 328.56, 23은 342.54, 차량비 360 vs 345 (수치 관찰)
+- baseline 공개−별도 −15.79(공개가 낙관적).
 검증 필요 가설
-- 긴급비 감소가 원인이라는 설명(로그 미확인).
-- 트리 탐색 개선 여부(search 189건 누락, 데이터 없음).
-분석에 반영한 결과 출처
-- case5/JSM-B1.csv, raw B1-check, github 45639996221(overnight-45)
+- 긴급·대기 감소가 원인이라는 설명(로그 미확인)
+- 트리 탐색 개선 여부, fleet 25 이상(데이터 없음)
+다음 확인할 것
+- fleet 25 평가, 트리 탐색, kaggle 회수
