@@ -4,8 +4,10 @@ name: JSM Claude analysis
 #      (2) when collected results (GitHub + Kaggle) are pushed to jsm, or when this workflow/prompt changes.
 # Before analysis, every jsm-five-case run whose artifacts are not yet in the repo is downloaded into
 # experiments/common/five-case/raw/github/<run_id>/ (artifacts expire after 30 days; this keeps them).
-# Claude compares all results with reports/known-insights.md, reports only what is new per case, and updates
-# that file. The archive, report and insights file are committed to jsm by a plain git step (Claude never pushes).
+# digest.cjs then computes every number deterministically (coverage, public/held-out stats, CRN paired tests with
+# Holm, screening subset, one-factor effects, OCBA) into digest.json. Claude only interprets digest.json against
+# reports/known-insights.md and reports what is new per case. A plain git step commits archive, digest, state,
+# report and insights file to jsm (Claude never computes, commits or pushes).
 on:
   workflow_call:
   push:
@@ -57,6 +59,8 @@ jobs:
               && echo "$RUN" >> new-runs.txt || rm -rf "$ARCH/$RUN"
           done < runs.txt
           echo "새로 보관한 실행: $(cat new-runs.txt 2>/dev/null | tr '\n' ' ')"
+      - name: Compute digest (no AI)
+        run: node experiments/common/five-case/digest.cjs --out digest.json
       - name: Install Claude Code
         run: npm install -g @anthropic-ai/claude-code
       - name: Analyze
@@ -64,7 +68,7 @@ jobs:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
           claude -p "$(cat experiments/common/five-case/claude-analysis-prompt.md)" \
-            --allowedTools "Read,Glob,Grep,Write,Bash(node:*),Bash(ls:*),Bash(head:*),Bash(wc:*)" \
+            --allowedTools "Read,Glob,Grep,Write" \
             --max-turns 40 > claude-log.txt
           test -s report.md
       - name: Publish report
@@ -78,12 +82,13 @@ jobs:
           [ -s report.md ] || { echo "no report"; exit 0; }
           DIR=experiments/common/five-case/reports
           NAME="$(TZ=Asia/Seoul date +%m%d-%H%M)-run${{ github.run_id }}"
-          mkdir -p "$DIR"; cp report.md "$DIR/$NAME.md"
+          mkdir -p "$DIR"; cp report.md "$DIR/$NAME.md"; cp digest.json "$DIR/digest-latest.json"
+          node experiments/common/five-case/digest.cjs --save-state --out /dev/null
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3 4; do
             git fetch --depth=1 origin jsm && git reset -q --mixed FETCH_HEAD
-            for f in "$DIR/$NAME.md" "$DIR/known-insights.md" experiments/common/five-case/raw/github; do
+            for f in "$DIR/$NAME.md" "$DIR/known-insights.md" "$DIR/digest-latest.json" "$DIR/digest-state.json" experiments/common/five-case/raw/github; do
               if [ -e "$f" ]; then git add -f "$f"; fi
             done
             git commit -q -m "Claude analysis $NAME [skip ci]" && git push origin HEAD:jsm && exit 0
@@ -96,6 +101,7 @@ jobs:
           name: claude-report-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             report.md
+            digest.json
             claude-log.txt
           if-no-files-found: warn
           retention-days: 30
