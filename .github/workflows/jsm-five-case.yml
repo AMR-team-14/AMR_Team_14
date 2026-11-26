@@ -81,5 +81,6 @@ jobs:
     if: always()
     permissions:
       contents: write
+      actions: read
     uses: ./.github/workflows/jsm-analyze.yml
     secrets: inherit

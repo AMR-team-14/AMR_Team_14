@@ -2,8 +2,10 @@ name: JSM Claude analysis
 # Analyzes Case 3-5 results with Claude Code on the owner's subscription (CLAUDE_CODE_OAUTH_TOKEN from `claude setup-token`).
 # Runs (1) right after "JSM overnight experiments" finishes (called from jsm-five-case.yml),
 #      (2) when collected results (GitHub + Kaggle) are pushed to jsm, or when this workflow/prompt changes.
-# Writes report.md to the job summary and an artifact, then commits it (plus this run's summary.json) to jsm
-# under experiments/common/five-case/reports/. Claude itself only reads; the push is a plain git step.
+# Before analysis, every jsm-five-case run whose artifacts are not yet in the repo is downloaded into
+# experiments/common/five-case/raw/github/<run_id>/ (artifacts expire after 30 days; this keeps them).
+# Claude compares all results with reports/known-insights.md, reports only what is new per case, and updates
+# that file. The archive, report and insights file are committed to jsm by a plain git step (Claude never pushes).
 on:
   workflow_call:
   push:
@@ -18,6 +20,7 @@ on:
       - '.github/workflows/jsm-analyze.yml'
 permissions:
   contents: write
+  actions: read
 concurrency:
   group: jsm-analyze
   cancel-in-progress: false
@@ -38,11 +41,22 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
-      # Only present when called from jsm-five-case.yml in the same run (batch-summary + per-shard logs).
-      - uses: actions/download-artifact@v4
-        continue-on-error: true
-        with:
-          path: artifacts
+      - name: Archive experiment artifacts not yet in the repo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ARCH=experiments/common/five-case/raw/github
+          mkdir -p "$ARCH"
+          gh api --paginate "repos/${{ github.repository }}/actions/artifacts?per_page=100" \
+            -q '.artifacts[] | select(.expired|not) | select(.workflow_run.head_branch=="jsm")
+                | select(.name=="batch-summary" or (.name|startswith("jsm-five-case-"))) | .workflow_run.id' \
+            | sort -u > runs.txt
+          while read -r RUN; do
+            [ -d "$ARCH/$RUN" ] && continue
+            gh run download "$RUN" -R "${{ github.repository }}" -D "$ARCH/$RUN" -p 'jsm-five-case-*' -p batch-summary \
+              && echo "$RUN" >> new-runs.txt || rm -rf "$ARCH/$RUN"
+          done < runs.txt
+          echo "새로 보관한 실행: $(cat new-runs.txt 2>/dev/null | tr '\n' ' ')"
       - name: Install Claude Code
         run: npm install -g @anthropic-ai/claude-code
       - name: Analyze
@@ -63,15 +77,15 @@ jobs:
         run: |
           [ -s report.md ] || { echo "no report"; exit 0; }
           DIR=experiments/common/five-case/reports
-          read -r BATCH _ < experiments/common/five-case/overnight-request.txt || BATCH=manual
-          NAME="$(TZ=Asia/Seoul date +%m%d-%H%M)-$BATCH-${{ github.run_id }}"
+          NAME="$(TZ=Asia/Seoul date +%m%d-%H%M)-run${{ github.run_id }}"
           mkdir -p "$DIR"; cp report.md "$DIR/$NAME.md"
-          [ -f artifacts/batch-summary/summary.json ] && cp artifacts/batch-summary/summary.json "$DIR/$NAME-summary.json"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3 4; do
             git fetch --depth=1 origin jsm && git reset -q --mixed FETCH_HEAD
-            git add -f "$DIR/$NAME"*
+            for f in "$DIR/$NAME.md" "$DIR/known-insights.md" experiments/common/five-case/raw/github; do
+              if [ -e "$f" ]; then git add -f "$f"; fi
+            done
             git commit -q -m "Claude analysis $NAME [skip ci]" && git push origin HEAD:jsm && exit 0
             sleep $((i*5))
           done
