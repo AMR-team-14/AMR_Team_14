@@ -11,5 +11,7 @@
  "3:minjae:ans_c3.csv": {"score": "1007.52", "how": "minjae best_case_3.json public_5_seeds mean_cost = mean of per-seed costs (different aggregation)", "same": false},
  "2:jinhong:answer_case2.csv": {"score": "613.62", "how": "inputs.json baseline", "same": true},
  "2:jinhong:answer_case2_61716.csv": {"score": "617.16", "how": "jinhong NOTES, pooled 11-15", "same": true},
- "2:jinhong:cand_617.csv": {"score": "617.16", "how": "jinhong NOTES (5-node version)", "same": true}
+ "2:jinhong:cand_617.csv": {"score": "617.16", "how": "jinhong NOTES (5-node version)", "same": true},
+ "4:jinhong:leaderboard-1125": {"score": "791.27", "how": "jinhong ROADMAP 11/25 23:45, 리더보드 제출 1위(11/25 20:29), pooled 11-15", "same": true},
+ "5:jinhong:leaderboard-1125": {"score": "770.82", "how": "jinhong ROADMAP 11/25 23:45, 리더보드 제출 1위(11/25 16:04), pooled 11-15", "same": true}
 }

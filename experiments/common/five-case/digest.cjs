@@ -22,6 +22,9 @@ const OUT = arg('--out', null);
 const SAVE = process.argv.includes('--save-state');
 const MIN_BLOCKS = 3;            // minimum common held-out blocks for any paired statement
 const PUBLIC = 11;               // public block = seeds 11-15
+// Grading: Case 1 is scored on a hidden seed (judge on held-out seeds); Cases 2-5 are scored on the public
+// seeds 11-15 as they are (judge on the public score; held-out seeds only check robustness).
+const OBJECTIVE = c => c === 1 ? 'heldout' : 'public';
 const REPORTS = path.join(HERE, 'reports');
 const STATE = path.join(REPORTS, 'digest-state.json');
 const KNOWN = path.join(REPORTS, 'known-insights.md');
@@ -244,7 +247,7 @@ for (const c of CASES) {
     }
 
     // OCBA over the subset (needs >= 2), budget = 40 blocks per subset member
-    if (subset.length >= 2) {
+    if (OBJECTIVE(c) === 'heldout' && subset.length >= 2) {
       const b = subset.reduce((x, y) => y.adj < x.adj ? y : x);
       const others = subset.filter(e => e !== b).map(e => {
         const p = paired(e, b);
@@ -293,7 +296,13 @@ for (const c of CASES) {
     const k = `${t.batch}:${t.env}`, o = searchTasks[k] || (searchTasks[k] = {planned: 0, returned: 0});
     o.planned++; if (results.has(t.id)) o.returned++;
   }
+  const pubRank = withPub.slice(0, 10).map((e, i) => ({rank: i + 1, sha12: e.sha12, labels: [...e.labels].slice(0, 2), fleet: e.fleet, dir: e.dir,
+    score: r4(e.pub), vsTeam: teamBest ? r4(e.pub - teamBest.score) : null, heldOutBlocks: e.blocks.size,
+    heldOutMean: e.blocks.size ? r2(mean([...e.blocks.values()])) : null, rejectedBlocks: e.rejected}));
+  ev(`c${c}.public.beatsTeam`, bestPub && teamBest ? (bestPub.pub < teamBest.score - 0.005 ? 'yes' : 'no') : 'unknown');
   casesOut[c] = {
+    objective: OBJECTIVE(c) === 'public' ? 'public seeds 11-15 score (graded as is)' : 'hidden seed (judge on held-out seeds)',
+    publicRanking: pubRank,
     candidates: all.length, searchTasks, withPublic: withPub.length, withHeldOut: held.length,
     engines: [...new Set(all.flatMap(e => [...e.engines]))],
     public: {best: pubOut, teamBest, diffVsTeam: pubVsTeam, top5: withPub.slice(0, 5).map(e => ({sha12: e.sha12, fleet: e.fleet, dir: e.dir, score: r4(e.pub)}))},
@@ -362,13 +371,19 @@ if (MD) {
     const p = x.public;
     L.push(`- 공개 시드(11-15) 최저: **${p.best ? p.best.score : '데이터 없음'}**` + (p.best ? ` (${p.best.sha12}, ${p.best.fleet}대, ${p.best.dir})` : '') +
       ` / 팀 기록: ${p.teamBest ? p.teamBest.score + ' (' + p.teamBest.key + ')' : '없음'}` + (p.diffVsTeam !== null ? ` / 차이 ${p.diffVsTeam}` : ''));
-    if (x.currentBest) L.push(`- 별도 시드 현재 최고: **${x.currentBest.sha12}** (${x.currentBest.fleet}대, ${x.currentBest.dir}, 보정 평균 ${x.currentBest.adjMean}, ${x.currentBest.blocks}블록)`);
+    L.push(`- 채점 기준: ${OBJECTIVE(+c) === 'public' ? '**공개 시드 11-15 점수 그대로** (별도 시드는 강건성 참고)' : '**비공개 시드** (별도 시드로 판정)'}`);
+    if (x.currentBest) L.push(`- 별도 시드${OBJECTIVE(+c) === 'public' ? '(참고)' : ''} 현재 최고: **${x.currentBest.sha12}** (${x.currentBest.fleet}대, ${x.currentBest.dir}, 보정 평균 ${x.currentBest.adjMean}, ${x.currentBest.blocks}블록)`);
     L.push(`- 최고와 구별 안 되는 후보: ${x.screeningSubset.length}개` + (x.screeningSubset.length > 1 ? ` (${x.screeningSubset.slice(0, 8).join(', ')}${x.screeningSubset.length > 8 ? ' …' : ''})` : ''));
     const st = Object.entries(x.searchTasks).filter(([, v]) => v.planned !== v.returned).map(([k, v]) => `${k} ${v.returned}/${v.planned}`);
     if (st.length) L.push(`- 탐색 작업 미반환: ${st.join(', ')}`);
     L.push('');
+    if (OBJECTIVE(+c) === 'public' && x.publicRanking.length) {
+      L.push('**공개 시드 순위 (채점 기준)**', '');
+      tbl(['순위', '후보', '대수', '통로', '공개 점수', '팀 기록 대비', '별도 시드 블록', '별도 시드 평균', '반려 블록'],
+        x.publicRanking.map(r => [r.rank, r.sha12, r.fleet, r.dir, r.score, r.vsTeam, r.heldOutBlocks, r.heldOutMean, r.rejectedBlocks]));
+    }
     if (x.heldOut.length) {
-      L.push('**별도 시드 상위 후보**', '');
+      L.push(OBJECTIVE(+c) === 'public' ? '**별도 시드 상위 후보 (강건성 참고)**' : '**별도 시드 상위 후보**', '');
       tbl(['후보', '대수', '통로', '블록', '평균', '95백분위', '보정 평균', '공개', '공개−별도', '차량/대기/긴급'],
         x.heldOut.slice(0, 8).map(h => [h.sha12, h.fleet, h.dir, h.blocks, h.mean, h.p95, h.adjMean, h.pub, h.pubMinusHeld, `${h.cost.veh}/${h.cost.wait}/${h.cost.urgent}`]));
     }
