@@ -1,0 +1,27 @@
+{
+ "batch": "auto-11262216",
+ "created": "2026-11-26T13:16:17.299Z",
+ "reason": "Case 4·5에서 아직 시도하지 않은 통로(D4, D2)의 답안으로 transplant 국소 탐색",
+ "experiments": [
+  {
+   "case": 4,
+   "type": "search",
+   "fleet": 18,
+   "dir": "sha12:a4e436b036a3",
+   "start": "transplant:55e571f4da46",
+   "budget": 240,
+   "repeats": 8,
+   "why": "상위 3개 외 D4 통로는 탐색 기록이 없음. 1위 트리에 D4 통로 적용"
+  },
+  {
+   "case": 5,
+   "type": "search",
+   "fleet": 22,
+   "dir": "sha12:c26f6598a06d",
+   "start": "transplant:aed2f894f8a5",
+   "budget": 240,
+   "repeats": 8,
+   "why": "D2 22대는 s500이 D1 상위보다 낮고(775.5363) D2 탐색 기록 없음"
+  }
+ ]
+}
