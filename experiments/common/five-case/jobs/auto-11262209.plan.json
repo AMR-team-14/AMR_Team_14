@@ -1,0 +1,45 @@
+{
+ "batch": "auto-11262209",
+ "created": "2026-11-26T13:09:18.593Z",
+ "reason": "탐색 기록이 없는 Case 2 1위 주변 국소 탐색을 우선하고, Case 4·5 transplant 탐색과 24대 공개 평가를 병행",
+ "experiments": [
+  {
+   "case": 2,
+   "type": "search",
+   "fleet": 24,
+   "dir": "sha12:63c180933a03",
+   "start": "transplant:63c180933a03",
+   "budget": 240,
+   "repeats": 8,
+   "why": "Case 2는 국소 탐색 기록이 없고 공개 1~5위가 근소차라 개선 여지가 있다"
+  },
+  {
+   "case": 4,
+   "type": "search",
+   "fleet": 18,
+   "dir": "sha12:55e571f4da46",
+   "start": "transplant:55e571f4da46",
+   "budget": 240,
+   "repeats": 8,
+   "why": "공개 1위 D2 18대 주변 탐색이 없고 먼 시작점 탐색은 효과 없음"
+  },
+  {
+   "case": 5,
+   "type": "search",
+   "fleet": 24,
+   "dir": "sha12:aed2f894f8a5",
+   "start": "transplant:aed2f894f8a5",
+   "budget": 240,
+   "repeats": 8,
+   "why": "별도 시드에서 24대가 23대보다 낫고 공개 점수는 아직 없음"
+  },
+  {
+   "case": 5,
+   "type": "eval",
+   "sha12": "a528e43bafdd",
+   "fleet": 24,
+   "seeds": "public",
+   "why": "24대 D1의 공개 점수가 없어 1위(770.8816)와 비교 불가"
+  }
+ ]
+}
