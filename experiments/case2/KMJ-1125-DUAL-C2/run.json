@@ -1,0 +1,54 @@
+{
+  "experiment_id": "KMJ-1125-DUAL-C2",
+  "case": 2,
+  "purpose": "이중 체제 v2 엔진 전 케이스 탐색 - Case 2 결과",
+  "recorded_at_kst": "2026-11-26 16:33",
+  "answer": {
+    "file": "answer.csv",
+    "sha256": "5d2827a3813ba78e6b20b1e02f5e4044b42c8b7fc9b132b51a2f5597a4bce032",
+    "dir": "001011101110010000101000111001110101",
+    "fleet": 26,
+    "tree_nodes": 9
+  },
+  "evaluator": {
+    "script": "simulator/score.cjs",
+    "commit": "7926d0db8039d51a99529ee2670bfd7bb16b0812",
+    "input_path": "jinhong/case2/answer_case2.csv",
+    "input_sha": "ce9687136f4bd22aa41c82659ed31c2132432007",
+    "options": "--trace"
+  },
+  "aggregation": "시드 묶음의 워밍업 이후 완료 픽업 기록을 합쳐 비용을 한 번 계산(반려 시드가 있으면 비용 칸을 비움)",
+  "seeds_evaluated": [
+    "11~15",
+    "1~500"
+  ],
+  "seeds_used_for_search": "sp8(11,14,53,117,193,277,367,457), sp32(1+15i), tr64(1..64)+va64(65..128), audit(1..500,11..15,3001..3500)",
+  "source_commit": "미확인",
+  "note": "n=26, 9n, 1..500=616.6947 (기존 최적 유지)",
+  "results": [
+    {
+      "case": 2,
+      "fleet": 26,
+      "first_seed": 11,
+      "seeds": 5,
+      "pooled_cost": 644.0584,
+      "rejected": [],
+      "dispatch_count": 24214,
+      "dispatch_sha256": "d24027c908db94843f856de5c0fd8b574027e1021d20b2326d1c625a1d02911f"
+    },
+    {
+      "case": 2,
+      "fleet": 26,
+      "first_seed": 1,
+      "seeds": 500,
+      "pooled_cost": 616.6947,
+      "rejected": [],
+      "dispatch_count": 2416461,
+      "dispatch_sha256": "80e99bd11ddd6da3ac646b484d980caa6d88ee461c113308490658d536301423"
+    }
+  ],
+  "reproduce": [
+    "node simulator/score.cjs 2 experiments/case2/KMJ-1125-DUAL-C2/answer.csv 11 5 --trace",
+    "node simulator/score.cjs 2 experiments/case2/KMJ-1125-DUAL-C2/answer.csv 1 500 --trace"
+  ]
+}

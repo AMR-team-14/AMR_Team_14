@@ -1,0 +1,276 @@
+=== v2 Dual-Regime Co-Optimization Engine (Two-Track + Subtree BCD) ===
+
+====================================================================
+[Case 5: 기말 AGV/OHT Case 5 — 저밀도 병목 + 수요 불균형] FleetRange=[19..28]
+  Baseline ans_c5.csv (n=21, 7n, root=de,min,98): 1..500=812.2789 | 11..15=814.0583 | OOS=808.6777
+  [Tier 0 Exact SCC Enumeration] Corridors=14 -> RawValidSCC=324 -> UniqueRoutingSCC=324
+  [Tier 0 Selected 14 Topologies] Best pure Dual-Regime sp8=794.3136
+  [Tier 1 Pure Dual Scan] ViablePairs=26 | Best pure sp32=803.0253 (n=24) -> SubtreeBCDPairs=7
+  [Tier 2 Subtree BCD] Pool=169 | FineSeeds=6
+    Seed#1 n=24 (7n, root=urg,min,0.5, pure=1) init comb128=798.2379
+    Seed#2 n=25 (7n, root=urg,min,0.5, pure=1) init comb128=801.2011
+    Seed#3 n=20 (8n, root=w,max,0.001, pure=1) init comb128=799.2586
+    Seed#4 n=23 (7n, root=urg,min,0.5, pure=1) init comb128=801.2603
+    Seed#5 n=24 (7n, root=urg,min,0.5, pure=1) init comb128=802.2738
+    Seed#6 n=21 (7n, root=de,min,98, pure=0) init comb128=811.2183
+  [Tier 3 Fine #1] Best comb128=784.7250 (tr=783.2440, va=786.2060, n=24, 8n, root=urg,min,0.5)
+  [Tier 3 Fine #2] Best comb128=784.7750 (tr=783.2962, va=786.2539, n=24, 9n, root=urg,min,0.5)
+  [Tier 3 Fine #3] Best comb128=779.6885 (tr=778.9586, va=780.4184, n=21, 8n, root=w,max,0.01327)
+  [Tier 3 Fine #4] Best comb128=787.0167 (tr=784.7969, va=789.2366, n=23, 9n, root=urg,min,0.5)
+  [Tier 3 Fine #5] Best comb128=784.8123 (tr=783.3701, va=786.2544, n=24, 8n, root=urg,min,0.5)
+  [Tier 3 Fine #6] Best comb128=811.1137 (tr=811.5792, va=810.6481, n=21, 7n, root=de,min,98)
+    Audit#1 n=21 (8n, w,max,0.01327) | 1..500=782.2850 | 11..15=785.0130 | OOS=781.3326 | endQ=5 | dq=0 [PASS]
+    Audit#2 n=21 (8n, w,max,0.01327) | 1..500=782.2884 | 11..15=785.0130 | OOS=781.3367 | endQ=5 | dq=0 [PASS]
+    Audit#3 n=21 (8n, w,max,0.01327) | 1..500=782.2843 | 11..15=785.0130 | OOS=781.3718 | endQ=5 | dq=0 [PASS]
+    Audit#4 n=21 (5n, w,max,0.006) | 1..500=782.2675 | 11..15=785.0130 | OOS=781.3285 | endQ=5 | dq=0 [PASS]
+    Audit#5 n=21 (6n, w,max,0.00289) | 1..500=782.2670 | 11..15=785.0130 | OOS=781.3185 | endQ=5 | dq=0 [PASS]
+    Audit#6 n=24 (8n, urg,min,0.5) | 1..500=786.3729 | 11..15=777.1444 | OOS=785.7342 | endQ=0 | dq=0 [PASS]
+    Audit#7 n=24 (8n, urg,min,0.5) | 1..500=786.3685 | 11..15=777.1444 | OOS=785.7324 | endQ=0 | dq=0 [PASS]
+    Audit#8 n=24 (9n, urg,min,0.5) | 1..500=786.5270 | 11..15=779.3685 | OOS=785.9466 | endQ=0 | dq=0 [PASS]
+    Audit#9 n=24 (9n, urg,min,0.5) | 1..500=786.5515 | 11..15=779.3685 | OOS=785.9734 | endQ=0 | dq=0 [PASS]
+    Audit#10 n=24 (8n, urg,min,0.5) | 1..500=786.4877 | 11..15=777.6525 | OOS=785.8797 | endQ=0 | dq=0 [PASS]
+    Audit#11 n=23 (8n, urg,min,0.5) | 1..500=788.4647 | 11..15=773.6887 | OOS=787.2967 | endQ=3 | dq=0 [PASS]
+    Audit#12 n=25 (9n, urg,min,0.5) | 1..500=789.4467 | 11..15=785.1099 | OOS=789.1519 | endQ=0 | dq=0 [PASS]
+    Audit#13 n=20 (6n, w,max,0.00289) | 1..500=793.3572 | 11..15=801.0430 | OOS=792.1549 | endQ=6 | dq=0 [PASS]
+    Audit#14 n=26 (9n, urg,min,0.5) | 1..500=796.5982 | 11..15=794.9274 | OOS=796.4544 | endQ=0 | dq=0 [PASS]
+    Audit#15 n=22 (9n, urg,min,0.5) | 1..500=805.1363 | 11..15=805.1191 | OOS=803.9401 | endQ=4 | dq=0 [PASS]
+    Audit#16 n=19 (6n, w,max,0.00289) | 1..500=831.8393 | 11..15=858.0286 | OOS=831.1274 | endQ=8 | dq=0 [PASS]
+    Audit#17 n=24 (9n, urg,min,0.5) | 1..500=786.4882 | 11..15=777.1696 | OOS=785.7912 | endQ=0 | dq=0 [PASS]
+    Audit#18 n=24 (9n, urg,min,0.5) | 1..500=786.5384 | 11..15=777.1696 | OOS=785.7960 | endQ=0 | dq=0 [PASS]
+    Audit#19 n=24 (8n, urg,min,0.5) | 1..500=786.4920 | 11..15=777.1696 | OOS=785.8089 | endQ=0 | dq=0 [PASS]
+    Audit#20 n=24 (9n, urg,min,0.5) | 1..500=786.5283 | 11..15=777.1696 | OOS=785.9211 | endQ=0 | dq=0 [PASS]
+    Audit#21 n=23 (8n, urg,min,0.5) | 1..500=788.4615 | 11..15=773.6887 | OOS=787.3706 | endQ=3 | dq=0 [PASS]
+    Audit#22 n=23 (8n, urg,min,0.5) | 1..500=788.4236 | 11..15=773.6887 | OOS=787.2927 | endQ=3 | dq=0 [PASS]
+    Audit#23 n=23 (9n, urg,min,0.5) | 1..500=788.6164 | 11..15=774.4597 | OOS=787.4343 | endQ=3 | dq=0 [PASS]
+    Audit#24 n=23 (8n, urg,min,0.5) | 1..500=788.7805 | 11..15=774.5652 | OOS=787.7423 | endQ=4 | dq=0 [PASS]
+  => SAVED answers/v2_c5.csv | n=21 (6n, root=w,max,0.00289) | 1..500=782.2670 (d=-30.0119) | 11..15=785.0130 (d=-29.0453) | OOS=781.3185 (d=-27.3592) | DQ=0/1005 | time=1433.2s (839269 sims)
+  => [Best 11..15 0-DQ Finalist] n=23 (8n, root=urg,min,0.5) | 11..15=773.6887 | 1..500=788.4647 | OOS=787.2967
+  Winning Tree:
+    key,1,w,max,0.00289,2,3
+    key,2,urg,max,0.5,4,5
+    key,3,qo,max,0,0,0
+    key,4,dl,min,188.4,0,6
+    key,5,qo,max,5,0,0
+    key,6,de,max,153.2,0,0
+
+====================================================================
+[Case 3: 기말 AGV/OHT Case 3 — OHT형 루프] FleetRange=[18..27]
+  Baseline ans_c3.csv (n=20, 6n, root=de,min,162.8): 1..500=1000.4621 | 11..15=999.7687 | OOS=1000.3445
+  [Tier 0 Exact SCC Enumeration] Corridors=9 -> RawValidSCC=54 -> UniqueRoutingSCC=54
+  [Tier 0 Selected 14 Topologies] Best pure Dual-Regime sp8=1013.7234
+  [Tier 1 Pure Dual Scan] ViablePairs=26 | Best pure sp32=1000.7639 (n=22) -> SubtreeBCDPairs=7
+  [Tier 2 Subtree BCD] Pool=169 | FineSeeds=6
+    Seed#1 n=22 (8n, root=w,max,0.02, pure=1) init comb128=996.5807
+    Seed#2 n=21 (8n, root=w,max,0.001, pure=1) init comb128=999.9324
+    Seed#3 n=19 (8n, root=w,max,0.01, pure=1) init comb128=1019.3258
+    Seed#4 n=21 (8n, root=w,max,0.01, pure=1) init comb128=1002.4547
+    Seed#5 n=22 (8n, root=w,max,0.001, pure=1) init comb128=1003.2783
+    Seed#6 n=20 (6n, root=de,min,162.8, pure=0) init comb128=1000.0261
+  [Tier 3 Fine #1] Best comb128=989.6802 (tr=990.4229, va=988.9375, n=21, 8n, root=w,max,0.0138)
+  [Tier 3 Fine #2] Best comb128=980.3432 (tr=979.9740, va=980.7124, n=21, 8n, root=w,max,0.00099)
+  [Tier 3 Fine #3] Best comb128=1000.1146 (tr=999.0268, va=1001.2023, n=20, 8n, root=w,max,0.00851)
+  [Tier 3 Fine #4] Best comb128=980.4753 (tr=979.8798, va=981.0708, n=21, 9n, root=w,max,0.01628)
+  [Tier 3 Fine #5] Best comb128=986.3983 (tr=986.2944, va=986.5021, n=22, 9n, root=w,max,0.00083)
+  [Tier 3 Fine #6] Best comb128=999.6876 (tr=999.4309, va=999.9442, n=20, 6n, root=de,min,162.8)
+    Audit#1 n=21 (8n, w,max,0.00099) | 1..500=982.6767 | 11..15=983.6770 | OOS=983.0585 | endQ=10 | dq=0 [PASS]
+    Audit#2 n=21 (9n, w,max,0.01628) | 1..500=982.8439 | 11..15=981.4284 | OOS=982.9503 | endQ=10 | dq=0 [PASS]
+    Audit#3 n=21 (9n, w,max,0.01604) | 1..500=982.8641 | 11..15=981.4284 | OOS=982.9452 | endQ=10 | dq=0 [PASS]
+    Audit#4 n=21 (8n, w,max,0.01154) | 1..500=982.7767 | 11..15=981.4284 | OOS=983.1425 | endQ=10 | dq=0 [PASS]
+    Audit#5 n=21 (8n, w,max,0.01149) | 1..500=982.8031 | 11..15=981.4284 | OOS=983.1271 | endQ=10 | dq=0 [PASS]
+    Audit#6 n=20 (8n, w,max,0.0005) | 1..500=984.3626 | 11..15=984.5843 | OOS=985.4361 | endQ=16 | dq=0 [PASS]
+    Audit#7 n=21 (8n, w,max,0.00203) | 1..500=984.0422 | 11..15=985.9017 | OOS=983.7907 | endQ=10 | dq=0 [PASS]
+    Audit#8 n=20 (7n, w,max,0.00099) | 1..500=984.3690 | 11..15=984.5843 | OOS=985.5385 | endQ=16 | dq=0 [PASS]
+    Audit#9 n=20 (8n, w,max,0.00099) | 1..500=984.3894 | 11..15=984.5843 | OOS=985.5086 | endQ=16 | dq=0 [PASS]
+    Audit#10 n=21 (7n, w,max,0.00303) | 1..500=984.4140 | 11..15=988.6133 | OOS=984.0405 | endQ=11 | dq=0 [PASS]
+    Audit#11 n=22 (9n, w,max,0.0005) | 1..500=985.9973 | 11..15=983.5138 | OOS=986.4717 | endQ=7 | dq=0 [PASS]
+    Audit#12 n=23 (9n, w,max,0.00083) | 1..500=994.1677 | 11..15=990.1213 | OOS=995.0719 | endQ=8 | dq=0 [PASS]
+    Audit#13 n=19 (6n, de,min,162.8) | 1..500=1005.3342 | 11..15=1006.6620 | OOS=1006.0281 | endQ=13 | dq=0 [PASS]
+    Audit#14 n=24 (8n, w,max,0.01) | 1..500=1016.5381 | 11..15=1013.6226 | OOS=1016.7947 | endQ=7 | dq=0 [PASS]
+    Audit#15 n=18 (7n, w,max,0.0005) | 1..500=1019.8810 | 11..15=1023.4824 | OOS=1019.5863 | endQ=14 | dq=0 [PASS]
+    Audit#16 n=25 (8n, w,max,0.01) | 1..500=1027.9327 | 11..15=1023.5816 | OOS=1027.6346 | endQ=4 | dq=0 [PASS]
+    Audit#17 n=20 (9n, w,max,0.01628) | 1..500=984.8986 | 11..15=991.0273 | OOS=985.2648 | endQ=16 | dq=0 [PASS]
+    Audit#18 n=21 (6n, w,max,0.00303) | 1..500=984.8610 | 11..15=981.7922 | OOS=984.2500 | endQ=9 | dq=0 [PASS]
+    Audit#19 n=22 (9n, w,max,0.0007) | 1..500=986.0173 | 11..15=983.5138 | OOS=986.4959 | endQ=7 | dq=0 [PASS]
+    Audit#20 n=22 (9n, w,max,0.0007) | 1..500=986.1433 | 11..15=983.2965 | OOS=986.5275 | endQ=7 | dq=0 [PASS]
+    Audit#21 n=22 (9n, w,max,0.0005) | 1..500=986.1424 | 11..15=983.2965 | OOS=986.4881 | endQ=7 | dq=0 [PASS]
+    Audit#22 n=21 (8n, w,max,0.01149) | 1..500=986.1635 | 11..15=982.9580 | OOS=987.5066 | endQ=10 | dq=0 [PASS]
+    Audit#23 n=21 (8n, w,max,0.00949) | 1..500=986.1690 | 11..15=983.0209 | OOS=987.3444 | endQ=10 | dq=0 [PASS]
+    Audit#24 n=21 (8n, w,max,0.00795) | 1..500=986.2448 | 11..15=983.0209 | OOS=987.4663 | endQ=10 | dq=0 [PASS]
+  => SAVED answers/v2_c3.csv | n=21 (8n, root=w,max,0.00099) | 1..500=982.6767 (d=-17.7854) | 11..15=983.6770 (d=-16.0917) | OOS=983.0585 (d=-17.2860) | DQ=0/1005 | time=853.3s (646478 sims)
+  => [Best 11..15 0-DQ Finalist] n=21 (9n, root=w,max,0.01628) | 11..15=981.4284 | 1..500=982.8439 | OOS=982.9503
+  Winning Tree:
+    key,1,w,max,0.00099,2,3
+    key,2,urg,min,0.5,4,0
+    key,3,de,min,178.3,5,6
+    key,4,dl,max,268,0,7
+    key,5,urg,max,0.5,0,0
+    key,6,urg,min,0.5,8,0
+    key,7,de,max,147.6,0,0
+    key,8,qo,max,5,0,0
+
+====================================================================
+[Case 1: c1] FleetRange=[17..25]
+  Baseline ans_c1.csv (n=18, 9n, root=de,min,89): 1..500=1191.8310 | 11..15=1190.6763 | OOS=1191.2462
+  [Tier 1 Pure Dual Scan] ViablePairs=9 | Best pure sp32=1226.8529 (n=19) -> SubtreeBCDPairs=7
+  [Tier 2 Subtree BCD] Pool=154 | FineSeeds=6
+    Seed#1 n=20 (8n, root=w,max,0.001, pure=1) init comb128=1202.4903
+    Seed#2 n=21 (9n, root=w,max,0.001, pure=1) init comb128=1206.8147
+    Seed#3 n=17 (9n, root=w,max,0.001, pure=1) init comb128=1254.3283
+    Seed#4 n=22 (9n, root=w,max,0.02, pure=1) init comb128=1207.7733
+    Seed#5 n=19 (9n, root=w,max,0.001, pure=1) init comb128=1211.6163
+    Seed#6 n=18 (9n, root=de,min,89, pure=0) init comb128=1192.0489
+  [Tier 3 Fine #1] Best comb128=1200.6688 (tr=1200.5164, va=1200.8212, n=21, 7n, root=w,max,0.00125)
+  [Tier 3 Fine #2] Best comb128=1200.5347 (tr=1199.9332, va=1201.1362, n=21, 9n, root=w,max,0.0005)
+  [Tier 3 Fine #3] Best comb128=1230.9569 (tr=1230.1689, va=1231.7448, n=18, 9n, root=w,max,0.001)
+  [Tier 3 Fine #4] Best comb128=1205.1587 (tr=1204.5623, va=1205.7551, n=22, 8n, root=w,max,0.0016)
+  [Tier 3 Fine #5] Best comb128=1210.1843 (tr=1211.3122, va=1209.0564, n=19, 9n, root=w,max,0.0005)
+  [Tier 3 Fine #6] Best comb128=1191.2558 (tr=1191.2703, va=1191.2413, n=18, 9n, root=de,min,89)
+    Audit#1 n=21 (9n, w,max,0.0005) | 1..500=1200.7360 | 11..15=1197.4669 | OOS=1200.2360 | endQ=15 | dq=0 [PASS]
+    Audit#2 n=21 (7n, w,max,0.00125) | 1..500=1200.9498 | 11..15=1208.6686 | OOS=1200.1028 | endQ=18 | dq=0 [PASS]
+    Audit#3 n=20 (8n, w,max,0.0005) | 1..500=1201.7006 | 11..15=1201.2060 | OOS=1202.1476 | endQ=15 | dq=0 [PASS]
+    Audit#4 n=20 (7n, w,max,0.0005) | 1..500=1201.7006 | 11..15=1201.2060 | OOS=1202.1476 | endQ=15 | dq=0 [PASS]
+    Audit#5 n=20 (8n, w,max,0.00059) | 1..500=1202.2704 | 11..15=1201.2967 | OOS=1201.9597 | endQ=17 | dq=0 [PASS]
+    Audit#6 n=21 (9n, w,max,0.0005) | 1..500=1200.9417 | 11..15=1206.2442 | OOS=1200.0309 | endQ=12 | dq=0 [PASS]
+    Audit#7 n=21 (7n, w,max,0.0005) | 1..500=1200.9417 | 11..15=1206.2442 | OOS=1200.0309 | endQ=12 | dq=0 [PASS]
+    Audit#8 n=20 (9n, w,max,0.0005) | 1..500=1201.5440 | 11..15=1206.3017 | OOS=1201.3198 | endQ=18 | dq=0 [PASS]
+    Audit#9 n=20 (8n, w,max,0.001) | 1..500=1203.1181 | 11..15=1203.0786 | OOS=1201.7506 | endQ=14 | dq=0 [PASS]
+    Audit#10 n=20 (8n, w,max,0.001) | 1..500=1203.1181 | 11..15=1203.0786 | OOS=1201.7506 | endQ=14 | dq=0 [PASS]
+    Audit#11 n=18 (9n, de,min,89) | 1..500=1191.5500 | 11..15=1191.4490 | OOS=1192.4136 | endQ=22 | dq=0 [PASS]
+    Audit#12 n=19 (9n, de,min,89) | 1..500=1192.5495 | 11..15=1185.1827 | OOS=1192.6079 | endQ=17 | dq=0 [PASS]
+    Audit#13 n=22 (8n, w,max,0.00181) | 1..500=1203.3974 | 11..15=1209.5728 | OOS=1203.4499 | endQ=15 | dq=0 [PASS]
+    Audit#14 n=17 (9n, de,min,89) | 1..500=1205.5489 | 11..15=1211.0016 | OOS=1204.7590 | endQ=28 | dq=0 [PASS]
+    Audit#15 n=23 (8n, w,max,0.0016) | 1..500=1213.3962 | 11..15=1214.4528 | OOS=1213.1355 | endQ=13 | dq=0 [PASS]
+    Audit#16 n=24 (9n, w,max,0.001) | 1..500=1218.4617 | 11..15=1210.7507 | OOS=1219.4553 | endQ=12 | dq=0 [PASS]
+    Audit#17 n=25 (7n, w,max,0.01) | 1..500=1267.5455 | 11..15=1261.0435 | OOS=1266.8298 | endQ=15 | dq=0 [PASS]
+    Audit#18 n=18 (9n, de,min,89) | 1..500=1191.5534 | 11..15=1191.4490 | OOS=1192.3861 | endQ=22 | dq=0 [PASS]
+    Audit#19 n=18 (9n, de,min,89) | 1..500=1191.7988 | 11..15=1191.0023 | OOS=1191.2476 | endQ=23 | dq=0 [PASS]
+    Audit#20 n=18 (9n, de,min,89) | 1..500=1191.8084 | 11..15=1191.0023 | OOS=1191.2506 | endQ=23 | dq=0 [PASS]
+    Audit#21 n=18 (9n, de,min,89) | 1..500=1191.8310 | 11..15=1190.6763 | OOS=1191.2462 | endQ=23 | dq=0 [PASS]
+    Audit#22 n=20 (9n, w,max,0.001) | 1..500=1200.9475 | 11..15=1206.2400 | OOS=1199.4563 | endQ=15 | dq=0 [PASS]
+    Audit#23 n=20 (9n, w,max,0.001) | 1..500=1200.9475 | 11..15=1206.2400 | OOS=1199.4563 | endQ=15 | dq=0 [PASS]
+    Audit#24 n=22 (9n, w,max,0.00309) | 1..500=1203.7067 | 11..15=1213.3809 | OOS=1203.2533 | endQ=16 | dq=0 [PASS]
+  => SAVED answers/v2_c1.csv | n=18 (9n, root=de,min,89) | 1..500=1191.7988 (d=-0.0322) | 11..15=1191.0023 (d=0.3260) | OOS=1191.2476 (d=0.0013) | DQ=0/1005 | time=1353.1s (486916 sims)
+  => [Best 11..15 0-DQ Finalist] n=19 (9n, root=de,min,89) | 11..15=1185.1827 | 1..500=1192.5495 | OOS=1192.6079
+  Winning Tree:
+    key,1,de,min,89,2,3
+    key,2,qo,max,1,0,4
+    key,3,dl,min,82.5,5,0
+    key,4,urg,max,0.5,0,6
+    key,5,qo,max,1,7,8
+    key,6,w,min,2.713,0,0
+    key,7,urg,min,0.5,0,0
+    key,8,w,min,0.75,9,0
+    key,9,urg,max,0.5,0,0
+
+====================================================================
+[Case 2: 기말 AGV/OHT Case 2 — 격자 기본] FleetRange=[21..28]
+  Baseline ans_c2.csv (n=26, 9n, root=urg,max,0.5): 1..500=616.6947 | 11..15=644.0584 | OOS=619.1871
+  [Tier 0 Multi-Cycle Ruin&Recreate] Sampled UniqueRoutingSCC=180
+  [Tier 0 Selected 14 Topologies] Best pure Dual-Regime sp8=626.2655
+  [Tier 1 Pure Dual Scan] ViablePairs=26 | Best pure sp32=616.2998 (n=26) -> SubtreeBCDPairs=7
+  [Tier 2 Subtree BCD] Pool=169 | FineSeeds=6
+    Seed#1 n=27 (8n, root=w,max,0.01, pure=1) init comb128=626.9620
+    Seed#2 n=27 (7n, root=w,max,0.01, pure=1) init comb128=636.1363
+    Seed#3 n=25 (8n, root=w,max,0.001, pure=1) init comb128=631.5411
+    Seed#4 n=26 (7n, root=w,max,0.001, pure=1) init comb128=622.2131
+    Seed#5 n=26 (8n, root=w,max,0.001, pure=1) init comb128=636.4329
+    Seed#6 n=26 (9n, root=urg,max,0.5, pure=0) init comb128=617.8476
+  [Tier 3 Fine #1] Best comb128=618.9697 (tr=624.2051, va=613.7344, n=26, 7n, root=w,max,0.00535)
+  [Tier 3 Fine #2] Best comb128=622.6943 (tr=626.7871, va=618.6016, n=26, 8n, root=w,max,0.0178)
+  [Tier 3 Fine #3] Best comb128=618.0944 (tr=618.1671, va=618.0216, n=26, 7n, root=w,max,0.061)
+  [Tier 3 Fine #4] Best comb128=617.8461 (tr=621.8626, va=613.8296, n=26, 9n, root=w,max,0.0171)
+  [Tier 3 Fine #5] Best comb128=636.2276 (tr=636.5312, va=635.9240, n=26, 8n, root=w,max,0.0005)
+  [Tier 3 Fine #6] Best comb128=617.8153 (tr=621.8092, va=613.8215, n=26, 9n, root=urg,max,0.5)
+    Audit#1 n=26 (9n, w,max,0.0171) | 1..500=616.9084 | 11..15=644.0823 | OOS=619.1328 | endQ=0 | dq=0 [PASS]
+    Audit#2 n=26 (9n, w,max,0.0171) | 1..500=616.9057 | 11..15=644.0823 | OOS=619.1471 | endQ=0 | dq=0 [PASS]
+    Audit#3 n=26 (9n, w,max,0.0021) | 1..500=616.9038 | 11..15=644.0823 | OOS=619.1637 | endQ=0 | dq=0 [PASS]
+    Audit#4 n=26 (7n, w,max,0.061) | 1..500=618.4020 | 11..15=630.0074 | OOS=618.6417 | endQ=0 | dq=0 [PASS]
+    Audit#5 n=26 (7n, w,max,0.00535) | 1..500=617.5368 | 11..15=633.5648 | OOS=619.9320 | endQ=0 | dq=0 [PASS]
+    Audit#6 n=26 (7n, w,max,0.00214) | 1..500=617.5374 | 11..15=633.5648 | OOS=619.9499 | endQ=0 | dq=0 [PASS]
+    Audit#7 n=26 (8n, w,max,0.00202) | 1..500=617.5728 | 11..15=633.5645 | OOS=620.0098 | endQ=0 | dq=0 [PASS]
+    Audit#8 n=25 (7n, w,max,0.061) | 1..500=617.6066 | 11..15=635.5039 | OOS=618.6161 | endQ=0 | dq=0 [PASS]
+    Audit#9 n=25 (7n, w,max,0.001) | 1..500=617.5526 | 11..15=638.0839 | OOS=618.4791 | endQ=0 | dq=0 [PASS]
+    Audit#10 n=26 (7n, w,max,0.001) | 1..500=618.6348 | 11..15=628.6257 | OOS=619.6036 | endQ=0 | dq=0 [PASS]
+    Audit#11 n=26 (9n, urg,max,0.5) | 1..500=616.6854 | 11..15=644.0793 | OOS=619.3073 | endQ=0 | dq=0 [PASS]
+    Audit#12 n=27 (8n, w,max,0.0028) | 1..500=624.2268 | 11..15=643.3475 | OOS=624.5311 | endQ=0 | dq=0 [PASS]
+    Audit#13 n=24 (7n, w,max,0.061) | 1..500=627.1247 | 11..15=658.4254 | OOS=627.8318 | endQ=3 | dq=0 [PASS]
+    Audit#14 n=28 (8n, w,max,0.0178) | 1..500=638.0586 | 11..15=647.5879 | OOS=638.3496 | endQ=0 | dq=0 [PASS]
+    Audit#15 n=26 (9n, urg,max,0.5) | 1..500=616.6947 | 11..15=644.0584 | OOS=619.1871 | endQ=0 | dq=0 [PASS]
+    Audit#16 n=26 (7n, w,max,0.001) | 1..500=618.6918 | 11..15=628.6257 | OOS=619.6046 | endQ=0 | dq=0 [PASS]
+    Audit#17 n=26 (7n, w,max,0.01) | 1..500=618.6215 | 11..15=628.6257 | OOS=619.5820 | endQ=0 | dq=0 [PASS]
+    Audit#18 n=26 (7n, w,max,0.08) | 1..500=618.4864 | 11..15=628.6257 | OOS=619.7172 | endQ=0 | dq=0 [PASS]
+    Audit#19 n=26 (8n, w,max,0.0178) | 1..500=620.2718 | 11..15=649.2731 | OOS=621.0892 | endQ=0 | dq=0 [PASS]
+    Audit#20 n=26 (8n, w,max,0.00342) | 1..500=620.1496 | 11..15=649.2731 | OOS=621.0664 | endQ=0 | dq=0 [PASS]
+    Audit#21 n=26 (6n, w,max,0.00128) | 1..500=620.1443 | 11..15=649.2731 | OOS=621.0844 | endQ=0 | dq=0 [PASS]
+    Audit#22 n=26 (6n, w,max,0.00076) | 1..500=620.1443 | 11..15=649.2731 | OOS=621.0844 | endQ=0 | dq=0 [PASS]
+    Audit#23 n=26 (8n, w,max,0.0028) | 1..500=620.2695 | 11..15=649.2731 | OOS=621.0982 | endQ=0 | dq=0 [PASS]
+    Audit#24 n=26 (6n, w,max,0.00085) | 1..500=620.2035 | 11..15=649.2731 | OOS=621.0492 | endQ=0 | dq=0 [PASS]
+  => SAVED answers/v2_c2.csv | n=26 (9n, root=urg,max,0.5) | 1..500=616.6947 (d=0.0000) | 11..15=644.0584 (d=0.0000) | OOS=619.1871 (d=0.0000) | DQ=0/1005 | time=1544.7s (721861 sims)
+  => [Best 11..15 0-DQ Finalist] n=26 (7n, root=w,max,0.001) | 11..15=628.6257 | 1..500=618.6348 | OOS=619.6036
+  Winning Tree:
+    key,1,urg,max,0.5,2,3
+    key,2,de,max,202,4,5
+    key,3,qo,max,6,0,6
+    key,4,dl,min,42.5,0,7
+    key,5,w,min,3.6,8,9
+    key,6,w,min,0.5,0,0
+    key,7,w,max,3.6,0,0
+    key,8,dl,max,92.5,0,0
+    key,9,dl,max,42.5,0,0
+
+====================================================================
+[Case 4: 기말 AGV/OHT Case 4 — 교차로 고밀도] FleetRange=[14..22]
+  Baseline ans_c4.csv (n=16, 6n, root=de,min,96.2): 1..500=796.8063 | 11..15=802.9409 | OOS=796.9562
+  [Tier 0 Multi-Cycle Ruin&Recreate] Sampled UniqueRoutingSCC=180
+  [Tier 0 Selected 14 Topologies] Best pure Dual-Regime sp8=804.0782
+  [Tier 1 Pure Dual Scan] ViablePairs=26 | Best pure sp32=797.7922 (n=16) -> SubtreeBCDPairs=7
+  [Tier 2 Subtree BCD] Pool=169 | FineSeeds=6
+    Seed#1 n=18 (8n, root=w,max,0.15, pure=1) init comb128=803.3361
+    Seed#2 n=19 (8n, root=w,max,0.001, pure=1) init comb128=805.7998
+    Seed#3 n=15 (9n, root=w,max,0.001, pure=1) init comb128=815.3457
+    Seed#4 n=16 (9n, root=w,max,0.02, pure=1) init comb128=798.6775
+    Seed#5 n=16 (8n, root=w,max,0.001, pure=1) init comb128=798.8155
+    Seed#6 n=16 (6n, root=de,min,96.2, pure=0) init comb128=796.4616
+  [Tier 3 Fine #1] Best comb128=801.5610 (tr=801.4793, va=801.6426, n=18, 8n, root=w,max,0.0005)
+  [Tier 3 Fine #2] Best comb128=796.4570 (tr=796.2240, va=796.6900, n=18, 8n, root=w,max,0.00197)
+  [Tier 3 Fine #3] Best comb128=797.1156 (tr=797.1765, va=797.0548, n=16, 6n, root=w,max,0.01551)
+  [Tier 3 Fine #4] Best comb128=796.7279 (tr=797.2270, va=796.2289, n=16, 8n, root=w,max,0.00148)
+  [Tier 3 Fine #5] Best comb128=796.9766 (tr=796.9692, va=796.9840, n=16, 7n, root=w,max,0.0012)
+  [Tier 3 Fine #6] Best comb128=796.4562 (tr=796.4721, va=796.4403, n=16, 7n, root=de,min,96.2)
+    Audit#1 n=18 (8n, w,max,0.00197) | 1..500=796.6785 | 11..15=809.2701 | OOS=796.6544 | endQ=3 | dq=0 [PASS]
+    Audit#2 n=18 (8n, w,max,0.00197) | 1..500=796.7895 | 11..15=809.5958 | OOS=796.6598 | endQ=3 | dq=0 [PASS]
+    Audit#3 n=16 (8n, w,max,0.00148) | 1..500=798.3287 | 11..15=803.5983 | OOS=798.7201 | endQ=5 | dq=0 [PASS]
+    Audit#4 n=16 (8n, w,max,0.00148) | 1..500=798.3275 | 11..15=803.5845 | OOS=798.7176 | endQ=5 | dq=0 [PASS]
+    Audit#5 n=16 (8n, w,max,0.00148) | 1..500=798.5277 | 11..15=803.3979 | OOS=798.6592 | endQ=5 | dq=0 [PASS]
+    Audit#6 n=16 (8n, w,max,0.00148) | 1..500=798.5136 | 11..15=803.4207 | OOS=798.6982 | endQ=5 | dq=0 [PASS]
+    Audit#7 n=16 (8n, w,max,0.00148) | 1..500=798.5176 | 11..15=803.8021 | OOS=798.7195 | endQ=5 | dq=0 [PASS]
+    Audit#8 n=16 (7n, w,max,0.0012) | 1..500=798.9281 | 11..15=806.1257 | OOS=798.7350 | endQ=5 | dq=0 [PASS]
+    Audit#9 n=16 (5n, w,max,0.0005) | 1..500=797.7907 | 11..15=813.4732 | OOS=796.8287 | endQ=6 | dq=0 [PASS]
+    Audit#10 n=16 (7n, w,max,0.00172) | 1..500=798.9308 | 11..15=806.1257 | OOS=798.7146 | endQ=5 | dq=0 [PASS]
+    Audit#11 n=16 (7n, de,min,96.2) | 1..500=796.8037 | 11..15=802.6084 | OOS=796.8893 | endQ=5 | dq=0 [PASS]
+    Audit#12 n=19 (5n, w,max,0.00138) | 1..500=803.6604 | 11..15=811.9564 | OOS=803.5137 | endQ=1 | dq=0 [PASS]
+    Audit#13 n=15 (5n, w,max,0.0005) | 1..500=807.5971 | 11..15=815.0969 | OOS=807.0381 | endQ=7 | dq=0 [PASS]
+    Audit#14 n=17 (8n, w,max,0.001) | 1..500=807.1132 | 11..15=808.5352 | OOS=807.0645 | endQ=4 | dq=0 [PASS]
+    Audit#15 n=20 (8n, w,max,0.00197) | 1..500=809.6859 | 11..15=811.9616 | OOS=809.0464 | endQ=0 | dq=0 [PASS]
+    Audit#16 n=14 (5n, w,max,0.0005) | 1..500=830.4626 | 11..15=849.1056 | OOS=830.0079 | endQ=8 | dq=0 [PASS]
+    Audit#17 n=16 (7n, de,min,96.2) | 1..500=796.7919 | 11..15=802.5555 | OOS=797.0795 | endQ=5 | dq=0 [PASS]
+    Audit#18 n=16 (7n, de,min,96.2) | 1..500=796.8049 | 11..15=802.5386 | OOS=796.8978 | endQ=5 | dq=0 [PASS]
+    Audit#19 n=16 (6n, de,min,96.2) | 1..500=796.8063 | 11..15=802.9409 | OOS=796.9562 | endQ=5 | dq=0 [PASS]
+    Audit#20 n=16 (6n, de,min,107.4) | 1..500=797.5925 | 11..15=810.7848 | OOS=796.5840 | endQ=6 | dq=0 [PASS]
+    Audit#21 n=16 (6n, de,min,107.4) | 1..500=797.6317 | 11..15=810.8940 | OOS=796.5769 | endQ=6 | dq=0 [PASS]
+    Audit#22 n=16 (8n, de,min,107.4) | 1..500=797.7197 | 11..15=810.8871 | OOS=796.5919 | endQ=6 | dq=0 [PASS]
+    Audit#23 n=16 (5n, de,min,107.5) | 1..500=797.7649 | 11..15=810.8170 | OOS=796.6315 | endQ=6 | dq=0 [PASS]
+    Audit#24 n=16 (5n, w,max,0.0009) | 1..500=797.8031 | 11..15=813.4732 | OOS=796.8403 | endQ=6 | dq=0 [PASS]
+  => SAVED answers/v2_c4.csv | n=18 (8n, root=w,max,0.00197) | 1..500=796.6785 (d=-0.1278) | 11..15=809.2701 (d=6.3292) | OOS=796.6544 (d=-0.3018) | DQ=0/1005 | time=1581.1s (884138 sims)
+  => [Best 11..15 0-DQ Finalist] n=16 (7n, root=de,min,96.2) | 11..15=802.5386 | 1..500=796.8049 | OOS=796.8978
+  Winning Tree:
+    key,1,w,max,0.00197,2,3
+    key,2,urg,min,0.5,4,0
+    key,3,qo,max,2,5,6
+    key,4,dl,max,138.5,0,7
+    key,5,de,min,179.3,0,0
+    key,6,de,max,141.6,0,0
+    key,7,de,max,82.2,0,8
+    key,8,qo,min,1,0,0
+
+=== ALL CASES COMPLETED in 6765.4s | Total DES sims = 3578662 ===

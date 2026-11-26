@@ -22,9 +22,9 @@
     "11~15",
     "1~500"
   ],
-  "seeds_used_for_search": "미확인",
-  "source_commit": "미확인",
-  "note": "",
+  "seeds_used_for_search": "sp8(11,14,53,117,193,277,367,457), sp32(1+15i), tr64(1..64)+va64(65..128), audit(1..500,11..15,3001..3500)",
+  "source_commit": "local:alternating_flow_beam_sa.cpp(v2-dual-regime)",
+  "note": "324 SCC full scan + Two-Track BCD Beam + SA/HJ -> n=21, 6n, w,max,0.00289, 1..500=782.2670 (-30.0119pt vs base 812.2789)",
   "results": [
     {
       "case": 5,
