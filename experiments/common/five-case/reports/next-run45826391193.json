@@ -1,0 +1,8 @@
+{"decision":"run","reason":"Case 5 팀 1위(23/D1)는 이번 24대 탐색으로 못 깨졌고 상위 4개가 0.55 안이라 23대 D1 트리 주변 국소 탐색이 가장 유망. Case 3·4는 다른 트리에서 보조 탐색.",
+"experiments":[
+{"case":5,"type":"search","fleet":23,"dir":"sha12:aed2f894f8a5","start":"transplant:aed2f894f8a5","budget":300,"repeats":8,"why":"공개 1위 23/D1 트리에서 국소 탐색(이번 회차는 24대만 탐색)"},
+{"case":5,"type":"search","fleet":23,"dir":"sha12:dd48afb957ba","start":"transplant:dd48afb957ba","budget":300,"repeats":8,"why":"별도 시드 강건한 23/D1 트리에서 공개 점수 낮추기"},
+{"case":3,"type":"search","fleet":22,"dir":"sha12:00fad1b682e2","start":"transplant:00fad1b682e2","budget":300,"repeats":8,"why":"공개 1위 22/D1 주변, 이번 회차 미탐색"},
+{"case":3,"type":"search","fleet":23,"dir":"sha12:2fcf90e69eb4","start":"transplant:2fcf90e69eb4","budget":300,"repeats":8,"why":"별도 시드 최고 23/D1 트리에서 공개 점수 낮추기"},
+{"case":4,"type":"search","fleet":18,"dir":"sha12:d5152c1e93b6","start":"transplant:d5152c1e93b6","budget":300,"repeats":8,"why":"1위와 0.3054 차이인 D3 트리, 1위(D2) 트리는 이번에 국소최적 확인"}
+]}
