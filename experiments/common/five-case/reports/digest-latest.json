@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T12:09:48.733Z",
+ "generated": "2026-11-26T13:05:12.258Z",
  "method": {
   "alpha": 0.05,
   "minBlocks": 3,
@@ -11,8 +11,12 @@
   "ocba": "Chen et al. OCBA, sigma from paired differences"
  },
  "sources": {
-  "total": 26,
-  "new": [],
+  "total": 29,
+  "new": [
+   "experiments/common/five-case/raw/B3-kaggle.jsonl",
+   "experiments/common/five-case/raw/overnight-1125-kaggle.jsonl",
+   "experiments/common/five-case/raw/overnight-45-kaggle.jsonl"
+  ],
   "conflicts": []
  },
  "coverage": [
@@ -123,14 +127,14 @@
     },
     "kaggle": {
      "planned": 145,
-     "returned": 0,
+     "returned": 145,
      "failed": 0,
      "rejectedBlocks": 0,
-     "cpuMs": 0,
-     "evals": 0,
-     "missing": 145,
-     "missingReason": "not-collected",
-     "msPerEval": null
+     "cpuMs": 53452,
+     "evals": 145,
+     "missing": 0,
+     "missingReason": null,
+     "msPerEval": 368.63
     }
    }
   },
@@ -154,14 +158,14 @@
     },
     "kaggle": {
      "planned": 374,
-     "returned": 0,
+     "returned": 374,
      "failed": 0,
      "rejectedBlocks": 0,
-     "cpuMs": 0,
-     "evals": 0,
-     "missing": 374,
-     "missingReason": "not-collected",
-     "msPerEval": null
+     "cpuMs": 2097644,
+     "evals": 13141,
+     "missing": 0,
+     "missingReason": null,
+     "msPerEval": 159.63
     }
    }
   },
@@ -185,14 +189,14 @@
     },
     "kaggle": {
      "planned": 317,
-     "returned": 0,
+     "returned": 317,
      "failed": 0,
      "rejectedBlocks": 0,
-     "cpuMs": 0,
-     "evals": 0,
-     "missing": 317,
-     "missingReason": "not-collected",
-     "msPerEval": null
+     "cpuMs": 26242784,
+     "evals": 70402,
+     "missing": 0,
+     "missingReason": null,
+     "msPerEval": 372.76
     }
    }
   }
@@ -215,7 +219,7 @@
      "s500": 1181.4931,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case1/candidates/e086d3b2ffd3.csv@42371e16c6"
+      "장승민 · jsm:experiments/case1/candidates/e086d3b2ffd3.csv@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -269,7 +273,7 @@
      "s500": 1191.7988,
      "s500Rejected": 0,
      "sources": [
-      "곽민재 · kmj:experiments/case1/KMJ-1125-DUAL-C1/answer.csv@7898e8ad2b"
+      "곽민재 · kmj:experiments/case1/KMJ-1125-DUAL-C1/answer.csv@de0f96700a"
      ],
      "recordedMismatch": []
     },
@@ -287,7 +291,7 @@
      "s500": 1192.3022,
      "s500Rejected": 0,
      "sources": [
-      "곽민재 · kmj:experiments/case1/KMJ-1125-FH-C1-V2/answer.csv@7898e8ad2b"
+      "곽민재 · kmj:experiments/case1/KMJ-1125-FH-C1-V2/answer.csv@de0f96700a"
      ],
      "recordedMismatch": []
     },
@@ -305,7 +309,7 @@
      "s500": 1192.7184,
      "s500Rejected": 0,
      "sources": [
-      "곽민재 · kmj:experiments/case1/KMJ-1125-FH-C1/answer.csv@7898e8ad2b"
+      "곽민재 · kmj:experiments/case1/KMJ-1125-FH-C1/answer.csv@de0f96700a"
      ],
      "recordedMismatch": []
     },
@@ -323,7 +327,7 @@
      "s500": 1193.0528,
      "s500Rejected": 0,
      "sources": [
-      "곽민재 · kmj:experiments/case1/KMJ-1125-119189/answer.csv@7898e8ad2b"
+      "곽민재 · kmj:experiments/case1/KMJ-1125-119189/answer.csv@de0f96700a"
      ],
      "recordedMismatch": []
     },
@@ -384,7 +388,7 @@
    ],
    "teamPool": {
     "answers": 13,
-    "updated": "2026-11-26T12:09:48.537Z"
+    "updated": "2026-11-26T13:05:12.000Z"
    },
    "candidates": 1,
    "searchTasks": {},
@@ -448,7 +452,7 @@
      "s500": 616.0472,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/63c180933a03.csv@42371e16c6"
+      "장승민 · jsm:experiments/case2/candidates/63c180933a03.csv@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -487,7 +491,7 @@
      "s500": 615.9934,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/e11ec2f18ec8.csv@42371e16c6"
+      "장승민 · jsm:experiments/case2/candidates/e11ec2f18ec8.csv@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -505,7 +509,7 @@
      "s500": 616.1392,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/ac1aefe2491f.csv@42371e16c6"
+      "장승민 · jsm:experiments/case2/candidates/ac1aefe2491f.csv@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -565,7 +569,7 @@
      "s500": 614.0309,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/50cfda9473f9.csv@42371e16c6"
+      "장승민 · jsm:experiments/case2/candidates/50cfda9473f9.csv@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -583,7 +587,7 @@
      "s500": 616.2748,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/4946a671ce96.csv@42371e16c6"
+      "장승민 · jsm:experiments/case2/candidates/4946a671ce96.csv@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -601,7 +605,7 @@
      "s500": 616.2662,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/552a7bd0e624.csv@42371e16c6"
+      "장승민 · jsm:experiments/case2/candidates/552a7bd0e624.csv@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -619,14 +623,14 @@
      "s500": 616.2748,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/f093cbf354e3.csv@42371e16c6"
+      "장승민 · jsm:experiments/case2/candidates/f093cbf354e3.csv@44843a08da"
      ],
      "recordedMismatch": []
     }
    ],
    "teamPool": {
     "answers": 39,
-    "updated": "2026-11-26T12:09:48.537Z"
+    "updated": "2026-11-26T13:05:12.000Z"
    },
    "candidates": 33,
    "searchTasks": {},
@@ -701,7 +705,7 @@
      "mean": 605.46,
      "p95": 596.18,
      "sd": 21.64,
-     "adjMean": 602.39,
+     "adjMean": 606.2,
      "pubMinusHeld": 32.58,
      "cost": {
       "veh": 360,
@@ -718,17 +722,17 @@
      "dir": "D2",
      "tree12": "d23b4aa699c1",
      "pub": 638.0407,
-     "blocks": 193,
+     "blocks": 244,
      "seedRange": "2400001-2431000",
-     "mean": 605.73,
-     "p95": 636.78,
+     "mean": 606.2,
+     "p95": 636.81,
      "sd": 18.44,
-     "adjMean": 605.7,
-     "pubMinusHeld": 32.32,
+     "adjMean": 606.2,
+     "pubMinusHeld": 31.84,
      "cost": {
       "veh": 360,
-      "wait": 79.4,
-      "urgent": 166.32
+      "wait": 79.36,
+      "urgent": 166.84
      }
     },
     {
@@ -740,17 +744,17 @@
      "dir": "D2",
      "tree12": "d23b4aa699c1",
      "pub": 617.627,
-     "blocks": 33,
+     "blocks": 44,
      "seedRange": "2400001-2410200",
-     "mean": 607.63,
+     "mean": 606.76,
      "p95": 624.28,
-     "sd": 11.9,
-     "adjMean": 606.61,
-     "pubMinusHeld": 10,
+     "sd": 11.38,
+     "adjMean": 606.77,
+     "pubMinusHeld": 10.87,
      "cost": {
       "veh": 375,
-      "wait": 77.22,
-      "urgent": 155.41
+      "wait": 77.25,
+      "urgent": 154.51
      }
     },
     {
@@ -767,7 +771,7 @@
      "mean": 611.32,
      "p95": 610.42,
      "sd": 9.25,
-     "adjMean": 608.25,
+     "adjMean": 612.06,
      "pubMinusHeld": 2.3,
      "cost": {
       "veh": 360,
@@ -789,7 +793,7 @@
      "mean": 611.54,
      "p95": 610.45,
      "sd": 9.07,
-     "adjMean": 608.47,
+     "adjMean": 612.28,
      "pubMinusHeld": 2.08,
      "cost": {
       "veh": 360,
@@ -811,7 +815,7 @@
      "mean": 611.55,
      "p95": 610.44,
      "sd": 9.1,
-     "adjMean": 608.48,
+     "adjMean": 612.29,
      "pubMinusHeld": 2.32,
      "cost": {
       "veh": 360,
@@ -833,7 +837,7 @@
      "mean": 611.75,
      "p95": 610.07,
      "sd": 7.66,
-     "adjMean": 608.69,
+     "adjMean": 612.5,
      "pubMinusHeld": 3.69,
      "cost": {
       "veh": 375,
@@ -855,12 +859,34 @@
      "mean": 611.9,
      "p95": 612.44,
      "sd": 9.12,
-     "adjMean": 608.83,
+     "adjMean": 612.64,
      "pubMinusHeld": 2.13,
      "cost": {
       "veh": 360,
       "wait": 95.9,
       "urgent": 155.99
+     }
+    },
+    {
+     "sha12": "3e9daf44a556",
+     "labels": [
+      "c2-cell7"
+     ],
+     "fleet": 26,
+     "dir": "D2",
+     "tree12": "d23b4aa699c1",
+     "pub": 617.1633,
+     "blocks": 244,
+     "seedRange": "2400001-2431000",
+     "mean": 613.33,
+     "p95": 622.04,
+     "sd": 6.86,
+     "adjMean": 613.33,
+     "pubMinusHeld": 3.83,
+     "cost": {
+      "veh": 390,
+      "wait": 75.93,
+      "urgent": 147.4
      }
     },
     {
@@ -877,7 +903,7 @@
      "mean": 612.81,
      "p95": 606.25,
      "sd": 18.65,
-     "adjMean": 609.74,
+     "adjMean": 613.55,
      "pubMinusHeld": 4.82,
      "cost": {
       "veh": 375,
@@ -899,7 +925,7 @@
      "mean": 613.95,
      "p95": 616.28,
      "sd": 3.21,
-     "adjMean": 610.88,
+     "adjMean": 614.69,
      "pubMinusHeld": 3.14,
      "cost": {
       "veh": 375,
@@ -921,7 +947,7 @@
      "mean": 614.03,
      "p95": 616.28,
      "sd": 3.29,
-     "adjMean": 610.96,
+     "adjMean": 614.77,
      "pubMinusHeld": 3.06,
      "cost": {
       "veh": 375,
@@ -943,12 +969,34 @@
      "mean": 614.04,
      "p95": 616.28,
      "sd": 3.28,
-     "adjMean": 610.97,
+     "adjMean": 614.78,
      "pubMinusHeld": 3.06,
      "cost": {
       "veh": 375,
       "wait": 93.4,
       "urgent": 145.63
+     }
+    },
+    {
+     "sha12": "f093cbf354e3",
+     "labels": [
+      "c2-cell0-n25"
+     ],
+     "fleet": 25,
+     "dir": "D1",
+     "tree12": "732f4414f3b0",
+     "pub": 617.0951,
+     "blocks": 44,
+     "seedRange": "2400001-2410200",
+     "mean": 614.77,
+     "p95": 625.75,
+     "sd": 8.33,
+     "adjMean": 614.78,
+     "pubMinusHeld": 2.33,
+     "cost": {
+      "veh": 375,
+      "wait": 92.96,
+      "urgent": 146.8
      }
     },
     {
@@ -965,78 +1013,34 @@
      "mean": 615.76,
      "p95": 612.48,
      "sd": 7.74,
-     "adjMean": 612.69,
+     "adjMean": 616.5,
      "pubMinusHeld": 2.62,
      "cost": {
       "veh": 360,
       "wait": 100.61,
       "urgent": 155.15
      }
-    },
-    {
-     "sha12": "3e9daf44a556",
-     "labels": [
-      "c2-cell7"
-     ],
-     "fleet": 26,
-     "dir": "D2",
-     "tree12": "d23b4aa699c1",
-     "pub": 617.1633,
-     "blocks": 194,
-     "seedRange": "2400001-2431000",
-     "mean": 612.95,
-     "p95": 621.45,
-     "sd": 6.5,
-     "adjMean": 612.95,
-     "pubMinusHeld": 4.21,
-     "cost": {
-      "veh": 390,
-      "wait": 75.97,
-      "urgent": 146.99
-     }
-    },
-    {
-     "sha12": "e8f167108cac",
-     "labels": [
-      "jinhong:cand_617.csv"
-     ],
-     "fleet": 26,
-     "dir": "D2",
-     "tree12": "0e43fd93a7d6",
-     "pub": 617.1633,
-     "blocks": 4,
-     "seedRange": "2400001-2400020",
-     "mean": 616.09,
-     "p95": 617.83,
-     "sd": 4.17,
-     "adjMean": 613.02,
-     "pubMinusHeld": 1.08,
-     "cost": {
-      "veh": 390,
-      "wait": 76.14,
-      "urgent": 149.95
-     }
     }
    ],
    "heldOutTotal": 33,
    "currentBest": {
-    "sha12": "e105273b19f4",
+    "sha12": "9c4fd1d38b1b",
     "labels": [
-     "c2-cell6-n24-node3de-up"
+     "c2-cell6"
     ],
     "fleet": 24,
     "dir": "D2",
-    "adjMean": 602.39,
-    "rawMean": 605.46,
-    "blocks": 4,
-    "basis": "paired"
+    "adjMean": 606.2,
+    "rawMean": 606.2,
+    "blocks": 244,
+    "basis": "reference"
    },
    "vsBest": [
     {
-     "ev": "c2.vsbest.9c4fd1d38b1b",
-     "sha12": "9c4fd1d38b1b",
+     "ev": "c2.vsbest.e105273b19f4",
+     "sha12": "e105273b19f4",
      "labels": [
-      "c2-cell6"
+      "c2-cell6-n24-node3de-up"
      ],
      "fleet": 24,
      "dir": "D2",
@@ -1052,43 +1056,23 @@
      "blocksBetter": 0
     },
     {
-     "ev": "c2.vsbest.50cfda9473f9",
-     "sha12": "50cfda9473f9",
+     "ev": "c2.vsbest.9bcff5d2630b",
+     "sha12": "9bcff5d2630b",
      "labels": [
-      "c2-cell2"
+      "c2-cell6-n25"
      ],
-     "fleet": 24,
-     "dir": "D1",
-     "n": 4,
-     "diff": 2.75,
+     "fleet": 25,
+     "dir": "D2",
+     "n": 44,
+     "diff": 0.57,
      "ci": [
-      -25.41,
-      30.91
+      -2.77,
+      3.91
      ],
-     "p": 0.7765,
+     "p": 0.732,
      "holmP": 1,
      "verdict": "indistinct",
-     "blocksBetter": 1
-    },
-    {
-     "ev": "c2.vsbest.6f8788c2ef46",
-     "sha12": "6f8788c2ef46",
-     "labels": [
-      "case2-baseline",
-      "c2-cell0"
-     ],
-     "fleet": 24,
-     "dir": "D1",
-     "n": 4,
-     "diff": 5.86,
-     "ci": [
-      -14.51,
-      26.23
-     ],
-     "p": 0.4276,
-     "holmP": 1,
-     "verdict": "indistinct",
-     "blocksBetter": 1
+     "blocksBetter": 14
     },
     {
      "ev": "c2.vsbest.63c180933a03",
@@ -1186,23 +1170,23 @@
      "blocksBetter": 1
     },
     {
-     "ev": "c2.vsbest.9bcff5d2630b",
-     "sha12": "9bcff5d2630b",
+     "ev": "c2.vsbest.3e9daf44a556",
+     "sha12": "3e9daf44a556",
      "labels": [
-      "c2-cell6-n25"
+      "c2-cell7"
      ],
-     "fleet": 25,
+     "fleet": 26,
      "dir": "D2",
-     "n": 4,
-     "diff": 7.35,
+     "n": 244,
+     "diff": 7.13,
      "ci": [
-      1.68,
-      13.02
+      5.39,
+      8.87
      ],
-     "p": 0.0258,
-     "holmP": 0.6645,
-     "verdict": "indistinct",
-     "blocksBetter": 0
+     "p": 0,
+     "holmP": 0,
+     "verdict": "worse",
+     "blocksBetter": 60
     },
     {
      "ev": "c2.vsbest.b861d172f77e",
@@ -1219,7 +1203,7 @@
       13.02
      ],
      "p": 0.0258,
-     "holmP": 0.6645,
+     "holmP": 0.5168,
      "verdict": "indistinct",
      "blocksBetter": 0
     },
@@ -1243,25 +1227,6 @@
      "blocksBetter": 1
     },
     {
-     "ev": "c2.vsbest.f093cbf354e3",
-     "sha12": "f093cbf354e3",
-     "labels": [
-      "c2-cell0-n25"
-     ],
-     "fleet": 25,
-     "dir": "D1",
-     "n": 4,
-     "diff": 8.57,
-     "ci": [
-      -23.2,
-      40.34
-     ],
-     "p": 0.4538,
-     "holmP": 1,
-     "verdict": "indistinct",
-     "blocksBetter": 1
-    },
-    {
      "ev": "c2.vsbest.4946a671ce96",
      "sha12": "4946a671ce96",
      "labels": [
@@ -1279,6 +1244,25 @@
      "holmP": 1,
      "verdict": "indistinct",
      "blocksBetter": 1
+    },
+    {
+     "ev": "c2.vsbest.f093cbf354e3",
+     "sha12": "f093cbf354e3",
+     "labels": [
+      "c2-cell0-n25"
+     ],
+     "fleet": 25,
+     "dir": "D1",
+     "n": 44,
+     "diff": 8.58,
+     "ci": [
+      3.45,
+      13.71
+     ],
+     "p": 0.0016,
+     "holmP": 0.0383,
+     "verdict": "worse",
+     "blocksBetter": 12
     },
     {
      "ev": "c2.vsbest.552a7bd0e624",
@@ -1314,6 +1298,25 @@
       32.51
      ],
      "p": 0.2367,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 1
+    },
+    {
+     "ev": "c2.vsbest.e8f167108cac",
+     "sha12": "e8f167108cac",
+     "labels": [
+      "jinhong:cand_617.csv"
+     ],
+     "fleet": 26,
+     "dir": "D2",
+     "n": 4,
+     "diff": 10.62,
+     "ci": [
+      -18.89,
+      40.14
+     ],
+     "p": 0.3351,
      "holmP": 1,
      "verdict": "indistinct",
      "blocksBetter": 1
@@ -1361,11 +1364,11 @@
       "fleet": 26,
       "dir": "D2"
      },
-     "n": 164,
-     "diffAminusB": 445.45,
+     "n": 204,
+     "diffAminusB": 444.55,
      "ci": [
-      443.81,
-      447.1
+      443.06,
+      446.04
      ],
      "verdict": "a-worse",
      "aBetterBlocks": 0
@@ -1383,14 +1386,14 @@
       "fleet": 26,
       "dir": "D2"
      },
-     "n": 164,
-     "diffAminusB": -438.96,
+     "n": 204,
+     "diffAminusB": -437.85,
      "ci": [
-      -440.79,
-      -437.13
+      -439.45,
+      -436.24
      ],
      "verdict": "a-better",
-     "aBetterBlocks": 164
+     "aBetterBlocks": 204
     },
     {
      "ev": "c2.effect.e5b3fa139022.9c4fd1d38b1b",
@@ -1405,11 +1408,11 @@
       "fleet": 24,
       "dir": "D2"
      },
-     "n": 164,
-     "diffAminusB": 435.06,
+     "n": 204,
+     "diffAminusB": 434.09,
      "ci": [
-      431.7,
-      438.41
+      431.15,
+      437.04
      ],
      "verdict": "a-worse",
      "aBetterBlocks": 0
@@ -1427,14 +1430,14 @@
       "fleet": 24,
       "dir": "D2"
      },
-     "n": 164,
-     "diffAminusB": -419.04,
+     "n": 204,
+     "diffAminusB": -418.35,
      "ci": [
-      -422.95,
-      -415.12
+      -421.77,
+      -414.92
      ],
      "verdict": "a-better",
-     "aBetterBlocks": 164
+     "aBetterBlocks": 204
     },
     {
      "ev": "c2.effect.b40f35996f98.e11ec2f18ec8",
@@ -1647,14 +1650,14 @@
       "fleet": 26,
       "dir": "D2"
      },
-     "n": 164,
-     "diffAminusB": -17.78,
+     "n": 204,
+     "diffAminusB": -17.55,
      "ci": [
-      -18.79,
-      -16.77
+      -18.43,
+      -16.68
      ],
      "verdict": "a-better",
-     "aBetterBlocks": 161
+     "aBetterBlocks": 201
     },
     {
      "ev": "c2.effect.e5b3fa139022.63550925ec13",
@@ -1691,14 +1694,14 @@
       "fleet": 26,
       "dir": "D2"
      },
-     "n": 164,
-     "diffAminusB": 6.6,
+     "n": 204,
+     "diffAminusB": 6.8,
      "ci": [
-      5.61,
-      7.6
+      5.85,
+      7.75
      ],
      "verdict": "a-worse",
-     "aBetterBlocks": 25
+     "aBetterBlocks": 32
     },
     {
      "ev": "c2.effect.e5b3fa139022.53859b0bb056",
@@ -1735,14 +1738,14 @@
       "fleet": 24,
       "dir": "D2"
      },
-     "n": 183,
-     "diffAminusB": 12.86,
+     "n": 244,
+     "diffAminusB": 13,
      "ci": [
-      10.49,
-      15.24
+      10.59,
+      15.41
      ],
      "verdict": "a-worse",
-     "aBetterBlocks": 29
+     "aBetterBlocks": 46
     },
     {
      "ev": "c2.effect.e5b3fa139022.893e95e48595",
@@ -1779,14 +1782,14 @@
       "fleet": 26,
       "dir": "D2"
      },
-     "n": 183,
-     "diffAminusB": -7.25,
+     "n": 244,
+     "diffAminusB": -7.13,
      "ci": [
-      -9.33,
-      -5.18
+      -8.87,
+      -5.39
      ],
      "verdict": "a-better",
-     "aBetterBlocks": 139
+     "aBetterBlocks": 184
     }
    ],
    "effectsTotal": 115,
@@ -1850,8 +1853,8 @@
      "s500": 976.6124,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/2fcf90e69eb4.csv@42371e16c6",
-      "장승민 · jsm:experiments/common/five-case/raw/B2-local.jsonl#B2:c3:search:B0-n23-transplant@42371e16c6"
+      "장승민 · jsm:experiments/case3/candidates/2fcf90e69eb4.csv@44843a08da",
+      "장승민 · jsm:experiments/common/five-case/raw/B2-local.jsonl#B2:c3:search:B0-n23-transplant@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -1871,7 +1874,7 @@
      "sources": [
       "박진홍 · jinhong-experiments:jinhong/case3/cand_97082.csv@1584cb7ca4",
       "박진홍 · jsm-original:experiments/JSM/five-case/team/case3/jinhong__cand_97082.csv@4f01b27a5c",
-      "장승민 · jsm:experiments/case3/candidates/ed5f5d03d37d.csv@42371e16c6"
+      "장승민 · jsm:experiments/case3/candidates/ed5f5d03d37d.csv@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -1888,9 +1891,9 @@
      "s500": 979.9373,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/a5c1da947d90.csv@42371e16c6",
-      "장승민 · jsm:experiments/common/five-case/raw/B2-github.jsonl#B2:c3:search:B0-n21-transplant@42371e16c6",
-      "장승민 · jsm:experiments/common/five-case/raw/github/45360658878/jsm-five-case-B2-45360658878-1/B2-github.jsonl#B2:c3:search:B0-n21-transplant@42371e16c6"
+      "장승민 · jsm:experiments/case3/candidates/a5c1da947d90.csv@44843a08da",
+      "장승민 · jsm:experiments/common/five-case/raw/B2-github.jsonl#B2:c3:search:B0-n21-transplant@44843a08da",
+      "장승민 · jsm:experiments/common/five-case/raw/github/45360658878/jsm-five-case-B2-45360658878-1/B2-github.jsonl#B2:c3:search:B0-n21-transplant@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -1907,9 +1910,9 @@
      "s500": 983.7489,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/859269dbb6c6.csv@42371e16c6",
-      "장승민 · jsm:experiments/common/five-case/raw/B2-github.jsonl#B2:c3:search:D2-n21-transplant@42371e16c6",
-      "장승민 · jsm:experiments/common/five-case/raw/github/45360658878/jsm-five-case-B2-45360658878-1/B2-github.jsonl#B2:c3:search:D2-n21-transplant@42371e16c6"
+      "장승민 · jsm:experiments/case3/candidates/859269dbb6c6.csv@44843a08da",
+      "장승민 · jsm:experiments/common/five-case/raw/B2-github.jsonl#B2:c3:search:D2-n21-transplant@44843a08da",
+      "장승민 · jsm:experiments/common/five-case/raw/github/45360658878/jsm-five-case-B2-45360658878-1/B2-github.jsonl#B2:c3:search:D2-n21-transplant@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -1946,8 +1949,8 @@
      "s500": 981.8458,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/f5d9cca6b020.csv@42371e16c6",
-      "장승민 · jsm:experiments/common/five-case/raw/B2-local.jsonl#B2:c3:search:D2-n22-transplant@42371e16c6"
+      "장승민 · jsm:experiments/case3/candidates/f5d9cca6b020.csv@44843a08da",
+      "장승민 · jsm:experiments/common/five-case/raw/B2-local.jsonl#B2:c3:search:D2-n22-transplant@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -1964,7 +1967,7 @@
      "s500": 979.8071,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/4592869026de.csv@42371e16c6"
+      "장승민 · jsm:experiments/case3/candidates/4592869026de.csv@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -1981,7 +1984,7 @@
      "s500": 982.8991,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/b3debb316487.csv@42371e16c6"
+      "장승민 · jsm:experiments/case3/candidates/b3debb316487.csv@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -1998,16 +2001,16 @@
      "s500": 979.9109,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/3a0a134f1d3c.csv@42371e16c6"
+      "장승민 · jsm:experiments/case3/candidates/3a0a134f1d3c.csv@44843a08da"
      ],
      "recordedMismatch": []
     }
    ],
    "teamPool": {
     "answers": 403,
-    "updated": "2026-11-26T12:09:48.537Z"
+    "updated": "2026-11-26T13:05:12.000Z"
    },
-   "candidates": 400,
+   "candidates": 454,
    "searchTasks": {
     "B2:github": {
      "planned": 41,
@@ -2027,10 +2030,10 @@
     },
     "overnight-1125:kaggle": {
      "planned": 54,
-     "returned": 0
+     "returned": 54
     }
    },
-   "withPublic": 400,
+   "withPublic": 454,
    "withHeldOut": 100,
    "engines": [
     "jsim:e2dc473b4509+ev1"
@@ -2098,17 +2101,109 @@
      "dir": "D1",
      "tree12": "598a9116756d",
      "pub": 969.4107,
-     "blocks": 30,
+     "blocks": 40,
      "seedRange": "2410001-2410200",
-     "mean": 976.23,
+     "mean": 975.77,
      "p95": 986.37,
-     "sd": 7.01,
-     "adjMean": 976.73,
-     "pubMinusHeld": -6.82,
+     "sd": 6.62,
+     "adjMean": 975.45,
+     "pubMinusHeld": -6.36,
      "cost": {
       "veh": 345,
-      "wait": 117.14,
-      "urgent": 514.09
+      "wait": 117.02,
+      "urgent": 513.75
+     }
+    },
+    {
+     "sha12": "00fad1b682e2",
+     "labels": [
+      "case3-baseline",
+      "jinhong:answer_case3.csv",
+      "search:c3-B0-n22-search:transplant"
+     ],
+     "fleet": 22,
+     "dir": "D1",
+     "tree12": "5d44afb4e8fc",
+     "pub": 962.7048,
+     "blocks": 44,
+     "seedRange": "2400001-2410200",
+     "mean": 977.56,
+     "p95": 986.83,
+     "sd": 7.27,
+     "adjMean": 977.56,
+     "pubMinusHeld": -14.85,
+     "cost": {
+      "veh": 330,
+      "wait": 119.01,
+      "urgent": 528
+     }
+    },
+    {
+     "sha12": "a5c1da947d90",
+     "labels": [
+      "search:c3-B0-n21-search:transplant",
+      "c3-B0-n21-search"
+     ],
+     "fleet": 21,
+     "dir": "D1",
+     "tree12": "9362bd9b4060",
+     "pub": 971.2163,
+     "blocks": 40,
+     "seedRange": "2410001-2410200",
+     "mean": 979.03,
+     "p95": 989.09,
+     "sd": 7.48,
+     "adjMean": 978.71,
+     "pubMinusHeld": -7.81,
+     "cost": {
+      "veh": 315,
+      "wait": 125.02,
+      "urgent": 539.01
+     }
+    },
+    {
+     "sha12": "4592869026de",
+     "labels": [
+      "c3-B0-n21-transplant-base"
+     ],
+     "fleet": 21,
+     "dir": "D1",
+     "tree12": "5d44afb4e8fc",
+     "pub": 974.3433,
+     "blocks": 44,
+     "seedRange": "2400001-2410200",
+     "mean": 979.22,
+     "p95": 988.87,
+     "sd": 7.18,
+     "adjMean": 979.22,
+     "pubMinusHeld": -4.88,
+     "cost": {
+      "veh": 315,
+      "wait": 125.2,
+      "urgent": 539.03
+     }
+    },
+    {
+     "sha12": "f5d9cca6b020",
+     "labels": [
+      "search:c3-D2-n22-search:transplant",
+      "c3-D2-n22-search"
+     ],
+     "fleet": 22,
+     "dir": "D2",
+     "tree12": "2eca1fe81435",
+     "pub": 973.671,
+     "blocks": 40,
+     "seedRange": "2410001-2410200",
+     "mean": 981.33,
+     "p95": 994.49,
+     "sd": 8.16,
+     "adjMean": 981.02,
+     "pubMinusHeld": -7.66,
+     "cost": {
+      "veh": 330,
+      "wait": 120.08,
+      "urgent": 531.25
      }
     },
     {
@@ -2125,7 +2220,7 @@
      "mean": 978.24,
      "p95": 981.63,
      "sd": 5.59,
-     "adjMean": 977.05,
+     "adjMean": 981.39,
      "pubMinusHeld": 2.7,
      "cost": {
       "veh": 345,
@@ -2147,7 +2242,7 @@
      "mean": 978.87,
      "p95": 982.85,
      "sd": 8.67,
-     "adjMean": 977.68,
+     "adjMean": 982.02,
      "pubMinusHeld": -2.92,
      "cost": {
       "veh": 345,
@@ -2156,50 +2251,26 @@
      }
     },
     {
-     "sha12": "00fad1b682e2",
+     "sha12": "859269dbb6c6",
      "labels": [
-      "case3-baseline",
-      "jinhong:answer_case3.csv",
-      "search:c3-B0-n22-search:transplant"
-     ],
-     "fleet": 22,
-     "dir": "D1",
-     "tree12": "5d44afb4e8fc",
-     "pub": 962.7048,
-     "blocks": 33,
-     "seedRange": "2400001-2410195",
-     "mean": 978.27,
-     "p95": 986.83,
-     "sd": 6.37,
-     "adjMean": 977.95,
-     "pubMinusHeld": -15.56,
-     "cost": {
-      "veh": 330,
-      "wait": 119.05,
-      "urgent": 528.45
-     }
-    },
-    {
-     "sha12": "a5c1da947d90",
-     "labels": [
-      "search:c3-B0-n21-search:transplant",
-      "c3-B0-n21-search"
+      "search:c3-D2-n21-search:transplant",
+      "c3-D2-n21-search"
      ],
      "fleet": 21,
-     "dir": "D1",
-     "tree12": "9362bd9b4060",
-     "pub": 971.2163,
-     "blocks": 30,
+     "dir": "D2",
+     "tree12": "ea586089147f",
+     "pub": 972.4246,
+     "blocks": 40,
      "seedRange": "2410001-2410200",
-     "mean": 978.78,
-     "p95": 988.29,
-     "sd": 7.54,
-     "adjMean": 979.06,
-     "pubMinusHeld": -7.57,
+     "mean": 983.28,
+     "p95": 992.93,
+     "sd": 6.53,
+     "adjMean": 982.96,
+     "pubMinusHeld": -10.85,
      "cost": {
       "veh": 315,
-      "wait": 125,
-      "urgent": 538.79
+      "wait": 127.34,
+      "urgent": 540.94
      }
     },
     {
@@ -2216,7 +2287,7 @@
      "mean": 980.55,
      "p95": 983.39,
      "sd": 4.55,
-     "adjMean": 979.35,
+     "adjMean": 983.7,
      "pubMinusHeld": -5.44,
      "cost": {
       "veh": 330,
@@ -2225,48 +2296,26 @@
      }
     },
     {
-     "sha12": "4592869026de",
+     "sha12": "14a1e94e4dba",
      "labels": [
-      "c3-B0-n21-transplant-base"
+      "search:c3-D2-n23-search:transplant",
+      "c3-D2-n23-search"
      ],
-     "fleet": 21,
-     "dir": "D1",
-     "tree12": "5d44afb4e8fc",
-     "pub": 974.3433,
-     "blocks": 33,
-     "seedRange": "2400001-2410200",
-     "mean": 978.47,
-     "p95": 988.08,
-     "sd": 6.8,
-     "adjMean": 979.9,
-     "pubMinusHeld": -4.12,
-     "cost": {
-      "veh": 315,
-      "wait": 125.05,
-      "urgent": 538.42
-     }
-    },
-    {
-     "sha12": "f5d9cca6b020",
-     "labels": [
-      "search:c3-D2-n22-search:transplant",
-      "c3-D2-n22-search"
-     ],
-     "fleet": 22,
+     "fleet": 23,
      "dir": "D2",
-     "tree12": "2eca1fe81435",
-     "pub": 973.671,
-     "blocks": 30,
+     "tree12": "f2ca167add42",
+     "pub": 977.7307,
+     "blocks": 40,
      "seedRange": "2410001-2410200",
-     "mean": 981.77,
-     "p95": 994.49,
-     "sd": 8.79,
-     "adjMean": 981.35,
-     "pubMinusHeld": -8.1,
+     "mean": 985.71,
+     "p95": 999.32,
+     "sd": 7.82,
+     "adjMean": 985.39,
+     "pubMinusHeld": -7.98,
      "cost": {
-      "veh": 330,
-      "wait": 120.03,
-      "urgent": 531.74
+      "veh": 345,
+      "wait": 115.74,
+      "urgent": 524.96
      }
     },
     {
@@ -2283,7 +2332,7 @@
      "mean": 983.77,
      "p95": 984.5,
      "sd": 3.3,
-     "adjMean": 982.58,
+     "adjMean": 986.92,
      "pubMinusHeld": -3.23,
      "cost": {
       "veh": 315,
@@ -2292,26 +2341,26 @@
      }
     },
     {
-     "sha12": "859269dbb6c6",
+     "sha12": "ed5f5d03d37d",
      "labels": [
-      "search:c3-D2-n21-search:transplant",
-      "c3-D2-n21-search"
+      "jinhong:cand_97082.csv",
+      "jinhong:cand_97082"
      ],
-     "fleet": 21,
-     "dir": "D2",
-     "tree12": "ea586089147f",
-     "pub": 972.4246,
-     "blocks": 29,
-     "seedRange": "2410006-2410195",
-     "mean": 983.03,
-     "p95": 992.22,
-     "sd": 7.08,
-     "adjMean": 984.53,
-     "pubMinusHeld": -10.61,
+     "fleet": 22,
+     "dir": "D1",
+     "tree12": "78cb66d2f79f",
+     "pub": 970.821,
+     "blocks": 44,
+     "seedRange": "2400001-2410200",
+     "mean": 987.74,
+     "p95": 995.55,
+     "sd": 6.2,
+     "adjMean": 987.74,
+     "pubMinusHeld": -16.92,
      "cost": {
-      "veh": 315,
-      "wait": 127.23,
-      "urgent": 540.8
+      "veh": 330,
+      "wait": 122.59,
+      "urgent": 535.16
      }
     },
     {
@@ -2328,7 +2377,7 @@
      "mean": 987.26,
      "p95": 990.74,
      "sd": 6.15,
-     "adjMean": 986.07,
+     "adjMean": 990.42,
      "pubMinusHeld": -11.01,
      "cost": {
       "veh": 330,
@@ -2350,58 +2399,12 @@
      "mean": 987.49,
      "p95": 988.81,
      "sd": 3.56,
-     "adjMean": 986.29,
+     "adjMean": 990.64,
      "pubMinusHeld": -14.33,
      "cost": {
       "veh": 330,
       "wait": 122.24,
       "urgent": 535.24
-     }
-    },
-    {
-     "sha12": "14a1e94e4dba",
-     "labels": [
-      "search:c3-D2-n23-search:transplant",
-      "c3-D2-n23-search"
-     ],
-     "fleet": 23,
-     "dir": "D2",
-     "tree12": "f2ca167add42",
-     "pub": 977.7307,
-     "blocks": 30,
-     "seedRange": "2410001-2410200",
-     "mean": 985.69,
-     "p95": 998.58,
-     "sd": 7.35,
-     "adjMean": 987.53,
-     "pubMinusHeld": -7.96,
-     "cost": {
-      "veh": 345,
-      "wait": 115.83,
-      "urgent": 524.86
-     }
-    },
-    {
-     "sha12": "ed5f5d03d37d",
-     "labels": [
-      "jinhong:cand_97082.csv",
-      "jinhong:cand_97082"
-     ],
-     "fleet": 22,
-     "dir": "D1",
-     "tree12": "78cb66d2f79f",
-     "pub": 970.821,
-     "blocks": 34,
-     "seedRange": "2400001-2410200",
-     "mean": 988,
-     "p95": 996.64,
-     "sd": 6.54,
-     "adjMean": 988,
-     "pubMinusHeld": -17.18,
-     "cost": {
-      "veh": 330,
-      "wait": 122.69,
-      "urgent": 535.31
      }
     },
     {
@@ -2418,7 +2421,7 @@
      "mean": 990.34,
      "p95": 992.82,
      "sd": 4.19,
-     "adjMean": 989.15,
+     "adjMean": 993.49,
      "pubMinusHeld": -13.89,
      "cost": {
       "veh": 330,
@@ -2436,9 +2439,9 @@
     ],
     "fleet": 23,
     "dir": "D1",
-    "adjMean": 976.73,
-    "rawMean": 976.23,
-    "blocks": 30,
+    "adjMean": 975.45,
+    "rawMean": 975.77,
+    "blocks": 40,
     "basis": "paired"
    },
    "vsBest": [
@@ -2451,16 +2454,16 @@
      ],
      "fleet": 22,
      "dir": "D1",
-     "n": 19,
-     "diff": 2.04,
+     "n": 40,
+     "diff": 2.1,
      "ci": [
-      -0.23,
-      4.32
+      0.57,
+      3.63
      ],
-     "p": 0.0755,
-     "holmP": 0.0755,
-     "verdict": "indistinct",
-     "blocksBetter": 5
+     "p": 0.0084,
+     "holmP": 0.0084,
+     "verdict": "worse",
+     "blocksBetter": 13
     },
     {
      "ev": "c3.vsbest.a5c1da947d90",
@@ -2471,16 +2474,35 @@
      ],
      "fleet": 21,
      "dir": "D1",
-     "n": 20,
-     "diff": 3.2,
+     "n": 40,
+     "diff": 3.26,
      "ci": [
-      0.65,
-      5.75
+      1.59,
+      4.93
      ],
-     "p": 0.0167,
-     "holmP": 0.0334,
+     "p": 0.0003,
+     "holmP": 0.0006,
      "verdict": "worse",
-     "blocksBetter": 6
+     "blocksBetter": 12
+    },
+    {
+     "ev": "c3.vsbest.4592869026de",
+     "sha12": "4592869026de",
+     "labels": [
+      "c3-B0-n21-transplant-base"
+     ],
+     "fleet": 21,
+     "dir": "D1",
+     "n": 40,
+     "diff": 3.66,
+     "ci": [
+      1.88,
+      5.44
+     ],
+     "p": 0.0002,
+     "holmP": 0.0005,
+     "verdict": "worse",
+     "blocksBetter": 10
     },
     {
      "ev": "c3.vsbest.f5d9cca6b020",
@@ -2491,35 +2513,16 @@
      ],
      "fleet": 22,
      "dir": "D2",
-     "n": 20,
-     "diff": 4.36,
+     "n": 40,
+     "diff": 5.56,
      "ci": [
-      1.48,
-      7.23
+      3.63,
+      7.5
      ],
-     "p": 0.005,
-     "holmP": 0.0151,
+     "p": 0,
+     "holmP": 0,
      "verdict": "worse",
-     "blocksBetter": 5
-    },
-    {
-     "ev": "c3.vsbest.4592869026de",
-     "sha12": "4592869026de",
-     "labels": [
-      "c3-B0-n21-transplant-base"
-     ],
-     "fleet": 21,
-     "dir": "D1",
-     "n": 19,
-     "diff": 4.53,
-     "ci": [
-      1.9,
-      7.16
-     ],
-     "p": 0.002,
-     "holmP": 0.0078,
-     "verdict": "worse",
-     "blocksBetter": 3
+     "blocksBetter": 9
     },
     {
      "ev": "c3.vsbest.859269dbb6c6",
@@ -2530,16 +2533,16 @@
      ],
      "fleet": 21,
      "dir": "D2",
-     "n": 19,
-     "diff": 8.02,
+     "n": 40,
+     "diff": 7.51,
      "ci": [
-      5.75,
-      10.3
+      5.88,
+      9.13
      ],
      "p": 0,
      "holmP": 0,
      "verdict": "worse",
-     "blocksBetter": 2
+     "blocksBetter": 3
     },
     {
      "ev": "c3.vsbest.14a1e94e4dba",
@@ -2550,11 +2553,11 @@
      ],
      "fleet": 23,
      "dir": "D2",
-     "n": 26,
-     "diff": 9.68,
+     "n": 40,
+     "diff": 9.94,
      "ci": [
-      7.98,
-      11.38
+      8.68,
+      11.2
      ],
      "p": 0,
      "holmP": 0,
@@ -2570,11 +2573,11 @@
      ],
      "fleet": 22,
      "dir": "D1",
-     "n": 24,
-     "diff": 11.28,
+     "n": 40,
+     "diff": 11.83,
      "ci": [
-      9.62,
-      12.94
+      10.52,
+      13.14
      ],
      "p": 0,
      "holmP": 0,
@@ -2588,14 +2591,11 @@
     "d8d70e5cdecd",
     "5623b55f0873",
     "2cf90a821cce",
-    "4592869026de",
     "3a0a134f1d3c",
     "36ec49d47f50",
     "b3debb316487",
     "e89491c9b1e6",
-    "a5c1da947d90",
-    "2fcf90e69eb4",
-    "f5d9cca6b020"
+    "2fcf90e69eb4"
    ],
    "ocba": null,
    "effects": [
@@ -3053,9 +3053,9 @@
      "indistinct": 16
     },
     "fleet": {
-     "a-better": 22,
+     "a-better": 23,
      "a-worse": 16,
-     "indistinct": 52
+     "indistinct": 51
     }
    },
    "search": {
@@ -3089,9 +3089,9 @@
      }
     },
     "overnight-1125": {
-     "runs": 234,
-     "evals": 55116,
-     "localOptimum": 234,
+     "runs": 288,
+     "evals": 67883,
+     "localOptimum": 288,
      "best": {
       "score": 1024.2547,
       "sha12": "fe83f7dd5a4c",
@@ -3114,6 +3114,11 @@
        "runs": 78,
        "min": 1028.99,
        "mean": 1310.89
+      },
+      "null": {
+       "runs": 54,
+       "min": 1025.97,
+       "mean": 1249.21
       }
      }
     }
@@ -3125,7 +3130,7 @@
      "fleet": 22,
      "dir": "D1",
      "start": "transplant",
-     "heldOutBlocks": 33
+     "heldOutBlocks": 44
     },
     {
      "score": 1024.2547,
@@ -3362,23 +3367,23 @@
      "sources": [
       "박진홍 · jinhong-experiments:jinhong/case4/answer_case4_80147.csv@1584cb7ca4",
       "박진홍 · jinhong-experiments:jinhong/case4/cand_80147.csv@1584cb7ca4",
-      "장승민 · jsm:experiments/case4/candidates/a88dfee925e7.csv@42371e16c6"
+      "장승민 · jsm:experiments/case4/candidates/a88dfee925e7.csv@44843a08da"
      ],
      "recordedMismatch": []
     }
    ],
    "teamPool": {
     "answers": 22,
-    "updated": "2026-11-26T12:09:48.537Z"
+    "updated": "2026-11-26T13:05:12.000Z"
    },
-   "candidates": 2,
+   "candidates": 130,
    "searchTasks": {
     "overnight-45:kaggle": {
      "planned": 128,
-     "returned": 0
+     "returned": 128
     }
    },
-   "withPublic": 1,
+   "withPublic": 129,
    "withHeldOut": 2,
    "engines": [
     "jsim:e2dc473b4509+ev1"
@@ -3407,6 +3412,30 @@
       "fleet": 18,
       "dir": "D1",
       "score": 801.467
+     },
+     {
+      "sha12": "f32fda29fcbd",
+      "fleet": null,
+      "dir": null,
+      "score": 808.2652
+     },
+     {
+      "sha12": "c85585117d0d",
+      "fleet": null,
+      "dir": null,
+      "score": 810.2148
+     },
+     {
+      "sha12": "2c927a1cfab7",
+      "fleet": null,
+      "dir": null,
+      "score": 810.7459
+     },
+     {
+      "sha12": "97b42181a0da",
+      "fleet": null,
+      "dir": null,
+      "score": 811.9869
      }
     ]
    },
@@ -3529,8 +3558,37 @@
      "indistinct": 0
     }
    },
-   "search": {},
-   "bestSearchCandidates": [],
+   "search": {
+    "overnight-45": {
+     "runs": 128,
+     "evals": 25386,
+     "localOptimum": 128,
+     "best": {
+      "score": 808.2652,
+      "sha12": "f32fda29fcbd",
+      "fleet": null,
+      "dir": null,
+      "start": "longFar"
+     },
+     "byFleet": {
+      "null": {
+       "runs": 128,
+       "min": 808.27,
+       "mean": 835.63
+      }
+     }
+    }
+   },
+   "bestSearchCandidates": [
+    {
+     "score": 808.2652,
+     "sha12": "f32fda29fcbd",
+     "fleet": null,
+     "dir": null,
+     "start": "longFar",
+     "heldOutBlocks": 0
+    }
+   ],
    "dirLegend": {
     "D1": "0011011111111110011011000111110111100000010010111110000110011100011111100101",
     "D2": "1111111111011111111000001110100111100000110010011101001100011110011111101111",
@@ -3613,7 +3671,7 @@
      "sources": [
       "박진홍 · jinhong-experiments:jinhong/case5/answer_case5_77143.csv@1584cb7ca4",
       "박진홍 · jinhong-experiments:jinhong/case5/cand_77143.csv@1584cb7ca4",
-      "장승민 · jsm:experiments/case5/candidates/dd48afb957ba.csv@42371e16c6"
+      "장승민 · jsm:experiments/case5/candidates/dd48afb957ba.csv@44843a08da"
      ],
      "recordedMismatch": []
     },
@@ -3703,7 +3761,7 @@
      "s500": 782.267,
      "s500Rejected": 0,
      "sources": [
-      "곽민재 · kmj:experiments/case5/KMJ-1125-DUAL-C5/answer.csv@7898e8ad2b"
+      "곽민재 · kmj:experiments/case5/KMJ-1125-DUAL-C5/answer.csv@de0f96700a"
      ],
      "recordedMismatch": []
     },
@@ -3720,23 +3778,23 @@
      "s500": 812.2789,
      "s500Rejected": 0,
      "sources": [
-      "곽민재 · kmj:experiments/case5/KMJ-1125-FH-C5-V2/answer.csv@7898e8ad2b"
+      "곽민재 · kmj:experiments/case5/KMJ-1125-FH-C5-V2/answer.csv@de0f96700a"
      ],
      "recordedMismatch": []
     }
    ],
    "teamPool": {
     "answers": 13,
-    "updated": "2026-11-26T12:09:48.537Z"
+    "updated": "2026-11-26T13:05:12.000Z"
    },
-   "candidates": 3,
+   "candidates": 192,
    "searchTasks": {
     "overnight-45:kaggle": {
      "planned": 189,
-     "returned": 0
+     "returned": 189
     }
    },
-   "withPublic": 1,
+   "withPublic": 190,
    "withHeldOut": 3,
    "engines": [
     "jsim:e2dc473b4509+ev1"
@@ -3765,6 +3823,30 @@
       "fleet": 23,
       "dir": "D1",
       "score": 771.4315
+     },
+     {
+      "sha12": "0739b8a95e50",
+      "fleet": null,
+      "dir": null,
+      "score": 789.6438
+     },
+     {
+      "sha12": "abc6bf411fd8",
+      "fleet": null,
+      "dir": null,
+      "score": 789.8176
+     },
+     {
+      "sha12": "4b0d27ea10b2",
+      "fleet": null,
+      "dir": null,
+      "score": 791.2335
+     },
+     {
+      "sha12": "74194b5e03a5",
+      "fleet": null,
+      "dir": null,
+      "score": 792.3776
      }
     ]
    },
@@ -3972,8 +4054,37 @@
      "indistinct": 0
     }
    },
-   "search": {},
-   "bestSearchCandidates": [],
+   "search": {
+    "overnight-45": {
+     "runs": 189,
+     "evals": 44699,
+     "localOptimum": 189,
+     "best": {
+      "score": 789.6438,
+      "sha12": "0739b8a95e50",
+      "fleet": null,
+      "dir": null,
+      "start": "transplant"
+     },
+     "byFleet": {
+      "null": {
+       "runs": 189,
+       "min": 789.64,
+       "mean": 922.2
+      }
+     }
+    }
+   },
+   "bestSearchCandidates": [
+    {
+     "score": 789.6438,
+     "sha12": "0739b8a95e50",
+     "fleet": null,
+     "dir": null,
+     "start": "transplant",
+     "heldOutBlocks": 0
+    }
+   ],
    "dirLegend": {
     "D1": "111000010000011110100001101100",
     "D2": "111000010011100001000001100011",
@@ -3987,14 +4098,38 @@
   {
    "ev": "c2.vsbest.9c4fd1d38b1b",
    "recorded": "indistinct",
-   "current": "indistinct",
+   "current": "missing",
+   "status": "recheck: evidence gone"
+  },
+  {
+   "ev": "c2.effect.6f8788c2ef46.e5b3fa139022",
+   "recorded": "a-better",
+   "current": "a-better",
+   "status": "ok"
+  },
+  {
+   "ev": "c2.effect.50cfda9473f9.9c4fd1d38b1b",
+   "recorded": "a-worse",
+   "current": "a-worse",
+   "status": "ok"
+  },
+  {
+   "ev": "c2.effect.24e6ae257168.3e9daf44a556",
+   "recorded": "a-worse",
+   "current": "a-worse",
+   "status": "ok"
+  },
+  {
+   "ev": "c2.effect.9c4fd1d38b1b.3e9daf44a556",
+   "recorded": "a-better",
+   "current": "a-better",
    "status": "ok"
   },
   {
    "ev": "c3.vsbest.00fad1b682e2",
    "recorded": "indistinct",
-   "current": "indistinct",
-   "status": "ok"
+   "current": "worse",
+   "status": "recheck: verdict changed"
   },
   {
    "ev": "c3.vsbest.a5c1da947d90",
@@ -4012,6 +4147,18 @@
    "ev": "c3.effect.a6901ec21c7d.55725d4e0e7b",
    "recorded": "a-better",
    "current": "a-better",
+   "status": "ok"
+  },
+  {
+   "ev": "c3.effect.36ec49d47f50.6d129d8fb3ea",
+   "recorded": "a-better",
+   "current": "a-better",
+   "status": "ok"
+  },
+  {
+   "ev": "c3.effect.f5db63052a21.db537f6dde31",
+   "recorded": "a-worse",
+   "current": "a-worse",
    "status": "ok"
   },
   {

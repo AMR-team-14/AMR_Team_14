@@ -1,4 +1,4 @@
-# 누적 인사이트 (낮을수록 좋음, 평가기 jsim:e2dc473b4509+ev1, digest 2026-11-26T12:09)
+# 누적 인사이트 (낮을수록 좋음, 평가기 jsim:e2dc473b4509+ev1, digest 2026-11-26T13:05)
 
 ## Case 1 (비공개 시드 채점, s500 기준)
 확인된 인사이트
@@ -12,46 +12,48 @@
 ## Case 2
 확인된 인사이트
 - 공개 1위 613.6186 = 63c180933a03(장승민) = 6f8788c2ef46(박진홍·장승민), 24/D1. 1~5위가 0.4072 안. 25대는 공개에서 뒤처짐.
-- D2 후보 e105273b19f4·9c4fd1d38b1b는 별도 시드 최상위지만 공개 638.0407로 크게 나쁨 [ev:c2.vsbest.9c4fd1d38b1b=indistinct]
+- 별도 시드 현재 최고는 9c4fd1d38b1b(24/D2)이나 공개 638.0407로 크게 나쁨. 24/D1 상위는 최고와 구별 안 됨 [ev:c2.vsbest.63c180933a03=indistinct]
 - 통로 효과는 트리에 따라 방향이 바뀜: 나쁜 트리에서는 D1 우위 [ev:c2.effect.6f8788c2ef46.e5b3fa139022=a-better], 좋은 트리에서는 별도 시드 기준 D2 우위 [ev:c2.effect.50cfda9473f9.9c4fd1d38b1b=a-worse] [ev:c2.effect.24e6ae257168.3e9daf44a556=a-worse]
-- D2에서 24대 > 26대 [ev:c2.effect.9c4fd1d38b1b.3e9daf44a556=a-better]
+- D2에서 24대 > 26대 [ev:c2.effect.9c4fd1d38b1b.3e9daf44a556=a-better], 26대는 최고보다 나쁨 [ev:c2.vsbest.3e9daf44a556=worse]
 - 효과 요약: 트리 93쌍 중 62 구별 안 됨, 대수 18쌍 중 13 구별 안 됨
 검증 필요 가설
 - D2는 대기비↓·긴급비↑ 교환이라 공개 시드에서 불리(로그 미확인)
 다음 확인할 것
-- Case 2 공개 시드 국소 탐색 기록 없음 → 24/D1 63c180933a03 transplant 탐색(Case 5 다음 순위)
+- 공개 시드 국소 탐색 기록 없음 → 24/D1 63c180933a03 transplant 탐색(next.json)
 
 ## Case 3
 확인된 인사이트
-- 공개 팀 1위 962.7048 = 00fad1b682e2(박진홍·장승민, 22/D1). 별도 시드 최고 2fcf90e69eb4(장승민, 23/D1)와 구별 안 됨 [ev:c3.vsbest.00fad1b682e2=indistinct]
-- 21/D1·22/D2 후보는 최고보다 나쁨 [ev:c3.vsbest.a5c1da947d90=worse] [ev:c3.vsbest.f5d9cca6b020=worse]
+- 공개 팀 1위 962.7048 = 00fad1b682e2(박진홍·장승민, 22/D1). 별도 시드 최고 2fcf90e69eb4(장승민, 23/D1)보다 나쁨 [ev:c3.vsbest.00fad1b682e2=worse]
+- 21/D1·22/D2 후보도 최고보다 나쁨 [ev:c3.vsbest.a5c1da947d90=worse] [ev:c3.vsbest.f5d9cca6b020=worse]
 - D3~D6 계열은 D1·D2보다 크게 나쁨 [ev:c3.effect.a6901ec21c7d.55725d4e0e7b=a-better] [ev:c3.effect.36ec49d47f50.6d129d8fb3ea=a-better]. 이 계열 안에서는 D6가 D4·D5보다 나음 [ev:c3.effect.f5db63052a21.db537f6dde31=a-worse]. 하지만 D6도 D2보다 나쁨 [ev:c3.effect.d1294e427d28.93c5a03a49bc=a-better]
 - 효과 요약: 트리 212쌍 중 178 좋음(가장 일관), 통로 93/39/9, 대수 52/90 구별 안 됨
-- 탐색: B2(transplant) 대수별 공개 최저 962.7~971.22, overnight-1125(234회, 먼 시작점·다른 통로) 최저 1024.2547. 다른 통로에서 먼 시작점으로 탐색하면 1위 근처에도 가지 못함.
+- 탐색: B2(transplant) 대수별 공개 최저 962.7~971.22, overnight-1125(288회, 먼 시작점) 최저 1024.2547. 먼 시작점 탐색은 1위 근처에 가지 못함.
 검증 필요 가설
-- 공개 1위가 공개 시드에 과적합(공개−별도 −15.56)
+- 공개 1위가 공개 시드에 과적합(공개−별도 −14.85)
 - 비용은 dir 앞 8비트(D1·D2 공통 1111 1111)가 좌우
 다음 확인할 것
-- kaggle 미회수(B3 145, overnight 374) 회수, 00fad·2fcf 트리 주변 transplant 탐색 추가
+- 00fad·2fcf 트리 주변 transplant 탐색 추가
 
 ## Case 4
 확인된 인사이트
 - 공개 1위 792.0212 = 55e571f4da46·9658e175c735(박진홍, 18/D2). 3위 d5152c1e93b6(18/D3)은 0.3054 차이, D2·D3는 한 비트 차이.
-- 상위 5개 모두 18대. 17대 공개 798.0185~800.8966. 별도 시드에서도 17대 < 18대 [ev:c4.vsbest.03b542a9976c=worse]
+- 상위 5개 모두 18대. 17대 공개 798.0185~800.8966. 별도 시드에서도 17대 < 18대 [ev:c4.effect.a88dfee925e7.03b542a9976c=a-better] [ev:c4.vsbest.03b542a9976c=worse]
 - D2 1위의 s500 796.7896 < D1 기준 답안 802.1418, 반려 0
+- overnight-45 탐색(128회, longFar) 공개 최저 808.2652로 1위에 못 미침
 검증 필요 가설
 - D2·D3가 D1보다 별도 시드에서도 낫다(효과 쌍 없음)
 다음 확인할 것
-- overnight-45 kaggle 128건(alternative-cycle, longFar) 회수. D2 18대 transplant 탐색은 아직 계획에 없음
+- D2 18대 55e571f4da46 transplant 탐색(next.json)
 
 ## Case 5
 확인된 인사이트
 - 공개 1위 770.8816 = aed2f894f8a5(박진홍, 23/D1). 상위 4개(D1 23대)가 0.5499 안, s500 786.4477~787.1466.
 - 22/D2 c26f6598a06d(박진홍)는 공개 776.1009이지만 s500 775.5363으로 D1 상위보다 낮음. 21/D5 75e12532fa95(곽민재)도 s500 782.267.
-- 별도 시드: 23대 < 24대 [ev:c5.vsbest.dd48afb957ba=worse], 22→23 개선 [ev:c5.effect.dd48afb957ba.19b730ac721c=a-better]
+- 별도 시드: 23대 < 24대 [ev:c5.effect.dd48afb957ba.a528e43bafdd=a-worse] [ev:c5.vsbest.dd48afb957ba=worse], 22→23 개선 [ev:c5.effect.dd48afb957ba.19b730ac721c=a-better]
 - 24대 a528e43bafdd는 공개 점수 없음
+- overnight-45 탐색(189회) 공개 최저 789.6438로 1위에 못 미침
 검증 필요 가설
 - D1 상위는 공개 시드에 맞춰짐(공개−별도 −15.79), D2/D5 계열이 더 강건함
 - 24/D1, 23/D2로 공개 점수를 1위보다 낮출 수 있음
 다음 확인할 것
-- next.json: 23/24대 D1(aed2f894f8a5) + 23대 D2(c26f6598a06d) transplant 탐색 각 8회, a528e43bafdd 공개 평가
+- next.json: a528e43bafdd 공개 평가, 24대 D1·23대 D2 transplant 탐색 각 8회
