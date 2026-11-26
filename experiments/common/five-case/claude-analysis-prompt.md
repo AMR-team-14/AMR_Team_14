@@ -1,7 +1,9 @@
-AMR Case 3·4·5 실험 결과를 해석해. 숫자는 이미 코드가 계산했다. 너는 계산하지 말고 해석만 한다.
-결과는 저장소 루트의 report.md(한국어)에 쓰고, experiments/common/five-case/reports/known-insights.md를 갱신해.
+AMR Case 3·4·5 실험 결과의 심화 분석만 해. 숫자 계산과 기본 집계 표는 코드가 이미 만들었다(basic.md).
+너는 계산하지 말고 해석만 한다. 결과는 저장소 루트의 deep.md(한국어)에 쓰고,
+experiments/common/five-case/reports/known-insights.md를 갱신해. 최종 보고서는 basic.md 뒤에 deep.md를 붙인 것이다.
 
 ## 읽을 것
+0. basic.md (저장소 루트): 코드가 만든 기본 분석 표. 같은 표를 deep.md에 다시 쓰지 마.
 1. digest.json (저장소 루트): 코드가 만든 전체 집계. 모든 숫자의 유일한 출처다.
    - sources.new: 이번에 새로 들어온 결과 파일. sources.conflicts: 같은 작업의 점수가 다른 경우.
    - coverage: 회차·환경별 계획/반환/누락(missingReason: not-collected = 아직 회수 안 함, missing-in-returned-results = 실제 누락)/실패/반려/평가당 ms.
@@ -23,30 +25,24 @@ AMR Case 3·4·5 실험 결과를 해석해. 숫자는 이미 코드가 계산�
 - verdict가 indistinct이면 "구별 안 됨"으로 쓰고, 좋아졌다/나빠졌다고 쓰지 마.
 - 해석·원인 추정은 "확인됨(로그 근거)"과 "가설(검증 필요)"로 구분한다.
 
-## report.md 구성
-맨 위: digest 생성 시각, sources.new 목록(없으면 "새 결과 없음"), conflicts가 있으면 경고.
+## deep.md 구성
+맨 위 한 줄: 이번에 새로 들어온 결과 요약(digest.sources.new 기준, 없으면 "새 결과 없음").
 
-### 1) 기본 분석 — 새 결과 집계
-- 새 결과가 속한 회차의 coverage 표 (환경별 계획/반환/누락 사유/실패/반려/평가당 ms).
-- 케이스별 공개 시드 최저점과 팀 기록 차이. 팀 기록이 없으면 "팀 기록 없음(team/reported.json에 없음)".
-- 케이스별 별도 시드 상위 후보 표 (평균, 95백분위, adjMean, 공개-별도 차이).
-
-### 2) 심화 분석 — 케이스별 새 인사이트 (Case 3 / 4 / 5)
+### 1) 케이스별 새 인사이트 (Case 3 / 4 / 5)
 - known-insights.md에 없던 것만 쓴다. 기존 인사이트를 뒤집거나 강화하면 "갱신"으로 표시한다.
 - citedEvidence에서 recheck가 뜬 항목은 맨 먼저 다룬다.
 - 대수·통로·트리 효과는 effects·effectsSummary로만 말한다.
 - 새 인사이트가 없으면 "새 인사이트 없음".
 
-### 3) 다음 실험 하나
+### 2) 다음 실험 하나
 - screeningSubset과 ocba를 근거로 고른다(가장 큰 불확실성이 남은 곳). subset이 1개뿐이면 search나 coverage의 미회수·미탐색 영역에서 고른다.
 - 고정할 것, 바꿀 것, 시드 범위(ocba.nextStart 등), 판정 기준(예: Holm 보정 후 verdict, CI)을 적는다.
 
-### 4) 케이스별 현재 최고 (공개 시드 최저, 별도 시드 currentBest) 한 줄씩
 
 ## known-insights.md 갱신
 - 케이스별로 "확인된 인사이트"(각 줄 끝에 [ev:id=verdict]), "검증 필요 가설", "다음 확인할 것"을 쓴다.
 - 케이스당 10줄 안팎. 뒤집힌 내용은 지우고 최신 결론만 남긴다.
 
 ## 금지
-- report.md와 known-insights.md 외 파일 수정, 새 실험 실행, 커밋, 푸시, 리더보드 제출.
+- deep.md와 known-insights.md 외 파일 수정, 새 실험 실행, 커밋, 푸시, 리더보드 제출.
 - digest.json에 없는 숫자를 만들어 쓰기. 데이터가 없으면 "데이터 없음".

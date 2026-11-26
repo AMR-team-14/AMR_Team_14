@@ -340,3 +340,56 @@ if (SAVE) {
   fs.mkdirSync(REPORTS, {recursive: true});
   fs.writeFileSync(STATE, JSON.stringify({saved: digest.generated, sources, evidence}, null, 1) + '\n');
 }
+
+// ---------- basic report (markdown, no AI) ----------
+const MD = arg('--md', null);
+if (MD) {
+  const L = [];
+  const tbl = (head, rows) => { L.push('| ' + head.join(' | ') + ' |', '|' + head.map(() => '---').join('|') + '|', ...rows.map(r => '| ' + r.map(v => v === null || v === undefined ? '–' : v).join(' | ') + ' |'), ''); };
+  const newBatches = new Set([...results.values()].filter(r => newSources.includes(r._src)).map(r => r.batch));
+  L.push('# 기본 분석 (코드 생성)', '', `- 생성: ${digest.generated}`, `- 새 결과 파일: ${newSources.length ? newSources.length + '개' : '없음'}`,
+    `- 점수 충돌: ${conflicts.length ? conflicts.length + '건 ⚠' : '없음'}`, '- 점수는 비용이라 낮을수록 좋음. 별도 시드 비교는 같은 시드 블록끼리 대응 비교.', '');
+  L.push('## 1. 회차·환경별 수행 현황' + (newBatches.size ? ' (새 결과가 있는 회차)' : ' (전체)'), '');
+  const rows = [];
+  for (const b of coverageOut) {
+    if (newBatches.size && !newBatches.has(b.batch)) continue;
+    for (const [env, e] of Object.entries(b.envs)) rows.push([b.batch, 'C' + b.cases.join(','), env, e.planned, e.returned,
+      e.missing ? `${e.missing} (${e.missingReason === 'not-collected' ? '미회수' : '실제 누락'})` : 0, e.failed, e.rejectedBlocks, e.msPerEval, Math.round(e.cpuMs / 1000)]);
+  }
+  tbl(['회차', '케이스', '환경', '계획', '반환', '누락', '실패', '반려', '평가당 ms', 'CPU 초'], rows);
+  for (const [c, x] of Object.entries(casesOut)) {
+    L.push(`## Case ${c}`, '');
+    const p = x.public;
+    L.push(`- 공개 시드(11-15) 최저: **${p.best ? p.best.score : '데이터 없음'}**` + (p.best ? ` (${p.best.sha12}, ${p.best.fleet}대, ${p.best.dir})` : '') +
+      ` / 팀 기록: ${p.teamBest ? p.teamBest.score + ' (' + p.teamBest.key + ')' : '없음'}` + (p.diffVsTeam !== null ? ` / 차이 ${p.diffVsTeam}` : ''));
+    if (x.currentBest) L.push(`- 별도 시드 현재 최고: **${x.currentBest.sha12}** (${x.currentBest.fleet}대, ${x.currentBest.dir}, 보정 평균 ${x.currentBest.adjMean}, ${x.currentBest.blocks}블록)`);
+    L.push(`- 최고와 구별 안 되는 후보: ${x.screeningSubset.length}개` + (x.screeningSubset.length > 1 ? ` (${x.screeningSubset.slice(0, 8).join(', ')}${x.screeningSubset.length > 8 ? ' …' : ''})` : ''));
+    const st = Object.entries(x.searchTasks).filter(([, v]) => v.planned !== v.returned).map(([k, v]) => `${k} ${v.returned}/${v.planned}`);
+    if (st.length) L.push(`- 탐색 작업 미반환: ${st.join(', ')}`);
+    L.push('');
+    if (x.heldOut.length) {
+      L.push('**별도 시드 상위 후보**', '');
+      tbl(['후보', '대수', '통로', '블록', '평균', '95백분위', '보정 평균', '공개', '공개−별도', '차량/대기/긴급'],
+        x.heldOut.slice(0, 8).map(h => [h.sha12, h.fleet, h.dir, h.blocks, h.mean, h.p95, h.adjMean, h.pub, h.pubMinusHeld, `${h.cost.veh}/${h.cost.wait}/${h.cost.urgent}`]));
+    }
+    if (x.vsBest.length) {
+      L.push('**현재 최고 대비 대응 비교** (차이 > 0 이면 최고보다 나쁨, Holm 보정)', '');
+      tbl(['후보', '대수', '통로', '블록', '차이', '95% CI', 'Holm p', '판정'],
+        x.vsBest.slice(0, 8).map(v => [v.sha12, v.fleet, v.dir, v.n, v.diff, `[${v.ci[0]}, ${v.ci[1]}]`, v.holmP, {worse: '나쁨', better: '좋음', indistinct: '구별 안 됨'}[v.verdict]]));
+    }
+    const es = Object.entries(x.effectsSummary);
+    if (es.length) {
+      L.push('**한 요인만 다른 쌍** (a가 좋음 / a가 나쁨 / 구별 안 됨)', '');
+      tbl(['요인', '쌍 수', 'a 좋음', 'a 나쁨', '구별 안 됨'], es.map(([f, v]) => [{fleet: '대수', dir: '통로', tree: '트리'}[f], v['a-better'] + v['a-worse'] + v.indistinct, v['a-better'], v['a-worse'], v.indistinct]));
+    }
+    const ss = Object.entries(x.search);
+    if (ss.length) {
+      L.push('**탐색(공개 시드 기준)**', '');
+      tbl(['회차', '탐색 수', '평가 수', '국소최적', '최저', '최저 후보'], ss.map(([b, o]) => [b, o.runs, o.evals, o.localOptimum, o.best && o.best.score, o.best && `${o.best.sha12} (${o.best.fleet}대, ${o.best.dir})`]));
+    }
+    if (x.ocba) {
+      L.push(`**다음 확인 단계 배분 (OCBA)**: 시드 ${x.ocba.nextStart}부터 총 ${x.ocba.budgetBlocks}블록 — ` + x.ocba.alloc.filter(a => a.blocks > 0).map(a => `${a.sha12} ${a.blocks}`).join(', '), '');
+    }
+  }
+  fs.writeFileSync(path.resolve(MD), L.join('\n') + '\n');
+}
