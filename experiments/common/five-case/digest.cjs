@@ -151,6 +151,7 @@ const coverageOut = Object.values(coverage).map(b => ({
 
 // ---------- per case ----------
 const reported = (() => { try { return JSON.parse(fs.readFileSync(path.join(HERE, 'team', 'reported.json'), 'utf8')); } catch { return {}; } })();
+const TEAM = (() => { try { return JSON.parse(fs.readFileSync(path.join(HERE, 'team', 'scores.json'), 'utf8')); } catch { return null; } })();
 const evidence = {};             // id -> {verdict, ...}
 const ev = (id, verdict, extra) => { evidence[id] = {verdict, ...extra}; return id; };
 
@@ -296,13 +297,18 @@ for (const c of CASES) {
     const k = `${t.batch}:${t.env}`, o = searchTasks[k] || (searchTasks[k] = {planned: 0, returned: 0});
     o.planned++; if (results.has(t.id)) o.returned++;
   }
-  const pubRank = withPub.slice(0, 10).map((e, i) => ({rank: i + 1, sha12: e.sha12, labels: [...e.labels].slice(0, 2), fleet: e.fleet, dir: e.dir,
-    score: r4(e.pub), vsTeam: teamBest ? r4(e.pub - teamBest.score) : null, heldOutBlocks: e.blocks.size,
-    heldOutMean: e.blocks.size ? r2(mean([...e.blocks.values()])) : null, rejectedBlocks: e.rejected}));
-  ev(`c${c}.public.beatsTeam`, bestPub && teamBest ? (bestPub.pub < teamBest.score - 0.005 ? 'yes' : 'no') : 'unknown');
+  // unified public ranking over every answer the team pushed (team/scores.json from team-gather.cjs)
+  const pool = TEAM ? Object.values(TEAM.answers).filter(a => a.case === c && a.public && a.public.cost !== null)
+    .sort((x, y) => x.public.cost - y.public.cost || x.sha12.localeCompare(y.sha12)) : [];
+  const pubRank = pool.slice(0, 10).map((a, i) => ({rank: i + 1, sha12: a.sha12, fleet: a.fleet,
+    dir: dirId(c, a.text.split('\n')[0].slice(4)), score: r4(a.public.cost), gapToFirst: r4(a.public.cost - pool[0].public.cost),
+    s500: a.s500 ? a.s500.cost : null, s500Rejected: a.s500 ? a.s500.rejected : null,
+    sources: a.sources.map(x => `${x.branch}:${x.path}@${x.commit}`).slice(0, 3),
+    recordedMismatch: a.sources.filter(x => x.match === false).map(x => `${x.branch}:${x.path} recorded ${x.recorded}`)}));
+  if (pool.length) ev(`c${c}.public.first`, pool[0].sha12, {score: r4(pool[0].public.cost)});
   casesOut[c] = {
     objective: OBJECTIVE(c) === 'public' ? 'public seeds 11-15 score (graded as is)' : 'hidden seed (judge on held-out seeds)',
-    publicRanking: pubRank,
+    publicRanking: pubRank, teamPool: {answers: pool.length, updated: TEAM && TEAM.updated},
     candidates: all.length, searchTasks, withPublic: withPub.length, withHeldOut: held.length,
     engines: [...new Set(all.flatMap(e => [...e.engines]))],
     public: {best: pubOut, teamBest, diffVsTeam: pubVsTeam, top5: withPub.slice(0, 5).map(e => ({sha12: e.sha12, fleet: e.fleet, dir: e.dir, score: r4(e.pub)}))},
@@ -369,8 +375,8 @@ if (MD) {
   for (const [c, x] of Object.entries(casesOut)) {
     L.push(`## Case ${c}`, '');
     const p = x.public;
-    L.push(`- 공개 시드(11-15) 최저: **${p.best ? p.best.score : '데이터 없음'}**` + (p.best ? ` (${p.best.sha12}, ${p.best.fleet}대, ${p.best.dir})` : '') +
-      ` / 팀 기록: ${p.teamBest ? p.teamBest.score + ' (' + p.teamBest.key + ')' : '없음'}` + (p.diffVsTeam !== null ? ` / 차이 ${p.diffVsTeam}` : ''));
+    const f = x.publicRanking[0];
+    L.push(`- 공개 시드(11-15) 팀 전체 최저: **${f ? f.score : '데이터 없음'}**` + (f ? ` (${f.sha12}, ${f.fleet}대, ${f.dir}, ${f.sources[0]})` : ''));
     L.push(`- 채점 기준: ${OBJECTIVE(+c) === 'public' ? '**공개 시드 11-15 점수 그대로** (별도 시드는 강건성 참고)' : '**비공개 시드** (별도 시드로 판정)'}`);
     if (x.currentBest) L.push(`- 별도 시드${OBJECTIVE(+c) === 'public' ? '(참고)' : ''} 현재 최고: **${x.currentBest.sha12}** (${x.currentBest.fleet}대, ${x.currentBest.dir}, 보정 평균 ${x.currentBest.adjMean}, ${x.currentBest.blocks}블록)`);
     L.push(`- 최고와 구별 안 되는 후보: ${x.screeningSubset.length}개` + (x.screeningSubset.length > 1 ? ` (${x.screeningSubset.slice(0, 8).join(', ')}${x.screeningSubset.length > 8 ? ' …' : ''})` : ''));
@@ -378,9 +384,11 @@ if (MD) {
     if (st.length) L.push(`- 탐색 작업 미반환: ${st.join(', ')}`);
     L.push('');
     if (OBJECTIVE(+c) === 'public' && x.publicRanking.length) {
-      L.push('**공개 시드 순위 (채점 기준)**', '');
-      tbl(['순위', '후보', '대수', '통로', '공개 점수', '팀 기록 대비', '별도 시드 블록', '별도 시드 평균', '반려 블록'],
-        x.publicRanking.map(r => [r.rank, r.sha12, r.fleet, r.dir, r.score, r.vsTeam, r.heldOutBlocks, r.heldOutMean, r.rejectedBlocks]));
+      L.push('**공개 시드 순위 — 팀 전체 답안 (채점 기준)**', '', '모든 브랜치의 답안을 공통 평가기(simulator/score.cjs)로 다시 채점. 1-500은 강건성 확인(반려 수).', '');
+      tbl(['순위', '후보', '대수', '통로', '공개 11-15', '1위와 차이', '1-500', '1-500 반려', '출처'],
+        x.publicRanking.map(r => [r.rank, r.sha12, r.fleet, r.dir, r.score, r.gapToFirst, r.s500, r.s500Rejected, r.sources.map(s => s.split('@')[0]).join('<br>')]));
+      const mm = x.publicRanking.flatMap(r => r.recordedMismatch);
+      if (mm.length) L.push('기록 점수와 재채점이 다른 답안: ' + mm.join('; '), '');
     }
     if (x.heldOut.length) {
       L.push(OBJECTIVE(+c) === 'public' ? '**별도 시드 상위 후보 (강건성 참고)**' : '**별도 시드 상위 후보**', '');

@@ -12,7 +12,7 @@ experiments/common/five-case/reports/known-insights.md를 갱신해. 최종 보�
    - cases.N.currentBest / vsBest: 현재 최고와 각 후보의 대응 비교(Holm 보정 p, verdict).
    - cases.N.screeningSubset: 최고와 통계적으로 구별되지 않는 후보 집합.
    - cases.N.effects / effectsSummary: 대수·통로(dir)·트리 하나만 다른 쌍의 효과.
-   - cases.N.publicRanking: 공개 시드 점수 순위와 팀 기록 대비 차이(Case 3·4·5의 채점 기준).
+   - cases.N.publicRanking: 모든 팀원 브랜치와 jsm의 답안을 공통 평가기로 다시 채점한 공개 시드 순위(채점 기준). 팀원 구분 없이 하나의 실험 풀이다. s500 = 시드 1-500 묶음 점수(강건성), sources = 답안이 있는 브랜치·파일·커밋.
    - cases.N.ocba: 비공개 시드 채점 케이스(Case 1)에서만 계산하는 시드 배분.
    - cases.N.search: 탐색 회차별 결과(공개 시드 기준). dirLegend: D번호 ↔ 실제 dir.
    - citedEvidence: known-insights.md가 인용한 근거의 현재 판정. status가 recheck이면 그 인사이트를 재검토해야 한다.
@@ -20,8 +20,9 @@ experiments/common/five-case/reports/known-insights.md를 갱신해. 최종 보�
 3. 원인을 확인할 때만 원본 로그(experiments/common/five-case/raw/**)를 Grep으로 필요한 줄만 본다. 통째로 읽지 마.
 
 ## 채점 기준 (판단의 출발점)
-- Case 2~5는 공개 시드 11-15 점수가 그대로 성적이다. Case 3·4·5의 목표는 공개 점수(cases.N.publicRanking)를 팀 기록보다 낮추는 것이다.
+- Case 2~5는 공개 시드 11-15 점수가 그대로 성적이다. Case 3·4·5의 목표는 팀 전체 공개 시드 1위(cases.N.publicRanking[0])보다 낮은 답안을 찾는 것이다.
   공개 시드는 고정이라 점수에 잡음이 없다. 공개 점수끼리의 비교는 통계 검정 없이 그대로 순위다.
+- 팀원 구분 없이 모든 답안을 하나의 실험 풀로 본다. 누구 것인지 비교하지 말고, 어떤 설계(대수·통로·트리)가 점수를 낮췄는지 본다.
 - 별도 시드 결과는 강건성 참고용이다(반려가 없는지, 공개 점수가 우연한 극단값이 아닌지). 별도 시드 평균이 더 좋다는 이유로 공개 점수가 나쁜 후보를 추천하지 마.
 - Case 1만 비공개 시드로 채점한다(범위 밖).
 
@@ -42,8 +43,8 @@ experiments/common/five-case/reports/known-insights.md를 갱신해. 최종 보�
 - 새 인사이트가 없으면 "새 인사이트 없음".
 
 ### 2) 다음 실험 하나
-- 공개 점수를 팀 기록보다 낮출 가능성이 가장 큰 실험을 고른다(publicRanking, search, coverage의 미회수·미탐색 영역 근거). 팀 기록과의 차이(vsTeam)가 큰 케이스를 우선 본다.
-- 고정할 것, 바꿀 것, 판정 기준(공개 시드 11-15 점수가 팀 기록보다 낮고, 별도 시드에서 반려 0)을 적는다.
+- 공개 점수를 팀 기록보다 낮출 가능성이 가장 큰 실험을 고른다(publicRanking, search, coverage의 미회수·미탐색 영역 근거). 1위와 가까운 후보가 많은 케이스, 아직 탐색이 덜 된 케이스를 우선 본다.
+- 고정할 것, 바꿀 것, 판정 기준(공개 시드 11-15 점수가 팀 전체 1위보다 낮고, 시드 1-500에서 반려 0)을 적는다.
 
 
 ## known-insights.md 갱신

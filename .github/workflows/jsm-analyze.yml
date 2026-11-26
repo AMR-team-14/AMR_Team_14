@@ -20,6 +20,8 @@ on:
       - 'experiments/JSM/five-case/raw/**'
       - 'experiments/common/five-case/claude-analysis-prompt.md'
       - '.github/workflows/jsm-analyze.yml'
+      - 'experiments/common/five-case/digest.cjs'
+      - 'experiments/common/five-case/team-gather.cjs'
 permissions:
   contents: write
   actions: read
@@ -29,11 +31,12 @@ concurrency:
 jobs:
   analyze:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v6
         with:
           ref: ${{ github.sha }}
+          fetch-depth: 2
           sparse-checkout: |
             experiments/case3
             experiments/case4
@@ -59,11 +62,27 @@ jobs:
               && echo "$RUN" >> new-runs.txt || rm -rf "$ARCH/$RUN"
           done < runs.txt
           echo "새로 보관한 실행: $(cat new-runs.txt 2>/dev/null | tr '\n' ' ')"
-      - name: Compute digest (no AI)
-        run: node experiments/common/five-case/digest.cjs --out digest.json --md basic.md
+      - name: Gather and re-score every team answer (no AI)
+        id: team
+        run: |
+          node experiments/common/five-case/team-gather.cjs --cases 3,4,5 --top 10 --max500 40 | tee gather.txt
+          echo "new=$(sed -n 's/.*scored public \([0-9]*\).*/\1/p' gather.txt)" >> "$GITHUB_OUTPUT"
+      - name: Compute digest and basic report (no AI)
+        id: digest
+        run: |
+          node experiments/common/five-case/digest.cjs --out digest.json --md basic.md
+          echo "new=$(node -e 'console.log(require("./digest.json").sources.new.length)')" >> "$GITHUB_OUTPUT"
+      - name: Decide whether anything is new
+        id: gate
+        run: |
+          N=$(( ${{ steps.team.outputs.new || 0 }} + ${{ steps.digest.outputs.new || 0 }} ))
+          if [ "$N" -gt 0 ] || [ "${{ github.event_name }}" = "push" -a -n "$(git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -E 'claude-analysis-prompt|jsm-analyze' )" ]; then echo "run=1" >> "$GITHUB_OUTPUT"; else echo "run=0" >> "$GITHUB_OUTPUT"; fi
+          echo "새 결과 파일 ${{ steps.digest.outputs.new }}개, 새 팀 답안 ${{ steps.team.outputs.new }}개"
       - name: Install Claude Code
+        if: steps.gate.outputs.run == '1'
         run: npm install -g @anthropic-ai/claude-code
       - name: Deep analysis (AI)
+        if: steps.gate.outputs.run == '1'
         continue-on-error: true
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -73,6 +92,7 @@ jobs:
             --max-turns 40 > claude-log.txt
           test -s deep.md
       - name: Combine report (code basic + AI deep)
+        if: steps.gate.outputs.run == '1'
         run: |
           cp basic.md report.md
           if [ -s deep.md ]; then printf '\n---\n\n' >> report.md; cat deep.md >> report.md
@@ -82,7 +102,7 @@ jobs:
         run: |
           [ -s report.md ] && cat report.md >> "$GITHUB_STEP_SUMMARY" || echo "report.md 없음" >> "$GITHUB_STEP_SUMMARY"
       - name: Commit report to jsm
-        if: always() && github.ref == 'refs/heads/jsm'
+        if: always() && github.ref == 'refs/heads/jsm' && steps.gate.outputs.run == '1'
         run: |
           [ -s report.md ] || { echo "no report"; exit 0; }
           DIR=experiments/common/five-case/reports
@@ -93,7 +113,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3 4; do
             git fetch --depth=1 origin jsm && git reset -q --mixed FETCH_HEAD
-            for f in "$DIR/$NAME.md" "$DIR/known-insights.md" "$DIR/digest-latest.json" "$DIR/digest-state.json" experiments/common/five-case/raw/github; do
+            for f in "$DIR/$NAME.md" "$DIR/known-insights.md" "$DIR/digest-latest.json" "$DIR/digest-state.json" experiments/common/five-case/raw/github experiments/common/five-case/team/scores.json; do
               if [ -e "$f" ]; then git add -f "$f"; fi
             done
             git commit -q -m "Claude analysis $NAME [skip ci]" && git push origin HEAD:jsm && exit 0

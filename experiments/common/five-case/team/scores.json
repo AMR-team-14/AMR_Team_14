@@ -1,0 +1,4490 @@
+{
+ "answers": {
+  "74a321696379f6e61128844364a971a021e6494ee14de4abac739227d9235160": {
+   "case": 3,
+   "sha12": "74a321696379",
+   "text": "dir,1111111100000000011111011001101\nfleet,20\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,2,0,8\nkey,5,w,min,2.85,0,0\nkey,6,w,max,0.50,9,0\nkey,7,w,min,0.90,0,0\nkey,8,dl,min,220,0,0\nkey,9,dl,min,40,0,0\n",
+   "sources": [
+    {
+     "branch": "DOE1119",
+     "commit": "9f10a8d4fc",
+     "path": "ans_c3.csv",
+     "author": "kwak-kwak-2",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1002.8283,
+    "rejected": 0
+   },
+   "fleet": 20
+  },
+  "7c2f9be60f1778a40963b6afceaedd479877aa4d1a5a80768b292c9bb3c19511": {
+   "case": 4,
+   "sha12": "7c2f9be60f17",
+   "text": "dir,1111111111011111111000001111110111100000110011101101000100010110011111101111\nfleet,16\nkey,1,de,min,96.20,2,3\nkey,2,urg,max,0.5,0,4\nkey,3,urg,min,0.5,5,0\nkey,4,w,min,0.80,6,0\nkey,5,w,max,3.50,0,0\nkey,6,dl,min,30,0,0\n",
+   "sources": [
+    {
+     "branch": "DOE1119",
+     "commit": "9f10a8d4fc",
+     "path": "ans_c4.csv",
+     "author": "kwak-kwak-2",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 802.9409,
+    "rejected": 0
+   },
+   "fleet": 16
+  },
+  "6a0e81cf72f596a8d34cd4988f0836adc87c03242ca9ab0ed9ac629e9b7b804a": {
+   "case": 5,
+   "sha12": "6a0e81cf72f5",
+   "text": "dir,000111100111100001000010010011\nfleet,22\nkey,1,de,min,95.85,2,3\nkey,2,urg,max,0.5,0,4\nkey,3,urg,min,0.5,5,6\nkey,4,dl,max,45.10,0,0\nkey,5,w,max,0.63,7,0\nkey,6,w,min,0.67,0,0\nkey,7,dl,max,66.65,0,0\n",
+   "sources": [
+    {
+     "branch": "DOE1119",
+     "commit": "9f10a8d4fc",
+     "path": "ans_c5.csv",
+     "author": "kwak-kwak-2",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 815.8027,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "00fad1b682e2fd10740877a25bde303e7128c7c909e96c7a69bc739abebd953f": {
+   "case": 3,
+   "sha12": "00fad1b682e2",
+   "text": "dir,1111111100000000011111011001101\nfleet,22\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case3/answer_case3.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case3/cand_96271.csv",
+     "author": "jante0",
+     "recorded": 962.71,
+     "match": true
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case3/jinhong__answer_case3.csv",
+     "author": "Seungmin Jang",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case3/jinhong__cand_96271.csv",
+     "author": "Seungmin Jang",
+     "recorded": 962.71,
+     "match": true
+    },
+    {
+     "branch": "pjh",
+     "commit": "c5dc1c6d79",
+     "path": "experiments/case3/PJH-1124-96270/answer.csv",
+     "author": "jante0",
+     "recorded": 962.7048,
+     "match": true
+    },
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/00fad1b682e2.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 962.7048,
+    "rejected": 0
+   },
+   "s500": {
+    "cost": 978.1394,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "2336589ad9198fd5e567eb12d0c82d1655ccde9c9a5c4aa1cc1ac0dbc2fa7fde": {
+   "case": 3,
+   "sha12": "2336589ad919",
+   "text": "dir,1111111100000000011111011001101\nfleet,22\nkey,1,w,min,0.00593,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,160,6,7\nkey,4,dl,min,60,8,0\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,urg,min,0.5,0,0\nkey,8,de,max,60,0,0\nkey,9,de,max,0,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case3/answer_case3_97315.csv",
+     "author": "jante0",
+     "recorded": 973.15,
+     "match": true
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case3/cand_97315.csv",
+     "author": "jante0",
+     "recorded": 973.15,
+     "match": true
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case3/jinhong__answer_case3_97315.csv",
+     "author": "Seungmin Jang",
+     "recorded": 973.15,
+     "match": true
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case3/jinhong__cand_97315.csv",
+     "author": "Seungmin Jang",
+     "recorded": 973.15,
+     "match": true
+    },
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/2336589ad919.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 973.1501,
+    "rejected": 0
+   },
+   "s500": {
+    "cost": 987.7944,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "d8d70e5cdecd4c7b38af4a82f643fd8de5a67e15339e155ab2d998f11255b7a6": {
+   "case": 3,
+   "sha12": "d8d70e5cdecd",
+   "text": "dir,1111111100000000011111011001101\nfleet,22\nkey,1,w,min,0.00593,2,3\nkey,2,dl,min,80,4,0\nkey,3,de,min,160,5,6\nkey,4,de,max,60,0,0\nkey,5,urg,max,0.5,7,0\nkey,6,qo,max,2,8,0\nkey,7,dl,min,260,0,0\nkey,8,urg,min,0.5,9,0\nkey,9,dl,min,260,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case3/answer_case3_97606.csv",
+     "author": "jante0",
+     "recorded": 976.06,
+     "match": true
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case3/cand_97606.csv",
+     "author": "jante0",
+     "recorded": 976.06,
+     "match": true
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case3/jinhong__answer_case3_97606.csv",
+     "author": "Seungmin Jang",
+     "recorded": 976.06,
+     "match": true
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case3/jinhong__cand_97606.csv",
+     "author": "Seungmin Jang",
+     "recorded": 976.06,
+     "match": true
+    },
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/d8d70e5cdecd.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 976.0573,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "5623b55f0873af4d19e19ddcabaa2c12cab183b0656597ee9cc6aae083a08b92": {
+   "case": 3,
+   "sha12": "5623b55f0873",
+   "text": "dir,1111111100000000011111011001101\nfleet,22\nkey,1,w,min,0.00131,2,3\nkey,2,qo,max,0,0,4\nkey,3,de,min,160,5,6\nkey,4,dl,min,80,7,0\nkey,5,urg,max,0.5,8,0\nkey,6,urg,min,0.5,9,0\nkey,7,de,max,60,0,0\nkey,8,dl,min,260,0,0\nkey,9,dl,min,100,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case3/answer_case3_97645.csv",
+     "author": "jante0",
+     "recorded": 976.45,
+     "match": true
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case3/search_s1_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case3/search_s5_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case3/search_s6_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case3/jinhong__answer_case3_97645.csv",
+     "author": "Seungmin Jang",
+     "recorded": 976.45,
+     "match": true
+    },
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/5623b55f0873.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 976.4453,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "ed5f5d03d37d3923421aaf3d70da4e64b301cbf92301f864eead6715319fac81": {
+   "case": 3,
+   "sha12": "ed5f5d03d37d",
+   "text": "dir,1111111100000000011111011001101\nfleet,22\nkey,1,w,min,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,160,6,7\nkey,4,dl,min,60,8,0\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,120,0,0\nkey,8,de,max,60,0,0\nkey,9,de,max,0,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case3/cand_97082.csv",
+     "author": "jante0",
+     "recorded": 970.82,
+     "match": true
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case3/jinhong__cand_97082.csv",
+     "author": "Seungmin Jang",
+     "recorded": 970.82,
+     "match": true
+    },
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/ed5f5d03d37d.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 970.821,
+    "rejected": 0
+   },
+   "s500": {
+    "cost": 988.3446,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "898cd4781bd33d24b7bbb09c386df83fb4f70569763c27d987520f0a5714af97": {
+   "case": 3,
+   "sha12": "898cd4781bd3",
+   "text": "dir,1111111100000000011101011001101\nfleet,22\nkey,1,w,min,0.00335,2,3\nkey,2,urg,max,0.5,4,0\nkey,3,de,min,160,5,6\nkey,4,dl,min,260,0,7\nkey,5,urg,max,0.5,8,0\nkey,6,dl,min,160,9,0\nkey,7,de,max,140,0,0\nkey,8,dl,min,240,0,0\nkey,9,qo,min,1,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case3/cand_D2_97625.csv",
+     "author": "jante0",
+     "recorded": 976.25,
+     "match": true
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case3/jinhong__cand_D2_97625.csv",
+     "author": "Seungmin Jang",
+     "recorded": 976.25,
+     "match": true
+    },
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/898cd4781bd3.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 976.2541,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "c10912c2f7243646d624d83d7c3b197d3c568b9e81a0c050ebc5c63926497b0c": {
+   "case": 3,
+   "sha12": "c10912c2f724",
+   "text": "dir,1111111100000000011111011001101\nfleet,22\nkey,1,qo,min,4,2,0\nkey,2,w,max,0.001,3,4\nkey,3,dl,min,80,5,0\nkey,4,de,min,160,6,7\nkey,5,de,max,60,0,0\nkey,6,urg,max,0.5,8,0\nkey,7,urg,min,0.5,9,0\nkey,8,dl,min,220,0,0\nkey,9,dl,max,80,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case3/search_s2_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 978.1394,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "d5152c1e93b668b3b9efcc675dfa4bd9815ca2c942037d27dc014e3e2b1408f7": {
+   "case": 4,
+   "sha12": "d5152c1e93b6",
+   "text": "dir,1111111111011111111000001110100111100000110010011101101100011110011111101111\nfleet,18\nkey,1,w,max,0.1,2,3\nkey,2,urg,max,0.5,4,0\nkey,3,de,min,81.2,5,6\nkey,4,dl,max,141.2,0,7\nkey,5,urg,max,0.5,8,0\nkey,6,urg,min,0.5,9,0\nkey,7,de,max,90,0,0\nkey,8,qo,max,1,0,0\nkey,9,dl,max,30,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/answer_case4.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_79233.csv",
+     "author": "jante0",
+     "recorded": 792.33,
+     "match": true
+    },
+    {
+     "branch": "pjh",
+     "commit": "c5dc1c6d79",
+     "path": "experiments/case4/PJH-1125-79233/answer.csv",
+     "author": "jante0",
+     "recorded": 792.3266,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 792.3266,
+    "rejected": 0
+   },
+   "fleet": 18
+  },
+  "43ca084bf2ee8fc32f9645d65f4f91279199bca874e0d6c5916547ed4ecc7c6d": {
+   "case": 4,
+   "sha12": "43ca084bf2ee",
+   "text": "dir,1111111111011111111000001110100111100000110010011101101100011110011111101111\nfleet,18\nkey,1,w,max,0.1,2,3\nkey,2,urg,max,0.5,4,0\nkey,3,de,min,120,0,5\nkey,4,dl,max,141.2,0,6\nkey,5,urg,min,0.5,0,0\nkey,6,de,max,90,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/answer_case4_79382.csv",
+     "author": "jante0",
+     "recorded": 793.82,
+     "match": true
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_79382.csv",
+     "author": "jante0",
+     "recorded": 793.82,
+     "match": true
+    },
+    {
+     "branch": "pjh",
+     "commit": "c5dc1c6d79",
+     "path": "experiments/case4/PJH-1125-79382/answer.csv",
+     "author": "jante0",
+     "recorded": 793.8167,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 793.8167,
+    "rejected": 0
+   },
+   "fleet": 18
+  },
+  "a4e436b036a3246a22dc14431e7457730697e8fa4fe4574e2cdaaa87407905ee": {
+   "case": 4,
+   "sha12": "a4e436b036a3",
+   "text": "dir,0111111111111111111010001111110111100000011001111100000100011100011111100111\nfleet,18\nkey,1,w,max,0.05,2,3\nkey,2,urg,min,0.5,4,0\nkey,3,dl,min,126.2,5,0\nkey,4,dl,min,135,0,6\nkey,5,urg,max,0.5,7,0\nkey,6,de,max,90,0,0\nkey,7,de,max,0,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/answer_case4_79666.csv",
+     "author": "jante0",
+     "recorded": 796.66,
+     "match": true
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_n18_79666.csv",
+     "author": "jante0",
+     "recorded": 796.66,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 796.6573,
+    "rejected": 0
+   },
+   "fleet": 18
+  },
+  "1bf815aabbb156762209fa31780e36b5706af64613705f218144da168d3833de": {
+   "case": 4,
+   "sha12": "1bf815aabbb1",
+   "text": "dir,0011011111111110011011000111110111100000110010111110000110011100011111100101\nfleet,18\nkey,1,urg,min,0.5,2,3\nkey,2,dl,max,132.4,4,5\nkey,3,de,min,81.2,6,7\nkey,4,w,max,0.05,0,0\nkey,5,de,max,90,8,0\nkey,6,w,min,0.2,0,0\nkey,7,w,min,0.75,0,9\nkey,8,qo,min,0,0,0\nkey,9,dl,min,120,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/answer_case4_80144.csv",
+     "author": "jante0",
+     "recorded": 801.44,
+     "match": true
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_80144.csv",
+     "author": "jante0",
+     "recorded": 801.44,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 801.4408,
+    "rejected": 0
+   },
+   "fleet": 18
+  },
+  "a88dfee925e78b2930e1d07a115e457544695fd35b09092e4d52049aa76eed66": {
+   "case": 4,
+   "sha12": "a88dfee925e7",
+   "text": "dir,0011011111111110011011000111110111100000010010111110000110011100011111100101\nfleet,18\nkey,1,urg,min,0.5,2,3\nkey,2,w,min,3.5,4,0\nkey,3,w,min,0.3,5,6\nkey,4,dl,max,132.4,0,7\nkey,5,qo,min,6,0,0\nkey,6,dl,min,111.2,8,0\nkey,7,de,max,90,0,9\nkey,8,qo,max,1,0,0\nkey,9,qo,min,0,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/answer_case4_80147.csv",
+     "author": "jante0",
+     "recorded": 801.47,
+     "match": true
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_80147.csv",
+     "author": "jante0",
+     "recorded": 801.47,
+     "match": true
+    },
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case4/candidates/a88dfee925e7.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 801.467,
+    "rejected": 0
+   },
+   "fleet": 18
+  },
+  "630988e52750af7a9006699c28341a3e83c9542379e7e5141ef9df0321068e3d": {
+   "case": 4,
+   "sha12": "630988e52750",
+   "text": "dir,0111111111111111011000000111110111100000010000111100000110011100011111100101\nfleet,16\nkey,1,urg,max,0.5,2,3\nkey,2,w,max,0.75,4,5\nkey,3,de,min,135,6,0\nkey,4,dl,max,30,7,0\nkey,5,de,min,75,8,9\nkey,6,w,min,0.75,0,0\nkey,7,de,max,15,0,0\nkey,8,dl,min,45,0,0\nkey,9,dl,max,60,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/answer_case4_805.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/search_s11_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/search_s12_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/search_s5_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 805.8942,
+    "rejected": 0
+   },
+   "fleet": 16
+  },
+  "55e571f4da46611706832d424f828d71adac61f1de966bffc8e6fa5feddc1a80": {
+   "case": 4,
+   "sha12": "55e571f4da46",
+   "text": "dir,1111111111011111111000001110100111100000110010011101001100011110011111101111\nfleet,18\nkey,1,w,max,0.1,2,3\nkey,2,urg,max,0.5,4,0\nkey,3,de,min,81.2,5,6\nkey,4,dl,max,141.2,0,7\nkey,5,urg,max,0.5,8,0\nkey,6,dl,max,96.2,0,9\nkey,7,de,max,90,0,0\nkey,8,dl,min,60,0,0\nkey,9,urg,min,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_79202.csv",
+     "author": "jante0",
+     "recorded": 792.02,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 792.0212,
+    "rejected": 0
+   },
+   "fleet": 18
+  },
+  "2f070bb7e86d1fbca00cc1b4bc6961ef6674c1d374c707652e030cba28644573": {
+   "case": 4,
+   "sha12": "2f070bb7e86d",
+   "text": "dir,0111111111111111011010000111110111100000010000111100000110011100011111100101\nfleet,18\nkey,1,urg,max,0.5,2,3\nkey,2,qo,max,1,4,0\nkey,3,w,min,0.2,0,5\nkey,4,w,max,0.1,6,7\nkey,5,de,min,141.2,8,0\nkey,6,dl,min,111.2,0,9\nkey,7,dl,min,147.4,0,0\nkey,8,qo,max,1,0,0\nkey,9,de,max,90,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_802.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 802.3315,
+    "rejected": 0
+   },
+   "fleet": 18
+  },
+  "77808732c7a02c5f7227f9f736bd51b2e27a29d552c0c2ef84ae7bddc9dfc5b8": {
+   "case": 4,
+   "sha12": "77808732c7a0",
+   "text": "dir,0111111111111111011010000111110111100000010000111100000110011100011111100101\nfleet,18\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,111.2,0,3\nkey,3,de,max,90,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_803.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 803.1028,
+    "rejected": 0
+   },
+   "fleet": 18
+  },
+  "9658e175c73504de2adca6d8ec77a4c000bcf6843dc21743a186293af812555f": {
+   "case": 4,
+   "sha12": "9658e175c735",
+   "text": "dir,1111111111011111111000001110100111100000110010011101001100011110011111101111\nfleet,18\nkey,1,w,max,0.1,2,3\nkey,2,urg,min,0.5,4,0\nkey,3,de,min,81.2,5,6\nkey,4,dl,max,141.2,0,7\nkey,5,urg,max,0.5,8,0\nkey,6,dl,max,96.2,0,9\nkey,7,de,max,90,0,0\nkey,8,dl,min,60,0,0\nkey,9,urg,min,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_k1c.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 792.0212,
+    "rejected": 0
+   },
+   "fleet": 18
+  },
+  "f9c8c9d1c52200d08538118b3fd31351767b2f33983cfa977ae66c2109491b32": {
+   "case": 4,
+   "sha12": "f9c8c9d1c522",
+   "text": "dir,0111011111111110011010000111110111100000010001111100001110001100011111100101\nfleet,17\nkey,1,urg,max,0.5,2,3\nkey,2,dl,min,111.2,4,5\nkey,3,de,min,90,6,7\nkey,4,w,max,0.9,8,0\nkey,5,w,min,5,9,0\nkey,6,qo,max,1,0,0\nkey,7,w,min,0.5,0,0\nkey,8,qo,max,1,0,0\nkey,9,de,max,90,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_n17_80079.csv",
+     "author": "jante0",
+     "recorded": 800.79,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 800.7904,
+    "rejected": 0
+   },
+   "fleet": 17
+  },
+  "80b5fba5f81d8c4fc80a8cd7165d99eb9a0135e5bb0e436397bafe4a2ae672f3": {
+   "case": 4,
+   "sha12": "80b5fba5f81d",
+   "text": "dir,0111011111111110011010000111110111100000010001111100001110001100011111100101\nfleet,17\nkey,1,urg,max,0.5,2,3\nkey,2,dl,min,111.2,4,5\nkey,3,de,min,90,6,7\nkey,4,w,max,1,8,0\nkey,5,w,min,5,9,0\nkey,6,qo,max,1,0,0\nkey,7,w,min,0.5,0,0\nkey,8,qo,max,1,0,0\nkey,9,de,max,90,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_n17_80090.csv",
+     "author": "jante0",
+     "recorded": 800.9,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 800.8966,
+    "rejected": 0
+   },
+   "fleet": 17
+  },
+  "910c206d0b9d3d1b10dbd54f0d320a21270975c2845be3decc27feb69f72f0db": {
+   "case": 4,
+   "sha12": "910c206d0b9d",
+   "text": "dir,0011011111111110011011000111110111100000011010101110000110011100011111100101\nfleet,17\nkey,1,urg,max,0.5,2,3\nkey,2,dl,min,126.2,4,5\nkey,3,qo,max,1,6,7\nkey,4,qo,max,1,0,8\nkey,5,de,max,90,0,0\nkey,6,w,min,0.75,0,0\nkey,7,de,max,105,0,0\nkey,8,de,min,60,0,9\nkey,9,w,min,1.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_n17_80191.csv",
+     "author": "jante0",
+     "recorded": 801.91,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 801.9063,
+    "rejected": 0
+   },
+   "fleet": 17
+  },
+  "ac5da2099e4883b7167c0bcaee92ee84b5b36588f158c8cb89996ea754575455": {
+   "case": 4,
+   "sha12": "ac5da2099e48",
+   "text": "dir,0011111111111111011011000111110111100000011010101110000110011100011111100101\nfleet,17\nkey,1,urg,max,0.5,2,3\nkey,2,dl,min,126.2,4,5\nkey,3,qo,max,1,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,0.2,9,0\nkey,6,w,min,0.75,0,0\nkey,7,de,max,105,0,0\nkey,8,w,min,1.5,0,0\nkey,9,de,max,90,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_n17_80192.csv",
+     "author": "jante0",
+     "recorded": 801.92,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 801.9172,
+    "rejected": 0
+   },
+   "fleet": 17
+  },
+  "f0eb6f93b6110b65fcfbe89252d4cd419522b853ca806cb0be643c338793310c": {
+   "case": 4,
+   "sha12": "f0eb6f93b611",
+   "text": "dir,0001111111111111111011101111110111100000011000111100000100011100011111100111\nfleet,17\nkey,1,urg,max,0.5,2,0\nkey,2,dl,max,135,3,4\nkey,3,de,min,102.4,5,6\nkey,4,w,max,0.1,7,0\nkey,5,qo,min,2,8,0\nkey,6,w,max,2.5,9,0\nkey,7,de,max,90,0,0\nkey,8,w,max,0.5,0,0\nkey,9,qo,min,1,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/cand_r1n17b.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 798.0185,
+    "rejected": 0
+   },
+   "fleet": 17
+  },
+  "103977924b911accab8ce311d649d49317930dce019dab75c39c19a4984d3862": {
+   "case": 4,
+   "sha12": "103977924b91",
+   "text": "dir,0111111111111111011000000111110111100000010000111100000110011100011111100101\nfleet,16\nkey,1,urg,max,0.5,2,3\nkey,2,w,max,0.75,4,5\nkey,3,w,min,0.75,0,0\nkey,4,dl,max,30,6,7\nkey,5,de,min,75,8,9\nkey,6,de,max,15,0,0\nkey,7,qo,max,3,0,0\nkey,8,dl,min,45,0,0\nkey,9,dl,max,60,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/search_s1_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/search_s6_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 805.9273,
+    "rejected": 0
+   },
+   "fleet": 16
+  },
+  "08bc55f123ff6167e59f013e352dfef385985e4c87206d9e5549490b3c2c3ec7": {
+   "case": 4,
+   "sha12": "08bc55f123ff",
+   "text": "dir,0111111111111111011000000111110111100000010001111100000110001100011111100101\nfleet,16\nkey,1,urg,max,0.5,2,3\nkey,2,dl,min,30,4,5\nkey,3,qo,min,3,6,0\nkey,4,de,max,51.2,0,0\nkey,5,de,min,81.2,7,8\nkey,6,de,min,90,0,9\nkey,7,qo,max,1,0,0\nkey,8,w,min,0.75,0,0\nkey,9,w,min,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/search_s2_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 807.9547,
+    "rejected": 0
+   },
+   "fleet": 16
+  },
+  "4dbed0b625a74715d0f0e78fd658d078f4cc670e3379770fe3bb2bf7bb3e670e": {
+   "case": 4,
+   "sha12": "4dbed0b625a7",
+   "text": "dir,0111111111111111011000000111110111100000010000111100000110011100011111100101\nfleet,16\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,30,3,0\nkey,3,de,max,0,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/struct_search_s1_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 811.2988,
+    "rejected": 0
+   },
+   "fleet": 16
+  },
+  "3479d9d98dfa67d83e4424a17eda8845c47e83cef59a3fa22e622ef162bbba6d": {
+   "case": 4,
+   "sha12": "3479d9d98dfa",
+   "text": "dir,0111111111111111011000000111110111100000010000111100000110011100011111100101\nfleet,16\nkey,1,urg,max,0.5,2,3\nkey,2,w,max,0.78,4,5\nkey,3,de,min,135,6,0\nkey,4,dl,max,30,7,0\nkey,5,de,min,75,8,9\nkey,6,w,min,0.75,0,0\nkey,7,de,max,15,0,0\nkey,8,dl,min,45,0,0\nkey,9,dl,max,60,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case4/ws_answer_case4.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 805.8907,
+    "rejected": 0
+   },
+   "fleet": 16
+  },
+  "4141dd3f34bfd25c6650076b2e8c1135812e8c65102141d90a183779b2b206e7": {
+   "case": 5,
+   "sha12": "4141dd3f34bf",
+   "text": "dir,111000010000011110100001101100\nfleet,23\nkey,1,w,max,0.01,2,3\nkey,2,urg,max,0.5,4,0\nkey,3,de,min,65,5,6\nkey,4,dl,min,135,0,7\nkey,5,dl,max,65,0,0\nkey,6,dl,max,110,0,8\nkey,7,de,max,150,0,0\nkey,8,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/answer_case5.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/cand_77094.csv",
+     "author": "jante0",
+     "recorded": 770.94,
+     "match": true
+    },
+    {
+     "branch": "pjh",
+     "commit": "c5dc1c6d79",
+     "path": "experiments/case5/PJH-1125-77094/answer.csv",
+     "author": "jante0",
+     "recorded": 770.9353,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 770.9353,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "dd48afb957ba5953a19164e0261f871dba672e2699615252ab227145594ed9de": {
+   "case": 5,
+   "sha12": "dd48afb957ba",
+   "text": "dir,111000010000011110100001101100\nfleet,23\nkey,1,w,max,0.02,2,3\nkey,2,urg,max,0.5,4,0\nkey,3,de,min,150,5,6\nkey,4,dl,min,135,0,7\nkey,5,urg,max,0.5,8,9\nkey,6,dl,min,205,0,0\nkey,7,de,max,150,0,0\nkey,8,dl,min,125,0,0\nkey,9,dl,min,95,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/answer_case5_77143.csv",
+     "author": "jante0",
+     "recorded": 771.43,
+     "match": true
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/cand_77143.csv",
+     "author": "jante0",
+     "recorded": 771.43,
+     "match": true
+    },
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case5/candidates/dd48afb957ba.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 771.4315,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "c26f6598a06d22d3074b5827b864323df9e9376f3a3d518a68ac4223c6429139": {
+   "case": 5,
+   "sha12": "c26f6598a06d",
+   "text": "dir,111000010011100001000001100011\nfleet,22\nkey,1,w,max,0.1,2,3\nkey,2,dl,max,155,0,4\nkey,3,de,min,90,5,6\nkey,4,de,max,150,0,0\nkey,5,urg,max,0.5,7,0\nkey,6,qo,max,1,0,8\nkey,7,qo,min,2,9,0\nkey,8,dl,max,135,0,0\nkey,9,dl,min,150,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/answer_case5_776.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/cand_776.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 776.1009,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "20d3388e68c16c2316254b2ac4071c2b6d95d82366b44e0f8604428de467890c": {
+   "case": 5,
+   "sha12": "20d3388e68c1",
+   "text": "dir,000111100111100001000010010011\nfleet,21\nkey,1,w,min,0.01029,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,65,6,7\nkey,4,dl,max,40,8,0\nkey,5,dl,min,75,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,max,40,0,0\nkey,8,de,max,20,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/answer_case5_779.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/search_s11_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/search_s12_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/ws_answer_case5.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 779.7092,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "aed2f894f8a5e6f9ecb61b334d7edea5b2c827ba61d35ed468195a908400de80": {
+   "case": 5,
+   "sha12": "aed2f894f8a5",
+   "text": "dir,111000010000011110100001101100\nfleet,23\nkey,1,w,min,0.02,2,3\nkey,2,urg,max,0.5,4,0\nkey,3,de,min,150,5,6\nkey,4,dl,min,135,0,7\nkey,5,dl,max,75,0,0\nkey,6,qo,min,1,8,9\nkey,7,de,max,150,0,0\nkey,8,dl,min,160,0,0\nkey,9,urg,min,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/cand_77088.csv",
+     "author": "jante0",
+     "recorded": 770.88,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 770.8816,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "65df1c29fdfd02646d21ea57bfae313a5eabd362ee999a1dd8caf96d57e24483": {
+   "case": 5,
+   "sha12": "65df1c29fdfd",
+   "text": "dir,111000010000011110100001101100\nfleet,23\nkey,1,w,max,0.0635,2,3\nkey,2,urg,max,0.5,4,0\nkey,3,de,min,150,5,6\nkey,4,dl,min,135,0,7\nkey,5,urg,max,0.5,8,9\nkey,6,dl,min,205,0,0\nkey,7,de,max,150,0,0\nkey,8,dl,min,125,0,0\nkey,9,dl,min,95,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/cand_77139.csv",
+     "author": "jante0",
+     "recorded": 771.39,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 771.3895,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "83d486afd08f1b67a8ca82eaa053e00bcc3305ff66e708020e01f60b30f91dab": {
+   "case": 5,
+   "sha12": "83d486afd08f",
+   "text": "dir,000111100111100001000010010011\nfleet,21\nkey,1,w,min,0.00196,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,65,6,7\nkey,4,dl,max,40,8,0\nkey,5,dl,min,75,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,max,40,0,0\nkey,8,de,max,20,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/search_s1_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/search_s5_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/search_s6_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 779.896,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "e42e6bb936fd06e26083bf2e32e5e32b132a75a3c4aa5006edadd81425c267c2": {
+   "case": 5,
+   "sha12": "e42e6bb936fd",
+   "text": "dir,000111100111100001001110010011\nfleet,21\nkey,1,qo,min,6,2,0\nkey,2,w,min,0.02,3,4\nkey,3,urg,min,0.5,5,6\nkey,4,de,min,85,0,7\nkey,5,de,min,130,0,0\nkey,6,dl,min,65,0,8\nkey,7,dl,max,240,0,9\nkey,8,de,max,45,0,0\nkey,9,urg,min,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case5/search_s2_best.csv",
+     "author": "jante0",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 782.2823,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "f6ef0140cc1c824f57d76f865fe04b6665023e4a7ee57a753e610d14eb658528": {
+   "case": 3,
+   "sha12": "f6ef0140cc1c",
+   "text": "dir,1111111100000000011101011001101\nfleet,21\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.20,0,0\nkey,6,w,max,2.40,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case3/minjae__ans_c3.csv",
+     "author": "Seungmin Jang",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "main",
+     "commit": "22adb49686",
+     "path": "experiments/case3/best-answer.csv",
+     "author": "Seungmin Jang",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1006.4422,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "ec439b87e2d0232fa99fa638e79623d1023b9904d54a4c9cd941c77067723aaf": {
+   "case": 3,
+   "sha12": "ec439b87e2d0",
+   "text": "dir,1111111100000000011111011001101\nfleet,21\nkey,1,w,max,0.00099,2,3\nkey,2,urg,min,0.5,4,0\nkey,3,de,min,178.3,5,6\nkey,4,dl,max,268,0,7\nkey,5,urg,max,0.5,0,0\nkey,6,urg,min,0.5,8,0\nkey,7,de,max,147.6,0,0\nkey,8,qo,max,5,0,0\n",
+   "sources": [
+    {
+     "branch": "kmj",
+     "commit": "29934ceef7",
+     "path": "experiments/case3/KMJ-1125-DUAL-C3/answer.csv",
+     "author": "kwak-kwak-2",
+     "recorded": 983.677,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 983.677,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "400e7c7154f1b885f5e476a11f5a27fe258637746057f57c02c07f9c62a5bf9a": {
+   "case": 4,
+   "sha12": "400e7c7154f1",
+   "text": "dir,1111111111011111111000001111110111100000110011111101000100011110011111101111\nfleet,18\nkey,1,w,max,0.00197,2,3\nkey,2,urg,min,0.5,4,0\nkey,3,qo,max,2,5,6\nkey,4,dl,max,138.5,0,7\nkey,5,de,min,179.3,0,0\nkey,6,de,max,141.6,0,0\nkey,7,de,max,82.2,0,8\nkey,8,qo,min,1,0,0\n",
+   "sources": [
+    {
+     "branch": "kmj",
+     "commit": "29934ceef7",
+     "path": "experiments/case4/KMJ-1125-DUAL-C4/answer.csv",
+     "author": "kwak-kwak-2",
+     "recorded": 809.2701,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 809.2701,
+    "rejected": 0
+   },
+   "fleet": 18
+  },
+  "75e12532fa957d7ed9f6327ea692a0817c191f1d9b1087badbad75a8ed58f619": {
+   "case": 5,
+   "sha12": "75e12532fa95",
+   "text": "dir,111000011011100001000001100011\nfleet,21\nkey,1,w,max,0.00289,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,qo,max,0,0,0\nkey,4,dl,min,188.4,0,6\nkey,5,qo,max,5,0,0\nkey,6,de,max,153.2,0,0\n",
+   "sources": [
+    {
+     "branch": "kmj",
+     "commit": "29934ceef7",
+     "path": "experiments/case5/KMJ-1125-DUAL-C5/answer.csv",
+     "author": "kwak-kwak-2",
+     "recorded": 785.013,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 785.013,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "40239b5104a324068e20876370383e03f147e4bd6bb472387be984c2c1cf4e22": {
+   "case": 5,
+   "sha12": "40239b5104a3",
+   "text": "dir,000111100111100001000010010011\nfleet,21\nkey,1,de,min,98,2,3\nkey,2,urg,max,0.5,0,4\nkey,3,urg,min,0.5,5,6\nkey,4,dl,max,46.50,0,0\nkey,5,w,max,0.35,7,0\nkey,6,w,max,0.74,0,0\nkey,7,dl,max,68,0,0\n",
+   "sources": [
+    {
+     "branch": "kmj",
+     "commit": "29934ceef7",
+     "path": "experiments/case5/KMJ-1125-FH-C5-V2/answer.csv",
+     "author": "kwak-kwak-2",
+     "recorded": 814.0583,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 814.0583,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "7cd3b2bebf435d8454901293629502261d195504ae03e6a8b55f268799c71758": {
+   "case": 5,
+   "sha12": "7cd3b2bebf43",
+   "text": "dir,000111100111100001000010010011\nfleet,21\nkey,1,de,min,95.85,2,3\nkey,2,urg,max,0.5,0,4\nkey,3,urg,min,0.5,5,6\nkey,4,dl,max,45.10,0,0\nkey,5,w,max,0.63,7,0\nkey,6,w,min,0.67,0,0\nkey,7,dl,max,66.65,0,0\n",
+   "sources": [
+    {
+     "branch": "kmj",
+     "commit": "29934ceef7",
+     "path": "experiments/case5/KMJ-1125-FH-C5/answer.csv",
+     "author": "kwak-kwak-2",
+     "recorded": 816.128,
+     "match": true
+    }
+   ],
+   "public": {
+    "cost": 816.128,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "6751aeef9d05346c6b8f78f6fd8821f8799a153325fe18d8d0917042e23c59a3": {
+   "case": 4,
+   "sha12": "6751aeef9d05",
+   "text": "dir,0000111111111111111011111111000111100000110000001110000000010100011110100111\nfleet,17\nkey,1,de,min,96.20,2,3\nkey,2,urg,max,0.5,0,4\nkey,3,qo,max,1,5,6\nkey,4,w,min,1,0,0\nkey,5,w,max,4.60,7,8\nkey,6,w,min,0.20,9,0\nkey,7,dl,min,75,0,0\nkey,8,urg,max,0.5,0,0\nkey,9,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "main",
+     "commit": "22adb49686",
+     "path": "experiments/case4/best-answer.csv",
+     "author": "Seungmin Jang",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 845.3746,
+    "rejected": 0
+   },
+   "fleet": 17
+  },
+  "f3657e8035197af1a04de8acab4860377995f5b5a56f626110e442f15dbd86f6": {
+   "case": 5,
+   "sha12": "f3657e803519",
+   "text": "dir,000111100111100001010010010011\nfleet,22\nkey,1,de,max,245,2,3\nkey,2,qo,max,4,0,4\nkey,3,dl,min,110,5,0\nkey,4,urg,max,0.5,0,6\nkey,5,qo,max,1,7,8\nkey,6,w,min,2.20,0,0\nkey,7,urg,min,0.5,0,0\nkey,8,w,min,0.80,9,0\nkey,9,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "main",
+     "commit": "22adb49686",
+     "path": "experiments/case5/best-answer.csv",
+     "author": "Seungmin Jang",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 826.901,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "035d9d4b2435f4212fb19b15e861f1f4a6c283073d1b7a097b505027d4bdc45f": {
+   "case": 3,
+   "sha12": "035d9d4b2435",
+   "text": "dir,0011111111000000110110111101001\nfleet,23\nkey,1,qo,max,6,0,2\nkey,2,urg,max,0.5,3,0\nkey,3,dl,min,160,4,0\nkey,4,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/035d9d4b2435.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1337.6218,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "0528062832c9843e1ce1b4c999a0b9bd460704b9e6f316dadf547eafccad7dc0": {
+   "case": 3,
+   "sha12": "0528062832c9",
+   "text": "dir,0011111111000000110110111101001\nfleet,23\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,0,3\nkey,3,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/0528062832c9.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1410.3186,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "06299b0d209237bfbe9df5038847b680be7e27a6c9ed312009e2b03b1b981418": {
+   "case": 3,
+   "sha12": "06299b0d2092",
+   "text": "dir,1111111100000000011101011001101\nfleet,23\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,0,3\nkey,3,de,max,200,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/06299b0d2092.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1113.4945,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "0891e98fefb7213a8bc9f56bf53b7a7fdd70377524782a73dbc2e77fc2b69589": {
+   "case": 3,
+   "sha12": "0891e98fefb7",
+   "text": "dir,1111111100000000011101011001101\nfleet,22\nkey,1,qo,max,6,2,3\nkey,2,dl,min,300,4,5\nkey,3,urg,max,0.5,6,0\nkey,4,w,min,0.03,0,0\nkey,5,de,max,140,0,0\nkey,6,dl,min,180,7,8\nkey,7,de,max,360,9,0\nkey,8,de,max,200,0,0\nkey,9,w,min,0.01,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/0891e98fefb7.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 989.0069,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "08e689a42e60b07590bb7137d64bed664485f73f5c9aeb8261592c35a24188e7": {
+   "case": 3,
+   "sha12": "08e689a42e60",
+   "text": "dir,0000000011111111101000100110010\nfleet,22\nkey,1,w,min,3.5,2,0\nkey,2,urg,max,0.5,3,0\nkey,3,de,min,180,0,4\nkey,4,dl,min,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/08e689a42e60.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1063.6269,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "09d9825edecf1a536f778aadcd0246314d707ba2a59bc55c45a9a7142e5e2622": {
+   "case": 3,
+   "sha12": "09d9825edecf",
+   "text": "dir,0000011111111000110010101110001\nfleet,21\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/09d9825edecf.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1402.6728,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "0ccf2aa0b2652bf31e846a613e30daa34182c17148286a1e5d8c8464067fa81b": {
+   "case": 3,
+   "sha12": "0ccf2aa0b265",
+   "text": "dir,0011111111000000110110111101001\nfleet,21\nkey,1,w,max,0.01,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,220,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,qo,min,3,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,300,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/0ccf2aa0b265.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1293.0258,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "0cfefadeac519ce6aa9e996a38aebaa3ab66d36abfbb4e35e7504654a6d48466": {
+   "case": 3,
+   "sha12": "0cfefadeac51",
+   "text": "dir,0011111111000000110110111101001\nfleet,22\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,3,0\nkey,3,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/0cfefadeac51.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1565.3517,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "14a1e94e4dbae92d9be732ddc963c51392d4cfe9d8f19c48b2018bc934f5f527": {
+   "case": 3,
+   "sha12": "14a1e94e4dba",
+   "text": "dir,1111111100000000011101011001101\nfleet,23\nkey,1,w,min,0.03,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,140,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,max,120,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/14a1e94e4dba.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 977.7307,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "1698a271ff4b26f566b419f929444a2e9822ea98643c022ea86d5e2e2d9565bd": {
+   "case": 3,
+   "sha12": "1698a271ff4b",
+   "text": "dir,0000011111111000110010101110001\nfleet,22\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/1698a271ff4b.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1415.0337,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "199b63079e2e6fa9c81628445682c2a6c7ed872087c94fbc3acaf9e2fbeef1c3": {
+   "case": 3,
+   "sha12": "199b63079e2e",
+   "text": "dir,1111111100000000011111011001101\nfleet,21\nkey,1,urg,max,0.5,2,3\nkey,2,de,min,220,4,5\nkey,3,qo,min,4,0,0\nkey,4,w,min,0.001,0,6\nkey,5,w,min,0.3,0,7\nkey,6,qo,max,3,0,0\nkey,7,dl,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/199b63079e2e.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1005.4391,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "1e5c492488fdad75df1f718779beabbb1b9180c3ce0b22db4749f79acf62723c": {
+   "case": 3,
+   "sha12": "1e5c492488fd",
+   "text": "dir,0011111111000000110110111101001\nfleet,22\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/1e5c492488fd.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1311.7122,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "2166b4c73ef41fe88b83ffc859fab5feb36502dc84fc20b75a8a44c4cc870f21": {
+   "case": 3,
+   "sha12": "2166b4c73ef4",
+   "text": "dir,0011111111000000110110111101001\nfleet,22\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/2166b4c73ef4.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1327.6987,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "25f509a431783340bd956ec3b2d498de6adb559cbbc212520c11aa0c509776fd": {
+   "case": 3,
+   "sha12": "25f509a43178",
+   "text": "dir,0000011111111000110010101110001\nfleet,22\nkey,1,qo,max,3,2,3\nkey,2,de,min,240,4,0\nkey,3,dl,max,100,0,5\nkey,4,w,max,0.03,0,6\nkey,5,de,max,200,7,0\nkey,6,urg,max,0.5,0,8\nkey,7,urg,max,0.5,0,9\nkey,8,dl,max,220,0,0\nkey,9,w,min,0.3,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/25f509a43178.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1377.0654,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "28f7658f9e060cf03b1810e2de4507ad47d5b30cd9d789d1fecb4569f188c3f4": {
+   "case": 3,
+   "sha12": "28f7658f9e06",
+   "text": "dir,1111111100000000011111011001101\nfleet,23\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,0,3\nkey,3,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/28f7658f9e06.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1108.195,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "29cbc8bb9b70c3761856d884677baa9b0e1b5da0150fead54bd3f98895223925": {
+   "case": 3,
+   "sha12": "29cbc8bb9b70",
+   "text": "dir,0000011111111000110010101110001\nfleet,23\nkey,1,qo,max,6,2,3\nkey,2,w,max,0.1,4,5\nkey,3,w,min,0.1,6,0\nkey,4,de,max,340,0,0\nkey,5,dl,min,260,0,0\nkey,6,dl,max,160,7,0\nkey,7,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/29cbc8bb9b70.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1367.7771,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "29f7b0096924603bfe70cf0fb1614f931d236e2a38a2d6b38dde09e767957012": {
+   "case": 3,
+   "sha12": "29f7b0096924",
+   "text": "dir,0000011111111000111010101110001\nfleet,21\nkey,1,de,min,60,2,3\nkey,2,w,max,0.03,4,0\nkey,3,urg,max,0.5,5,6\nkey,4,dl,max,80,0,0\nkey,5,qo,min,3,7,0\nkey,6,dl,min,160,8,9\nkey,7,w,max,3.5,0,0\nkey,8,qo,min,1,0,0\nkey,9,w,min,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/29f7b0096924.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1350.1767,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "2c812aa84dd22a6ba699fc4bbdd9f51416fe55f193b22f36e897a6929bc5f087": {
+   "case": 3,
+   "sha12": "2c812aa84dd2",
+   "text": "dir,0000011111111000110010101110001\nfleet,21\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,0\nkey,3,dl,max,60,5,6\nkey,4,dl,min,260,7,8\nkey,5,de,max,180,0,0\nkey,6,qo,min,6,0,0\nkey,7,de,max,340,0,0\nkey,8,qo,min,6,9,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/2c812aa84dd2.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1380.0843,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "2c90620651a87435c447bd24742846569c59eb5017ef063c814f237f2f6f616e": {
+   "case": 3,
+   "sha12": "2c90620651a8",
+   "text": "dir,1111111100000000011101011001101\nfleet,23\nkey,1,urg,max,0.5,2,3\nkey,2,qo,max,6,4,5\nkey,3,qo,min,1,0,0\nkey,4,dl,max,220,0,6\nkey,5,de,max,200,0,7\nkey,6,de,max,360,0,0\nkey,7,w,min,0.3,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/2c90620651a8.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1019.0398,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "2cf90a821cce681eb12f4fa6cebfcebe89fddeffcd57255727fd6daefb002413": {
+   "case": 3,
+   "sha12": "2cf90a821cce",
+   "text": "dir,1111111100000000011101011001101\nfleet,21\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/2cf90a821cce.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1006.4422,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "2e79c3ae13ca2c560539a496de41b9c9d6d7736f62252164530f46df506628cd": {
+   "case": 3,
+   "sha12": "2e79c3ae13ca",
+   "text": "dir,1111111100000000011111011001101\nfleet,23\nkey,1,de,min,140,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,w,max,1,6,0\nkey,4,dl,min,200,0,7\nkey,5,dl,min,280,8,0\nkey,6,urg,max,0.5,9,0\nkey,7,qo,min,0,0,0\nkey,8,qo,max,1,0,0\nkey,9,dl,max,60,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/2e79c3ae13ca.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1007.9685,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "2ee0385620ba2e986308b0b536f7500f5bbcbe1fff791bddc96702698095850e": {
+   "case": 3,
+   "sha12": "2ee0385620ba",
+   "text": "dir,1111111100000000011111011001101\nfleet,23\nkey,1,de,min,120,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,w,min,0.001,0,6\nkey,4,qo,max,6,7,0\nkey,5,dl,min,140,0,8\nkey,6,dl,min,280,0,0\nkey,7,dl,min,220,9,0\nkey,8,qo,min,1,0,0\nkey,9,w,max,3.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/2ee0385620ba.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1009.4203,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "2efa01b98603b50f09516c508fdd578391b3c28b210c9299cdc886177417210d": {
+   "case": 3,
+   "sha12": "2efa01b98603",
+   "text": "dir,0011111111000000110110111101001\nfleet,23\nkey,1,de,min,160,2,0\nkey,2,dl,min,200,3,4\nkey,3,urg,max,0.5,5,6\nkey,4,w,max,1,0,7\nkey,5,qo,min,6,0,8\nkey,6,qo,max,2,9,0\nkey,7,qo,max,1,0,0\nkey,8,w,max,0.03,0,0\nkey,9,w,min,3.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/2efa01b98603.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1329.1999,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "2fbb1bc1e14b331716d847c5b38a98a61abca514d12d94d1a6a92ed977a57023": {
+   "case": 3,
+   "sha12": "2fbb1bc1e14b",
+   "text": "dir,1111111100000000011101011001101\nfleet,22\nkey,1,qo,max,4,0,2\nkey,2,urg,min,0.5,3,0\nkey,3,dl,min,180,4,0\nkey,4,w,min,2,0,5\nkey,5,de,max,280,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/2fbb1bc1e14b.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1016.2949,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "2fcf90e69eb4e1e1d236753e5c469648c6ef0f2b883976a8b27ceed53e267234": {
+   "case": 3,
+   "sha12": "2fcf90e69eb4",
+   "text": "dir,1111111100000000011111011001101\nfleet,23\nkey,1,w,min,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,160,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,qo,min,1,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,80,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/2fcf90e69eb4.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 969.4107,
+    "rejected": 0
+   },
+   "s500": {
+    "cost": 976.6124,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "304d54201009b32ee673defb52d19a1ff1398aef315dc802286720a640177593": {
+   "case": 3,
+   "sha12": "304d54201009",
+   "text": "dir,0000011111111000111010101110001\nfleet,22\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/304d54201009.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1358.2504,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "30d623cd4478608158a7d290ac14a5c686a48f0ac1bfb9d5ab36f8923f10fa9f": {
+   "case": 3,
+   "sha12": "30d623cd4478",
+   "text": "dir,1111111100000000011101011001101\nfleet,21\nkey,1,urg,max,0.5,2,3\nkey,2,de,min,140,4,5\nkey,3,de,min,340,6,0\nkey,4,w,max,0.01,0,0\nkey,5,dl,max,320,0,0\nkey,6,dl,min,240,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/30d623cd4478.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1013.6376,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "330d0dcc8087287362a4a25d112ee201d8996e73cdff34c46daa1cdccfdb0629": {
+   "case": 3,
+   "sha12": "330d0dcc8087",
+   "text": "dir,0000011111111000110010101110001\nfleet,22\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,0,3\nkey,3,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/330d0dcc8087.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1522.7292,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "335e1ca8793c39564417002423c44bae579b4fb817446a73b35b4e0e927ed5a0": {
+   "case": 3,
+   "sha12": "335e1ca8793c",
+   "text": "dir,0000011111111000111010101110001\nfleet,21\nkey,1,urg,max,0.5,2,3\nkey,2,de,min,80,4,5\nkey,3,dl,max,200,0,0\nkey,4,qo,min,3,0,6\nkey,5,w,max,0.03,0,7\nkey,6,w,min,1,0,8\nkey,7,qo,min,3,0,9\nkey,8,dl,min,200,0,0\nkey,9,dl,max,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/335e1ca8793c.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1343.1293,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "3566ccb5909fd0a81c4999f6ff9ec6441838e86321321d61512c94ff6093cea4": {
+   "case": 3,
+   "sha12": "3566ccb5909f",
+   "text": "dir,0011111111000000110110111101001\nfleet,22\nkey,1,qo,max,0,2,3\nkey,2,urg,max,0.5,4,0\nkey,3,w,min,0,5,0\nkey,4,dl,min,160,0,6\nkey,5,urg,min,0.5,7,0\nkey,6,de,max,160,0,0\nkey,7,dl,min,40,0,8\nkey,8,de,max,300,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/3566ccb5909f.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1316.3309,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "36ec49d47f50d3f3731782b3f11439d26b72c5dcb80ede65e74ed97926c0d703": {
+   "case": 3,
+   "sha12": "36ec49d47f50",
+   "text": "dir,1111111100000000011101011001101\nfleet,21\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/36ec49d47f50.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 980.54,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "38ab054837ad31679c261551fd511cb99cd72673aa918b79bec1efb0d2d3b17b": {
+   "case": 3,
+   "sha12": "38ab054837ad",
+   "text": "dir,1111111100000000011101011001101\nfleet,22\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,3,0\nkey,3,de,max,200,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/38ab054837ad.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1124.5161,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "3a0a134f1d3cb53e8a0c4105289ab3e7f38521a970411caef0f052c4c8ab747a": {
+   "case": 3,
+   "sha12": "3a0a134f1d3c",
+   "text": "dir,1111111100000000011111011001101\nfleet,23\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/3a0a134f1d3c.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 975.942,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "3c82908d00c5778924ad99392d36350bce28fcc245beea472224b6145c942a8f": {
+   "case": 3,
+   "sha12": "3c82908d00c5",
+   "text": "dir,0000011111111000110010101110001\nfleet,23\nkey,1,qo,min,3,2,3\nkey,2,w,max,0.001,4,5\nkey,3,de,min,320,0,0\nkey,4,dl,min,160,6,7\nkey,5,de,min,260,0,8\nkey,6,de,min,320,0,0\nkey,7,urg,max,0.5,0,9\nkey,8,dl,max,180,0,0\nkey,9,de,max,280,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/3c82908d00c5.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1359.8729,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "3d985e14e74744a2b8652ac2ff8eb5e823a6dd4fea28068af1d85e0c6b5f1fc8": {
+   "case": 3,
+   "sha12": "3d985e14e747",
+   "text": "dir,0000011111111000110010101110001\nfleet,23\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/3d985e14e747.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1395.232,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "3e32d86b09d18e328d36fce420632d5854d66c0ee2032cae1d91758b287cd987": {
+   "case": 3,
+   "sha12": "3e32d86b09d1",
+   "text": "dir,0000011111111000110010101110001\nfleet,22\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,3,0\nkey,3,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/3e32d86b09d1.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1452.2067,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "3ef53dd5b370157480222af2bb5b93cf276f68d1e3d842b533ed234feed0d28a": {
+   "case": 3,
+   "sha12": "3ef53dd5b370",
+   "text": "dir,0011111111000000110110111101001\nfleet,21\nkey,1,urg,max,0.5,2,3\nkey,2,qo,max,0,4,5\nkey,3,w,min,0.03,0,0\nkey,4,de,max,160,0,0\nkey,5,de,min,60,6,7\nkey,6,dl,min,160,8,0\nkey,7,w,max,0.01,0,0\nkey,8,w,max,5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/3ef53dd5b370.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1343.7733,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "3fdf2451a462effbba642895286f653cbae0c53830066350a076ee4c64cc4532": {
+   "case": 3,
+   "sha12": "3fdf2451a462",
+   "text": "dir,0011111111000000110110111101001\nfleet,23\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/3fdf2451a462.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1337.3096,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "40fbff0aea68bbc33ded3ea5fdec01f534400bb824d6767f1c641c301bbe51c9": {
+   "case": 3,
+   "sha12": "40fbff0aea68",
+   "text": "dir,1111111100000000011111011001101\nfleet,21\nkey,1,de,min,120,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,w,max,1,6,0\nkey,4,w,min,0.001,0,7\nkey,5,qo,min,4,8,0\nkey,6,dl,min,120,9,0\nkey,7,qo,max,2,0,0\nkey,8,w,min,0.3,0,0\nkey,9,qo,min,1,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/40fbff0aea68.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1000.104,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "4592869026de01c3622a7feb1e6a318682cd0287e3cf895294e79b9f76db53cb": {
+   "case": 3,
+   "sha12": "4592869026de",
+   "text": "dir,1111111100000000011111011001101\nfleet,21\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/4592869026de.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 974.3433,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "47fe343b1cf62140c7630b47a023910dc4a3f0dd485245e00466a442cf24eb7b": {
+   "case": 3,
+   "sha12": "47fe343b1cf6",
+   "text": "dir,0000000011111111101000100110010\nfleet,22\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/47fe343b1cf6.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1064.7275,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "48ce24321e0cea7f171934b05d1cda1aeebf6bbe3e1f4e6092d7774cf0c9da09": {
+   "case": 3,
+   "sha12": "48ce24321e0c",
+   "text": "dir,1111111100000000011111011001101\nfleet,21\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,3,0\nkey,3,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/48ce24321e0c.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1120.2365,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "4c7d2689db3e1651166b2529482f5eb040e83e8dd12db209a5c7df1c5aedfbcb": {
+   "case": 3,
+   "sha12": "4c7d2689db3e",
+   "text": "dir,0000000011111111101000100110010\nfleet,21\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,0,3\nkey,3,de,max,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/4c7d2689db3e.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1156.5143,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "4e5dd950eec2406bd72cd660049ce7b29769db2f11f7a37217356edd7ec910b7": {
+   "case": 3,
+   "sha12": "4e5dd950eec2",
+   "text": "dir,0000011111111000111010101110001\nfleet,23\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/4e5dd950eec2.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1357.9382,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "542d2e06715f9ac54a7d261d3e219199b544ab3e450519f4c9f662f5d6a4c182": {
+   "case": 3,
+   "sha12": "542d2e06715f",
+   "text": "dir,0000011111111000110010101110001\nfleet,21\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,0,3\nkey,3,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/542d2e06715f.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1532.3815,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "55725d4e0e7b39be51a31803d3676cc3c61c75b7048e97f216d7fe9530f935aa": {
+   "case": 3,
+   "sha12": "55725d4e0e7b",
+   "text": "dir,0000011111111000110010101110001\nfleet,22\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/55725d4e0e7b.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1395.4352,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "55ac0a617a1a640387e5f97a8a4fc1826bab7e6daff2cd1c0394f17165719b76": {
+   "case": 3,
+   "sha12": "55ac0a617a1a",
+   "text": "dir,1111111100000000011111011001101\nfleet,21\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/55ac0a617a1a.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1005.8133,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "5bb5e72fec6ee0a05f1331e3e93d56c4d7de6d3ef5f8657092924b8b5b5332c7": {
+   "case": 3,
+   "sha12": "5bb5e72fec6e",
+   "text": "dir,0000000011111111101000100110010\nfleet,21\nkey,1,qo,max,2,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,w,min,3.5,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,dl,max,140,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/5bb5e72fec6e.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1065.3977,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "5c3b3bc4c77518a0d4f63d2fe6000c5b7fbd2918ddb7ca0c9358c93ff1c1c547": {
+   "case": 3,
+   "sha12": "5c3b3bc4c775",
+   "text": "dir,1111111100000000011111011001101\nfleet,22\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,3,0\nkey,3,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/5c3b3bc4c775.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1098.38,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "5d6d8e88f2393c30035ff36d00bef6268c2ccace260f86ea834675e4c05acb55": {
+   "case": 3,
+   "sha12": "5d6d8e88f239",
+   "text": "dir,0011111111000000110110111101001\nfleet,23\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/5d6d8e88f239.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1312.0499,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "5edc16c62ffc2daa3d129388919a70b301c799921135cb07a7172d35bfede3ba": {
+   "case": 3,
+   "sha12": "5edc16c62ffc",
+   "text": "dir,0000000011111111101000100110010\nfleet,22\nkey,1,qo,max,3,2,3\nkey,2,w,min,0.03,4,5\nkey,3,urg,max,0.5,6,0\nkey,4,dl,max,160,0,0\nkey,5,dl,min,240,0,0\nkey,6,dl,min,160,7,0\nkey,7,de,max,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/5edc16c62ffc.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1063.1893,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "60d072e3b2ca0233713e2ab9208051ca21428164351f7b272ec3076b786f4959": {
+   "case": 3,
+   "sha12": "60d072e3b2ca",
+   "text": "dir,0000000011111111101000100110010\nfleet,23\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,0,3\nkey,3,de,max,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/60d072e3b2ca.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1133.8695,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "6294198f83fef582198ab5cd9e2e4042b628b4a40c2350c7403ee2dca3b56ddc": {
+   "case": 3,
+   "sha12": "6294198f83fe",
+   "text": "dir,0000011111111000110010101110001\nfleet,22\nkey,1,de,min,260,2,3\nkey,2,dl,min,260,4,0\nkey,3,qo,max,1,5,6\nkey,4,urg,max,0.5,0,7\nkey,5,dl,max,180,0,0\nkey,6,w,min,1,8,0\nkey,7,qo,min,2,9,0\nkey,8,urg,min,0.5,0,0\nkey,9,w,min,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/6294198f83fe.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1378.1854,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "68b4b461235e27528517723d791a16c12bfbe1b0525cd77ffdc6352631e7ade5": {
+   "case": 3,
+   "sha12": "68b4b461235e",
+   "text": "dir,0011111111000000110110111101001\nfleet,22\nkey,1,w,max,0,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,180,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,200,0,0\nkey,9,de,max,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/68b4b461235e.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1284.1118,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "68e2454c3d83257d2e945d7203b9c64b949d94b031cfe1f3a139614be53428ab": {
+   "case": 3,
+   "sha12": "68e2454c3d83",
+   "text": "dir,0000000011111111101000100110010\nfleet,22\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,3,0\nkey,3,de,max,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/68e2454c3d83.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1171.3631,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "6d129d8fb3eaf1fd39d4ee5c109f2fd18ffdd21c20db6f091b16983578e9c231": {
+   "case": 3,
+   "sha12": "6d129d8fb3ea",
+   "text": "dir,0000011111111000110010101110001\nfleet,21\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/6d129d8fb3ea.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1407.4949,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "6d2e00b09fb80e81cc2314f7e4fa6b42ff3ac570fd783482fe23d7a848dac138": {
+   "case": 3,
+   "sha12": "6d2e00b09fb8",
+   "text": "dir,1111111100000000011111011001101\nfleet,23\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/6d2e00b09fb8.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1016.121,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "6d38eff4af0c483044bba6676d9e0c4ac6e9095d4e1208c4b439349f409d32b3": {
+   "case": 3,
+   "sha12": "6d38eff4af0c",
+   "text": "dir,0000011111111000111010101110001\nfleet,21\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,0,3\nkey,3,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/6d38eff4af0c.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1535.4326,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "6fb2ae4bd44958c94dc0945aa70ae6f398fc0eb36ca4b3b9f8ee26dd8109d467": {
+   "case": 3,
+   "sha12": "6fb2ae4bd449",
+   "text": "dir,0011111111000000110110111101001\nfleet,21\nkey,1,w,min,0,2,3\nkey,2,urg,max,0.5,4,0\nkey,3,de,min,220,5,6\nkey,4,dl,min,240,0,7\nkey,5,urg,max,0.5,0,0\nkey,6,dl,min,80,0,8\nkey,7,de,max,160,0,9\nkey,8,qo,max,1,0,0\nkey,9,qo,max,1,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/6fb2ae4bd449.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1292.6054,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "7059069266e00e103e43530ee601eccbe289b4a2d58101325f7bb88e71be26b3": {
+   "case": 3,
+   "sha12": "7059069266e0",
+   "text": "dir,1111111100000000011101011001101\nfleet,22\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/7059069266e0.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1022.2107,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "7696f16174ebc58b77e061081b849d7770e5db739b6415f4758e8c0a2f45d426": {
+   "case": 3,
+   "sha12": "7696f16174eb",
+   "text": "dir,0000011111111000111010101110001\nfleet,22\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,0,3\nkey,3,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/7696f16174eb.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1501.1695,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "785b31efa836b626f18e8d6ee38ba0c699b9bcb72f7ec5c8e228b20512174cb6": {
+   "case": 3,
+   "sha12": "785b31efa836",
+   "text": "dir,0000011111111000111010101110001\nfleet,23\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/785b31efa836.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1350.2811,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "789c73d7cfbfe45556e1b4fede1e539e7225b45e6ce035d680988b4a3a38394e": {
+   "case": 3,
+   "sha12": "789c73d7cfbf",
+   "text": "dir,0000011111111000111010101110001\nfleet,23\nkey,1,w,max,0,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,200,6,7\nkey,4,dl,min,260,0,8\nkey,5,qo,min,3,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/789c73d7cfbf.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1344.7208,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "7a062f7f38174915318493a5dd34dce4a133aecf72f2aa2fe226d35bde084905": {
+   "case": 3,
+   "sha12": "7a062f7f3817",
+   "text": "dir,1111111100000000011101011001101\nfleet,21\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,0,3\nkey,3,de,max,200,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/7a062f7f3817.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1113.63,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "7a47f438e19e765b5972784b28590e18487ecaa51b9e9534cd344b094d5b7c18": {
+   "case": 3,
+   "sha12": "7a47f438e19e",
+   "text": "dir,0000011111111000111010101110001\nfleet,21\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/7a47f438e19e.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1334.9417,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "7acb021095091e04c9f90fd9f4fdc8c45328cdb5d98638c2a13d79510bd3210a": {
+   "case": 3,
+   "sha12": "7acb02109509",
+   "text": "dir,0000000011111111101000100110010\nfleet,21\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,3,0\nkey,3,de,max,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/7acb02109509.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1176.8185,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "7ad44634ee094190af45e1dc1cc24301a1b09b695125734f4b8c5d602035db39": {
+   "case": 3,
+   "sha12": "7ad44634ee09",
+   "text": "dir,0000011111111000111010101110001\nfleet,22\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/7ad44634ee09.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1336.0211,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "7d21dacd6a704d53d13f99dfbf86a4f3845853d1541efd50375b0e452fc6797f": {
+   "case": 3,
+   "sha12": "7d21dacd6a70",
+   "text": "dir,0000000011111111101000100110010\nfleet,21\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,2,8,0\nkey,5,dl,min,240,0,0\nkey,6,dl,min,160,0,0\nkey,7,w,min,0.5,9,0\nkey,8,w,max,0.5,0,0\nkey,9,dl,min,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/7d21dacd6a70.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1054.1102,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "7dd14ca4191e995c808607d949b20dcc5df49b123e806ad7075b0fc1d9d96c71": {
+   "case": 3,
+   "sha12": "7dd14ca4191e",
+   "text": "dir,0000011111111000111010101110001\nfleet,21\nkey,1,w,max,0.01,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,240,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,qo,min,1,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,200,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/7dd14ca4191e.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1321.8761,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "7feabc1b272586c73ec9f9d945d308c9be1aaa4fd5766ee540c17f4adb5a2176": {
+   "case": 3,
+   "sha12": "7feabc1b2725",
+   "text": "dir,1111111100000000011101011001101\nfleet,23\nkey,1,de,min,120,2,3\nkey,2,dl,min,320,0,0\nkey,3,w,max,0.01,4,5\nkey,4,urg,max,0.5,6,0\nkey,5,dl,min,200,0,0\nkey,6,dl,min,180,7,0\nkey,7,qo,min,6,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/7feabc1b2725.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1017.34,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "8024e5f764ff07e6b212935990d4f9bd37571097a612aefea4cab96c20d49bd7": {
+   "case": 3,
+   "sha12": "8024e5f764ff",
+   "text": "dir,1111111100000000011101011001101\nfleet,21\nkey,1,w,max,0.001,2,3\nkey,2,qo,max,0,4,0\nkey,3,dl,max,60,0,5\nkey,4,urg,max,0.5,6,0\nkey,5,qo,min,4,0,7\nkey,6,dl,min,180,8,0\nkey,7,urg,max,0.5,0,0\nkey,8,de,max,200,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/8024e5f764ff.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1019.9104,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "809a4b1d90ab709a51e4330db8ea9473f74d193d7a19193a5b8ad5e8f1a6a27d": {
+   "case": 3,
+   "sha12": "809a4b1d90ab",
+   "text": "dir,0000000011111111101000100110010\nfleet,23\nkey,1,qo,max,0,2,3\nkey,2,dl,min,160,4,0\nkey,3,w,min,3.5,0,5\nkey,4,de,max,140,0,0\nkey,5,de,max,260,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/809a4b1d90ab.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1066.1325,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "859269dbb6c6f2fa3b4298e051651f73525a56881a6d8051c5f79d4298ce23a6": {
+   "case": 3,
+   "sha12": "859269dbb6c6",
+   "text": "dir,1111111100000000011101011001101\nfleet,21\nkey,1,w,min,0,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,140,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,urg,min,0.5,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/859269dbb6c6.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 972.4246,
+    "rejected": 0
+   },
+   "s500": {
+    "cost": 983.7489,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "85b3eff2cbac26f46230b0f045095fc2b95f5e4d78c032dabb06f5799b98fe9e": {
+   "case": 3,
+   "sha12": "85b3eff2cbac",
+   "text": "dir,0000000011111111101000100110010\nfleet,21\nkey,1,de,min,180,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,qo,min,1,6,7\nkey,4,w,min,0.01,0,0\nkey,5,w,max,0.3,0,8\nkey,6,w,max,0.3,9,0\nkey,7,dl,min,100,0,0\nkey,8,qo,max,1,0,0\nkey,9,dl,max,60,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/85b3eff2cbac.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1059.6319,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "895984c32cc0f7600b68c877caca81571d326af04485091fa391b31893028fb2": {
+   "case": 3,
+   "sha12": "895984c32cc0",
+   "text": "dir,0000000011111111101000100110010\nfleet,22\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/895984c32cc0.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1061.232,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "897c3782a12a41e9a4bc746100773b4e15c7e92d1439d0a6b9a1e9b30af39662": {
+   "case": 3,
+   "sha12": "897c3782a12a",
+   "text": "dir,0011111111000000110110111101001\nfleet,23\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/897c3782a12a.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1344.432,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "8c7708ebedbbee8c1828af0d656ebe162a28bcfb7cbf20ab4dc05f7496533032": {
+   "case": 3,
+   "sha12": "8c7708ebedbb",
+   "text": "dir,1111111100000000011111011001101\nfleet,21\nkey,1,urg,max,0.5,2,3\nkey,2,w,min,0.001,4,0\nkey,3,qo,min,4,0,0\nkey,4,qo,max,0,5,0\nkey,5,dl,min,280,0,6\nkey,6,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/8c7708ebedbb.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1006.9822,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "8c7a6f0e2645ee97b4cc8bfe0d611611f0a3178dd001143a13db15e14fa3a9d9": {
+   "case": 3,
+   "sha12": "8c7a6f0e2645",
+   "text": "dir,0011111111000000110110111101001\nfleet,21\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/8c7a6f0e2645.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1309.1714,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "8c918e7f87dc7444011d720e9043971118cccfa53262af42252efeca94730025": {
+   "case": 3,
+   "sha12": "8c918e7f87dc",
+   "text": "dir,0000011111111000110010101110001\nfleet,21\nkey,1,w,min,0.001,2,3\nkey,2,de,max,340,0,0\nkey,3,de,min,220,4,5\nkey,4,qo,max,2,6,7\nkey,5,dl,min,80,0,8\nkey,6,dl,max,120,0,9\nkey,7,urg,max,0.5,0,0\nkey,8,qo,min,1,0,0\nkey,9,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/8c918e7f87dc.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1345.9093,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "8c9634406dc3cc0ba585973311201202a7ff94b746dd041ae7ad70753c050c6c": {
+   "case": 3,
+   "sha12": "8c9634406dc3",
+   "text": "dir,0000000011111111101000100110010\nfleet,21\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/8c9634406dc3.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1068.2511,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "8f7e1fc43671cdaccd1c0ec62b78952e9dd799bac4525d18ff6598434287b828": {
+   "case": 3,
+   "sha12": "8f7e1fc43671",
+   "text": "dir,1111111100000000011101011001101\nfleet,21\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/8f7e1fc43671.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1018.754,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "8fbdde76f33a34a85f848c71caf488c39dcab4ca40a6ee814812ae62c981557c": {
+   "case": 3,
+   "sha12": "8fbdde76f33a",
+   "text": "dir,0000011111111000111010101110001\nfleet,21\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,3,0\nkey,3,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/8fbdde76f33a.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1449.708,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "913a2b6e3d7b26e5aace622d3118c800f7da6684b50fd8dc06fccb726c03ee4f": {
+   "case": 3,
+   "sha12": "913a2b6e3d7b",
+   "text": "dir,0000000011111111101000100110010\nfleet,23\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,3,0\nkey,3,de,max,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/913a2b6e3d7b.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1173.3893,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "93c5a03a49bcb11c27c5baef5469a1a6dcf95f3cff5c05f95eddd2daa7c4604e": {
+   "case": 3,
+   "sha12": "93c5a03a49bc",
+   "text": "dir,0000000011111111101000100110010\nfleet,23\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/93c5a03a49bc.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1066.8316,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "9416a54552b0028da7a23690f665c822c14f8150ed82dc3121fd2c30ade40d89": {
+   "case": 3,
+   "sha12": "9416a54552b0",
+   "text": "dir,0000011111111000111010101110001\nfleet,23\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,3,0\nkey,3,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/9416a54552b0.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1433.0148,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "951aba7178c8b61923c9aff0fa22cc061afa2393f330c95e81ec538359d774ba": {
+   "case": 3,
+   "sha12": "951aba7178c8",
+   "text": "dir,0000011111111000110010101110001\nfleet,22\nkey,1,de,min,100,2,3\nkey,2,dl,min,160,4,0\nkey,3,dl,max,220,5,6\nkey,4,qo,min,1,7,8\nkey,5,w,min,0.3,0,9\nkey,6,w,max,3.5,0,0\nkey,7,w,max,3.5,0,0\nkey,8,w,max,1,0,0\nkey,9,qo,max,3,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/951aba7178c8.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1385.2323,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "96435b405abd03500b29ee741ebab0b1e7941caffc93154ab818cbbfe2352466": {
+   "case": 3,
+   "sha12": "96435b405abd",
+   "text": "dir,0000000011111111101000100110010\nfleet,23\nkey,1,w,min,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,qo,min,0,0,0\nkey,7,dl,min,120,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,40,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/96435b405abd.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1064.2235,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "97fd8cd9ac904de9b599bb58e3f86e19d4e096a765c537c79cb3d39275a7b8fa": {
+   "case": 3,
+   "sha12": "97fd8cd9ac90",
+   "text": "dir,0000011111111000111010101110001\nfleet,22\nkey,1,de,min,20,2,3\nkey,2,dl,max,220,4,0\nkey,3,w,max,5,5,6\nkey,4,w,min,0.03,0,0\nkey,5,qo,max,1,0,7\nkey,6,qo,min,3,8,0\nkey,7,urg,max,0.5,9,0\nkey,8,dl,max,120,0,0\nkey,9,dl,max,120,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/97fd8cd9ac90.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1347.5629,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "989aae2a9be878734632522903373922df2edc8fe44688079c365704cddae05f": {
+   "case": 3,
+   "sha12": "989aae2a9be8",
+   "text": "dir,0000000011111111101000100110010\nfleet,21\nkey,1,qo,max,3,2,0\nkey,2,w,max,0,3,0\nkey,3,urg,max,0.5,4,0\nkey,4,dl,min,160,0,5\nkey,5,de,max,280,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/989aae2a9be8.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1067.4513,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "9a346548cf7278bc6b49358b9c1a686740b581a0b900872429620dacbf0a13c2": {
+   "case": 3,
+   "sha12": "9a346548cf72",
+   "text": "dir,0011111111000000110110111101001\nfleet,21\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,0,3\nkey,3,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/9a346548cf72.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1433.7604,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "9ad6aa3bbb4156d1d77dc38cbc712fb7f63685fc227f5b688bd3d796da88bcd6": {
+   "case": 3,
+   "sha12": "9ad6aa3bbb41",
+   "text": "dir,0000011111111000111010101110001\nfleet,23\nkey,1,qo,max,4,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,dl,max,220,0,0\nkey,4,dl,min,160,6,7\nkey,5,w,min,0.1,0,0\nkey,6,w,min,0.1,0,0\nkey,7,de,max,260,8,9\nkey,8,w,min,0.001,0,0\nkey,9,w,min,3.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/9ad6aa3bbb41.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1308.1535,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "9d4fc7c0af1c668904591152273abff5320bc3ec23ebc236fe2e3347d9fd3945": {
+   "case": 3,
+   "sha12": "9d4fc7c0af1c",
+   "text": "dir,0011111111000000110110111101001\nfleet,23\nkey,1,de,min,120,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,w,max,3.5,0,6\nkey,4,dl,max,80,7,8\nkey,5,dl,min,160,0,0\nkey,6,qo,max,2,9,0\nkey,7,qo,min,1,0,0\nkey,8,w,min,3.5,0,0\nkey,9,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/9d4fc7c0af1c.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1330.3928,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "9d871ba92d4898a7e2b3f40e71b606f3449a56e7e22b269e695e84c3505c79ac": {
+   "case": 3,
+   "sha12": "9d871ba92d48",
+   "text": "dir,1111111100000000011101011001101\nfleet,23\nkey,1,de,min,60,2,3\nkey,2,qo,max,1,4,5\nkey,3,dl,min,60,0,6\nkey,4,dl,max,200,7,8\nkey,5,urg,max,0.5,0,0\nkey,6,qo,max,3,0,9\nkey,7,w,min,0.5,0,0\nkey,8,urg,min,0.5,0,0\nkey,9,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/9d871ba92d48.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1015.673,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "9eb73aa2bd5da0f87d708eadfccf3bd259e480a903b466a15c31ea8e893ee47b": {
+   "case": 3,
+   "sha12": "9eb73aa2bd5d",
+   "text": "dir,1111111100000000011101011001101\nfleet,22\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/9eb73aa2bd5d.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1012.3117,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "a00cdfa609acf28943abbe218cffd8ec73e4aec7567fed72b4dc1e1a870fae6d": {
+   "case": 3,
+   "sha12": "a00cdfa609ac",
+   "text": "dir,0000011111111000111010101110001\nfleet,21\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/a00cdfa609ac.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1351.5141,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "a13dc127a90f464eff9a544a70d7879c9bf8f21d9895f80d9abef5197bcf20b5": {
+   "case": 3,
+   "sha12": "a13dc127a90f",
+   "text": "dir,0000011111111000111010101110001\nfleet,22\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/a13dc127a90f.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1351.3328,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "a1b0a3bc3ade390c90d1368ef2950ee639ef5ede60943b6e5f2ddb0e7535e83a": {
+   "case": 3,
+   "sha12": "a1b0a3bc3ade",
+   "text": "dir,1111111100000000011111011001101\nfleet,22\nkey,1,qo,max,4,2,3\nkey,2,w,min,3.5,0,4\nkey,3,urg,max,0.5,5,0\nkey,4,dl,min,120,0,0\nkey,5,w,max,0.5,0,6\nkey,6,de,max,300,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/a1b0a3bc3ade.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1006.209,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "a4c31b4a2a7d1359adfc07cac42886f783adbf1dccf090f161ef35e7568a6254": {
+   "case": 3,
+   "sha12": "a4c31b4a2a7d",
+   "text": "dir,1111111100000000011101011001101\nfleet,23\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,3,0\nkey,3,de,max,200,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/a4c31b4a2a7d.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1132.2998,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "a56340c7a0ed6d67a8a17fba15fdb6c8cb2349a7f8fb82a17595b89b035325da": {
+   "case": 3,
+   "sha12": "a56340c7a0ed",
+   "text": "dir,0000000011111111101000100110010\nfleet,21\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/a56340c7a0ed.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1058.7753,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "a5c1da947d90cc79ae1add4efdd596a978b6844da93bc4206eb7c2937058657f": {
+   "case": 3,
+   "sha12": "a5c1da947d90",
+   "text": "dir,1111111100000000011111011001101\nfleet,21\nkey,1,w,max,0,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,120,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,qo,max,2,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/a5c1da947d90.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 971.2163,
+    "rejected": 0
+   },
+   "s500": {
+    "cost": 979.9373,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "a6901ec21c7d211903c727eb20a5174b5657665da8863315b7506be1f94eb851": {
+   "case": 3,
+   "sha12": "a6901ec21c7d",
+   "text": "dir,1111111100000000011111011001101\nfleet,22\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/a6901ec21c7d.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1013.958,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "a6e9940bea70bbc11819616a343814354219f8ef99d094923affa88775c4f71c": {
+   "case": 3,
+   "sha12": "a6e9940bea70",
+   "text": "dir,0011111111000000110110111101001\nfleet,22\nkey,1,qo,max,4,2,3\nkey,2,dl,min,240,4,5\nkey,3,w,min,1,0,0\nkey,4,w,min,0.01,0,0\nkey,5,de,max,200,6,7\nkey,6,w,max,1,0,0\nkey,7,w,min,0.3,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/a6e9940bea70.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1305.0409,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "a7d1b81d6234c7b20106b69c9095059b8542f2794729ddaf69cbc52d2cacdf6f": {
+   "case": 3,
+   "sha12": "a7d1b81d6234",
+   "text": "dir,0011111111000000110110111101001\nfleet,23\nkey,1,w,min,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,220,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,urg,min,0.5,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/a7d1b81d6234.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1291.6566,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "a8bacff23970f8eae7c81c248123e516e9d799223d80f8dfb2322f2d2374b844": {
+   "case": 3,
+   "sha12": "a8bacff23970",
+   "text": "dir,1111111100000000011101011001101\nfleet,21\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,3,0\nkey,3,de,max,200,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/a8bacff23970.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1129.5479,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "a9aa1f29a8bedbea76784ddb914f5ae0858f45e4a3ac283f42b7cf6b81d9d818": {
+   "case": 3,
+   "sha12": "a9aa1f29a8be",
+   "text": "dir,0000000011111111101000100110010\nfleet,22\nkey,1,de,min,180,2,3\nkey,2,dl,max,60,4,5\nkey,3,dl,min,220,0,0\nkey,4,qo,max,3,6,0\nkey,5,urg,max,0.5,7,8\nkey,6,w,max,0.3,0,0\nkey,7,w,max,0.3,0,0\nkey,8,w,min,0.3,0,9\nkey,9,qo,max,1,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/a9aa1f29a8be.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1061.0894,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "aadfc9a1f6b475153f6a764aa8aa0ab33fc502c0757f3fc6f094488afade6ec3": {
+   "case": 3,
+   "sha12": "aadfc9a1f6b4",
+   "text": "dir,0000011111111000110010101110001\nfleet,23\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,3,0\nkey,3,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/aadfc9a1f6b4.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1432.1304,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "ac23484ade9d1cfa197ae944e552257f89fca1b1ee201ba0a96169fc99ad9780": {
+   "case": 3,
+   "sha12": "ac23484ade9d",
+   "text": "dir,0000011111111000110010101110001\nfleet,23\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,0,3\nkey,3,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/ac23484ade9d.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1517.302,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "acd12a09a5095bc1faff5b6f81417f7aedf131072e97d545ab4f3a436f39e931": {
+   "case": 3,
+   "sha12": "acd12a09a509",
+   "text": "dir,0000011111111000111010101110001\nfleet,21\nkey,1,w,min,0.03,2,0\nkey,2,qo,max,1,0,3\nkey,3,dl,max,100,4,5\nkey,4,de,max,160,0,0\nkey,5,de,max,200,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/acd12a09a509.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1346.9612,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "ade1878f47be42b741f6749559deea9f2f4abd139893e82b6550c5d665e98619": {
+   "case": 3,
+   "sha12": "ade1878f47be",
+   "text": "dir,0011111111000000110110111101001\nfleet,22\nkey,1,de,min,180,2,3\nkey,2,w,max,0.001,4,5\nkey,3,qo,max,6,0,6\nkey,4,dl,max,180,0,0\nkey,5,urg,max,0.5,7,0\nkey,6,dl,max,40,0,0\nkey,7,dl,max,20,8,9\nkey,8,qo,min,3,0,0\nkey,9,qo,max,1,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/ade1878f47be.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1322.9525,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "aee3a9948b14c95a4f0040e9b80bbcc182225edcf55aff80465bcc9fbfb88a3d": {
+   "case": 3,
+   "sha12": "aee3a9948b14",
+   "text": "dir,1111111100000000011111011001101\nfleet,22\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,0,3\nkey,3,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/aee3a9948b14.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1096.0843,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "b112c88f89b0ec0d2b7134f1d10ce1422d843a264d8dd1820783bc1c5a735672": {
+   "case": 3,
+   "sha12": "b112c88f89b0",
+   "text": "dir,0000000011111111101000100110010\nfleet,21\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/b112c88f89b0.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1073.3113,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "b2409f6ee0668d3ac7b04f50c57b3aa4733dee9dfe548752d202ed2c28c202f7": {
+   "case": 3,
+   "sha12": "b2409f6ee066",
+   "text": "dir,0011111111000000110110111101001\nfleet,21\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,3,0\nkey,3,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/b2409f6ee066.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1581.2649,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "b3debb316487fce551317b7b606c8002ba9736d9eb7bf6de36a808756223a6e4": {
+   "case": 3,
+   "sha12": "b3debb316487",
+   "text": "dir,1111111100000000011101011001101\nfleet,22\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/b3debb316487.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 975.1069,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "b8d1431a1c5b60bd542e7975f0b5fc0a91e87a40c8344afc51c6f015d612a637": {
+   "case": 3,
+   "sha12": "b8d1431a1c5b",
+   "text": "dir,0000011111111000111010101110001\nfleet,23\nkey,1,qo,max,3,2,0\nkey,2,de,min,120,3,4\nkey,3,w,min,0.001,5,6\nkey,4,dl,min,240,7,0\nkey,5,urg,max,0.5,0,0\nkey,6,dl,min,200,0,0\nkey,7,urg,min,0.5,0,8\nkey,8,w,max,3.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/b8d1431a1c5b.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1346.9086,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "b9b770300de356a7156d7d26479cea5d6a98d050d4daa56cf2c1348a25f87376": {
+   "case": 3,
+   "sha12": "b9b770300de3",
+   "text": "dir,0000011111111000111010101110001\nfleet,23\nkey,1,qo,max,0,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,w,max,1,0,0\nkey,4,w,max,3.5,0,6\nkey,5,w,min,1,0,0\nkey,6,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/b9b770300de3.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1352.9503,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "bba30f1451ee1d9b56c2551fa9e2e2346aafa3cca97dd1b41ea97a36b48649ce": {
+   "case": 3,
+   "sha12": "bba30f1451ee",
+   "text": "dir,0000011111111000110010101110001\nfleet,23\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/bba30f1451ee.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1403.3484,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "be33f6161ab96740390c012731f46b7ce190b8126d34cd38f0168ce38333fbdd": {
+   "case": 3,
+   "sha12": "be33f6161ab9",
+   "text": "dir,1111111100000000011111011001101\nfleet,22\nkey,1,w,min,3.5,2,3\nkey,2,de,min,220,4,5\nkey,3,dl,min,140,0,0\nkey,4,qo,min,4,6,7\nkey,5,qo,max,0,8,9\nkey,6,dl,max,280,0,0\nkey,7,dl,max,120,0,0\nkey,8,dl,min,280,0,0\nkey,9,urg,min,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/be33f6161ab9.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1004.589,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "be8e78251a29d5910631d324ef3448560dad04c23b83325bd9b64306574dac76": {
+   "case": 3,
+   "sha12": "be8e78251a29",
+   "text": "dir,0000000011111111101000100110010\nfleet,22\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,240,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,120,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/be8e78251a29.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1056.8594,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "c2b42e617073e39ab598f66012bdb75ada6e4b7ccf4af41cb51afeb6a6245ec8": {
+   "case": 3,
+   "sha12": "c2b42e617073",
+   "text": "dir,0000011111111000111010101110001\nfleet,22\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,3,0\nkey,3,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/c2b42e617073.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1438.0293,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "c55daea4124bf968a832a07de8589691f4a452233fb61e3adc98e1beeb0f2fd6": {
+   "case": 3,
+   "sha12": "c55daea4124b",
+   "text": "dir,0000011111111000110010101110001\nfleet,21\nkey,1,qo,min,6,2,3\nkey,2,de,max,340,4,5\nkey,3,w,max,0.001,6,7\nkey,4,w,max,0.1,8,0\nkey,5,dl,min,160,0,0\nkey,6,dl,min,160,9,0\nkey,7,dl,min,60,0,0\nkey,8,dl,min,100,0,0\nkey,9,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/c55daea4124b.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1385.7605,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "c709778624dbf8a5c2634ca059622e73cae1c5a73a45576b40e4d3270dbb3a5c": {
+   "case": 3,
+   "sha12": "c709778624db",
+   "text": "dir,0000000011111111101000100110010\nfleet,22\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,0,3\nkey,3,de,max,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/c709778624db.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1137.1597,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "d1294e427d28972a8cca369f38a50f65d78b859d6d5568e2be977c923dba1482": {
+   "case": 3,
+   "sha12": "d1294e427d28",
+   "text": "dir,1111111100000000011101011001101\nfleet,23\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/d1294e427d28.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1019.2525,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "d2486e9ae6cc21edfbd74230f395e384ccda029ca75d36c8d9460ba8c8f4bca3": {
+   "case": 3,
+   "sha12": "d2486e9ae6cc",
+   "text": "dir,0000000011111111101000100110010\nfleet,22\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/d2486e9ae6cc.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1065.0407,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "d383c8d940a59c882e1236686fa8a22d3502b25f5cb667cf8dfeca7ded521f4c": {
+   "case": 3,
+   "sha12": "d383c8d940a5",
+   "text": "dir,1111111100000000011111011001101\nfleet,21\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/d383c8d940a5.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1007.7664,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "d3ab6ffffeb7499e367441c0afb27f3c4dcc4b7033ea3427c35919cc6c11d176": {
+   "case": 3,
+   "sha12": "d3ab6ffffeb7",
+   "text": "dir,1111111100000000011101011001101\nfleet,21\nkey,1,w,max,0,0,2\nkey,2,urg,max,0.5,3,4\nkey,3,dl,min,340,0,5\nkey,4,qo,max,6,6,0\nkey,5,de,max,300,7,8\nkey,6,dl,min,240,0,9\nkey,7,qo,max,4,0,0\nkey,8,qo,min,1,0,0\nkey,9,de,max,280,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/d3ab6ffffeb7.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1015.1427,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "d494b1ea72c4c1c4b2e4ee82907beffa5d6c0236fe89cebfad67e3824f455d42": {
+   "case": 3,
+   "sha12": "d494b1ea72c4",
+   "text": "dir,1111111100000000011111011001101\nfleet,22\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/d494b1ea72c4.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1008.0185,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "d4fec5cea2bd8d28f8e8291a987b0dd19447691602dd64e685d9a85cf88bd376": {
+   "case": 3,
+   "sha12": "d4fec5cea2bd",
+   "text": "dir,1111111100000000011111011001101\nfleet,23\nkey,1,qo,max,0,2,0\nkey,2,dl,min,180,3,0\nkey,3,w,min,0.03,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/d4fec5cea2bd.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1017.2486,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "d6ceb25871bfbd78b8b3f7319f3bcc3613f829d2256e735fc802e4d365805c5d": {
+   "case": 3,
+   "sha12": "d6ceb25871bf",
+   "text": "dir,0011111111000000110110111101001\nfleet,22\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/d6ceb25871bf.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1343.8329,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "d70597a335946aea25cab8f1712df0d270c5065102bf1ccac4143dec7f538111": {
+   "case": 3,
+   "sha12": "d70597a33594",
+   "text": "dir,0000011111111000111010101110001\nfleet,23\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,0,3\nkey,3,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/d70597a33594.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1494.8925,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "d7574acd9602c597030d616b1790fc07aafd4b435751dcd7b96d422452cef53e": {
+   "case": 3,
+   "sha12": "d7574acd9602",
+   "text": "dir,0000011111111000110010101110001\nfleet,23\nkey,1,urg,max,0.5,2,3\nkey,2,qo,max,6,4,5\nkey,3,w,min,1,0,0\nkey,4,w,max,0,6,0\nkey,5,w,max,0.5,7,0\nkey,6,de,max,320,0,0\nkey,7,dl,min,160,8,9\nkey,8,de,min,220,0,0\nkey,9,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/d7574acd9602.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1368.4069,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "d8c654fcd3de20323c9581a2cd708346ac89dafd7e2833a6a50ae45a2b94c02d": {
+   "case": 3,
+   "sha12": "d8c654fcd3de",
+   "text": "dir,1111111100000000011111011001101\nfleet,22\nkey,1,de,min,100,2,3\nkey,2,dl,min,60,4,5\nkey,3,dl,max,280,0,0\nkey,4,qo,max,3,6,7\nkey,5,w,max,0.01,0,8\nkey,6,w,max,2,9,0\nkey,7,w,max,0.3,0,0\nkey,8,urg,max,0.5,0,0\nkey,9,urg,min,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/d8c654fcd3de.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1005.6724,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "d92a9fec5988b73bcb3c58637c5b5f036486c2e87c0fa0d707035bdf39808488": {
+   "case": 3,
+   "sha12": "d92a9fec5988",
+   "text": "dir,0000011111111000110010101110001\nfleet,21\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/d92a9fec5988.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1382.1353,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "d9daeaf9db2e6053cce54c7c579d1e307295b5404b2a29d59062fa21cf95d8e2": {
+   "case": 3,
+   "sha12": "d9daeaf9db2e",
+   "text": "dir,0011111111000000110110111101001\nfleet,21\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/d9daeaf9db2e.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1322.7861,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "daf0f0e9d0060fe5e498d0941cb2efa8056e3279bf578f92edff8785ee22c60f": {
+   "case": 3,
+   "sha12": "daf0f0e9d006",
+   "text": "dir,0000000011111111101000100110010\nfleet,23\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/daf0f0e9d006.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1067.6115,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "db537f6dde31614350aa5f7348a932c4e6fc99d649c1fb87d118765b4fb059d1": {
+   "case": 3,
+   "sha12": "db537f6dde31",
+   "text": "dir,0000000011111111101000100110010\nfleet,23\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/db537f6dde31.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1065.6119,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "de178bae728afe49da318d1f88c80d036bae4b4c2e60f9617cf380c00e1cce5d": {
+   "case": 3,
+   "sha12": "de178bae728a",
+   "text": "dir,1111111100000000011101011001101\nfleet,22\nkey,1,de,min,280,2,3\nkey,2,qo,min,4,0,0\nkey,3,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/de178bae728a.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1015.9368,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "deb0321f380bfe3b7a82ec584c72da55b50689b3f9abd494329cd4d5fc59aeff": {
+   "case": 3,
+   "sha12": "deb0321f380b",
+   "text": "dir,0000000011111111101000100110010\nfleet,23\nkey,1,w,min,3.5,0,2\nkey,2,qo,max,2,3,4\nkey,3,de,max,260,0,0\nkey,4,urg,max,0.5,5,0\nkey,5,dl,min,160,0,6\nkey,6,de,max,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/deb0321f380b.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1066.1325,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "e103f6e3ddb378349ede37692e685345a4f08c4d26766d01b3949064e6e69b70": {
+   "case": 3,
+   "sha12": "e103f6e3ddb3",
+   "text": "dir,0000011111111000110010101110001\nfleet,23\nkey,1,w,max,0,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,140,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,160,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,qo,min,0,0,0\nkey,8,qo,max,6,0,0\nkey,9,de,max,260,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/e103f6e3ddb3.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1358.2753,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "e1670f0facbb0887d58add7774bb665d375acf9f9af18fd3390f6b3b44c13dc8": {
+   "case": 3,
+   "sha12": "e1670f0facbb",
+   "text": "dir,0011111111000000110110111101001\nfleet,21\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/e1670f0facbb.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1348.7812,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "e41da840d1692cda626d7d3dbf13f68345e09c05118be9ae62d58e091c1cf05f": {
+   "case": 3,
+   "sha12": "e41da840d169",
+   "text": "dir,1111111100000000011101011001101\nfleet,22\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,0,3\nkey,3,de,max,200,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/e41da840d169.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1112.8324,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "e65ab4d234495e56ec34bdf2b04bed6935eab9d6418da07342e1c376f4220155": {
+   "case": 3,
+   "sha12": "e65ab4d23449",
+   "text": "dir,0000011111111000111010101110001\nfleet,22\nkey,1,qo,max,2,2,3\nkey,2,w,max,0.01,0,0\nkey,3,urg,max,0.5,4,0\nkey,4,w,max,3.5,5,0\nkey,5,de,max,240,0,6\nkey,6,dl,min,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/e65ab4d23449.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1351.0059,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "e6ec61e01ab8e9699da124f494332df87d8e4b03f75d3e69a5079a4211ad812d": {
+   "case": 3,
+   "sha12": "e6ec61e01ab8",
+   "text": "dir,0000011111111000110010101110001\nfleet,22\nkey,1,w,max,0.01,2,3\nkey,2,urg,min,0.5,4,5\nkey,3,de,min,240,6,0\nkey,4,dl,min,200,0,7\nkey,5,dl,min,160,0,8\nkey,6,urg,max,0.5,9,0\nkey,7,qo,min,0,0,0\nkey,8,de,max,280,0,0\nkey,9,dl,min,220,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/e6ec61e01ab8.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1350.73,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "e89491c9b1e63b318ed7470cd223ff543c6458771c1d11f93025e755a3fdeba4": {
+   "case": 3,
+   "sha12": "e89491c9b1e6",
+   "text": "dir,1111111100000000011101011001101\nfleet,23\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/e89491c9b1e6.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 980.9421,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "e9ee7024bb3040a67e2c7d2fe89ba0f38abf17952275c11c9b1e26a1a34f43c0": {
+   "case": 3,
+   "sha12": "e9ee7024bb30",
+   "text": "dir,0011111111000000110110111101001\nfleet,23\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,3,0\nkey,3,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/e9ee7024bb30.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1558.5552,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "ebba0abb6d0d01076f85d4ab1ce480c58031382038a732c0047bc7f3ad4597a3": {
+   "case": 3,
+   "sha12": "ebba0abb6d0d",
+   "text": "dir,1111111100000000011111011001101\nfleet,21\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,0,3\nkey,3,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/ebba0abb6d0d.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1104.6896,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "ef1f77289648c81dc35b0604ce007c1a2756e6e4b5defc15a46900f70e86f28d": {
+   "case": 3,
+   "sha12": "ef1f77289648",
+   "text": "dir,0000011111111000110010101110001\nfleet,22\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/ef1f77289648.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1388.039,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "ef27510a05e6b91bf8a4cd0b30713269fa36d0a6715c1c7bf544b1986ea7a625": {
+   "case": 3,
+   "sha12": "ef27510a05e6",
+   "text": "dir,0000011111111000111010101110001\nfleet,22\nkey,1,w,max,0.03,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,200,6,7\nkey,4,dl,min,260,0,8\nkey,5,qo,max,3,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,max,200,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/ef27510a05e6.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1336.1447,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "f293cace16d11a408bf9fe60db94b7275ad2d7eb27248dc49fd46103429e0c1d": {
+   "case": 3,
+   "sha12": "f293cace16d1",
+   "text": "dir,0000011111111000110010101110001\nfleet,21\nkey,1,w,max,0,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,240,6,7\nkey,4,qo,min,2,0,8\nkey,5,dl,min,160,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,60,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,240,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/f293cace16d1.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1344.5241,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "f324f7bde4f6b88a13ea8a9b5be7c9fc910701abc58157a98b72747b6373846d": {
+   "case": 3,
+   "sha12": "f324f7bde4f6",
+   "text": "dir,1111111100000000011101011001101\nfleet,23\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/f324f7bde4f6.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1023.3533,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "f32c3de74f8cfd5cb1ee5e3fa3d9989e7a6ccd363d259f02a7eb49b4cd27653d": {
+   "case": 3,
+   "sha12": "f32c3de74f8c",
+   "text": "dir,1111111100000000011111011001101\nfleet,23\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,3,0\nkey,3,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/f32c3de74f8c.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1090.2401,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "f4ef2b7c2194f93cbe7d9b4cc7cd0ad24687d4261bc2480b233f7e04dd85f996": {
+   "case": 3,
+   "sha12": "f4ef2b7c2194",
+   "text": "dir,0000011111111000111010101110001\nfleet,23\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/f4ef2b7c2194.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1357.3552,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "f5086fee01fbcb4910131314b33eaf5b707131baaa1ac41dfe9d5fb358f6ec5a": {
+   "case": 3,
+   "sha12": "f5086fee01fb",
+   "text": "dir,1111111100000000011111011001101\nfleet,23\nkey,1,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/f5086fee01fb.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1017.6011,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "f534d55c82540811be68ec92f34a6ea031b2b9ac9976af1bb498c9e7ee2493b9": {
+   "case": 3,
+   "sha12": "f534d55c8254",
+   "text": "dir,0011111111000000110110111101001\nfleet,22\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,0,3\nkey,3,de,max,160,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/f534d55c8254.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1420.6697,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "f5d9cca6b0208c086f19a8ec7500e13831e9a7fa1da78878b2cad59db41e2523": {
+   "case": 3,
+   "sha12": "f5d9cca6b020",
+   "text": "dir,1111111100000000011101011001101\nfleet,22\nkey,1,w,min,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,140,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,qo,max,3,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/f5d9cca6b020.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 973.671,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "f5db63052a212655771a590344097d053cf849d0a19a8b36f522cf27237cda44": {
+   "case": 3,
+   "sha12": "f5db63052a21",
+   "text": "dir,0000011111111000110010101110001\nfleet,23\nkey,1,w,max,0.001,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,de,min,100,6,7\nkey,4,dl,min,260,0,8\nkey,5,dl,min,220,0,9\nkey,6,urg,max,0.5,0,0\nkey,7,dl,min,100,0,0\nkey,8,de,max,140,0,0\nkey,9,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/f5db63052a21.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1426.7879,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "f7276af6c4f830e8e2b3199004c4e31d9ae14f3ab9bf6c24beda58ed0e19a75f": {
+   "case": 3,
+   "sha12": "f7276af6c4f8",
+   "text": "dir,0000011111111000111010101110001\nfleet,22\nkey,1,urg,max,0.5,2,3\nkey,2,qo,min,3,0,4\nkey,3,qo,max,1,5,6\nkey,4,de,max,160,7,0\nkey,5,w,max,0.03,0,8\nkey,6,de,max,20,0,9\nkey,7,dl,min,200,0,0\nkey,8,dl,max,120,0,0\nkey,9,w,min,0.03,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/f7276af6c4f8.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1351.2652,
+    "rejected": 0
+   },
+   "fleet": 22
+  },
+  "fa1d3431542f13ba8e2bd883a78f5e32a7f4296567a25f84430b715789c95553": {
+   "case": 3,
+   "sha12": "fa1d3431542f",
+   "text": "dir,0011111111000000110110111101001\nfleet,21\nkey,1,de,min,0,2,3\nkey,2,dl,min,40,0,4\nkey,3,w,min,0.03,0,0\nkey,4,w,min,0.01,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/fa1d3431542f.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1327.7365,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "fd8009a2ee45de4ff4499b1eb456009a7be6664bee88ad88f9db8d8c24d9508a": {
+   "case": 3,
+   "sha12": "fd8009a2ee45",
+   "text": "dir,0000011111111000111010101110001\nfleet,21\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/fd8009a2ee45.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1336.9541,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "ff4567a1d850098fc3f14400bf64199108889a12e6277d9348bc15c616f146b9": {
+   "case": 3,
+   "sha12": "ff4567a1d850",
+   "text": "dir,0000000011111111101000100110010\nfleet,23\nkey,1,w,min,0.03,0,2\nkey,2,de,min,120,3,4\nkey,3,urg,max,0.5,0,5\nkey,4,dl,max,160,6,0\nkey,5,dl,max,160,0,7\nkey,6,urg,min,0.5,0,8\nkey,7,qo,max,1,0,0\nkey,8,qo,max,1,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/ff4567a1d850.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1065.4099,
+    "rejected": 0
+   },
+   "fleet": 23
+  },
+  "ff8b93f1ec7343752607c0341b84f1ff0b7fa8d6d446fded1d5a3f7080bf0027": {
+   "case": 3,
+   "sha12": "ff8b93f1ec73",
+   "text": "dir,0000011111111000110010101110001\nfleet,21\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,160,3,0\nkey,3,de,max,180,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "eafa6cb53f",
+     "path": "experiments/case3/candidates/ff8b93f1ec73.csv",
+     "author": "jsm",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "public": {
+    "cost": 1471.1362,
+    "rejected": 0
+   },
+   "fleet": 21
+  }
+ },
+ "updated": "2026-11-26T10:19:07.391Z",
+ "engine": "simulator/score.cjs pooled"
+}
