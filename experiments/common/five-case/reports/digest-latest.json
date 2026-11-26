@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T10:24:26.179Z",
+ "generated": "2026-11-26T11:13:48.965Z",
  "method": {
   "alpha": 0.05,
   "minBlocks": 3,
@@ -198,6 +198,1622 @@
   }
  ],
  "cases": {
+  "1": {
+   "objective": "hidden seed (judge on held-out seeds)",
+   "publicRanking": [
+    {
+     "rank": 1,
+     "sha12": "e086d3b2ffd3",
+     "fleet": 21,
+     "dir": "D1",
+     "score": 1180.4234,
+     "gapToFirst": 0,
+     "owners": [
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T11:06:29.631Z",
+     "s500": 1181.4931,
+     "s500Rejected": 0,
+     "sources": [
+      "장승민 · jsm:experiments/case1/candidates/e086d3b2ffd3.csv@2e03eb8a36"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 2,
+     "sha12": "2473874cbf64",
+     "fleet": 21,
+     "dir": "D1",
+     "score": 1170.2008,
+     "gapToFirst": 2.5535,
+     "owners": [
+      "박진홍"
+     ],
+     "firstSeen": "2026-11-26T11:06:25.520Z",
+     "s500": 1184.0466,
+     "s500Rejected": 0,
+     "sources": [
+      "박진홍 · pjh:experiments/case1/PJH-1123-117020/answer.csv@c5dc1c6d79"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 3,
+     "sha12": "5698e8bcbcb4",
+     "fleet": 19,
+     "dir": "D1",
+     "score": 1185.4193,
+     "gapToFirst": 10.1047,
+     "owners": [
+      "윤빈"
+     ],
+     "firstSeen": "2026-11-26T11:06:28.129Z",
+     "s500": 1191.5978,
+     "s500Rejected": 0,
+     "sources": [
+      "윤빈 · yb:experiments/case1/C1-3node-seeds1-50/reference/answer.csv@6be90cc999"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 4,
+     "sha12": "a7a7524e0776",
+     "fleet": 18,
+     "dir": "D1",
+     "score": 1191.0023,
+     "gapToFirst": 10.3057,
+     "owners": [
+      "곽민재"
+     ],
+     "firstSeen": "2026-11-26T11:06:19.486Z",
+     "s500": 1191.7988,
+     "s500Rejected": 0,
+     "sources": [
+      "곽민재 · kmj:experiments/case1/KMJ-1125-DUAL-C1/answer.csv@29934ceef7"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 5,
+     "sha12": "bd9ed9b0e615",
+     "fleet": 18,
+     "dir": "D1",
+     "score": 1185.9436,
+     "gapToFirst": 10.8091,
+     "owners": [
+      "곽민재"
+     ],
+     "firstSeen": "2026-11-26T11:06:19.936Z",
+     "s500": 1192.3022,
+     "s500Rejected": 0,
+     "sources": [
+      "곽민재 · kmj:experiments/case1/KMJ-1125-FH-C1-V2/answer.csv@29934ceef7"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 6,
+     "sha12": "e6706c558b99",
+     "fleet": 18,
+     "dir": "D1",
+     "score": 1189.6871,
+     "gapToFirst": 11.2253,
+     "owners": [
+      "곽민재"
+     ],
+     "firstSeen": "2026-11-26T11:06:20.329Z",
+     "s500": 1192.7184,
+     "s500Rejected": 0,
+     "sources": [
+      "곽민재 · kmj:experiments/case1/KMJ-1125-FH-C1/answer.csv@29934ceef7"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 7,
+     "sha12": "7cbc51aa6435",
+     "fleet": 19,
+     "dir": "D1",
+     "score": 1191.8896,
+     "gapToFirst": 11.5597,
+     "owners": [
+      "곽민재"
+     ],
+     "firstSeen": "2026-11-26T11:06:18.632Z",
+     "s500": 1193.0528,
+     "s500Rejected": 0,
+     "sources": [
+      "곽민재 · kmj:experiments/case1/KMJ-1125-119189/answer.csv@29934ceef7"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 8,
+     "sha12": "7029dc2d784d",
+     "fleet": 19,
+     "dir": "D1",
+     "score": 1198.1409,
+     "gapToFirst": 12.069,
+     "owners": [
+      "곽민재"
+     ],
+     "firstSeen": "2026-11-26T11:06:10.602Z",
+     "s500": 1193.5621,
+     "s500Rejected": 0,
+     "sources": [
+      "곽민재 · DOE1119:ans_c1.csv@9f10a8d4fc"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 9,
+     "sha12": "0b6627e53920",
+     "fleet": 19,
+     "dir": "D1",
+     "score": 1197.3847,
+     "gapToFirst": 12.7865,
+     "owners": [
+      "곽민재"
+     ],
+     "firstSeen": "2026-11-26T11:06:24.293Z",
+     "s500": 1194.2796,
+     "s500Rejected": 0,
+     "sources": [
+      "곽민재 · main:experiments/case1/best-answer.csv@22adb49686"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 10,
+     "sha12": "da27f8568ca3",
+     "fleet": 19,
+     "dir": "D1",
+     "score": 1218.7652,
+     "gapToFirst": 39.6314,
+     "owners": [
+      "윤빈"
+     ],
+     "firstSeen": "2026-11-26T11:06:28.119Z",
+     "s500": 1221.1245,
+     "s500Rejected": 0,
+     "sources": [
+      "윤빈 · yb:experiments/case1/C1-3node-seeds1-50/D/answer.csv@6be90cc999"
+     ],
+     "recordedMismatch": []
+    }
+   ],
+   "teamPool": {
+    "answers": 13,
+    "updated": "2026-11-26T11:13:48.802Z"
+   },
+   "candidates": 1,
+   "searchTasks": {},
+   "withPublic": 1,
+   "withHeldOut": 0,
+   "engines": [
+    "jsim:e2dc473b4509+ev1"
+   ],
+   "public": {
+    "best": {
+     "sha12": "e086d3b2ffd3",
+     "labels": [
+      "case1-baseline"
+     ],
+     "fleet": 21,
+     "dir": "D1",
+     "score": 1180.4234,
+     "source": "experiments/common/five-case/raw/B1-local.jsonl"
+    },
+    "teamBest": null,
+    "diffVsTeam": null,
+    "top5": [
+     {
+      "sha12": "e086d3b2ffd3",
+      "fleet": 21,
+      "dir": "D1",
+      "score": 1180.4234
+     }
+    ]
+   },
+   "heldOut": [],
+   "heldOutTotal": 0,
+   "currentBest": null,
+   "vsBest": [],
+   "vsBestTotal": 0,
+   "screeningSubset": [],
+   "ocba": null,
+   "effects": [],
+   "effectsTotal": 0,
+   "effectsSummary": {},
+   "search": {},
+   "bestSearchCandidates": [],
+   "dirLegend": {
+    "D1": "000011110000000111100000000110101"
+   }
+  },
+  "2": {
+   "objective": "public seeds 11-15 score (graded as is)",
+   "publicRanking": [
+    {
+     "rank": 1,
+     "sha12": "63c180933a03",
+     "fleet": 24,
+     "dir": "D1",
+     "score": 613.6186,
+     "gapToFirst": 0,
+     "owners": [
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T11:06:29.634Z",
+     "s500": 616.0472,
+     "s500Rejected": 0,
+     "sources": [
+      "장승민 · jsm:experiments/case2/candidates/63c180933a03.csv@2e03eb8a36"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 2,
+     "sha12": "6f8788c2ef46",
+     "fleet": 24,
+     "dir": "D1",
+     "score": 613.6186,
+     "gapToFirst": 0,
+     "owners": [
+      "박진홍",
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T11:06:12.476Z",
+     "s500": 616.0472,
+     "s500Rejected": 0,
+     "sources": [
+      "박진홍 · jinhong-experiments:jinhong/case2/answer_case2.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case2/answer_case2_61362.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case2/cand_61362.csv@1584cb7ca4"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 3,
+     "sha12": "e11ec2f18ec8",
+     "fleet": 24,
+     "dir": "D1",
+     "score": 613.6203,
+     "gapToFirst": 0.0017,
+     "owners": [
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T11:06:29.635Z",
+     "s500": 615.9934,
+     "s500Rejected": 0,
+     "sources": [
+      "장승민 · jsm:experiments/case2/candidates/e11ec2f18ec8.csv@2e03eb8a36"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 4,
+     "sha12": "ac1aefe2491f",
+     "fleet": 24,
+     "dir": "D1",
+     "score": 613.8657,
+     "gapToFirst": 0.2471,
+     "owners": [
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T11:06:29.635Z",
+     "s500": 616.1392,
+     "s500Rejected": 0,
+     "sources": [
+      "장승민 · jsm:experiments/case2/candidates/ac1aefe2491f.csv@2e03eb8a36"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 5,
+     "sha12": "60618f0ecf0a",
+     "fleet": 24,
+     "dir": "D1",
+     "score": 614.0258,
+     "gapToFirst": 0.4072,
+     "owners": [
+      "박진홍",
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T11:06:12.487Z",
+     "s500": 615.9203,
+     "s500Rejected": 0,
+     "sources": [
+      "박진홍 · jinhong-experiments:jinhong/case2/answer_case2_61403.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case2/cand_61403.csv@1584cb7ca4",
+      "박진홍 · jsm-original:experiments/JSM/five-case/team/case2/jinhong__answer_case2_61403.csv@4f01b27a5c"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 6,
+     "sha12": "f275cd67403d",
+     "fleet": 25,
+     "dir": "D1",
+     "score": 615.448,
+     "gapToFirst": 1.8294,
+     "owners": [
+      "박진홍",
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T11:06:12.493Z",
+     "s500": 616.7085,
+     "s500Rejected": 0,
+     "sources": [
+      "박진홍 · jinhong-experiments:jinhong/case2/answer_case2_61545.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case2/cand_61545.csv@1584cb7ca4",
+      "박진홍 · jsm-original:experiments/JSM/five-case/team/case2/jinhong__answer_case2_61545.csv@4f01b27a5c"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 7,
+     "sha12": "50cfda9473f9",
+     "fleet": 24,
+     "dir": "D1",
+     "score": 615.4934,
+     "gapToFirst": 1.8748,
+     "owners": [
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T11:06:29.633Z",
+     "s500": 614.0309,
+     "s500Rejected": 0,
+     "sources": [
+      "장승민 · jsm:experiments/case2/candidates/50cfda9473f9.csv@2e03eb8a36"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 8,
+     "sha12": "4946a671ce96",
+     "fleet": 25,
+     "dir": "D1",
+     "score": 617.0951,
+     "gapToFirst": 3.4765,
+     "owners": [
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T11:06:29.633Z",
+     "s500": 616.2748,
+     "s500Rejected": 0,
+     "sources": [
+      "장승민 · jsm:experiments/case2/candidates/4946a671ce96.csv@2e03eb8a36"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 9,
+     "sha12": "552a7bd0e624",
+     "fleet": 25,
+     "dir": "D1",
+     "score": 617.0951,
+     "gapToFirst": 3.4765,
+     "owners": [
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T11:06:29.633Z",
+     "s500": 616.2662,
+     "s500Rejected": 0,
+     "sources": [
+      "장승민 · jsm:experiments/case2/candidates/552a7bd0e624.csv@2e03eb8a36"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 10,
+     "sha12": "f093cbf354e3",
+     "fleet": 25,
+     "dir": "D1",
+     "score": 617.0951,
+     "gapToFirst": 3.4765,
+     "owners": [
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T11:06:29.636Z",
+     "s500": 616.2748,
+     "s500Rejected": 0,
+     "sources": [
+      "장승민 · jsm:experiments/case2/candidates/f093cbf354e3.csv@2e03eb8a36"
+     ],
+     "recordedMismatch": []
+    }
+   ],
+   "teamPool": {
+    "answers": 39,
+    "updated": "2026-11-26T11:13:48.802Z"
+   },
+   "candidates": 33,
+   "searchTasks": {},
+   "withPublic": 33,
+   "withHeldOut": 33,
+   "engines": [
+    "jsim:e2dc473b4509+ev1"
+   ],
+   "public": {
+    "best": {
+     "sha12": "6f8788c2ef46",
+     "labels": [
+      "case2-baseline",
+      "c2-cell0"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "score": 613.6186,
+     "source": "experiments/common/five-case/raw/B1-local.jsonl"
+    },
+    "teamBest": {
+     "key": "2:jinhong:answer_case2.csv",
+     "score": 613.62,
+     "same": true
+    },
+    "diffVsTeam": -0.0014,
+    "top5": [
+     {
+      "sha12": "6f8788c2ef46",
+      "fleet": 24,
+      "dir": "D1",
+      "score": 613.6186
+     },
+     {
+      "sha12": "63c180933a03",
+      "fleet": 24,
+      "dir": "D1",
+      "score": 613.6186
+     },
+     {
+      "sha12": "e11ec2f18ec8",
+      "fleet": 24,
+      "dir": "D1",
+      "score": 613.6203
+     },
+     {
+      "sha12": "ac1aefe2491f",
+      "fleet": 24,
+      "dir": "D1",
+      "score": 613.8657
+     },
+     {
+      "sha12": "60618f0ecf0a",
+      "fleet": 24,
+      "dir": "D1",
+      "score": 614.0258
+     }
+    ]
+   },
+   "heldOut": [
+    {
+     "sha12": "e105273b19f4",
+     "labels": [
+      "c2-cell6-n24-node3de-up"
+     ],
+     "fleet": 24,
+     "dir": "D2",
+     "tree12": "6ad56ff1f6a8",
+     "pub": 638.0407,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 605.46,
+     "p95": 596.18,
+     "sd": 21.64,
+     "adjMean": 602.39,
+     "pubMinusHeld": 32.58,
+     "cost": {
+      "veh": 360,
+      "wait": 79.68,
+      "urgent": 165.79
+     }
+    },
+    {
+     "sha12": "9c4fd1d38b1b",
+     "labels": [
+      "c2-cell6"
+     ],
+     "fleet": 24,
+     "dir": "D2",
+     "tree12": "d23b4aa699c1",
+     "pub": 638.0407,
+     "blocks": 193,
+     "seedRange": "2400001-2431000",
+     "mean": 605.73,
+     "p95": 636.78,
+     "sd": 18.44,
+     "adjMean": 605.7,
+     "pubMinusHeld": 32.32,
+     "cost": {
+      "veh": 360,
+      "wait": 79.4,
+      "urgent": 166.32
+     }
+    },
+    {
+     "sha12": "9bcff5d2630b",
+     "labels": [
+      "c2-cell6-n25"
+     ],
+     "fleet": 25,
+     "dir": "D2",
+     "tree12": "d23b4aa699c1",
+     "pub": 617.627,
+     "blocks": 33,
+     "seedRange": "2400001-2410200",
+     "mean": 607.63,
+     "p95": 624.28,
+     "sd": 11.9,
+     "adjMean": 606.61,
+     "pubMinusHeld": 10,
+     "cost": {
+      "veh": 375,
+      "wait": 77.22,
+      "urgent": 155.41
+     }
+    },
+    {
+     "sha12": "63c180933a03",
+     "labels": [
+      "c2-cell0-n24-node4de-up"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "tree12": "872c5a067c39",
+     "pub": 613.6186,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 611.32,
+     "p95": 610.42,
+     "sd": 9.25,
+     "adjMean": 608.25,
+     "pubMinusHeld": 2.3,
+     "cost": {
+      "veh": 360,
+      "wait": 95.96,
+      "urgent": 155.36
+     }
+    },
+    {
+     "sha12": "e11ec2f18ec8",
+     "labels": [
+      "c2-cell0-n24-node3dl-up"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "tree12": "249feb255ca6",
+     "pub": 613.6203,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 611.54,
+     "p95": 610.45,
+     "sd": 9.07,
+     "adjMean": 608.47,
+     "pubMinusHeld": 2.08,
+     "cost": {
+      "veh": 360,
+      "wait": 95.96,
+      "urgent": 155.58
+     }
+    },
+    {
+     "sha12": "ac1aefe2491f",
+     "labels": [
+      "c2-cell0-n24-node3dl-down"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "tree12": "ff1568efc782",
+     "pub": 613.8657,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 611.55,
+     "p95": 610.44,
+     "sd": 9.1,
+     "adjMean": 608.48,
+     "pubMinusHeld": 2.32,
+     "cost": {
+      "veh": 360,
+      "wait": 95.97,
+      "urgent": 155.58
+     }
+    },
+    {
+     "sha12": "f275cd67403d",
+     "labels": [
+      "jinhong:answer_case2_61545.csv"
+     ],
+     "fleet": 25,
+     "dir": "D1",
+     "tree12": "72c3d352f30e",
+     "pub": 615.448,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 611.75,
+     "p95": 610.07,
+     "sd": 7.66,
+     "adjMean": 608.69,
+     "pubMinusHeld": 3.69,
+     "cost": {
+      "veh": 375,
+      "wait": 94.03,
+      "urgent": 142.73
+     }
+    },
+    {
+     "sha12": "60618f0ecf0a",
+     "labels": [
+      "jinhong:answer_case2_61403.csv"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "tree12": "10d63c48d193",
+     "pub": 614.0258,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 611.9,
+     "p95": 612.44,
+     "sd": 9.12,
+     "adjMean": 608.83,
+     "pubMinusHeld": 2.13,
+     "cost": {
+      "veh": 360,
+      "wait": 95.9,
+      "urgent": 155.99
+     }
+    },
+    {
+     "sha12": "b861d172f77e",
+     "labels": [
+      "c2-cell6-n25-node3de-up"
+     ],
+     "fleet": 25,
+     "dir": "D2",
+     "tree12": "6ad56ff1f6a8",
+     "pub": 617.627,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 612.81,
+     "p95": 606.25,
+     "sd": 18.65,
+     "adjMean": 609.74,
+     "pubMinusHeld": 4.82,
+     "cost": {
+      "veh": 375,
+      "wait": 77.61,
+      "urgent": 160.2
+     }
+    },
+    {
+     "sha12": "f318de70c41e",
+     "labels": [
+      "c2-cell0-n25-node3dl-down"
+     ],
+     "fleet": 25,
+     "dir": "D1",
+     "tree12": "ff1568efc782",
+     "pub": 617.0951,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 613.95,
+     "p95": 616.28,
+     "sd": 3.21,
+     "adjMean": 610.88,
+     "pubMinusHeld": 3.14,
+     "cost": {
+      "veh": 375,
+      "wait": 93.39,
+      "urgent": 145.56
+     }
+    },
+    {
+     "sha12": "4946a671ce96",
+     "labels": [
+      "c2-cell0-n25-node4de-up"
+     ],
+     "fleet": 25,
+     "dir": "D1",
+     "tree12": "872c5a067c39",
+     "pub": 617.0951,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 614.03,
+     "p95": 616.28,
+     "sd": 3.29,
+     "adjMean": 610.96,
+     "pubMinusHeld": 3.06,
+     "cost": {
+      "veh": 375,
+      "wait": 93.4,
+      "urgent": 145.63
+     }
+    },
+    {
+     "sha12": "552a7bd0e624",
+     "labels": [
+      "c2-cell0-n25-node3dl-up"
+     ],
+     "fleet": 25,
+     "dir": "D1",
+     "tree12": "249feb255ca6",
+     "pub": 617.0951,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 614.04,
+     "p95": 616.28,
+     "sd": 3.28,
+     "adjMean": 610.97,
+     "pubMinusHeld": 3.06,
+     "cost": {
+      "veh": 375,
+      "wait": 93.4,
+      "urgent": 145.63
+     }
+    },
+    {
+     "sha12": "01087a09c13d",
+     "labels": [
+      "c2-cell0-n24-node2dl-down"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "tree12": "80e9bfafa867",
+     "pub": 618.3794,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 615.76,
+     "p95": 612.48,
+     "sd": 7.74,
+     "adjMean": 612.69,
+     "pubMinusHeld": 2.62,
+     "cost": {
+      "veh": 360,
+      "wait": 100.61,
+      "urgent": 155.15
+     }
+    },
+    {
+     "sha12": "3e9daf44a556",
+     "labels": [
+      "c2-cell7"
+     ],
+     "fleet": 26,
+     "dir": "D2",
+     "tree12": "d23b4aa699c1",
+     "pub": 617.1633,
+     "blocks": 194,
+     "seedRange": "2400001-2431000",
+     "mean": 612.95,
+     "p95": 621.45,
+     "sd": 6.5,
+     "adjMean": 612.95,
+     "pubMinusHeld": 4.21,
+     "cost": {
+      "veh": 390,
+      "wait": 75.97,
+      "urgent": 146.99
+     }
+    },
+    {
+     "sha12": "e8f167108cac",
+     "labels": [
+      "jinhong:cand_617.csv"
+     ],
+     "fleet": 26,
+     "dir": "D2",
+     "tree12": "0e43fd93a7d6",
+     "pub": 617.1633,
+     "blocks": 4,
+     "seedRange": "2400001-2400020",
+     "mean": 616.09,
+     "p95": 617.83,
+     "sd": 4.17,
+     "adjMean": 613.02,
+     "pubMinusHeld": 1.08,
+     "cost": {
+      "veh": 390,
+      "wait": 76.14,
+      "urgent": 149.95
+     }
+    }
+   ],
+   "heldOutTotal": 33,
+   "currentBest": {
+    "sha12": "e105273b19f4",
+    "labels": [
+     "c2-cell6-n24-node3de-up"
+    ],
+    "fleet": 24,
+    "dir": "D2",
+    "adjMean": 602.39,
+    "rawMean": 605.46,
+    "blocks": 4,
+    "basis": "paired"
+   },
+   "vsBest": [
+    {
+     "ev": "c2.vsbest.9c4fd1d38b1b",
+     "sha12": "9c4fd1d38b1b",
+     "labels": [
+      "c2-cell6"
+     ],
+     "fleet": 24,
+     "dir": "D2",
+     "n": 4,
+     "diff": 0,
+     "ci": [
+      0,
+      0
+     ],
+     "p": 1,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 0
+    },
+    {
+     "ev": "c2.vsbest.50cfda9473f9",
+     "sha12": "50cfda9473f9",
+     "labels": [
+      "c2-cell2"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "n": 4,
+     "diff": 2.75,
+     "ci": [
+      -25.41,
+      30.91
+     ],
+     "p": 0.7765,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 1
+    },
+    {
+     "ev": "c2.vsbest.6f8788c2ef46",
+     "sha12": "6f8788c2ef46",
+     "labels": [
+      "case2-baseline",
+      "c2-cell0"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "n": 4,
+     "diff": 5.86,
+     "ci": [
+      -14.51,
+      26.23
+     ],
+     "p": 0.4276,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 1
+    },
+    {
+     "ev": "c2.vsbest.63c180933a03",
+     "sha12": "63c180933a03",
+     "labels": [
+      "c2-cell0-n24-node4de-up"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "n": 4,
+     "diff": 5.86,
+     "ci": [
+      -14.51,
+      26.23
+     ],
+     "p": 0.4276,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 1
+    },
+    {
+     "ev": "c2.vsbest.ac1aefe2491f",
+     "sha12": "ac1aefe2491f",
+     "labels": [
+      "c2-cell0-n24-node3dl-down"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "n": 4,
+     "diff": 6.08,
+     "ci": [
+      -14.42,
+      26.58
+     ],
+     "p": 0.4146,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 1
+    },
+    {
+     "ev": "c2.vsbest.e11ec2f18ec8",
+     "sha12": "e11ec2f18ec8",
+     "labels": [
+      "c2-cell0-n24-node3dl-up"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "n": 4,
+     "diff": 6.08,
+     "ci": [
+      -14.47,
+      26.62
+     ],
+     "p": 0.4161,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 1
+    },
+    {
+     "ev": "c2.vsbest.f275cd67403d",
+     "sha12": "f275cd67403d",
+     "labels": [
+      "jinhong:answer_case2_61545.csv"
+     ],
+     "fleet": 25,
+     "dir": "D1",
+     "n": 4,
+     "diff": 6.29,
+     "ci": [
+      -17.06,
+      29.64
+     ],
+     "p": 0.4542,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 1
+    },
+    {
+     "ev": "c2.vsbest.60618f0ecf0a",
+     "sha12": "60618f0ecf0a",
+     "labels": [
+      "jinhong:answer_case2_61403.csv"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "n": 4,
+     "diff": 6.44,
+     "ci": [
+      -14.81,
+      27.68
+     ],
+     "p": 0.406,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 1
+    },
+    {
+     "ev": "c2.vsbest.9bcff5d2630b",
+     "sha12": "9bcff5d2630b",
+     "labels": [
+      "c2-cell6-n25"
+     ],
+     "fleet": 25,
+     "dir": "D2",
+     "n": 4,
+     "diff": 7.35,
+     "ci": [
+      1.68,
+      13.02
+     ],
+     "p": 0.0258,
+     "holmP": 0.6645,
+     "verdict": "indistinct",
+     "blocksBetter": 0
+    },
+    {
+     "ev": "c2.vsbest.b861d172f77e",
+     "sha12": "b861d172f77e",
+     "labels": [
+      "c2-cell6-n25-node3de-up"
+     ],
+     "fleet": 25,
+     "dir": "D2",
+     "n": 4,
+     "diff": 7.35,
+     "ci": [
+      1.68,
+      13.02
+     ],
+     "p": 0.0258,
+     "holmP": 0.6645,
+     "verdict": "indistinct",
+     "blocksBetter": 0
+    },
+    {
+     "ev": "c2.vsbest.f318de70c41e",
+     "sha12": "f318de70c41e",
+     "labels": [
+      "c2-cell0-n25-node3dl-down"
+     ],
+     "fleet": 25,
+     "dir": "D1",
+     "n": 4,
+     "diff": 8.49,
+     "ci": [
+      -23.5,
+      40.48
+     ],
+     "p": 0.4604,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 1
+    },
+    {
+     "ev": "c2.vsbest.f093cbf354e3",
+     "sha12": "f093cbf354e3",
+     "labels": [
+      "c2-cell0-n25"
+     ],
+     "fleet": 25,
+     "dir": "D1",
+     "n": 4,
+     "diff": 8.57,
+     "ci": [
+      -23.2,
+      40.34
+     ],
+     "p": 0.4538,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 1
+    },
+    {
+     "ev": "c2.vsbest.4946a671ce96",
+     "sha12": "4946a671ce96",
+     "labels": [
+      "c2-cell0-n25-node4de-up"
+     ],
+     "fleet": 25,
+     "dir": "D1",
+     "n": 4,
+     "diff": 8.57,
+     "ci": [
+      -23.2,
+      40.34
+     ],
+     "p": 0.4538,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 1
+    },
+    {
+     "ev": "c2.vsbest.552a7bd0e624",
+     "sha12": "552a7bd0e624",
+     "labels": [
+      "c2-cell0-n25-node3dl-up"
+     ],
+     "fleet": 25,
+     "dir": "D1",
+     "n": 4,
+     "diff": 8.58,
+     "ci": [
+      -23.2,
+      40.35
+     ],
+     "p": 0.4536,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 1
+    },
+    {
+     "ev": "c2.vsbest.01087a09c13d",
+     "sha12": "01087a09c13d",
+     "labels": [
+      "c2-cell0-n24-node2dl-down"
+     ],
+     "fleet": 24,
+     "dir": "D1",
+     "n": 4,
+     "diff": 10.3,
+     "ci": [
+      -11.92,
+      32.51
+     ],
+     "p": 0.2367,
+     "holmP": 1,
+     "verdict": "indistinct",
+     "blocksBetter": 1
+    }
+   ],
+   "vsBestTotal": 32,
+   "screeningSubset": [
+    "9c4fd1d38b1b",
+    "01087a09c13d",
+    "ac1aefe2491f",
+    "e11ec2f18ec8",
+    "4ce7c8807cf9",
+    "63c180933a03",
+    "a04a4c493059",
+    "e9498da81754",
+    "f318de70c41e",
+    "552a7bd0e624",
+    "647a917fe1af",
+    "4946a671ce96",
+    "9bcff5d2630b",
+    "63550925ec13",
+    "53859b0bb056",
+    "893e95e48595",
+    "e105273b19f4",
+    "8548de0f3c97",
+    "377a061a53c7",
+    "f695fdc885b3",
+    "b861d172f77e",
+    "60618f0ecf0a",
+    "f275cd67403d",
+    "e8f167108cac"
+   ],
+   "ocba": null,
+   "effects": [
+    {
+     "ev": "c2.effect.ceff8bd8233f.3e9daf44a556",
+     "factor": "tree",
+     "a": {
+      "sha12": "ceff8bd8233f",
+      "fleet": 26,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "3e9daf44a556",
+      "fleet": 26,
+      "dir": "D2"
+     },
+     "n": 164,
+     "diffAminusB": 445.45,
+     "ci": [
+      443.81,
+      447.1
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c2.effect.fcf8a4b9cc91.ceff8bd8233f",
+     "factor": "dir",
+     "a": {
+      "sha12": "fcf8a4b9cc91",
+      "fleet": 26,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "ceff8bd8233f",
+      "fleet": 26,
+      "dir": "D2"
+     },
+     "n": 164,
+     "diffAminusB": -438.96,
+     "ci": [
+      -440.79,
+      -437.13
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 164
+    },
+    {
+     "ev": "c2.effect.e5b3fa139022.9c4fd1d38b1b",
+     "factor": "tree",
+     "a": {
+      "sha12": "e5b3fa139022",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "9c4fd1d38b1b",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "n": 164,
+     "diffAminusB": 435.06,
+     "ci": [
+      431.7,
+      438.41
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c2.effect.6f8788c2ef46.e5b3fa139022",
+     "factor": "dir",
+     "a": {
+      "sha12": "6f8788c2ef46",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "e5b3fa139022",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "n": 164,
+     "diffAminusB": -419.04,
+     "ci": [
+      -422.95,
+      -415.12
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 164
+    },
+    {
+     "ev": "c2.effect.b40f35996f98.e11ec2f18ec8",
+     "factor": "tree",
+     "a": {
+      "sha12": "b40f35996f98",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "e11ec2f18ec8",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "n": 4,
+     "diffAminusB": 162.84,
+     "ci": [
+      160.71,
+      164.96
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c2.effect.b40f35996f98.ac1aefe2491f",
+     "factor": "tree",
+     "a": {
+      "sha12": "b40f35996f98",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "ac1aefe2491f",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "n": 4,
+     "diffAminusB": 162.83,
+     "ci": [
+      160.68,
+      164.97
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c2.effect.6f8788c2ef46.b40f35996f98",
+     "factor": "tree",
+     "a": {
+      "sha12": "6f8788c2ef46",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "b40f35996f98",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "n": 4,
+     "diffAminusB": -163.05,
+     "ci": [
+      -165.7,
+      -160.41
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c2.effect.b40f35996f98.63c180933a03",
+     "factor": "tree",
+     "a": {
+      "sha12": "b40f35996f98",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "63c180933a03",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "n": 4,
+     "diffAminusB": 163.05,
+     "ci": [
+      160.41,
+      165.7
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c2.effect.01087a09c13d.b40f35996f98",
+     "factor": "tree",
+     "a": {
+      "sha12": "01087a09c13d",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "b40f35996f98",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "n": 4,
+     "diffAminusB": -158.62,
+     "ci": [
+      -161.29,
+      -155.94
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c2.effect.b40f35996f98.60618f0ecf0a",
+     "factor": "tree",
+     "a": {
+      "sha12": "b40f35996f98",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "60618f0ecf0a",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "n": 4,
+     "diffAminusB": 162.47,
+     "ci": [
+      158.92,
+      166.03
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c2.effect.ceff8bd8233f.e8f167108cac",
+     "factor": "tree",
+     "a": {
+      "sha12": "ceff8bd8233f",
+      "fleet": 26,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "e8f167108cac",
+      "fleet": 26,
+      "dir": "D2"
+     },
+     "n": 4,
+     "diffAminusB": 440.35,
+     "ci": [
+      430.07,
+      450.64
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c2.effect.e5b3fa139022.e105273b19f4",
+     "factor": "tree",
+     "a": {
+      "sha12": "e5b3fa139022",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "e105273b19f4",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "n": 4,
+     "diffAminusB": 435.16,
+     "ci": [
+      418.74,
+      451.58
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c2.effect.50cfda9473f9.b40f35996f98",
+     "factor": "tree",
+     "a": {
+      "sha12": "50cfda9473f9",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "b40f35996f98",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "n": 4,
+     "diffAminusB": -166.16,
+     "ci": [
+      -174.24,
+      -158.08
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 4
+    },
+    {
+     "ev": "c2.effect.e5b3fa139022.ceff8bd8233f",
+     "factor": "fleet",
+     "a": {
+      "sha12": "e5b3fa139022",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "ceff8bd8233f",
+      "fleet": 26,
+      "dir": "D2"
+     },
+     "n": 164,
+     "diffAminusB": -17.78,
+     "ci": [
+      -18.79,
+      -16.77
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 161
+    },
+    {
+     "ev": "c2.effect.e5b3fa139022.63550925ec13",
+     "factor": "tree",
+     "a": {
+      "sha12": "e5b3fa139022",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "63550925ec13",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "n": 4,
+     "diffAminusB": 409.32,
+     "ci": [
+      368.89,
+      449.75
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c2.effect.24e6ae257168.3e9daf44a556",
+     "factor": "dir",
+     "a": {
+      "sha12": "24e6ae257168",
+      "fleet": 26,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "3e9daf44a556",
+      "fleet": 26,
+      "dir": "D2"
+     },
+     "n": 164,
+     "diffAminusB": 6.6,
+     "ci": [
+      5.61,
+      7.6
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 25
+    },
+    {
+     "ev": "c2.effect.e5b3fa139022.53859b0bb056",
+     "factor": "tree",
+     "a": {
+      "sha12": "e5b3fa139022",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "53859b0bb056",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "n": 4,
+     "diffAminusB": 332.71,
+     "ci": [
+      280.69,
+      384.74
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c2.effect.50cfda9473f9.9c4fd1d38b1b",
+     "factor": "dir",
+     "a": {
+      "sha12": "50cfda9473f9",
+      "fleet": 24,
+      "dir": "D1"
+     },
+     "b": {
+      "sha12": "9c4fd1d38b1b",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "n": 183,
+     "diffAminusB": 12.86,
+     "ci": [
+      10.49,
+      15.24
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 29
+    },
+    {
+     "ev": "c2.effect.e5b3fa139022.893e95e48595",
+     "factor": "tree",
+     "a": {
+      "sha12": "e5b3fa139022",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "893e95e48595",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "n": 4,
+     "diffAminusB": 365.65,
+     "ci": [
+      277.96,
+      453.33
+     ],
+     "verdict": "a-worse",
+     "aBetterBlocks": 0
+    },
+    {
+     "ev": "c2.effect.9c4fd1d38b1b.3e9daf44a556",
+     "factor": "fleet",
+     "a": {
+      "sha12": "9c4fd1d38b1b",
+      "fleet": 24,
+      "dir": "D2"
+     },
+     "b": {
+      "sha12": "3e9daf44a556",
+      "fleet": 26,
+      "dir": "D2"
+     },
+     "n": 183,
+     "diffAminusB": -7.25,
+     "ci": [
+      -9.33,
+      -5.18
+     ],
+     "verdict": "a-better",
+     "aBetterBlocks": 139
+    }
+   ],
+   "effectsTotal": 115,
+   "effectsSummary": {
+    "tree": {
+     "a-better": 10,
+     "a-worse": 21,
+     "indistinct": 62
+    },
+    "dir": {
+     "a-better": 2,
+     "a-worse": 2,
+     "indistinct": 0
+    },
+    "fleet": {
+     "a-better": 3,
+     "a-worse": 2,
+     "indistinct": 13
+    }
+   },
+   "search": {},
+   "bestSearchCandidates": [],
+   "dirLegend": {
+    "D1": "001011111110000001101000111101110101",
+    "D2": "000011111110001110011111101100110101"
+   }
+  },
   "3": {
    "objective": "public seeds 11-15 score (graded as is)",
    "publicRanking": [
@@ -208,12 +1824,16 @@
      "dir": "D1",
      "score": 962.7048,
      "gapToFirst": 0,
+     "owners": [
+      "박진홍",
+      "장승민"
+     ],
      "s500": 978.1394,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case3/answer_case3.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case3/cand_96271.csv@1584cb7ca4",
-      "jsm-original:experiments/JSM/five-case/team/case3/jinhong__answer_case3.csv@4f01b27a5c"
+      "박진홍 · jinhong-experiments:jinhong/case3/answer_case3.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case3/cand_96271.csv@1584cb7ca4",
+      "박진홍 · jsm-original:experiments/JSM/five-case/team/case3/jinhong__answer_case3.csv@4f01b27a5c"
      ],
      "recordedMismatch": []
     },
@@ -224,10 +1844,13 @@
      "dir": "D1",
      "score": 969.4107,
      "gapToFirst": 6.7059,
+     "owners": [
+      "장승민"
+     ],
      "s500": 976.6124,
      "s500Rejected": 0,
      "sources": [
-      "jsm:experiments/case3/candidates/2fcf90e69eb4.csv@991be4b464"
+      "장승민 · jsm:experiments/case3/candidates/2fcf90e69eb4.csv@23a672ba8a"
      ],
      "recordedMismatch": []
     },
@@ -238,12 +1861,16 @@
      "dir": "D1",
      "score": 970.821,
      "gapToFirst": 8.1162,
+     "owners": [
+      "박진홍",
+      "장승민"
+     ],
      "s500": 988.3446,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case3/cand_97082.csv@1584cb7ca4",
-      "jsm-original:experiments/JSM/five-case/team/case3/jinhong__cand_97082.csv@4f01b27a5c",
-      "jsm:experiments/case3/candidates/ed5f5d03d37d.csv@991be4b464"
+      "박진홍 · jinhong-experiments:jinhong/case3/cand_97082.csv@1584cb7ca4",
+      "박진홍 · jsm-original:experiments/JSM/five-case/team/case3/jinhong__cand_97082.csv@4f01b27a5c",
+      "장승민 · jsm:experiments/case3/candidates/ed5f5d03d37d.csv@23a672ba8a"
      ],
      "recordedMismatch": []
     },
@@ -254,10 +1881,13 @@
      "dir": "D1",
      "score": 971.2163,
      "gapToFirst": 8.5115,
+     "owners": [
+      "장승민"
+     ],
      "s500": 979.9373,
      "s500Rejected": 0,
      "sources": [
-      "jsm:experiments/case3/candidates/a5c1da947d90.csv@991be4b464"
+      "장승민 · jsm:experiments/case3/candidates/a5c1da947d90.csv@23a672ba8a"
      ],
      "recordedMismatch": []
     },
@@ -268,10 +1898,13 @@
      "dir": "D2",
      "score": 972.4246,
      "gapToFirst": 9.7198,
+     "owners": [
+      "장승민"
+     ],
      "s500": 983.7489,
      "s500Rejected": 0,
      "sources": [
-      "jsm:experiments/case3/candidates/859269dbb6c6.csv@991be4b464"
+      "장승민 · jsm:experiments/case3/candidates/859269dbb6c6.csv@23a672ba8a"
      ],
      "recordedMismatch": []
     },
@@ -282,12 +1915,16 @@
      "dir": "D1",
      "score": 973.1501,
      "gapToFirst": 10.4453,
+     "owners": [
+      "박진홍",
+      "장승민"
+     ],
      "s500": 987.7944,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case3/answer_case3_97315.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case3/cand_97315.csv@1584cb7ca4",
-      "jsm-original:experiments/JSM/five-case/team/case3/jinhong__answer_case3_97315.csv@4f01b27a5c"
+      "박진홍 · jinhong-experiments:jinhong/case3/answer_case3_97315.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case3/cand_97315.csv@1584cb7ca4",
+      "박진홍 · jsm-original:experiments/JSM/five-case/team/case3/jinhong__answer_case3_97315.csv@4f01b27a5c"
      ],
      "recordedMismatch": []
     },
@@ -298,10 +1935,13 @@
      "dir": "D2",
      "score": 973.671,
      "gapToFirst": 10.9662,
+     "owners": [
+      "장승민"
+     ],
      "s500": 981.8458,
      "s500Rejected": 0,
      "sources": [
-      "jsm:experiments/case3/candidates/f5d9cca6b020.csv@991be4b464"
+      "장승민 · jsm:experiments/case3/candidates/f5d9cca6b020.csv@23a672ba8a"
      ],
      "recordedMismatch": []
     },
@@ -312,10 +1952,13 @@
      "dir": "D1",
      "score": 974.3433,
      "gapToFirst": 11.6385,
+     "owners": [
+      "장승민"
+     ],
      "s500": 979.8071,
      "s500Rejected": 0,
      "sources": [
-      "jsm:experiments/case3/candidates/4592869026de.csv@991be4b464"
+      "장승민 · jsm:experiments/case3/candidates/4592869026de.csv@23a672ba8a"
      ],
      "recordedMismatch": []
     },
@@ -326,10 +1969,13 @@
      "dir": "D2",
      "score": 975.1069,
      "gapToFirst": 12.4021,
+     "owners": [
+      "장승민"
+     ],
      "s500": 982.8991,
      "s500Rejected": 0,
      "sources": [
-      "jsm:experiments/case3/candidates/b3debb316487.csv@991be4b464"
+      "장승민 · jsm:experiments/case3/candidates/b3debb316487.csv@23a672ba8a"
      ],
      "recordedMismatch": []
     },
@@ -340,17 +1986,20 @@
      "dir": "D1",
      "score": 975.942,
      "gapToFirst": 13.2372,
+     "owners": [
+      "장승민"
+     ],
      "s500": 979.9109,
      "s500Rejected": 0,
      "sources": [
-      "jsm:experiments/case3/candidates/3a0a134f1d3c.csv@991be4b464"
+      "장승민 · jsm:experiments/case3/candidates/3a0a134f1d3c.csv@23a672ba8a"
      ],
      "recordedMismatch": []
     }
    ],
    "teamPool": {
-    "answers": 170,
-    "updated": "2026-11-26T10:24:26.024Z"
+    "answers": 169,
+    "updated": "2026-11-26T11:13:48.802Z"
    },
    "candidates": 400,
    "searchTasks": {
@@ -1539,10 +3188,13 @@
      "dir": "D2",
      "score": 792.0212,
      "gapToFirst": 0,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 796.7896,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case4/cand_79202.csv@1584cb7ca4"
+      "박진홍 · jinhong-experiments:jinhong/case4/cand_79202.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
     },
@@ -1553,10 +3205,13 @@
      "dir": "D2",
      "score": 792.0212,
      "gapToFirst": 0,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 796.8178,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case4/cand_k1c.csv@1584cb7ca4"
+      "박진홍 · jinhong-experiments:jinhong/case4/cand_k1c.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
     },
@@ -1567,12 +3222,15 @@
      "dir": "D3",
      "score": 792.3266,
      "gapToFirst": 0.3054,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 797.3505,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case4/answer_case4.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case4/cand_79233.csv@1584cb7ca4",
-      "pjh:experiments/case4/PJH-1125-79233/answer.csv@c5dc1c6d79"
+      "박진홍 · jinhong-experiments:jinhong/case4/answer_case4.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case4/cand_79233.csv@1584cb7ca4",
+      "박진홍 · pjh:experiments/case4/PJH-1125-79233/answer.csv@c5dc1c6d79"
      ],
      "recordedMismatch": []
     },
@@ -1583,12 +3241,15 @@
      "dir": "D3",
      "score": 793.8167,
      "gapToFirst": 1.7955,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 798.2923,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case4/answer_case4_79382.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case4/cand_79382.csv@1584cb7ca4",
-      "pjh:experiments/case4/PJH-1125-79382/answer.csv@c5dc1c6d79"
+      "박진홍 · jinhong-experiments:jinhong/case4/answer_case4_79382.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case4/cand_79382.csv@1584cb7ca4",
+      "박진홍 · pjh:experiments/case4/PJH-1125-79382/answer.csv@c5dc1c6d79"
      ],
      "recordedMismatch": []
     },
@@ -1599,11 +3260,14 @@
      "dir": "D4",
      "score": 796.6573,
      "gapToFirst": 4.6361,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 799.0857,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case4/answer_case4_79666.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case4/cand_n18_79666.csv@1584cb7ca4"
+      "박진홍 · jinhong-experiments:jinhong/case4/answer_case4_79666.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case4/cand_n18_79666.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
     },
@@ -1614,10 +3278,13 @@
      "dir": "D5",
      "score": 798.0185,
      "gapToFirst": 5.9973,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 799.5023,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case4/cand_r1n17b.csv@1584cb7ca4"
+      "박진홍 · jinhong-experiments:jinhong/case4/cand_r1n17b.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
     },
@@ -1628,10 +3295,13 @@
      "dir": "D6",
      "score": 800.7904,
      "gapToFirst": 8.7692,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 803.7403,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case4/cand_n17_80079.csv@1584cb7ca4"
+      "박진홍 · jinhong-experiments:jinhong/case4/cand_n17_80079.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
     },
@@ -1642,10 +3312,13 @@
      "dir": "D6",
      "score": 800.8966,
      "gapToFirst": 8.8754,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 803.8813,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case4/cand_n17_80090.csv@1584cb7ca4"
+      "박진홍 · jinhong-experiments:jinhong/case4/cand_n17_80090.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
     },
@@ -1656,11 +3329,14 @@
      "dir": "D7",
      "score": 801.4408,
      "gapToFirst": 9.4196,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 802.1191,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case4/answer_case4_80144.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case4/cand_80144.csv@1584cb7ca4"
+      "박진홍 · jinhong-experiments:jinhong/case4/answer_case4_80144.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case4/cand_80144.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
     },
@@ -1671,19 +3347,23 @@
      "dir": "D1",
      "score": 801.467,
      "gapToFirst": 9.4458,
+     "owners": [
+      "박진홍",
+      "장승민"
+     ],
      "s500": 802.1418,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case4/answer_case4_80147.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case4/cand_80147.csv@1584cb7ca4",
-      "jsm:experiments/case4/candidates/a88dfee925e7.csv@991be4b464"
+      "박진홍 · jinhong-experiments:jinhong/case4/answer_case4_80147.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case4/cand_80147.csv@1584cb7ca4",
+      "장승민 · jsm:experiments/case4/candidates/a88dfee925e7.csv@23a672ba8a"
      ],
      "recordedMismatch": []
     }
    ],
    "teamPool": {
     "answers": 22,
-    "updated": "2026-11-26T10:24:26.024Z"
+    "updated": "2026-11-26T11:13:48.802Z"
    },
    "candidates": 2,
    "searchTasks": {
@@ -1865,10 +3545,13 @@
      "dir": "D1",
      "score": 770.8816,
      "gapToFirst": 0,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 786.7907,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case5/cand_77088.csv@1584cb7ca4"
+      "박진홍 · jinhong-experiments:jinhong/case5/cand_77088.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
     },
@@ -1879,12 +3562,15 @@
      "dir": "D1",
      "score": 770.9353,
      "gapToFirst": 0.0537,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 786.4477,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case5/answer_case5.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case5/cand_77094.csv@1584cb7ca4",
-      "pjh:experiments/case5/PJH-1125-77094/answer.csv@c5dc1c6d79"
+      "박진홍 · jinhong-experiments:jinhong/case5/answer_case5.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case5/cand_77094.csv@1584cb7ca4",
+      "박진홍 · pjh:experiments/case5/PJH-1125-77094/answer.csv@c5dc1c6d79"
      ],
      "recordedMismatch": []
     },
@@ -1895,10 +3581,13 @@
      "dir": "D1",
      "score": 771.3895,
      "gapToFirst": 0.5079,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 787.1119,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case5/cand_77139.csv@1584cb7ca4"
+      "박진홍 · jinhong-experiments:jinhong/case5/cand_77139.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
     },
@@ -1909,12 +3598,16 @@
      "dir": "D1",
      "score": 771.4315,
      "gapToFirst": 0.5499,
+     "owners": [
+      "박진홍",
+      "장승민"
+     ],
      "s500": 787.1466,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case5/answer_case5_77143.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case5/cand_77143.csv@1584cb7ca4",
-      "jsm:experiments/case5/candidates/dd48afb957ba.csv@991be4b464"
+      "박진홍 · jinhong-experiments:jinhong/case5/answer_case5_77143.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case5/cand_77143.csv@1584cb7ca4",
+      "장승민 · jsm:experiments/case5/candidates/dd48afb957ba.csv@23a672ba8a"
      ],
      "recordedMismatch": []
     },
@@ -1925,11 +3618,14 @@
      "dir": "D2",
      "score": 776.1009,
      "gapToFirst": 5.2193,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 775.5363,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case5/answer_case5_776.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case5/cand_776.csv@1584cb7ca4"
+      "박진홍 · jinhong-experiments:jinhong/case5/answer_case5_776.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case5/cand_776.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
     },
@@ -1940,12 +3636,15 @@
      "dir": "D3",
      "score": 779.7092,
      "gapToFirst": 8.8276,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 788.2543,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case5/answer_case5_779.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case5/search_s11_best.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case5/search_s12_best.csv@1584cb7ca4"
+      "박진홍 · jinhong-experiments:jinhong/case5/answer_case5_779.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case5/search_s11_best.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case5/search_s12_best.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
     },
@@ -1956,12 +3655,15 @@
      "dir": "D3",
      "score": 779.896,
      "gapToFirst": 9.0144,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 788.2432,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case5/search_s1_best.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case5/search_s5_best.csv@1584cb7ca4",
-      "jinhong-experiments:jinhong/case5/search_s6_best.csv@1584cb7ca4"
+      "박진홍 · jinhong-experiments:jinhong/case5/search_s1_best.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case5/search_s5_best.csv@1584cb7ca4",
+      "박진홍 · jinhong-experiments:jinhong/case5/search_s6_best.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
     },
@@ -1972,10 +3674,13 @@
      "dir": "D4",
      "score": 782.2823,
      "gapToFirst": 11.4007,
+     "owners": [
+      "박진홍"
+     ],
      "s500": 789.1828,
      "s500Rejected": 0,
      "sources": [
-      "jinhong-experiments:jinhong/case5/search_s2_best.csv@1584cb7ca4"
+      "박진홍 · jinhong-experiments:jinhong/case5/search_s2_best.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
     },
@@ -1986,31 +3691,37 @@
      "dir": "D5",
      "score": 785.013,
      "gapToFirst": 14.1314,
+     "owners": [
+      "곽민재"
+     ],
      "s500": 782.267,
      "s500Rejected": 0,
      "sources": [
-      "kmj:experiments/case5/KMJ-1125-DUAL-C5/answer.csv@29934ceef7"
+      "곽민재 · kmj:experiments/case5/KMJ-1125-DUAL-C5/answer.csv@29934ceef7"
      ],
      "recordedMismatch": []
     },
     {
      "rank": 10,
-     "sha12": "40239b5104a3",
+     "sha12": "1f5341dbedd6",
      "fleet": 21,
      "dir": "D3",
      "score": 814.0583,
      "gapToFirst": 43.1767,
+     "owners": [
+      "곽민재"
+     ],
      "s500": 812.2789,
      "s500Rejected": 0,
      "sources": [
-      "kmj:experiments/case5/KMJ-1125-FH-C5-V2/answer.csv@29934ceef7"
+      "곽민재 · kmj:experiments/case5/KMJ-1125-FH-C5-V2/answer.csv@29934ceef7"
      ],
      "recordedMismatch": []
     }
    ],
    "teamPool": {
     "answers": 13,
-    "updated": "2026-11-26T10:24:26.024Z"
+    "updated": "2026-11-26T11:13:48.802Z"
    },
    "candidates": 3,
    "searchTasks": {
@@ -2316,5 +4027,5 @@
    "status": "ok"
   }
  ],
- "evidenceCount": 571
+ "evidenceCount": 756
 }
