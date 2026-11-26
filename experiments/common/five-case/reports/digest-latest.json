@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T13:14:57.904Z",
+ "generated": "2026-11-26T13:18:31.887Z",
  "method": {
   "alpha": 0.05,
   "minBlocks": 3,
@@ -11,16 +11,16 @@
   "ocba": "Chen et al. OCBA, sigma from paired differences"
  },
  "sources": {
-  "total": 45,
+  "total": 53,
   "new": [
-   "experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-0/auto-11262212-github.jsonl",
-   "experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-1/auto-11262212-github.jsonl",
-   "experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-2/auto-11262212-github.jsonl",
-   "experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-3/auto-11262212-github.jsonl",
-   "experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-4/auto-11262212-github.jsonl",
-   "experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-5/auto-11262212-github.jsonl",
-   "experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-6/auto-11262212-github.jsonl",
-   "experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-7/auto-11262212-github.jsonl"
+   "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-0/auto-11262216-github.jsonl",
+   "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-1/auto-11262216-github.jsonl",
+   "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-2/auto-11262216-github.jsonl",
+   "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-3/auto-11262216-github.jsonl",
+   "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-4/auto-11262216-github.jsonl",
+   "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-5/auto-11262216-github.jsonl",
+   "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-6/auto-11262216-github.jsonl",
+   "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-7/auto-11262216-github.jsonl"
   ],
   "conflicts": []
  },
@@ -186,6 +186,26 @@
    }
   },
   {
+   "batch": "auto-11262216",
+   "cases": [
+    4,
+    5
+   ],
+   "envs": {
+    "github": {
+     "planned": 16,
+     "returned": 16,
+     "failed": 0,
+     "rejectedBlocks": 0,
+     "cpuMs": 356191,
+     "evals": 3840,
+     "missing": 0,
+     "missingReason": null,
+     "msPerEval": 92.76
+    }
+   }
+  },
+  {
    "batch": "overnight-1125",
    "cases": [
     2,
@@ -266,7 +286,7 @@
      "s500": 1181.4931,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case1/candidates/e086d3b2ffd3.csv@8db5603336"
+      "장승민 · jsm:experiments/case1/candidates/e086d3b2ffd3.csv@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -435,7 +455,7 @@
    ],
    "teamPool": {
     "answers": 13,
-    "updated": "2026-11-26T13:14:57.708Z"
+    "updated": "2026-11-26T13:18:31.689Z"
    },
    "candidates": 1,
    "searchTasks": {},
@@ -499,9 +519,9 @@
      "s500": 616.0472,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/63c180933a03.csv@8db5603336",
-      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-0/auto-11262209-github.jsonl#auto-11262209:c2:search:0:0@8db5603336",
-      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-1/auto-11262209-github.jsonl#auto-11262209:c2:search:0:1@8db5603336"
+      "장승민 · jsm:experiments/case2/candidates/63c180933a03.csv@0fedd5ec85",
+      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-0/auto-11262209-github.jsonl#auto-11262209:c2:search:0:0@0fedd5ec85",
+      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-1/auto-11262209-github.jsonl#auto-11262209:c2:search:0:1@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -540,7 +560,7 @@
      "s500": 615.9934,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/e11ec2f18ec8.csv@8db5603336"
+      "장승민 · jsm:experiments/case2/candidates/e11ec2f18ec8.csv@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -558,7 +578,7 @@
      "s500": 616.1392,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/ac1aefe2491f.csv@8db5603336"
+      "장승민 · jsm:experiments/case2/candidates/ac1aefe2491f.csv@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -618,7 +638,7 @@
      "s500": 614.0309,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/50cfda9473f9.csv@8db5603336"
+      "장승민 · jsm:experiments/case2/candidates/50cfda9473f9.csv@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -636,7 +656,7 @@
      "s500": 616.2748,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/4946a671ce96.csv@8db5603336"
+      "장승민 · jsm:experiments/case2/candidates/4946a671ce96.csv@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -654,7 +674,7 @@
      "s500": 616.2662,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/552a7bd0e624.csv@8db5603336"
+      "장승민 · jsm:experiments/case2/candidates/552a7bd0e624.csv@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -672,14 +692,14 @@
      "s500": 616.2748,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case2/candidates/f093cbf354e3.csv@8db5603336"
+      "장승민 · jsm:experiments/case2/candidates/f093cbf354e3.csv@0fedd5ec85"
      ],
      "recordedMismatch": []
     }
    ],
    "teamPool": {
     "answers": 39,
-    "updated": "2026-11-26T13:14:57.708Z"
+    "updated": "2026-11-26T13:18:31.689Z"
    },
    "candidates": 33,
    "searchTasks": {
@@ -1938,9 +1958,9 @@
      "s500": 976.6124,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/2fcf90e69eb4.csv@8db5603336",
-      "장승민 · jsm:experiments/common/five-case/raw/B2-local.jsonl#B2:c3:search:B0-n23-transplant@8db5603336",
-      "장승민 · jsm:experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-0/auto-11262212-github.jsonl#auto-11262212:c3:search:3:0@8db5603336"
+      "장승민 · jsm:experiments/case3/candidates/2fcf90e69eb4.csv@0fedd5ec85",
+      "장승민 · jsm:experiments/common/five-case/raw/B2-local.jsonl#B2:c3:search:B0-n23-transplant@0fedd5ec85",
+      "장승민 · jsm:experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-0/auto-11262212-github.jsonl#auto-11262212:c3:search:3:0@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -1960,7 +1980,7 @@
      "sources": [
       "박진홍 · jinhong-experiments:jinhong/case3/cand_97082.csv@1584cb7ca4",
       "박진홍 · jsm-original:experiments/JSM/five-case/team/case3/jinhong__cand_97082.csv@4f01b27a5c",
-      "장승민 · jsm:experiments/case3/candidates/ed5f5d03d37d.csv@8db5603336"
+      "장승민 · jsm:experiments/case3/candidates/ed5f5d03d37d.csv@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -1977,9 +1997,9 @@
      "s500": 979.9373,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/a5c1da947d90.csv@8db5603336",
-      "장승민 · jsm:experiments/common/five-case/raw/B2-github.jsonl#B2:c3:search:B0-n21-transplant@8db5603336",
-      "장승민 · jsm:experiments/common/five-case/raw/github/45360658878/jsm-five-case-B2-45360658878-1/B2-github.jsonl#B2:c3:search:B0-n21-transplant@8db5603336"
+      "장승민 · jsm:experiments/case3/candidates/a5c1da947d90.csv@0fedd5ec85",
+      "장승민 · jsm:experiments/common/five-case/raw/B2-github.jsonl#B2:c3:search:B0-n21-transplant@0fedd5ec85",
+      "장승민 · jsm:experiments/common/five-case/raw/github/45360658878/jsm-five-case-B2-45360658878-1/B2-github.jsonl#B2:c3:search:B0-n21-transplant@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -1996,9 +2016,9 @@
      "s500": 983.7489,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/859269dbb6c6.csv@8db5603336",
-      "장승민 · jsm:experiments/common/five-case/raw/B2-github.jsonl#B2:c3:search:D2-n21-transplant@8db5603336",
-      "장승민 · jsm:experiments/common/five-case/raw/github/45360658878/jsm-five-case-B2-45360658878-1/B2-github.jsonl#B2:c3:search:D2-n21-transplant@8db5603336"
+      "장승민 · jsm:experiments/case3/candidates/859269dbb6c6.csv@0fedd5ec85",
+      "장승민 · jsm:experiments/common/five-case/raw/B2-github.jsonl#B2:c3:search:D2-n21-transplant@0fedd5ec85",
+      "장승민 · jsm:experiments/common/five-case/raw/github/45360658878/jsm-five-case-B2-45360658878-1/B2-github.jsonl#B2:c3:search:D2-n21-transplant@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -2035,8 +2055,8 @@
      "s500": 981.8458,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/f5d9cca6b020.csv@8db5603336",
-      "장승민 · jsm:experiments/common/five-case/raw/B2-local.jsonl#B2:c3:search:D2-n22-transplant@8db5603336"
+      "장승민 · jsm:experiments/case3/candidates/f5d9cca6b020.csv@0fedd5ec85",
+      "장승민 · jsm:experiments/common/five-case/raw/B2-local.jsonl#B2:c3:search:D2-n22-transplant@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -2053,7 +2073,7 @@
      "s500": 979.8071,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/4592869026de.csv@8db5603336"
+      "장승민 · jsm:experiments/case3/candidates/4592869026de.csv@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -2070,7 +2090,7 @@
      "s500": 982.8991,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/b3debb316487.csv@8db5603336"
+      "장승민 · jsm:experiments/case3/candidates/b3debb316487.csv@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -2087,14 +2107,14 @@
      "s500": 979.9109,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/case3/candidates/3a0a134f1d3c.csv@8db5603336"
+      "장승민 · jsm:experiments/case3/candidates/3a0a134f1d3c.csv@0fedd5ec85"
      ],
      "recordedMismatch": []
     }
    ],
    "teamPool": {
     "answers": 403,
-    "updated": "2026-11-26T13:14:57.708Z"
+    "updated": "2026-11-26T13:18:31.689Z"
    },
    "candidates": 454,
    "searchTasks": {
@@ -3331,8 +3351,8 @@
      "s500Rejected": 0,
      "sources": [
       "박진홍 · jinhong-experiments:jinhong/case4/cand_79202.csv@1584cb7ca4",
-      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-0/auto-11262209-github.jsonl#auto-11262209:c4:search:1:0@8db5603336",
-      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-1/auto-11262209-github.jsonl#auto-11262209:c4:search:1:1@8db5603336"
+      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-0/auto-11262209-github.jsonl#auto-11262209:c4:search:1:0@0fedd5ec85",
+      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-1/auto-11262209-github.jsonl#auto-11262209:c4:search:1:1@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -3394,6 +3414,24 @@
     },
     {
      "rank": 5,
+     "sha12": "f9af5227080f",
+     "fleet": 18,
+     "dir": "D4",
+     "score": 796.5718,
+     "gapToFirst": 4.5506,
+     "owners": [
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T13:18:14.089Z",
+     "s500": 797.4756,
+     "s500Rejected": 0,
+     "sources": [
+      "장승민 · jsm:experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-2/auto-11262216-github.jsonl#auto-11262216:c4:search:0:2@0fedd5ec85"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 6,
      "sha12": "a4e436b036a3",
      "fleet": 18,
      "dir": "D4",
@@ -3411,7 +3449,61 @@
      "recordedMismatch": []
     },
     {
-     "rank": 6,
+     "rank": 7,
+     "sha12": "717c771504a5",
+     "fleet": 18,
+     "dir": "D4",
+     "score": 797.0339,
+     "gapToFirst": 5.0127,
+     "owners": [
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T13:18:14.089Z",
+     "s500": 797.4728,
+     "s500Rejected": 0,
+     "sources": [
+      "장승민 · jsm:experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-1/auto-11262216-github.jsonl#auto-11262216:c4:search:0:1@0fedd5ec85"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 8,
+     "sha12": "63cf45f2c328",
+     "fleet": 18,
+     "dir": "D4",
+     "score": 797.1346,
+     "gapToFirst": 5.1134,
+     "owners": [
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T13:18:14.091Z",
+     "s500": 797.4087,
+     "s500Rejected": 0,
+     "sources": [
+      "장승민 · jsm:experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-5/auto-11262216-github.jsonl#auto-11262216:c4:search:0:5@0fedd5ec85"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 9,
+     "sha12": "f6320ab2ff1f",
+     "fleet": 18,
+     "dir": "D4",
+     "score": 797.1348,
+     "gapToFirst": 5.1136,
+     "owners": [
+      "장승민"
+     ],
+     "firstSeen": "2026-11-26T13:18:14.090Z",
+     "s500": 797.2576,
+     "s500Rejected": 0,
+     "sources": [
+      "장승민 · jsm:experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-3/auto-11262216-github.jsonl#auto-11262216:c4:search:0:3@0fedd5ec85"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 10,
      "sha12": "f0eb6f93b611",
      "fleet": 17,
      "dir": "D5",
@@ -3426,85 +3518,13 @@
       "박진홍 · jinhong-experiments:jinhong/case4/cand_r1n17b.csv@1584cb7ca4"
      ],
      "recordedMismatch": []
-    },
-    {
-     "rank": 7,
-     "sha12": "f9c8c9d1c522",
-     "fleet": 17,
-     "dir": "D6",
-     "score": 800.7904,
-     "gapToFirst": 8.7692,
-     "owners": [
-      "박진홍"
-     ],
-     "s500": 803.7403,
-     "s500Rejected": 0,
-     "sources": [
-      "박진홍 · jinhong-experiments:jinhong/case4/cand_n17_80079.csv@1584cb7ca4"
-     ],
-     "recordedMismatch": []
-    },
-    {
-     "rank": 8,
-     "sha12": "80b5fba5f81d",
-     "fleet": 17,
-     "dir": "D6",
-     "score": 800.8966,
-     "gapToFirst": 8.8754,
-     "owners": [
-      "박진홍"
-     ],
-     "s500": 803.8813,
-     "s500Rejected": 0,
-     "sources": [
-      "박진홍 · jinhong-experiments:jinhong/case4/cand_n17_80090.csv@1584cb7ca4"
-     ],
-     "recordedMismatch": []
-    },
-    {
-     "rank": 9,
-     "sha12": "1bf815aabbb1",
-     "fleet": 18,
-     "dir": "D7",
-     "score": 801.4408,
-     "gapToFirst": 9.4196,
-     "owners": [
-      "박진홍"
-     ],
-     "s500": 802.1191,
-     "s500Rejected": 0,
-     "sources": [
-      "박진홍 · jinhong-experiments:jinhong/case4/answer_case4_80144.csv@1584cb7ca4",
-      "박진홍 · jinhong-experiments:jinhong/case4/cand_80144.csv@1584cb7ca4"
-     ],
-     "recordedMismatch": []
-    },
-    {
-     "rank": 10,
-     "sha12": "a88dfee925e7",
-     "fleet": 18,
-     "dir": "D1",
-     "score": 801.467,
-     "gapToFirst": 9.4458,
-     "owners": [
-      "박진홍",
-      "장승민"
-     ],
-     "s500": 802.1418,
-     "s500Rejected": 0,
-     "sources": [
-      "박진홍 · jinhong-experiments:jinhong/case4/answer_case4_80147.csv@1584cb7ca4",
-      "박진홍 · jinhong-experiments:jinhong/case4/cand_80147.csv@1584cb7ca4",
-      "장승민 · jsm:experiments/case4/candidates/a88dfee925e7.csv@8db5603336"
-     ],
-     "recordedMismatch": []
     }
    ],
    "teamPool": {
-    "answers": 22,
-    "updated": "2026-11-26T13:14:57.708Z"
+    "answers": 30,
+    "updated": "2026-11-26T13:18:31.689Z"
    },
-   "candidates": 132,
+   "candidates": 140,
    "searchTasks": {
     "auto-11262209:github": {
      "planned": 8,
@@ -3514,12 +3534,16 @@
      "planned": 8,
      "returned": 8
     },
+    "auto-11262216:github": {
+     "planned": 8,
+     "returned": 8
+    },
     "overnight-45:kaggle": {
      "planned": 128,
      "returned": 128
     }
    },
-   "withPublic": 131,
+   "withPublic": 139,
    "withHeldOut": 2,
    "engines": [
     "jsim:e2dc473b4509+ev1"
@@ -3555,22 +3579,22 @@
       "score": 792.3266
      },
      {
-      "sha12": "a88dfee925e7",
+      "sha12": "f9af5227080f",
       "fleet": 18,
-      "dir": "D1",
-      "score": 801.467
+      "dir": "D4",
+      "score": 796.5718
      },
      {
-      "sha12": "f32fda29fcbd",
-      "fleet": null,
-      "dir": null,
-      "score": 808.2652
+      "sha12": "717c771504a5",
+      "fleet": 18,
+      "dir": "D4",
+      "score": 797.0339
      },
      {
-      "sha12": "c85585117d0d",
-      "fleet": null,
-      "dir": null,
-      "score": 810.2148
+      "sha12": "63cf45f2c328",
+      "fleet": 18,
+      "dir": "D4",
+      "score": 797.1346
      }
     ]
    },
@@ -3732,6 +3756,25 @@
       }
      }
     },
+    "auto-11262216": {
+     "runs": 8,
+     "evals": 1912,
+     "localOptimum": 8,
+     "best": {
+      "score": 796.5718,
+      "sha12": "f9af5227080f",
+      "fleet": 18,
+      "dir": "D4",
+      "start": "transplant"
+     },
+     "byFleet": {
+      "18": {
+       "runs": 8,
+       "min": 796.57,
+       "mean": 799.86
+      }
+     }
+    },
     "overnight-45": {
      "runs": 128,
      "evals": 25386,
@@ -3770,6 +3813,14 @@
      "heldOutBlocks": 0
     },
     {
+     "score": 796.5718,
+     "sha12": "f9af5227080f",
+     "fleet": 18,
+     "dir": "D4",
+     "start": "transplant",
+     "heldOutBlocks": 0
+    },
+    {
      "score": 808.2652,
      "sha12": "f32fda29fcbd",
      "fleet": null,
@@ -3783,9 +3834,7 @@
     "D2": "1111111111011111111000001110100111100000110010011101001100011110011111101111",
     "D3": "1111111111011111111000001110100111100000110010011101101100011110011111101111",
     "D4": "0111111111111111111010001111110111100000011001111100000100011100011111100111",
-    "D5": "0001111111111111111011101111110111100000011000111100000100011100011111100111",
-    "D6": "0111011111111110011010000111110111100000010001111100001110001100011111100101",
-    "D7": "0011011111111110011011000111110111100000110010111110000110011100011111100101"
+    "D5": "0001111111111111111011101111110111100000011000111100000100011100011111100111"
    }
   },
   "5": {
@@ -3806,8 +3855,8 @@
      "s500Rejected": 0,
      "sources": [
       "박진홍 · jinhong-experiments:jinhong/case5/cand_77088.csv@1584cb7ca4",
-      "장승민 · jsm:experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-0/auto-11262212-github.jsonl#auto-11262212:c5:search:0:0@8db5603336",
-      "장승민 · jsm:experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-1/auto-11262212-github.jsonl#auto-11262212:c5:search:0:1@8db5603336"
+      "장승민 · jsm:experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-0/auto-11262212-github.jsonl#auto-11262212:c5:search:0:0@0fedd5ec85",
+      "장승민 · jsm:experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-1/auto-11262212-github.jsonl#auto-11262212:c5:search:0:1@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -3863,7 +3912,7 @@
      "sources": [
       "박진홍 · jinhong-experiments:jinhong/case5/answer_case5_77143.csv@1584cb7ca4",
       "박진홍 · jinhong-experiments:jinhong/case5/cand_77143.csv@1584cb7ca4",
-      "장승민 · jsm:experiments/case5/candidates/dd48afb957ba.csv@8db5603336"
+      "장승민 · jsm:experiments/case5/candidates/dd48afb957ba.csv@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -3899,7 +3948,7 @@
      "s500": 785.7188,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-7/auto-11262209-github.jsonl#auto-11262209:c5:search:2:7@8db5603336"
+      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-7/auto-11262209-github.jsonl#auto-11262209:c5:search:2:7@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -3917,7 +3966,7 @@
      "s500": null,
      "s500Rejected": null,
      "sources": [
-      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-6/auto-11262209-github.jsonl#auto-11262209:c5:search:2:6@8db5603336"
+      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-6/auto-11262209-github.jsonl#auto-11262209:c5:search:2:6@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -3935,7 +3984,7 @@
      "s500": 785.794,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-1/auto-11262209-github.jsonl#auto-11262209:c5:search:2:1@8db5603336"
+      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-1/auto-11262209-github.jsonl#auto-11262209:c5:search:2:1@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -3953,7 +4002,7 @@
      "s500": null,
      "s500Rejected": null,
      "sources": [
-      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-5/auto-11262209-github.jsonl#auto-11262209:c5:search:2:5@8db5603336"
+      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-5/auto-11262209-github.jsonl#auto-11262209:c5:search:2:5@0fedd5ec85"
      ],
      "recordedMismatch": []
     },
@@ -3971,16 +4020,16 @@
      "s500": 785.8497,
      "s500Rejected": 0,
      "sources": [
-      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-2/auto-11262209-github.jsonl#auto-11262209:c5:search:2:2@8db5603336"
+      "장승민 · jsm:experiments/common/five-case/raw/github/45826391193/jsm-five-case-auto-11262209-45826391193-1-2/auto-11262209-github.jsonl#auto-11262209:c5:search:2:2@0fedd5ec85"
      ],
      "recordedMismatch": []
     }
    ],
    "teamPool": {
-    "answers": 22,
-    "updated": "2026-11-26T13:14:57.708Z"
+    "answers": 30,
+    "updated": "2026-11-26T13:18:31.689Z"
    },
-   "candidates": 201,
+   "candidates": 209,
    "searchTasks": {
     "auto-11262209:github": {
      "planned": 8,
@@ -3990,12 +4039,16 @@
      "planned": 16,
      "returned": 16
     },
+    "auto-11262216:github": {
+     "planned": 8,
+     "returned": 8
+    },
     "overnight-45:kaggle": {
      "planned": 189,
      "returned": 189
     }
    },
-   "withPublic": 200,
+   "withPublic": 208,
    "withHeldOut": 3,
    "engines": [
     "jsim:e2dc473b4509+ev1"
@@ -4296,6 +4349,25 @@
       }
      }
     },
+    "auto-11262216": {
+     "runs": 8,
+     "evals": 1912,
+     "localOptimum": 8,
+     "best": {
+      "score": 778.2948,
+      "sha12": "42fa6e617f7a",
+      "fleet": 22,
+      "dir": "D2",
+      "start": "transplant"
+     },
+     "byFleet": {
+      "22": {
+       "runs": 8,
+       "min": 778.29,
+       "mean": 796.35
+      }
+     }
+    },
     "overnight-45": {
      "runs": 189,
      "evals": 44699,
@@ -4330,6 +4402,14 @@
      "sha12": "aed2f894f8a5",
      "fleet": 23,
      "dir": "D1",
+     "start": "transplant",
+     "heldOutBlocks": 0
+    },
+    {
+     "score": 778.2948,
+     "sha12": "42fa6e617f7a",
+     "fleet": 22,
+     "dir": "D2",
      "start": "transplant",
      "heldOutBlocks": 0
     },
@@ -4416,9 +4496,15 @@
    "status": "ok"
   },
   {
-   "ev": "c5.vsbest.dd48afb957ba",
-   "recorded": "worse",
-   "current": "worse",
+   "ev": "c5.effect.dd48afb957ba.a528e43bafdd",
+   "recorded": "a-worse",
+   "current": "a-worse",
+   "status": "ok"
+  },
+  {
+   "ev": "c5.effect.dd48afb957ba.19b730ac721c",
+   "recorded": "a-better",
+   "current": "a-better",
    "status": "ok"
   },
   {

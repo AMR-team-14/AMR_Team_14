@@ -1,5 +1,5 @@
 {
- "saved": "2026-11-26T13:16:06.707Z",
+ "saved": "2026-11-26T13:19:16.026Z",
  "sources": [
   {
    "source": "experiments/common/five-case/raw/B1-github.jsonl",
@@ -257,6 +257,54 @@
    "source": "experiments/common/five-case/raw/github/45826952589/jsm-five-case-auto-11262212-45826952589-1-7/auto-11262212-github.jsonl",
    "rows": 5,
    "sha12": "d7fc7c9d55bf",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-0/auto-11262216-github.jsonl",
+   "rows": 2,
+   "sha12": "b15a39405c97",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-1/auto-11262216-github.jsonl",
+   "rows": 2,
+   "sha12": "94185adbf57d",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-2/auto-11262216-github.jsonl",
+   "rows": 2,
+   "sha12": "b22f2a0119df",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-3/auto-11262216-github.jsonl",
+   "rows": 2,
+   "sha12": "746dfd1b00b0",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-4/auto-11262216-github.jsonl",
+   "rows": 2,
+   "sha12": "ebc91455eb26",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-5/auto-11262216-github.jsonl",
+   "rows": 2,
+   "sha12": "ecd0f4f170f0",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-6/auto-11262216-github.jsonl",
+   "rows": 2,
+   "sha12": "85d4ae4ab7eb",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45827534038/jsm-five-case-auto-11262216-45827534038-1-7/auto-11262216-github.jsonl",
+   "rows": 2,
+   "sha12": "03da31358d3c",
    "engine": "jsim:e2dc473b4509+ev1"
   },
   {
