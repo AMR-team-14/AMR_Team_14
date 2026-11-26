@@ -10,7 +10,8 @@ const R = require('./results.cjs');
 const [batch, speedArg, budgetArg] = process.argv.slice(2);
 const budget = Number(budgetArg || 800);
 const speeds = Object.fromEntries(speedArg.split(',').map(s => s.split('=')).map(([k, v]) => [k, +v]));
-const PUBLIC = 11, SCREEN = [2400001, 2400006, 2400011, 2400016];
+const S = require('./seeds.cjs');            // team seed plan: public 11-15, held-out blocks inside 1-500
+const PUBLIC = S.PUBLIC, SCREEN = S.STAGES.screen;
 const tasks = [], reused = [];
 const doneKeys = {};
 const keys = c => doneKeys[c] || (doneKeys[c] = new Set(R.allResults(c).filter(r => r.status === 'done').map(R.keyOf)));

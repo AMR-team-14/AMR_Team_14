@@ -1,15 +1,15 @@
 {
  "answers": {
-  "74a321696379f6e61128844364a971a021e6494ee14de4abac739227d9235160": {
+  "434ceec162f3d253ddbba668fd4fb35179cb3cfee9b64261f2a8cbc6324c48da": {
    "case": 3,
-   "sha12": "74a321696379",
+   "sha12": "434ceec162f3",
    "text": "dir,1111111100000000011111011001101\nfleet,20\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,2,0,8\nkey,5,w,min,2.85,0,0\nkey,6,w,max,0.50,9,0\nkey,7,w,min,0.90,0,0\nkey,8,dl,min,220,0,0\nkey,9,dl,min,40,0,0\n",
    "sources": [
     {
      "branch": "DOE1119",
      "commit": "9f10a8d4fc",
      "path": "ans_c3.csv",
-     "author": "kwak-kwak-2",
+     "author": "곽민재",
      "recorded": null,
      "match": null
     }
@@ -20,16 +20,16 @@
    },
    "fleet": 20
   },
-  "7c2f9be60f1778a40963b6afceaedd479877aa4d1a5a80768b292c9bb3c19511": {
+  "8fac2eec03279c1109b9edb46c06bee6cd1f56d9f9afa284d95b79820d6fd572": {
    "case": 4,
-   "sha12": "7c2f9be60f17",
+   "sha12": "8fac2eec0327",
    "text": "dir,1111111111011111111000001111110111100000110011101101000100010110011111101111\nfleet,16\nkey,1,de,min,96.20,2,3\nkey,2,urg,max,0.5,0,4\nkey,3,urg,min,0.5,5,0\nkey,4,w,min,0.80,6,0\nkey,5,w,max,3.50,0,0\nkey,6,dl,min,30,0,0\n",
    "sources": [
     {
      "branch": "DOE1119",
      "commit": "9f10a8d4fc",
      "path": "ans_c4.csv",
-     "author": "kwak-kwak-2",
+     "author": "곽민재",
      "recorded": null,
      "match": null
     }
@@ -40,16 +40,16 @@
    },
    "fleet": 16
   },
-  "6a0e81cf72f596a8d34cd4988f0836adc87c03242ca9ab0ed9ac629e9b7b804a": {
+  "2a1aa821334b7c2d12a9d03b8aedb7968d758ffc5fc126d6d1618dd505427184": {
    "case": 5,
-   "sha12": "6a0e81cf72f5",
+   "sha12": "2a1aa821334b",
    "text": "dir,000111100111100001000010010011\nfleet,22\nkey,1,de,min,95.85,2,3\nkey,2,urg,max,0.5,0,4\nkey,3,urg,min,0.5,5,6\nkey,4,dl,max,45.10,0,0\nkey,5,w,max,0.63,7,0\nkey,6,w,min,0.67,0,0\nkey,7,dl,max,66.65,0,0\n",
    "sources": [
     {
      "branch": "DOE1119",
      "commit": "9f10a8d4fc",
      "path": "ans_c5.csv",
-     "author": "kwak-kwak-2",
+     "author": "곽민재",
      "recorded": null,
      "match": null
     }
@@ -69,7 +69,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case3/answer_case3.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -77,7 +77,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case3/cand_96271.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 962.71,
      "match": true
     },
@@ -85,7 +85,7 @@
      "branch": "jsm-original",
      "commit": "4f01b27a5c",
      "path": "experiments/JSM/five-case/team/case3/jinhong__answer_case3.csv",
-     "author": "Seungmin Jang",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -93,7 +93,7 @@
      "branch": "jsm-original",
      "commit": "4f01b27a5c",
      "path": "experiments/JSM/five-case/team/case3/jinhong__cand_96271.csv",
-     "author": "Seungmin Jang",
+     "author": "박진홍",
      "recorded": 962.71,
      "match": true
     },
@@ -101,15 +101,15 @@
      "branch": "pjh",
      "commit": "c5dc1c6d79",
      "path": "experiments/case3/PJH-1124-96270/answer.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 962.7048,
      "match": true
     },
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/00fad1b682e2.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -133,7 +133,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case3/answer_case3_97315.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 973.15,
      "match": true
     },
@@ -141,7 +141,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case3/cand_97315.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 973.15,
      "match": true
     },
@@ -149,7 +149,7 @@
      "branch": "jsm-original",
      "commit": "4f01b27a5c",
      "path": "experiments/JSM/five-case/team/case3/jinhong__answer_case3_97315.csv",
-     "author": "Seungmin Jang",
+     "author": "박진홍",
      "recorded": 973.15,
      "match": true
     },
@@ -157,15 +157,15 @@
      "branch": "jsm-original",
      "commit": "4f01b27a5c",
      "path": "experiments/JSM/five-case/team/case3/jinhong__cand_97315.csv",
-     "author": "Seungmin Jang",
+     "author": "박진홍",
      "recorded": 973.15,
      "match": true
     },
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/2336589ad919.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -189,7 +189,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case3/answer_case3_97606.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 976.06,
      "match": true
     },
@@ -197,7 +197,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case3/cand_97606.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 976.06,
      "match": true
     },
@@ -205,7 +205,7 @@
      "branch": "jsm-original",
      "commit": "4f01b27a5c",
      "path": "experiments/JSM/five-case/team/case3/jinhong__answer_case3_97606.csv",
-     "author": "Seungmin Jang",
+     "author": "박진홍",
      "recorded": 976.06,
      "match": true
     },
@@ -213,15 +213,15 @@
      "branch": "jsm-original",
      "commit": "4f01b27a5c",
      "path": "experiments/JSM/five-case/team/case3/jinhong__cand_97606.csv",
-     "author": "Seungmin Jang",
+     "author": "박진홍",
      "recorded": 976.06,
      "match": true
     },
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/d8d70e5cdecd.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -241,7 +241,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case3/answer_case3_97645.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 976.45,
      "match": true
     },
@@ -249,7 +249,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case3/search_s1_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -257,7 +257,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case3/search_s5_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -265,7 +265,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case3/search_s6_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -273,15 +273,15 @@
      "branch": "jsm-original",
      "commit": "4f01b27a5c",
      "path": "experiments/JSM/five-case/team/case3/jinhong__answer_case3_97645.csv",
-     "author": "Seungmin Jang",
+     "author": "박진홍",
      "recorded": 976.45,
      "match": true
     },
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/5623b55f0873.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -301,7 +301,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case3/cand_97082.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 970.82,
      "match": true
     },
@@ -309,15 +309,15 @@
      "branch": "jsm-original",
      "commit": "4f01b27a5c",
      "path": "experiments/JSM/five-case/team/case3/jinhong__cand_97082.csv",
-     "author": "Seungmin Jang",
+     "author": "박진홍",
      "recorded": 970.82,
      "match": true
     },
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/ed5f5d03d37d.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -341,7 +341,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case3/cand_D2_97625.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 976.25,
      "match": true
     },
@@ -349,15 +349,15 @@
      "branch": "jsm-original",
      "commit": "4f01b27a5c",
      "path": "experiments/JSM/five-case/team/case3/jinhong__cand_D2_97625.csv",
-     "author": "Seungmin Jang",
+     "author": "박진홍",
      "recorded": 976.25,
      "match": true
     },
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/898cd4781bd3.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -377,7 +377,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case3/search_s2_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -397,7 +397,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/answer_case4.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -405,7 +405,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_79233.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 792.33,
      "match": true
     },
@@ -413,7 +413,7 @@
      "branch": "pjh",
      "commit": "c5dc1c6d79",
      "path": "experiments/case4/PJH-1125-79233/answer.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 792.3266,
      "match": true
     }
@@ -437,7 +437,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/answer_case4_79382.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 793.82,
      "match": true
     },
@@ -445,7 +445,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_79382.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 793.82,
      "match": true
     },
@@ -453,7 +453,7 @@
      "branch": "pjh",
      "commit": "c5dc1c6d79",
      "path": "experiments/case4/PJH-1125-79382/answer.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 793.8167,
      "match": true
     }
@@ -477,7 +477,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/answer_case4_79666.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 796.66,
      "match": true
     },
@@ -485,7 +485,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_n18_79666.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 796.66,
      "match": true
     }
@@ -509,7 +509,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/answer_case4_80144.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 801.44,
      "match": true
     },
@@ -517,7 +517,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_80144.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 801.44,
      "match": true
     }
@@ -541,7 +541,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/answer_case4_80147.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 801.47,
      "match": true
     },
@@ -549,15 +549,15 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_80147.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 801.47,
      "match": true
     },
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case4/candidates/a88dfee925e7.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -581,7 +581,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/answer_case4_805.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -589,7 +589,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/search_s11_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -597,7 +597,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/search_s12_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -605,7 +605,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/search_s5_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -625,7 +625,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_79202.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 792.02,
      "match": true
     }
@@ -649,7 +649,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_802.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -669,7 +669,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_803.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -689,7 +689,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_k1c.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -713,7 +713,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_n17_80079.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 800.79,
      "match": true
     }
@@ -737,7 +737,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_n17_80090.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 800.9,
      "match": true
     }
@@ -761,7 +761,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_n17_80191.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 801.91,
      "match": true
     }
@@ -781,7 +781,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_n17_80192.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 801.92,
      "match": true
     }
@@ -801,7 +801,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/cand_r1n17b.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -825,7 +825,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/search_s1_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -833,7 +833,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/search_s6_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -853,7 +853,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/search_s2_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -873,7 +873,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/struct_search_s1_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -893,7 +893,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case4/ws_answer_case4.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -913,7 +913,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/answer_case5.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -921,7 +921,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/cand_77094.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 770.94,
      "match": true
     },
@@ -929,7 +929,7 @@
      "branch": "pjh",
      "commit": "c5dc1c6d79",
      "path": "experiments/case5/PJH-1125-77094/answer.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 770.9353,
      "match": true
     }
@@ -953,7 +953,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/answer_case5_77143.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 771.43,
      "match": true
     },
@@ -961,15 +961,15 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/cand_77143.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 771.43,
      "match": true
     },
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case5/candidates/dd48afb957ba.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -993,7 +993,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/answer_case5_776.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -1001,7 +1001,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/cand_776.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -1025,7 +1025,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/answer_case5_779.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -1033,7 +1033,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/search_s11_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -1041,7 +1041,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/search_s12_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -1049,7 +1049,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/ws_answer_case5.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -1073,7 +1073,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/cand_77088.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 770.88,
      "match": true
     }
@@ -1097,7 +1097,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/cand_77139.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": 771.39,
      "match": true
     }
@@ -1121,7 +1121,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/search_s1_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -1129,7 +1129,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/search_s5_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     },
@@ -1137,7 +1137,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/search_s6_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -1161,7 +1161,7 @@
      "branch": "jinhong-experiments",
      "commit": "1584cb7ca4",
      "path": "jinhong/case5/search_s2_best.csv",
-     "author": "jante0",
+     "author": "박진홍",
      "recorded": null,
      "match": null
     }
@@ -1176,16 +1176,16 @@
     "rejected": 0
    }
   },
-  "f6ef0140cc1c824f57d76f865fe04b6665023e4a7ee57a753e610d14eb658528": {
+  "2cf90a821cce681eb12f4fa6cebfcebe89fddeffcd57255727fd6daefb002413": {
    "case": 3,
-   "sha12": "f6ef0140cc1c",
+   "sha12": "2cf90a821cce",
    "text": "dir,1111111100000000011101011001101\nfleet,21\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.20,0,0\nkey,6,w,max,2.40,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
    "sources": [
     {
      "branch": "jsm-original",
      "commit": "4f01b27a5c",
      "path": "experiments/JSM/five-case/team/case3/minjae__ans_c3.csv",
-     "author": "Seungmin Jang",
+     "author": "곽민재",
      "recorded": null,
      "match": null
     },
@@ -1193,7 +1193,15 @@
      "branch": "main",
      "commit": "22adb49686",
      "path": "experiments/case3/best-answer.csv",
-     "author": "Seungmin Jang",
+     "author": "곽민재",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case3/candidates/2cf90a821cce.csv",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1213,7 +1221,7 @@
      "branch": "kmj",
      "commit": "29934ceef7",
      "path": "experiments/case3/KMJ-1125-DUAL-C3/answer.csv",
-     "author": "kwak-kwak-2",
+     "author": "곽민재",
      "recorded": 983.677,
      "match": true
     }
@@ -1233,7 +1241,7 @@
      "branch": "kmj",
      "commit": "29934ceef7",
      "path": "experiments/case4/KMJ-1125-DUAL-C4/answer.csv",
-     "author": "kwak-kwak-2",
+     "author": "곽민재",
      "recorded": 809.2701,
      "match": true
     }
@@ -1253,7 +1261,7 @@
      "branch": "kmj",
      "commit": "29934ceef7",
      "path": "experiments/case5/KMJ-1125-DUAL-C5/answer.csv",
-     "author": "kwak-kwak-2",
+     "author": "곽민재",
      "recorded": 785.013,
      "match": true
     }
@@ -1268,16 +1276,16 @@
     "rejected": 0
    }
   },
-  "40239b5104a324068e20876370383e03f147e4bd6bb472387be984c2c1cf4e22": {
+  "1f5341dbedd6d4707353551c4b27e51b5c9468d2d48a0ca647da0e6c9cbdd4f3": {
    "case": 5,
-   "sha12": "40239b5104a3",
+   "sha12": "1f5341dbedd6",
    "text": "dir,000111100111100001000010010011\nfleet,21\nkey,1,de,min,98,2,3\nkey,2,urg,max,0.5,0,4\nkey,3,urg,min,0.5,5,6\nkey,4,dl,max,46.50,0,0\nkey,5,w,max,0.35,7,0\nkey,6,w,max,0.74,0,0\nkey,7,dl,max,68,0,0\n",
    "sources": [
     {
      "branch": "kmj",
      "commit": "29934ceef7",
      "path": "experiments/case5/KMJ-1125-FH-C5-V2/answer.csv",
-     "author": "kwak-kwak-2",
+     "author": "곽민재",
      "recorded": 814.0583,
      "match": true
     }
@@ -1292,16 +1300,16 @@
     "rejected": 0
    }
   },
-  "7cd3b2bebf435d8454901293629502261d195504ae03e6a8b55f268799c71758": {
+  "84ce5ba062b0f5ed027c9e0ebf4459d2a2bcbe86b904ee4df70ea3d5bfbc0313": {
    "case": 5,
-   "sha12": "7cd3b2bebf43",
+   "sha12": "84ce5ba062b0",
    "text": "dir,000111100111100001000010010011\nfleet,21\nkey,1,de,min,95.85,2,3\nkey,2,urg,max,0.5,0,4\nkey,3,urg,min,0.5,5,6\nkey,4,dl,max,45.10,0,0\nkey,5,w,max,0.63,7,0\nkey,6,w,min,0.67,0,0\nkey,7,dl,max,66.65,0,0\n",
    "sources": [
     {
      "branch": "kmj",
      "commit": "29934ceef7",
      "path": "experiments/case5/KMJ-1125-FH-C5/answer.csv",
-     "author": "kwak-kwak-2",
+     "author": "곽민재",
      "recorded": 816.128,
      "match": true
     }
@@ -1312,16 +1320,16 @@
    },
    "fleet": 21
   },
-  "6751aeef9d05346c6b8f78f6fd8821f8799a153325fe18d8d0917042e23c59a3": {
+  "fd652e50ea8dcb94f9c9b40defce81cb85e0e855bf1f0480962190df5882ef88": {
    "case": 4,
-   "sha12": "6751aeef9d05",
+   "sha12": "fd652e50ea8d",
    "text": "dir,0000111111111111111011111111000111100000110000001110000000010100011110100111\nfleet,17\nkey,1,de,min,96.20,2,3\nkey,2,urg,max,0.5,0,4\nkey,3,qo,max,1,5,6\nkey,4,w,min,1,0,0\nkey,5,w,max,4.60,7,8\nkey,6,w,min,0.20,9,0\nkey,7,dl,min,75,0,0\nkey,8,urg,max,0.5,0,0\nkey,9,urg,max,0.5,0,0\n",
    "sources": [
     {
      "branch": "main",
      "commit": "22adb49686",
      "path": "experiments/case4/best-answer.csv",
-     "author": "Seungmin Jang",
+     "author": "곽민재",
      "recorded": null,
      "match": null
     }
@@ -1332,16 +1340,16 @@
    },
    "fleet": 17
   },
-  "f3657e8035197af1a04de8acab4860377995f5b5a56f626110e442f15dbd86f6": {
+  "d843f125900a7a90b551979018772d2dbe723a4a835175045cb8b983073684bd": {
    "case": 5,
-   "sha12": "f3657e803519",
+   "sha12": "d843f125900a",
    "text": "dir,000111100111100001010010010011\nfleet,22\nkey,1,de,max,245,2,3\nkey,2,qo,max,4,0,4\nkey,3,dl,min,110,5,0\nkey,4,urg,max,0.5,0,6\nkey,5,qo,max,1,7,8\nkey,6,w,min,2.20,0,0\nkey,7,urg,min,0.5,0,0\nkey,8,w,min,0.80,9,0\nkey,9,urg,max,0.5,0,0\n",
    "sources": [
     {
      "branch": "main",
      "commit": "22adb49686",
      "path": "experiments/case5/best-answer.csv",
-     "author": "Seungmin Jang",
+     "author": "곽민재",
      "recorded": null,
      "match": null
     }
@@ -1359,9 +1367,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/035d9d4b2435.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1379,9 +1387,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/0528062832c9.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1399,9 +1407,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/06299b0d2092.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1419,9 +1427,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/0891e98fefb7.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1439,9 +1447,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/08e689a42e60.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1459,9 +1467,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/09d9825edecf.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1479,9 +1487,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/0ccf2aa0b265.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1499,9 +1507,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/0cfefadeac51.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1519,9 +1527,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/14a1e94e4dba.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1539,9 +1547,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/1698a271ff4b.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1559,9 +1567,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/199b63079e2e.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1579,9 +1587,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/1e5c492488fd.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1599,9 +1607,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/2166b4c73ef4.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1619,9 +1627,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/25f509a43178.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1639,9 +1647,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/28f7658f9e06.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1659,9 +1667,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/29cbc8bb9b70.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1679,9 +1687,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/29f7b0096924.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1699,9 +1707,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/2c812aa84dd2.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1719,9 +1727,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/2c90620651a8.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1732,26 +1740,6 @@
    },
    "fleet": 23
   },
-  "2cf90a821cce681eb12f4fa6cebfcebe89fddeffcd57255727fd6daefb002413": {
-   "case": 3,
-   "sha12": "2cf90a821cce",
-   "text": "dir,1111111100000000011101011001101\nfleet,21\nkey,1,de,min,160,2,3\nkey,2,urg,max,0.5,4,5\nkey,3,urg,min,0.5,6,7\nkey,4,qo,max,1,0,8\nkey,5,w,min,3.2,0,0\nkey,6,w,max,2.4,9,0\nkey,7,w,min,0.35,0,0\nkey,8,dl,min,320,0,0\nkey,9,dl,min,140,0,0\n",
-   "sources": [
-    {
-     "branch": "jsm",
-     "commit": "991be4b464",
-     "path": "experiments/case3/candidates/2cf90a821cce.csv",
-     "author": "jsm",
-     "recorded": null,
-     "match": null
-    }
-   ],
-   "public": {
-    "cost": 1006.4422,
-    "rejected": 0
-   },
-   "fleet": 21
-  },
   "2e79c3ae13ca2c560539a496de41b9c9d6d7736f62252164530f46df506628cd": {
    "case": 3,
    "sha12": "2e79c3ae13ca",
@@ -1759,9 +1747,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/2e79c3ae13ca.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1779,9 +1767,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/2ee0385620ba.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1799,9 +1787,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/2efa01b98603.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1819,9 +1807,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/2fbb1bc1e14b.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1839,9 +1827,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/2fcf90e69eb4.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1863,9 +1851,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/304d54201009.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1883,9 +1871,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/30d623cd4478.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1903,9 +1891,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/330d0dcc8087.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1923,9 +1911,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/335e1ca8793c.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1943,9 +1931,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/3566ccb5909f.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1963,9 +1951,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/36ec49d47f50.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -1983,9 +1971,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/38ab054837ad.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2003,9 +1991,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/3a0a134f1d3c.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2027,9 +2015,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/3c82908d00c5.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2047,9 +2035,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/3d985e14e747.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2067,9 +2055,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/3e32d86b09d1.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2087,9 +2075,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/3ef53dd5b370.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2107,9 +2095,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/3fdf2451a462.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2127,9 +2115,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/40fbff0aea68.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2147,9 +2135,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/4592869026de.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2171,9 +2159,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/47fe343b1cf6.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2191,9 +2179,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/48ce24321e0c.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2211,9 +2199,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/4c7d2689db3e.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2231,9 +2219,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/4e5dd950eec2.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2251,9 +2239,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/542d2e06715f.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2271,9 +2259,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/55725d4e0e7b.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2291,9 +2279,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/55ac0a617a1a.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2311,9 +2299,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/5bb5e72fec6e.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2331,9 +2319,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/5c3b3bc4c775.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2351,9 +2339,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/5d6d8e88f239.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2371,9 +2359,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/5edc16c62ffc.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2391,9 +2379,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/60d072e3b2ca.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2411,9 +2399,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/6294198f83fe.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2431,9 +2419,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/68b4b461235e.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2451,9 +2439,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/68e2454c3d83.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2471,9 +2459,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/6d129d8fb3ea.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2491,9 +2479,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/6d2e00b09fb8.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2511,9 +2499,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/6d38eff4af0c.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2531,9 +2519,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/6fb2ae4bd449.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2551,9 +2539,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/7059069266e0.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2571,9 +2559,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/7696f16174eb.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2591,9 +2579,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/785b31efa836.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2611,9 +2599,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/789c73d7cfbf.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2631,9 +2619,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/7a062f7f3817.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2651,9 +2639,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/7a47f438e19e.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2671,9 +2659,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/7acb02109509.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2691,9 +2679,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/7ad44634ee09.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2711,9 +2699,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/7d21dacd6a70.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2731,9 +2719,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/7dd14ca4191e.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2751,9 +2739,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/7feabc1b2725.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2771,9 +2759,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/8024e5f764ff.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2791,9 +2779,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/809a4b1d90ab.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2811,9 +2799,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/859269dbb6c6.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2835,9 +2823,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/85b3eff2cbac.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2855,9 +2843,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/895984c32cc0.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2875,9 +2863,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/897c3782a12a.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2895,9 +2883,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/8c7708ebedbb.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2915,9 +2903,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/8c7a6f0e2645.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2935,9 +2923,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/8c918e7f87dc.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2955,9 +2943,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/8c9634406dc3.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2975,9 +2963,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/8f7e1fc43671.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -2995,9 +2983,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/8fbdde76f33a.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3015,9 +3003,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/913a2b6e3d7b.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3035,9 +3023,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/93c5a03a49bc.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3055,9 +3043,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/9416a54552b0.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3075,9 +3063,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/951aba7178c8.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3095,9 +3083,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/96435b405abd.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3115,9 +3103,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/97fd8cd9ac90.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3135,9 +3123,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/989aae2a9be8.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3155,9 +3143,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/9a346548cf72.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3175,9 +3163,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/9ad6aa3bbb41.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3195,9 +3183,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/9d4fc7c0af1c.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3215,9 +3203,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/9d871ba92d48.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3235,9 +3223,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/9eb73aa2bd5d.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3255,9 +3243,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/a00cdfa609ac.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3275,9 +3263,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/a13dc127a90f.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3295,9 +3283,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/a1b0a3bc3ade.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3315,9 +3303,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/a4c31b4a2a7d.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3335,9 +3323,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/a56340c7a0ed.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3355,9 +3343,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/a5c1da947d90.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3379,9 +3367,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/a6901ec21c7d.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3399,9 +3387,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/a6e9940bea70.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3419,9 +3407,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/a7d1b81d6234.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3439,9 +3427,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/a8bacff23970.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3459,9 +3447,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/a9aa1f29a8be.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3479,9 +3467,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/aadfc9a1f6b4.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3499,9 +3487,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/ac23484ade9d.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3519,9 +3507,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/acd12a09a509.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3539,9 +3527,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/ade1878f47be.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3559,9 +3547,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/aee3a9948b14.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3579,9 +3567,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/b112c88f89b0.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3599,9 +3587,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/b2409f6ee066.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3619,9 +3607,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/b3debb316487.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3643,9 +3631,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/b8d1431a1c5b.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3663,9 +3651,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/b9b770300de3.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3683,9 +3671,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/bba30f1451ee.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3703,9 +3691,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/be33f6161ab9.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3723,9 +3711,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/be8e78251a29.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3743,9 +3731,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/c2b42e617073.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3763,9 +3751,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/c55daea4124b.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3783,9 +3771,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/c709778624db.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3803,9 +3791,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/d1294e427d28.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3823,9 +3811,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/d2486e9ae6cc.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3843,9 +3831,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/d383c8d940a5.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3863,9 +3851,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/d3ab6ffffeb7.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3883,9 +3871,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/d494b1ea72c4.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3903,9 +3891,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/d4fec5cea2bd.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3923,9 +3911,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/d6ceb25871bf.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3943,9 +3931,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/d70597a33594.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3963,9 +3951,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/d7574acd9602.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -3983,9 +3971,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/d8c654fcd3de.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4003,9 +3991,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/d92a9fec5988.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4023,9 +4011,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/d9daeaf9db2e.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4043,9 +4031,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/daf0f0e9d006.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4063,9 +4051,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/db537f6dde31.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4083,9 +4071,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/de178bae728a.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4103,9 +4091,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/deb0321f380b.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4123,9 +4111,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/e103f6e3ddb3.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4143,9 +4131,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/e1670f0facbb.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4163,9 +4151,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/e41da840d169.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4183,9 +4171,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/e65ab4d23449.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4203,9 +4191,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/e6ec61e01ab8.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4223,9 +4211,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/e89491c9b1e6.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4243,9 +4231,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/e9ee7024bb30.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4263,9 +4251,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/ebba0abb6d0d.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4283,9 +4271,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/ef1f77289648.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4303,9 +4291,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/ef27510a05e6.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4323,9 +4311,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/f293cace16d1.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4343,9 +4331,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/f324f7bde4f6.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4363,9 +4351,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/f32c3de74f8c.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4383,9 +4371,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/f4ef2b7c2194.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4403,9 +4391,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/f5086fee01fb.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4423,9 +4411,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/f534d55c8254.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4443,9 +4431,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/f5d9cca6b020.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4467,9 +4455,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/f5db63052a21.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4487,9 +4475,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/f7276af6c4f8.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4507,9 +4495,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/fa1d3431542f.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4527,9 +4515,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/fd8009a2ee45.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4547,9 +4535,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/ff4567a1d850.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4567,9 +4555,9 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "991be4b464",
+     "commit": "2e03eb8a36",
      "path": "experiments/case3/candidates/ff8b93f1ec73.csv",
-     "author": "jsm",
+     "author": "장승민",
      "recorded": null,
      "match": null
     }
@@ -4579,8 +4567,1260 @@
     "rejected": 0
    },
    "fleet": 21
+  },
+  "7029dc2d784d36845bbbb897dde58307b5b418b18af51ecada7ac0bb34d9d0ba": {
+   "case": 1,
+   "sha12": "7029dc2d784d",
+   "text": "dir,000011110000000111100000000110101\nfleet,19\nkey,1,de,min,65,2,3\nkey,2,qo,max,1,0,4\nkey,3,dl,min,65,5,0\nkey,4,urg,max,0.5,0,6\nkey,5,qo,max,1,7,8\nkey,6,w,min,2.65,0,0\nkey,7,urg,min,0.5,9,0\nkey,8,w,min,0.65,0,0\nkey,9,w,min,6.90,0,0\n",
+   "sources": [
+    {
+     "branch": "DOE1119",
+     "commit": "9f10a8d4fc",
+     "path": "ans_c1.csv",
+     "author": "곽민재",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:10.602Z",
+   "public": {
+    "cost": 1198.1409,
+    "rejected": 0
+   },
+   "fleet": 19
+  },
+  "fc7e4239fa4c0cf57b73c2fe697495703a9fd5588224360e3978389c638b8daf": {
+   "case": 2,
+   "sha12": "fc7e4239fa4c",
+   "text": "dir,001011101110010001101000111001110101\nfleet,26\nkey,1,urg,max,0.5,2,3\nkey,2,de,max,182.50,4,5\nkey,3,de,min,117.50,6,7\nkey,4,qo,max,2,0,0\nkey,5,dl,min,22.50,0,0\nkey,6,w,min,2.65,8,0\nkey,7,w,min,1.72,0,0\nkey,8,dl,min,22.50,9,0\nkey,9,qo,max,1,0,0\n",
+   "sources": [
+    {
+     "branch": "DOE1119",
+     "commit": "9f10a8d4fc",
+     "path": "ans_c2.csv",
+     "author": "곽민재",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:11.097Z",
+   "public": {
+    "cost": 631.6119,
+    "rejected": 0
+   },
+   "fleet": 26
+  },
+  "6f8788c2ef4628e6901ad59c9f20dd888f3d3ccf8915954029c69578ac3485cc": {
+   "case": 2,
+   "sha12": "6f8788c2ef46",
+   "text": "dir,001011111110000001101000111101110101\nfleet,24\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,202.5,0,4\nkey,3,dl,min,227.5,5,0\nkey,4,de,max,20,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/answer_case2.csv",
+     "author": "박진홍",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/answer_case2_61362.csv",
+     "author": "박진홍",
+     "recorded": 613.62,
+     "match": true
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/cand_61362.csv",
+     "author": "박진홍",
+     "recorded": 613.62,
+     "match": true
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case2/jinhong__answer_case2.csv",
+     "author": "박진홍",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case2/jinhong__answer_case2_61362.csv",
+     "author": "박진홍",
+     "recorded": 613.62,
+     "match": true
+    },
+    {
+     "branch": "pjh",
+     "commit": "c5dc1c6d79",
+     "path": "experiments/case2/PJH-1124-61362/answer.csv",
+     "author": "박진홍",
+     "recorded": 613.6186,
+     "match": true
+    },
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/6f8788c2ef46.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:12.476Z",
+   "public": {
+    "cost": 613.6186,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "60618f0ecf0a86adaa488220ef169814c2405082ea34742535d10bd751d6fa19": {
+   "case": 2,
+   "sha12": "60618f0ecf0a",
+   "text": "dir,001011111110000001101000111101110101\nfleet,24\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,200,0,3\nkey,3,de,max,20,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/answer_case2_61403.csv",
+     "author": "박진홍",
+     "recorded": 614.03,
+     "match": true
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/cand_61403.csv",
+     "author": "박진홍",
+     "recorded": 614.03,
+     "match": true
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case2/jinhong__answer_case2_61403.csv",
+     "author": "박진홍",
+     "recorded": 614.03,
+     "match": true
+    },
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/60618f0ecf0a.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:12.487Z",
+   "public": {
+    "cost": 614.0258,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "f275cd67403de8756bee3c2e60683eab32a6af52cf938d201d9d97e690e1d4d6": {
+   "case": 2,
+   "sha12": "f275cd67403d",
+   "text": "dir,001011111110000001101000111101110101\nfleet,25\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,200,0,3\nkey,3,de,max,42.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/answer_case2_61545.csv",
+     "author": "박진홍",
+     "recorded": 615.45,
+     "match": true
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/cand_61545.csv",
+     "author": "박진홍",
+     "recorded": 615.45,
+     "match": true
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case2/jinhong__answer_case2_61545.csv",
+     "author": "박진홍",
+     "recorded": 615.45,
+     "match": true
+    },
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/f275cd67403d.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:12.493Z",
+   "public": {
+    "cost": 615.448,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "3e9daf44a556606c2a9938528ea4189301b9d0152f50973195e8e2b9f5eff940": {
+   "case": 2,
+   "sha12": "3e9daf44a556",
+   "text": "dir,000011111110001110011111101100110101\nfleet,26\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,205,0,3\nkey,3,de,max,42.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/answer_case2_61716.csv",
+     "author": "박진홍",
+     "recorded": 617.16,
+     "match": true
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/search_s5_best.csv",
+     "author": "박진홍",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/search_s6_best.csv",
+     "author": "박진홍",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/struct_cand_617.csv",
+     "author": "박진홍",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case2/jinhong__answer_case2_61716.csv",
+     "author": "박진홍",
+     "recorded": 617.16,
+     "match": true
+    },
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/3e9daf44a556.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:12.497Z",
+   "public": {
+    "cost": 617.1633,
+    "rejected": 0
+   },
+   "fleet": 26
+  },
+  "e8f167108cacbb4a59d753a94f2b56bcf23a476d2373ceadf4e20a57ed53894c": {
+   "case": 2,
+   "sha12": "e8f167108cac",
+   "text": "dir,000011111110001110011111101100110101\nfleet,26\nkey,1,urg,min,0.5,2,3\nkey,2,dl,min,205,4,5\nkey,3,qo,min,4,0,0\nkey,4,qo,max,1,0,0\nkey,5,de,max,50,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/cand_617.csv",
+     "author": "박진홍",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/search_s2_best.csv",
+     "author": "박진홍",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jsm-original",
+     "commit": "4f01b27a5c",
+     "path": "experiments/JSM/five-case/team/case2/jinhong__cand_617.csv",
+     "author": "박진홍",
+     "recorded": null,
+     "match": null
+    },
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/e8f167108cac.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:12.512Z",
+   "public": {
+    "cost": 617.1633,
+    "rejected": 0
+   },
+   "fleet": 26
+  },
+  "ca75800a047e40ce3ce3f7d980d21b3fc86868a87cd7cbd1b98cbfff60e44dd4": {
+   "case": 2,
+   "sha12": "ca75800a047e",
+   "text": "dir,000011111110001111111111111000110101\nfleet,21\nkey,1,de,min,107.5,2,3\nkey,2,urg,max,0.5,4,0\nkey,3,urg,min,0.5,5,0\nkey,4,w,min,3.5,6,7\nkey,5,dl,min,110,0,8\nkey,6,dl,min,230,0,0\nkey,7,dl,max,160,0,0\nkey,8,w,min,0.2,0,9\nkey,9,qo,min,1,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/search_s1_best.csv",
+     "author": "박진홍",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:12.572Z",
+   "public": {
+    "cost": 820.2187,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "ae3481fb4655c2a1d11afc74149a6b8cdc414d16973e24b0b814c3f06c775d3d": {
+   "case": 2,
+   "sha12": "ae3481fb4655",
+   "text": "dir,000010111110001111111011101100110101\nfleet,24\nkey,1,urg,min,0.5,2,3\nkey,2,dl,max,75,4,5\nkey,3,qo,min,4,0,0\nkey,4,de,max,97.5,6,7\nkey,5,w,min,0.2,0,8\nkey,6,w,min,3,0,0\nkey,7,w,max,1,0,9\nkey,8,de,max,75,0,0\nkey,9,qo,max,1,0,0\n",
+   "sources": [
+    {
+     "branch": "jinhong-experiments",
+     "commit": "1584cb7ca4",
+     "path": "jinhong/case2/search_s3_best.csv",
+     "author": "박진홍",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:12.581Z",
+   "public": {
+    "cost": 658.5498,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "7cbc51aa6435df67a20ca8ca9b8739a3ff7a9ab4a5cd8d610d04b79afc62feeb": {
+   "case": 1,
+   "sha12": "7cbc51aa6435",
+   "text": "dir,000011110000000111100000000110101\nfleet,19\nkey,1,de,min,65,2,3\nkey,2,qo,max,1,0,4\nkey,3,dl,min,65,5,0\nkey,4,urg,max,0.5,0,6\nkey,5,qo,max,1,7,8\nkey,6,w,min,2.58,0,0\nkey,7,urg,min,0.5,0,0\nkey,8,w,min,0.96,9,0\nkey,9,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "kmj",
+     "commit": "29934ceef7",
+     "path": "experiments/case1/KMJ-1125-119189/answer.csv",
+     "author": "곽민재",
+     "recorded": 1191.8896,
+     "match": true
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:18.632Z",
+   "public": {
+    "cost": 1191.8896,
+    "rejected": 0
+   },
+   "fleet": 19
+  },
+  "a7a7524e077698ecd1d0802a9f355977f6e0e50b1eb0b455e34e53b649e91785": {
+   "case": 1,
+   "sha12": "a7a7524e0776",
+   "text": "dir,000011110000000111100000000110101\nfleet,18\nkey,1,de,min,89,2,3\nkey,2,qo,max,1,0,4\nkey,3,dl,min,82.5,5,0\nkey,4,urg,max,0.5,0,6\nkey,5,qo,max,1,7,8\nkey,6,w,min,2.713,0,0\nkey,7,urg,min,0.5,0,0\nkey,8,w,min,0.75,9,0\nkey,9,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "kmj",
+     "commit": "29934ceef7",
+     "path": "experiments/case1/KMJ-1125-DUAL-C1/answer.csv",
+     "author": "곽민재",
+     "recorded": 1191.0023,
+     "match": true
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:19.486Z",
+   "public": {
+    "cost": 1191.0023,
+    "rejected": 0
+   },
+   "fleet": 18
+  },
+  "bd9ed9b0e61575ce1008c171e48e107d433aa66f760eb19a0f309c4db57ff82c": {
+   "case": 1,
+   "sha12": "bd9ed9b0e615",
+   "text": "dir,000011110000000111100000000110101\nfleet,18\nkey,1,de,min,65,2,3\nkey,2,qo,max,1,0,4\nkey,3,dl,min,65,5,0\nkey,4,urg,max,0.5,0,6\nkey,5,qo,max,1,7,8\nkey,6,w,min,2.58,0,0\nkey,7,urg,min,0.5,0,0\nkey,8,w,min,0.66,9,0\nkey,9,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "kmj",
+     "commit": "29934ceef7",
+     "path": "experiments/case1/KMJ-1125-FH-C1-V2/answer.csv",
+     "author": "곽민재",
+     "recorded": 1185.9436,
+     "match": true
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:19.936Z",
+   "public": {
+    "cost": 1185.9436,
+    "rejected": 0
+   },
+   "fleet": 18
+  },
+  "e6706c558b9969e1ad217e15fdf272c897d20accc7e22bea2dc9cddb38a1e497": {
+   "case": 1,
+   "sha12": "e6706c558b99",
+   "text": "dir,000011110000000111100000000110101\nfleet,18\nkey,1,de,min,65,2,3\nkey,2,qo,max,1,0,4\nkey,3,dl,min,65,5,0\nkey,4,urg,max,0.5,0,6\nkey,5,qo,max,1,7,8\nkey,6,w,min,2.58,0,0\nkey,7,urg,min,0.5,0,0\nkey,8,w,min,0.96,9,0\nkey,9,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "kmj",
+     "commit": "29934ceef7",
+     "path": "experiments/case1/KMJ-1125-FH-C1/answer.csv",
+     "author": "곽민재",
+     "recorded": 1189.6871,
+     "match": true
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:20.329Z",
+   "public": {
+    "cost": 1189.6871,
+    "rejected": 0
+   },
+   "fleet": 18
+  },
+  "19b314cb498eb59924d57c109b1d8d48d58d6122b523e91c878d7f2b283e55f5": {
+   "case": 2,
+   "sha12": "19b314cb498e",
+   "text": "dir,001011101110010000101000111001110101\nfleet,26\nkey,1,urg,max,0.5,2,3\nkey,2,de,max,202,4,5\nkey,3,qo,max,6,0,6\nkey,4,w,min,1.71,7,8\nkey,5,dl,max,71,9,0\nkey,6,w,min,1.39,0,0\nkey,7,dl,min,163.50,0,0\nkey,8,dl,max,44,0,0\nkey,9,w,max,2.20,0,0\n",
+   "sources": [
+    {
+     "branch": "kmj",
+     "commit": "29934ceef7",
+     "path": "experiments/case2/KMJ-1125-ALT-C2-V1/answer.csv",
+     "author": "곽민재",
+     "recorded": 644.0815,
+     "match": true
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:20.719Z",
+   "public": {
+    "cost": 644.0815,
+    "rejected": 0
+   },
+   "fleet": 26
+  },
+  "5d2827a3813ba78e6b20b1e02f5e4044b42c8b7fc9b132b51a2f5597a4bce032": {
+   "case": 2,
+   "sha12": "5d2827a3813b",
+   "text": "dir,001011101110010000101000111001110101\nfleet,26\nkey,1,urg,max,0.5,2,3\nkey,2,de,max,202,4,5\nkey,3,qo,max,6,0,6\nkey,4,dl,min,42.5,0,7\nkey,5,w,min,3.6,8,9\nkey,6,w,min,0.5,0,0\nkey,7,w,max,3.6,0,0\nkey,8,dl,max,92.5,0,0\nkey,9,dl,max,42.5,0,0\n",
+   "sources": [
+    {
+     "branch": "kmj",
+     "commit": "29934ceef7",
+     "path": "experiments/case2/KMJ-1125-DUAL-C2/answer.csv",
+     "author": "곽민재",
+     "recorded": 644.0584,
+     "match": true
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:21.526Z",
+   "public": {
+    "cost": 644.0584,
+    "rejected": 0
+   },
+   "fleet": 26
+  },
+  "0b6627e53920777c1ed990ec30b6780eb024e9f5df625322ef95fd594b15b120": {
+   "case": 1,
+   "sha12": "0b6627e53920",
+   "text": "dir,000011110000000111100000000110101\nfleet,19\nkey,1,de,min,65,2,3\nkey,2,qo,max,1,0,4\nkey,3,dl,min,65,5,0\nkey,4,urg,max,0.5,0,6\nkey,5,qo,max,1,7,8\nkey,6,w,min,2.85,0,0\nkey,7,urg,min,0.5,9,0\nkey,8,w,min,0.65,0,0\nkey,9,w,min,6.90,0,0\n",
+   "sources": [
+    {
+     "branch": "main",
+     "commit": "22adb49686",
+     "path": "experiments/case1/best-answer.csv",
+     "author": "곽민재",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:24.293Z",
+   "public": {
+    "cost": 1197.3847,
+    "rejected": 0
+   },
+   "fleet": 19
+  },
+  "dcf191a669a5db003cda3d42b5594ec8a0ead4477b20329485bbe5ea357d9dd6": {
+   "case": 2,
+   "sha12": "dcf191a669a5",
+   "text": "dir,001011101110010001101000111001110101\nfleet,25\nkey,1,urg,max,0.5,2,3\nkey,2,de,max,222.50,0,4\nkey,3,qo,max,3,0,5\nkey,4,w,max,4.40,0,6\nkey,5,dl,max,92.50,7,8\nkey,6,dl,min,180,0,0\nkey,7,de,min,160,0,0\nkey,8,w,max,0.50,0,9\nkey,9,de,min,137.50,0,0\n",
+   "sources": [
+    {
+     "branch": "main",
+     "commit": "22adb49686",
+     "path": "experiments/case2/best-answer.csv",
+     "author": "곽민재",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:24.301Z",
+   "public": {
+    "cost": 779.9836,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "2473874cbf6475ad8c45240c44a81b94acdc1cc383e44ec7afd293f563dc36e3": {
+   "case": 1,
+   "sha12": "2473874cbf64",
+   "text": "dir,000011110000000111100000000110101\nfleet,21\nkey,1,w,max,0.00341,2,3\nkey,2,dl,min,50,4,0\nkey,3,de,min,65,5,6\nkey,4,de,max,180,0,0\nkey,5,qo,max,1,0,7\nkey,6,urg,min,0.5,8,0\nkey,7,urg,max,0.5,9,0\nkey,8,qo,max,2,0,0\nkey,9,dl,min,65,0,0\n",
+   "sources": [
+    {
+     "branch": "pjh",
+     "commit": "c5dc1c6d79",
+     "path": "experiments/case1/PJH-1123-117020/answer.csv",
+     "author": "박진홍",
+     "recorded": 1170.2008,
+     "match": true
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:25.520Z",
+   "public": {
+    "cost": 1170.2008,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "772e4c490756778275a3db20c6a3193ade65743cc757b23ca1471ad670cac295": {
+   "case": 1,
+   "sha12": "772e4c490756",
+   "text": "dir,000011110000000111100000000110101\nfleet,19\nkey,1,de,min,65,2,3\nkey,2,qo,max,1,0,0\nkey,3,dl,min,65,0,0\n",
+   "sources": [
+    {
+     "branch": "yb",
+     "commit": "6be90cc999",
+     "path": "experiments/case1/C1-3node-seeds1-50/A/answer.csv",
+     "author": "윤빈",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:26.886Z",
+   "public": {
+    "cost": 1246.6679,
+    "rejected": 0
+   },
+   "fleet": 19
+  },
+  "8bc3fb67bf7f71e40ac931087ac885c849ad754d0a284d2b7e2f4a53b3871bbb": {
+   "case": 1,
+   "sha12": "8bc3fb67bf7f",
+   "text": "dir,000011110000000111100000000110101\nfleet,19\nkey,1,de,min,65,2,3\nkey,2,urg,max,0.5,0,0\nkey,3,dl,min,65,0,0\n",
+   "sources": [
+    {
+     "branch": "yb",
+     "commit": "6be90cc999",
+     "path": "experiments/case1/C1-3node-seeds1-50/B/answer.csv",
+     "author": "윤빈",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:27.311Z",
+   "public": {
+    "cost": 1223.0512,
+    "rejected": 0
+   },
+   "fleet": 19
+  },
+  "a596d439e138a4fc0773a2ba1e653b41d5df1fab92f3557c8195c4143bd0051a": {
+   "case": 1,
+   "sha12": "a596d439e138",
+   "text": "dir,000011110000000111100000000110101\nfleet,19\nkey,1,de,min,65,2,3\nkey,2,qo,max,1,0,0\nkey,3,urg,min,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "yb",
+     "commit": "6be90cc999",
+     "path": "experiments/case1/C1-3node-seeds1-50/C/answer.csv",
+     "author": "윤빈",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:27.710Z",
+   "public": {
+    "cost": 1252.1937,
+    "rejected": 0
+   },
+   "fleet": 19
+  },
+  "da27f8568ca3b32fe472c5ace56bfe6c73351f2788cb428ec6e46fb70d042052": {
+   "case": 1,
+   "sha12": "da27f8568ca3",
+   "text": "dir,000011110000000111100000000110101\nfleet,19\nkey,1,de,min,65,2,3\nkey,2,urg,max,0.5,0,0\nkey,3,urg,min,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "yb",
+     "commit": "6be90cc999",
+     "path": "experiments/case1/C1-3node-seeds1-50/D/answer.csv",
+     "author": "윤빈",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:28.119Z",
+   "public": {
+    "cost": 1218.7652,
+    "rejected": 0
+   },
+   "fleet": 19
+  },
+  "5698e8bcbcb4f270c86341553677f18976d8f7f145a4d4b301b03acfecc357c1": {
+   "case": 1,
+   "sha12": "5698e8bcbcb4",
+   "text": "dir,000011110000000111100000000110101\nfleet,19\nkey,1,de,min,65,2,3\nkey,2,qo,max,1,0,4\nkey,3,dl,min,65,5,0\nkey,4,urg,max,0.5,0,6\nkey,5,qo,max,1,7,8\nkey,6,w,min,2.45,0,0\nkey,7,urg,min,0.5,0,0\nkey,8,w,min,0.75,9,0\nkey,9,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "yb",
+     "commit": "6be90cc999",
+     "path": "experiments/case1/C1-3node-seeds1-50/reference/answer.csv",
+     "author": "윤빈",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:28.129Z",
+   "public": {
+    "cost": 1185.4193,
+    "rejected": 0
+   },
+   "fleet": 19
+  },
+  "e086d3b2ffd381dc587fb0cc10efd7a674d29bc7a4746ce7e11447aebaff9777": {
+   "case": 1,
+   "sha12": "e086d3b2ffd3",
+   "text": "dir,000011110000000111100000000110101\nfleet,21\nkey,1,w,max,0.001,2,3\nkey,2,dl,min,50,4,0\nkey,3,de,min,65,5,6\nkey,4,de,max,180,0,0\nkey,5,qo,max,1,0,7\nkey,6,urg,min,0.5,8,0\nkey,7,urg,max,0.5,9,0\nkey,8,dl,min,65,0,0\nkey,9,dl,min,25,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case1/candidates/e086d3b2ffd3.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.631Z",
+   "public": {
+    "cost": 1180.4234,
+    "rejected": 0
+   },
+   "fleet": 21
+  },
+  "01087a09c13d5e4bd2275c28d139f1408918e13c7d5b4f4f993afd043ae27a47": {
+   "case": 2,
+   "sha12": "01087a09c13d",
+   "text": "dir,001011111110000001101000111101110101\nfleet,24\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,180,0,4\nkey,3,dl,min,227.5,5,0\nkey,4,de,max,20,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/01087a09c13d.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.632Z",
+   "public": {
+    "cost": 618.3794,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "24e6ae2571686c6f0f15b90ea9962e8af8b7bcd8c5f177c655eb0a349d5570bb": {
+   "case": 2,
+   "sha12": "24e6ae257168",
+   "text": "dir,001011111110000001101000111101110101\nfleet,26\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,205,0,3\nkey,3,de,max,42.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/24e6ae257168.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.632Z",
+   "public": {
+    "cost": 628.3777,
+    "rejected": 0
+   },
+   "fleet": 26
+  },
+  "377a061a53c703baa8c77237af5a5474310e81859a7e3cbb44e8eab225427066": {
+   "case": 2,
+   "sha12": "377a061a53c7",
+   "text": "dir,000011111110001110011111101100110101\nfleet,25\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,207.5,0,3\nkey,3,de,max,42.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/377a061a53c7.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.632Z",
+   "public": {
+    "cost": 736.8002,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "4946a671ce9636148f37d5e08b63534728869ce191cbd48efbd2cd80d4436e28": {
+   "case": 2,
+   "sha12": "4946a671ce96",
+   "text": "dir,001011111110000001101000111101110101\nfleet,25\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,202.5,0,4\nkey,3,dl,min,227.5,5,0\nkey,4,de,max,22.5,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/4946a671ce96.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.633Z",
+   "public": {
+    "cost": 617.0951,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "4ce7c8807cf90a1e4b3dedfc5b56b1ece3325638c3369f3f6405d7e1c7064ec9": {
+   "case": 2,
+   "sha12": "4ce7c8807cf9",
+   "text": "dir,001011111110000001101000111101110101\nfleet,24\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,202.5,0,4\nkey,3,dl,min,227.5,5,0\nkey,4,de,max,0,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/4ce7c8807cf9.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.633Z",
+   "public": {
+    "cost": 774.7052,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "50cfda9473f9c6604bcb7996233d7c52ff2dd913ea4e41917306e16fee357d34": {
+   "case": 2,
+   "sha12": "50cfda9473f9",
+   "text": "dir,001011111110000001101000111101110101\nfleet,24\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,205,0,3\nkey,3,de,max,42.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/50cfda9473f9.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.633Z",
+   "public": {
+    "cost": 615.4934,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "53859b0bb056a60a261aa359a62cc7596136f754094b44dddaf90bc57629e6c9": {
+   "case": 2,
+   "sha12": "53859b0bb056",
+   "text": "dir,000011111110001110011111101100110101\nfleet,24\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,207.5,0,3\nkey,3,de,max,42.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/53859b0bb056.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.633Z",
+   "public": {
+    "cost": 726.4706,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "552a7bd0e6240c0ff6ee96537f78eb4692c2278fec36f116e4f486f099f68805": {
+   "case": 2,
+   "sha12": "552a7bd0e624",
+   "text": "dir,001011111110000001101000111101110101\nfleet,25\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,202.5,0,4\nkey,3,dl,min,245,5,0\nkey,4,de,max,20,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/552a7bd0e624.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.633Z",
+   "public": {
+    "cost": 617.0951,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "63550925ec13befa64b87afa643f813f98335ee22e8e3e57bd2030002b2931b5": {
+   "case": 2,
+   "sha12": "63550925ec13",
+   "text": "dir,000011111110001110011111101100110101\nfleet,24\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,0,3\nkey,3,de,max,42.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/63550925ec13.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.634Z",
+   "public": {
+    "cost": 735.3396,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "63c180933a03f777415590f94740da4a31c27f1e100a30c8287c994e25f05784": {
+   "case": 2,
+   "sha12": "63c180933a03",
+   "text": "dir,001011111110000001101000111101110101\nfleet,24\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,202.5,0,4\nkey,3,dl,min,227.5,5,0\nkey,4,de,max,22.5,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/63c180933a03.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.634Z",
+   "public": {
+    "cost": 613.6186,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "647a917fe1af046c18014f80c2a38674b232d8c88326238477608a934586a8d5": {
+   "case": 2,
+   "sha12": "647a917fe1af",
+   "text": "dir,001011111110000001101000111101110101\nfleet,25\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,202.5,0,4\nkey,3,dl,min,227.5,5,0\nkey,4,de,max,0,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/647a917fe1af.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.635Z",
+   "public": {
+    "cost": 654.4218,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "8548de0f3c97e64a9049edefc26a23fb516448f3fff2097a52d57c400f5a58eb": {
+   "case": 2,
+   "sha12": "8548de0f3c97",
+   "text": "dir,000011111110001110011111101100110101\nfleet,25\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,180,0,3\nkey,3,de,max,42.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/8548de0f3c97.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.635Z",
+   "public": {
+    "cost": 652.165,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "893e95e4859545ed9ed73def6acbaa3ef10e5b721933c59d1bf4e49d1c6112c7": {
+   "case": 2,
+   "sha12": "893e95e48595",
+   "text": "dir,000011111110001110011111101100110101\nfleet,24\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,205,0,3\nkey,3,de,max,40,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/893e95e48595.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.635Z",
+   "public": {
+    "cost": 725.3302,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "9bcff5d2630bafd402d158f66fb1819c719e460ae1f12cbac34315bdc6c5c24d": {
+   "case": 2,
+   "sha12": "9bcff5d2630b",
+   "text": "dir,000011111110001110011111101100110101\nfleet,25\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,205,0,3\nkey,3,de,max,42.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/9bcff5d2630b.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.635Z",
+   "public": {
+    "cost": 617.627,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "9c4fd1d38b1b7205cae71b4a6f70eecfc4514ce92e8054f9231ee87016662427": {
+   "case": 2,
+   "sha12": "9c4fd1d38b1b",
+   "text": "dir,000011111110001110011111101100110101\nfleet,24\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,205,0,3\nkey,3,de,max,42.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/9c4fd1d38b1b.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.635Z",
+   "public": {
+    "cost": 638.0407,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "a04a4c4930594974191b8ee074794d55bd5fe3d80b8c82913c39564afc5dfc02": {
+   "case": 2,
+   "sha12": "a04a4c493059",
+   "text": "dir,001011111110000001101000111101110101\nfleet,25\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,180,0,4\nkey,3,dl,min,227.5,5,0\nkey,4,de,max,20,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/a04a4c493059.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.635Z",
+   "public": {
+    "cost": 621.7917,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "ac1aefe2491fa128b32458b5c796598cc857c32b4cff9f59782fbc8034afe3ad": {
+   "case": 2,
+   "sha12": "ac1aefe2491f",
+   "text": "dir,001011111110000001101000111101110101\nfleet,24\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,202.5,0,4\nkey,3,dl,min,200,5,0\nkey,4,de,max,20,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/ac1aefe2491f.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.635Z",
+   "public": {
+    "cost": 613.8657,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "b40f35996f980911f74b7bf5f6f34db4ceab9313c7c8b937736115af6df6351a": {
+   "case": 2,
+   "sha12": "b40f35996f98",
+   "text": "dir,001011111110000001101000111101110101\nfleet,24\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,227.5,0,4\nkey,3,dl,min,227.5,5,0\nkey,4,de,max,20,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/b40f35996f98.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.635Z",
+   "public": {
+    "cost": 771.8852,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "b861d172f77ef636bc7d4289a6aae4a2e29e4acbc25938b80698d5d617959de2": {
+   "case": 2,
+   "sha12": "b861d172f77e",
+   "text": "dir,000011111110001110011111101100110101\nfleet,25\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,205,0,3\nkey,3,de,max,47.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/b861d172f77e.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.635Z",
+   "public": {
+    "cost": 617.627,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "ceff8bd8233f0d7e56c2226c0bea509c9f9f9b257b41ff53230e8599b8ce8585": {
+   "case": 2,
+   "sha12": "ceff8bd8233f",
+   "text": "dir,000011111110001110011111101100110101\nfleet,26\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,202.5,0,4\nkey,3,dl,min,227.5,5,0\nkey,4,de,max,20,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/ceff8bd8233f.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.635Z",
+   "public": {
+    "cost": 1060.4982,
+    "rejected": 0
+   },
+   "fleet": 26
+  },
+  "e105273b19f4539e208a903f57653cceeace3113082e68755c0337fb805a7782": {
+   "case": 2,
+   "sha12": "e105273b19f4",
+   "text": "dir,000011111110001110011111101100110101\nfleet,24\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,205,0,3\nkey,3,de,max,47.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/e105273b19f4.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.635Z",
+   "public": {
+    "cost": 638.0407,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "e11ec2f18ec85a74efa9facd0b89eb6f761d3fd1f87ddd2475047b1154d3c937": {
+   "case": 2,
+   "sha12": "e11ec2f18ec8",
+   "text": "dir,001011111110000001101000111101110101\nfleet,24\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,202.5,0,4\nkey,3,dl,min,245,5,0\nkey,4,de,max,20,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/e11ec2f18ec8.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.635Z",
+   "public": {
+    "cost": 613.6203,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "e5b3fa1390223c0c3be3d72e9f823d7d172a56df7a17ed5bff231202d1187953": {
+   "case": 2,
+   "sha12": "e5b3fa139022",
+   "text": "dir,000011111110001110011111101100110101\nfleet,24\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,202.5,0,4\nkey,3,dl,min,227.5,5,0\nkey,4,de,max,20,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/e5b3fa139022.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.636Z",
+   "public": {
+    "cost": 1036.385,
+    "rejected": 0
+   },
+   "fleet": 24
+  },
+  "e9498da81754e6272eb0b5419829ed4b2f439b6124a30f4445899c26d86c9ac4": {
+   "case": 2,
+   "sha12": "e9498da81754",
+   "text": "dir,001011111110000001101000111101110101\nfleet,25\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,227.5,0,4\nkey,3,dl,min,227.5,5,0\nkey,4,de,max,20,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/e9498da81754.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.636Z",
+   "public": {
+    "cost": 783.6709,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "f093cbf354e3c09cf367d8ef10ddb928cfa94476d4b4e8e844a7dea3709631d2": {
+   "case": 2,
+   "sha12": "f093cbf354e3",
+   "text": "dir,001011111110000001101000111101110101\nfleet,25\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,202.5,0,4\nkey,3,dl,min,227.5,5,0\nkey,4,de,max,20,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/f093cbf354e3.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.636Z",
+   "public": {
+    "cost": 617.0951,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "f318de70c41e258b61083c04286d060777c8078ed9055926a59f6678bbf4cf83": {
+   "case": 2,
+   "sha12": "f318de70c41e",
+   "text": "dir,001011111110000001101000111101110101\nfleet,25\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,202.5,0,4\nkey,3,dl,min,200,5,0\nkey,4,de,max,20,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/f318de70c41e.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.636Z",
+   "public": {
+    "cost": 617.0951,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "f695fdc885b3b48be9b3818a242bc3a106d682bd4823a292088ab6eb8c703a86": {
+   "case": 2,
+   "sha12": "f695fdc885b3",
+   "text": "dir,000011111110001110011111101100110101\nfleet,25\nkey,1,urg,max,0.5,2,0\nkey,2,dl,min,205,0,3\nkey,3,de,max,40,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/f695fdc885b3.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.636Z",
+   "public": {
+    "cost": 737.7043,
+    "rejected": 0
+   },
+   "fleet": 25
+  },
+  "fcf8a4b9cc91bff071e1894daf38265cfc84fa0bdf1568846a24f29aa30f3f0f": {
+   "case": 2,
+   "sha12": "fcf8a4b9cc91",
+   "text": "dir,001011111110000001101000111101110101\nfleet,26\nkey,1,w,max,0.3,2,3\nkey,2,dl,min,202.5,0,4\nkey,3,dl,min,227.5,5,0\nkey,4,de,max,20,0,0\nkey,5,qo,min,1,0,6\nkey,6,urg,max,0.5,0,0\n",
+   "sources": [
+    {
+     "branch": "jsm",
+     "commit": "2e03eb8a36",
+     "path": "experiments/case2/candidates/fcf8a4b9cc91.csv",
+     "author": "장승민",
+     "recorded": null,
+     "match": null
+    }
+   ],
+   "firstSeen": "2026-11-26T11:06:29.636Z",
+   "public": {
+    "cost": 628.1209,
+    "rejected": 0
+   },
+   "fleet": 26
   }
  },
- "updated": "2026-11-26T10:24:26.024Z",
+ "updated": "2026-11-26T11:08:13.296Z",
  "engine": "simulator/score.cjs pooled"
 }

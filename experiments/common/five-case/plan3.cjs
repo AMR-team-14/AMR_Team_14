@@ -7,11 +7,7 @@ const L = require('./lib.cjs');
 const R = require('./results.cjs');
 
 const [batch, stage, speedArg, ...items] = process.argv.slice(2);
-const STAGES = {
-  screen: [2400001, 2400006, 2400011, 2400016],
-  confirm: Array.from({length: 40}, (_, k) => 2410001 + 5 * k),
-  final: Array.from({length: 200}, (_, k) => 2420001 + 5 * k),
-};
+const {STAGES} = require('./seeds.cjs');      // team seed plan: held-out blocks inside 1-500 (screen ⊂ confirm ⊂ final)
 const starts = STAGES[stage];
 if (!starts) throw Error('stage?');
 const speeds = Object.fromEntries(speedArg.split(',').map(s => s.split('=')).map(([k, v]) => [k, +v]));
@@ -34,6 +30,13 @@ for (const item of items) {
     if (tasks.some(t => t.id === id)) continue;
     tasks.push({id, batch, env: null, type: 'eval', case: c, label: name, hypothesis: `${stage} stage on held-out seeds (paired with baseline)`,
       candSha: cand.sha, design: cand.text, start: s, count: 5});
+  }
+  // final stage also records the pooled 1-500 cost, the number teammates report, so every answer is comparable
+  if (stage === 'final') {
+    const {POOLED} = require('./seeds.cjs');
+    const id = `${batch}:c${c}:${cand.sha.slice(0, 12)}:pooled1-500`;
+    if (!tasks.some(t => t.id === id)) tasks.push({id, batch, env: null, type: 'eval', case: c, label: name,
+      hypothesis: 'pooled 1-500 (team comparison)', candSha: cand.sha, design: cand.text, start: POOLED.start, count: POOLED.count});
   }
 }
 // Round-robin weighted by throughput so every environment gets a share of every candidate.

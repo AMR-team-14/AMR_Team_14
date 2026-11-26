@@ -9,9 +9,8 @@ const R = require('./results.cjs');
 const {startTrees} = require('./search.cjs');
 
 const batch = process.argv[2];
-const PUBLIC = 11, SCREEN = [2400001, 2400006, 2400011, 2400016];
-const CONFIRM = Array.from({length: 40}, (_, k) => 2410001 + 5 * k);
-const FINAL = Array.from({length: 200}, (_, k) => 2420001 + 5 * k);
+const S = require('./seeds.cjs');            // team seed plan: public 11-15, held-out blocks inside 1-500
+const PUBLIC = S.PUBLIC, SCREEN = S.STAGES.screen, CONFIRM = S.STAGES.confirm, FINAL = S.STAGES.final;
 const ORIGIN = {
   jinhong: 'jinhong-experiments@98597c1:jinhong/case{c}/{f}',
   minjae: 'main@8a384c2:{f}',

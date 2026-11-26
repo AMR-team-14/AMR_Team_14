@@ -65,7 +65,7 @@ jobs:
       - name: Gather and re-score every team answer (no AI)
         id: team
         run: |
-          node experiments/common/five-case/team-gather.cjs --cases 3,4,5 --top 10 --max500 40 | tee gather.txt
+          node experiments/common/five-case/team-gather.cjs --cases 1,2,3,4,5 --top 10 --max500 60 | tee gather.txt
           echo "new=$(sed -n 's/.*scored public \([0-9]*\).*/\1/p' gather.txt)" >> "$GITHUB_OUTPUT"
       - name: Compute digest and basic report (no AI)
         id: digest

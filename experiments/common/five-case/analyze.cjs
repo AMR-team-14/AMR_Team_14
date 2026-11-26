@@ -3,8 +3,12 @@
 'use strict';
 const L = require('./lib.cjs');
 const R = require('./results.cjs');
-const [c, base12, stage, ...want] = process.argv.slice(2);
-const N = {screen: 4, confirm: 40, final: 200}[stage];
+const [c, base12, stage, ...want] = process.argv.slice(2).filter(a => a !== "--legacy");
+const S = require('./seeds.cjs');
+const STAGE = new Set(S.STAGES[stage]);       // held-out blocks inside 1-500 (team seed plan)
+// Results from before the team seed plan used 2,400,001+ blocks: pass --legacy to read those.
+const LEGACY = process.argv.includes('--legacy');
+const N = {screen: 4, confirm: 40, final: LEGACY ? 200 : 99}[stage];
 const FIRST = {screen: 2400001, confirm: 2410001, final: 2420001}[stage];
 const input = L.inputHash(+c);
 const by = new Map();   // sha -> {blocks: Map(start -> score|null), pub, labels}
@@ -15,7 +19,7 @@ for (const r of R.allResults(c)) {
   const start = +r.seeds.split('-')[0];
   const v = r.score === '' ? null : +r.score;
   if (r.seeds === '11-15') e.pub = v;
-  else if (start >= FIRST && start < FIRST + 5 * N && (start - FIRST) % 5 === 0) e.blocks.set(start, v);
+  else if (LEGACY ? (start >= FIRST && start < FIRST + 5 * N && (start - FIRST) % 5 === 0) : (STAGE.has(start) && r.seeds === `${start}-${start + 4}`)) e.blocks.set(start, v);
   by.set(r.candidate_sha256, e);
 }
 const base = [...by.entries()].find(([s]) => s.startsWith(base12));

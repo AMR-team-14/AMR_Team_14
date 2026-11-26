@@ -1,10 +1,13 @@
 // Gather every answer CSV the team has pushed and score them all the same way, so all work is one experiment pool.
-//   node team-gather.cjs [--cases 3,4,5] [--top 10] [--max500 40]
+//   node team-gather.cjs [--cases 1,2,3,4,5] [--top 10] [--max500 40]
 // 1. Fetches every remote branch (depth 1, no blobs) except jsm, and lists answer-like CSVs for the cases
 //    (paths with caseN / cN, files named answer*, ans*, cand*, *best*; legacy/ and bulk folders are skipped).
 //    jsm's own candidates (experiments/caseN/candidates/*.csv) join the same pool from the working tree.
 // 2. Scores each distinct answer (by sha256 of its text) with simulator/score.cjs on the public seeds 11-15.
-// 3. Scores the top N per case by public cost on pooled seeds 1-500 (the team's common robustness check).
+// 3. Scores pooled seeds 1-500 (the team's common check): the top N per case by public cost for Cases 2-5, and every
+//    answer for Case 1, which is graded on a hidden seed and is therefore ranked by the 1-500 cost.
+// Each answer keeps who made it (owner: the branch's main committer, or the name prefix in "name__file.csv") and when
+// this script first saw it, so credit stays with the person.
 // Results are cached in team/scores.json, so each answer is scored once; sources keep branch, commit, path, author
 // and any recorded public score (results.csv next to it, or the score in the file name) for a match check.
 'use strict';
@@ -12,11 +15,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const {execFileSync} = require('node:child_process');
+const L = require('./lib.cjs');
 
 const HERE = __dirname;
 const REPO = path.resolve(HERE, '..', '..', '..');
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : d; };
-const CASES = arg('--cases', '3,4,5').split(',').map(Number);
+const CASES = arg('--cases', '1,2,3,4,5').split(',').map(Number);
 const TOP = +arg('--top', '10');
 const MAX500 = +arg('--max500', '40');
 const CACHE = path.join(HERE, 'team', 'scores.json');
@@ -32,14 +36,20 @@ function caseOf(p) {
   const m = p.match(/case[_-]?(\d)/i) || p.match(/(?:^|[\/_])c(\d)(?:[\/_.-]|$)/i);
   return m ? +m[1] : null;
 }
+// Git names and file-name prefixes of the same person, shown as one name.
+const PEOPLE = {'jante0': '박진홍', 'jinhong': '박진홍', 'pjh': '박진홍', 'kwak-kwak-2': '곽민재', 'minjae': '곽민재', 'kmj': '곽민재',
+  'younbean': '윤빈', 'yb': '윤빈', 'Seungmin Jang': '장승민', 'jsm': '장승민'};
+const who = n => PEOPLE[n] || n;
+const HOUSEKEEPER = 'Seungmin Jang';          // owner of jsm; also made layout commits on every branch on 11/25
 const SKIP = /(^|\/)(legacy|original|node_modules|docs|team-experiments|\.github)(\/|$)/;
 const LIKE = /(answer|ans|cand|best)[^\/]*\.csv$/i;
 
 function addSource(text, c, src) {
   const t = norm(text);
   if (!/^dir,[01]+\nfleet,\d+\n/.test(t)) return;
-  const h = sha(t);
-  const a = answers[h] || (answers[h] = {case: c, sha12: h.slice(0, 12), text: t, sources: []});
+  // same design written differently (node order, number format) is one answer: key by the canonical design hash
+  let h; try { h = L.candidate(c, L.parseDesign(t)).sha; } catch { h = sha(t); }
+  const a = answers[h] || (answers[h] = {case: c, sha12: h.slice(0, 12), text: t, sources: [], firstSeen: new Date().toISOString()});
   const key = `${src.branch}:${src.path}`;
   const old = a.sources.find(s => `${s.branch}:${s.path}` === key);
   if (old) Object.assign(old, src); else a.sources.push(src);
@@ -65,10 +75,13 @@ function recorded(branch, files, p, blob) {
 // ---------- 1. collect ----------
 const branches = git('ls-remote', '--heads', 'origin').trim().split('\n').map(l => l.split('refs/heads/')[1]).filter(b => b && b !== 'jsm');
 for (const b of branches) {
-  try { git('fetch', '-q', '--depth=1', '--filter=blob:none', 'origin', `+refs/heads/${b}:refs/team/${b}`); }
+  try { git('fetch', '-q', '--depth=30', '--filter=blob:none', 'origin', `+refs/heads/${b}:refs/team/${b}`); }
   catch (e) { console.error(`skip ${b}: fetch failed`); continue; }
   const commit = git('rev-parse', `refs/team/${b}`).trim();
-  const author = git('log', '-1', '--format=%an', `refs/team/${b}`).trim();
+  // owner = most frequent committer in recent history, ignoring repository-wide housekeeping commits by the jsm owner
+  const count = {};
+  for (const n of git('log', '--format=%an', `refs/team/${b}`).trim().split('\n')) if (n && n !== HOUSEKEEPER) count[n] = (count[n] || 0) + 1;
+  const author = Object.entries(count).sort((x, y) => y[1] - x[1])[0]?.[0] || (b.startsWith('jsm') ? HOUSEKEEPER : b);
   const files = git('ls-tree', '-r', '--name-only', `refs/team/${b}`).trim().split('\n');
   const blob = f => git('show', `refs/team/${b}:${f}`);
   for (const p of files) {
@@ -76,7 +89,8 @@ for (const b of branches) {
     const c = caseOf(p);
     if (!CASES.includes(c)) continue;
     let text; try { text = blob(p); } catch { continue; }
-    addSource(text, c, {branch: b, commit: commit.slice(0, 10), path: p, author, recorded: recorded(b, files, p, blob)});
+    const prefixed = path.posix.basename(p).match(/^([A-Za-z][\w-]*?)__/);
+    addSource(text, c, {branch: b, commit: commit.slice(0, 10), path: p, author: who(prefixed ? prefixed[1] : author), recorded: recorded(b, files, p, blob)});
   }
 }
 const own = git('rev-parse', 'HEAD').trim().slice(0, 10);
@@ -84,7 +98,7 @@ for (const c of CASES) {
   const dir = path.join(REPO, 'experiments', 'case' + c, 'candidates');
   if (!fs.existsSync(dir)) continue;
   for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.csv') && f !== 'index.csv'))
-    addSource(fs.readFileSync(path.join(dir, f), 'utf8'), c, {branch: 'jsm', commit: own, path: `experiments/case${c}/candidates/${f}`, author: 'jsm', recorded: null});
+    addSource(fs.readFileSync(path.join(dir, f), 'utf8'), c, {branch: 'jsm', commit: own, path: `experiments/case${c}/candidates/${f}`, author: who(HOUSEKEEPER), recorded: null});
 }
 
 // ---------- 2-3. score ----------
@@ -100,7 +114,7 @@ let n11 = 0, n500 = 0;
 for (const a of Object.values(answers)) if (!a.public) { a.public = score(a, 11, 5); n11++; }
 for (const c of CASES) {
   const ranked = Object.values(answers).filter(a => a.case === c && a.public && a.public.cost !== null).sort((x, y) => x.public.cost - y.public.cost);
-  for (const a of ranked.slice(0, TOP)) {
+  for (const a of (c === 1 ? ranked : ranked.slice(0, TOP))) {
     if (a.s500 || n500 >= MAX500) continue;
     a.s500 = score(a, 1, 500); n500++;
   }
