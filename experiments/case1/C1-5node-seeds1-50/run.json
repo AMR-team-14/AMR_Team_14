@@ -1,0 +1,1370 @@
+{
+  "experiment_id": "C1-5node-seeds1-50",
+  "recorded_at_kst": "2026-11-26 16:36:50",
+  "case": 1,
+  "phase": "intermediate-screening",
+  "purpose": "Compare bounded 5-node Case 1 candidates and fleet sizes using the same pooled 50 seeds.",
+  "execution": {
+    "platform": "win32",
+    "node": "v24.14.0",
+    "runner": "local",
+    "workers": 8
+  },
+  "branch": "yb",
+  "team_branch_commits_at_start": {
+    "main": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "jkd": "aeb5fa98f2789f7c4f80a7506515e2d5ddda4fb0",
+    "kmj": "a8818a65438ced1728c20874cdaa333d8dd9ca64",
+    "pjh": "c5dc1c6d792ff6c2bdad78e3da052a778bab79aa",
+    "jsm": "d49693aa8791403796152d68ed1c0d877ac8eafe",
+    "yb": "a83ae2260fb7d8a4439a619021bbe69941f59de2"
+  },
+  "evaluation": {
+    "evaluator": "simulator/score.cjs",
+    "main_commit": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "simulator_tree": "47c21aff74316d4f4b62ef7a441710f6f199f12c",
+    "options": [
+      "--trace"
+    ],
+    "workload_minutes": 3000,
+    "warmup_minutes": 300
+  },
+  "input": {
+    "path": "simulator/spec/c1.json",
+    "spec_git_sha256": "5de2c2f33b9cdb2de43e827b62210310713f9146eda2e962ec99673f1cd544a0",
+    "embedded_json_sha256": "c8a348ff01e9fcaa8e5fb4757628f074a592f7b1f6bee819d3304e43b159190b"
+  },
+  "fixed_direction": "000011110000000111100000000110101",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "exploration_seed_range": [
+    1,
+    50
+  ],
+  "tested_fleet_sizes": [
+    18,
+    19,
+    20,
+    21
+  ],
+  "answer_hash_encoding": "SHA-256 of UTF-8 with LF line endings as stored in Git.",
+  "aggregation": "Pool completed pickups after warmup across the entire 50-seed batch, then compute cost once with a floor-index urgent P95. Null cost when any seed is rejected.",
+  "design": {
+    "D": {
+      "source": "experiments/case1/C1-3node-seeds1-50/D/answer.csv",
+      "method": "Cross one new child below the near rule with one new child below the far rule.",
+      "near": [
+        {
+          "id": "U",
+          "child": "hi",
+          "feature": "w",
+          "mode": "max",
+          "value": 0.75
+        },
+        {
+          "id": "Q",
+          "child": "lo",
+          "feature": "qo",
+          "mode": "max",
+          "value": 1
+        }
+      ],
+      "far": [
+        {
+          "id": "L",
+          "child": "lo",
+          "feature": "dl",
+          "mode": "min",
+          "value": 65
+        },
+        {
+          "id": "W",
+          "child": "hi",
+          "feature": "w",
+          "mode": "min",
+          "value": 0.75
+        }
+      ]
+    },
+    "YB": {
+      "source": "experiments/case1/C1-3node-seeds1-50/reference/answer.csv",
+      "method": "Enumerate all five-node rooted ancestor-closed subtrees, preserving rules and renumbering node IDs."
+    },
+    "TEAM": {
+      "source": "simulator/internal/inputs.json case 1 baseline CSV",
+      "embedded_source_blob": "5aa85fdd7f26d7d61b6ef0ac0ed391e202ae2b2c",
+      "method": "Enumerate all five-node rooted ancestor-closed subtrees, preserving rules and renumbering node IDs."
+    },
+    "shapes": [
+      {
+        "id": "D-UL",
+        "family": "D",
+        "added_near": {
+          "id": "U",
+          "child": "hi",
+          "feature": "w",
+          "mode": "max",
+          "value": 0.75
+        },
+        "added_far": {
+          "id": "L",
+          "child": "lo",
+          "feature": "dl",
+          "mode": "min",
+          "value": 65
+        }
+      },
+      {
+        "id": "D-UW",
+        "family": "D",
+        "added_near": {
+          "id": "U",
+          "child": "hi",
+          "feature": "w",
+          "mode": "max",
+          "value": 0.75
+        },
+        "added_far": {
+          "id": "W",
+          "child": "hi",
+          "feature": "w",
+          "mode": "min",
+          "value": 0.75
+        }
+      },
+      {
+        "id": "D-QL",
+        "family": "D",
+        "added_near": {
+          "id": "Q",
+          "child": "lo",
+          "feature": "qo",
+          "mode": "max",
+          "value": 1
+        },
+        "added_far": {
+          "id": "L",
+          "child": "lo",
+          "feature": "dl",
+          "mode": "min",
+          "value": 65
+        }
+      },
+      {
+        "id": "D-QW",
+        "family": "D",
+        "added_near": {
+          "id": "Q",
+          "child": "lo",
+          "feature": "qo",
+          "mode": "max",
+          "value": 1
+        },
+        "added_far": {
+          "id": "W",
+          "child": "hi",
+          "feature": "w",
+          "mode": "min",
+          "value": 0.75
+        }
+      },
+      {
+        "id": "YB-12345",
+        "family": "YB",
+        "kept_source_nodes": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "id": "YB-12346",
+        "family": "YB",
+        "kept_source_nodes": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ]
+      },
+      {
+        "id": "YB-12357",
+        "family": "YB",
+        "kept_source_nodes": [
+          1,
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      {
+        "id": "YB-12358",
+        "family": "YB",
+        "kept_source_nodes": [
+          1,
+          2,
+          3,
+          5,
+          8
+        ]
+      },
+      {
+        "id": "YB-13578",
+        "family": "YB",
+        "kept_source_nodes": [
+          1,
+          3,
+          5,
+          7,
+          8
+        ]
+      },
+      {
+        "id": "YB-13589",
+        "family": "YB",
+        "kept_source_nodes": [
+          1,
+          3,
+          5,
+          8,
+          9
+        ]
+      },
+      {
+        "id": "TEAM-12345",
+        "family": "TEAM",
+        "kept_source_nodes": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "id": "TEAM-12346",
+        "family": "TEAM",
+        "kept_source_nodes": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ]
+      },
+      {
+        "id": "TEAM-12356",
+        "family": "TEAM",
+        "kept_source_nodes": [
+          1,
+          2,
+          3,
+          5,
+          6
+        ]
+      },
+      {
+        "id": "TEAM-12357",
+        "family": "TEAM",
+        "kept_source_nodes": [
+          1,
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      {
+        "id": "TEAM-12368",
+        "family": "TEAM",
+        "kept_source_nodes": [
+          1,
+          2,
+          3,
+          6,
+          8
+        ]
+      },
+      {
+        "id": "TEAM-13567",
+        "family": "TEAM",
+        "kept_source_nodes": [
+          1,
+          3,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "id": "TEAM-13568",
+        "family": "TEAM",
+        "kept_source_nodes": [
+          1,
+          3,
+          5,
+          6,
+          8
+        ]
+      },
+      {
+        "id": "TEAM-13579",
+        "family": "TEAM",
+        "kept_source_nodes": [
+          1,
+          3,
+          5,
+          7,
+          9
+        ]
+      }
+    ]
+  },
+  "reuse": {
+    "main_index": "https://github.com/AMR-team-14/AMR_Team_14/blob/22adb496866fc59427089de5f4eba374a0e678a2/experiments/case1/index.csv",
+    "checked_team_branches": [
+      "jkd",
+      "kmj",
+      "pjh",
+      "jsm"
+    ],
+    "case1_checked_paths": [
+      "experiments/case1/",
+      "experiments/case1/insights.md"
+    ],
+    "team_changes": {
+      "jsm": "New records cover cases other than Case 1.",
+      "kmj": "New records cover Cases 3 and 5."
+    },
+    "matches": "No matching completed batch for the selected 5-node candidates.",
+    "reference_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f8eb0645dec0701bcc7f68de6328efcae4f499db/experiments/case1/C1-3node-seeds1-50/results.csv",
+    "previous_result_rows": [
+      {
+        "id": "D-3node-n19",
+        "source_row": "D",
+        "answer": "experiments/case1/C1-3node-seeds1-50/D/answer.csv",
+        "log": "experiments/case1/C1-3node-seeds1-50/logs/D.json",
+        "answer_sha256": "da27f8568ca3b32fe472c5ace56bfe6c73351f2788cb428ec6e46fb70d042052"
+      },
+      {
+        "id": "YB-9node-n19",
+        "source_row": "reference",
+        "answer": "experiments/case1/C1-3node-seeds1-50/reference/answer.csv",
+        "log": "experiments/case1/C1-3node-seeds1-50/logs/reference.json",
+        "answer_sha256": "5698e8bcbcb4f270c86341553677f18976d8f7f145a4d4b301b03acfecc357c1"
+      }
+    ]
+  },
+  "raw_logs": "Unmodified evaluator stdout. The trace contains dispatch count and SHA-256, plus rejected seed IDs.",
+  "preflight": {
+    "command": "node simulator/score.cjs 1 --baseline 11 5 --trace",
+    "log_path": "experiments/case1/C1-5node-seeds1-50/logs/baseline-11-15.json",
+    "expected_cost": 1180.4234,
+    "rejected": 0
+  },
+  "runs": [
+    {
+      "id": "D-UL-n18",
+      "shape": "D-UL",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-UL-n18.csv",
+      "answer_sha256": "02ee6c6fdb7c982d81ebc32943b2d1e1a06ce3dd4ddfca34cf7151d43a7cdaee",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-UL-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-UL-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-UL-n19",
+      "shape": "D-UL",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-UL-n19.csv",
+      "answer_sha256": "05e82036830b95d742b21f55143a0d0cd35a235329a21c9d3bddc85160397751",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-UL-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-UL-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-UL-n20",
+      "shape": "D-UL",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-UL-n20.csv",
+      "answer_sha256": "dec68acdbba830f97d698dffc54735fb8c3d947e58eea256c541aac05e10412b",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-UL-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-UL-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-UL-n21",
+      "shape": "D-UL",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-UL-n21.csv",
+      "answer_sha256": "47fb83b35dafcd7d6ac96ab35b3fe910fdc81fb6742647c4d0c5245e146f4c74",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-UL-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-UL-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-UW-n18",
+      "shape": "D-UW",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-UW-n18.csv",
+      "answer_sha256": "f1d752e207975fc252dfbb647cc84ebee29f373b77b11619ae764dae723ed5ff",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-UW-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-UW-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-UW-n19",
+      "shape": "D-UW",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-UW-n19.csv",
+      "answer_sha256": "3e4e993c816a92b7b6f4d8d3340f720667da2ee703d5e6c20a1df268105e9358",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-UW-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-UW-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-UW-n20",
+      "shape": "D-UW",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-UW-n20.csv",
+      "answer_sha256": "3715462f19da0d4bb5e4a50f774a865fba5c4acef1fa3996da2c545aa5b9f9cd",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-UW-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-UW-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-UW-n21",
+      "shape": "D-UW",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-UW-n21.csv",
+      "answer_sha256": "a75d5d69d4f7fb66d4e7d8535ec47228ec97ca4777fd6c7fa7e4c9230f06abcc",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-UW-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-UW-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-QL-n18",
+      "shape": "D-QL",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-QL-n18.csv",
+      "answer_sha256": "ce238e4a93f9c0210074afc1084e897a0f7b736a28937bc3dbd105782168566b",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-QL-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-QL-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-QL-n19",
+      "shape": "D-QL",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-QL-n19.csv",
+      "answer_sha256": "e7cb33cadc52fb274272ae9911f272cb7eeac1bb02bcea2541a1ad5a5f92e36f",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-QL-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-QL-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-QL-n20",
+      "shape": "D-QL",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-QL-n20.csv",
+      "answer_sha256": "4c2290a99d9dfda14317993151ae185d893018317bafe57107490361f29c9576",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-QL-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-QL-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-QL-n21",
+      "shape": "D-QL",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-QL-n21.csv",
+      "answer_sha256": "b904b99f853014e5608e6028a5fa1a9f0bb881aa0a33a76984a5deaf5b060b40",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-QL-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-QL-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-QW-n18",
+      "shape": "D-QW",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-QW-n18.csv",
+      "answer_sha256": "052d3cda6c067636f6043f100b1ce064cc6a1ae2e351631e7b85d385912ab829",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-QW-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-QW-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-QW-n19",
+      "shape": "D-QW",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-QW-n19.csv",
+      "answer_sha256": "3be2402f1716cd91e987bdacaa6c363733b0776cd6bff67fcbeb311bb3a8a989",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-QW-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-QW-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-QW-n20",
+      "shape": "D-QW",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-QW-n20.csv",
+      "answer_sha256": "7ebd93160f9ca70903492d535183ae545fa401f987a4b5a11d9f7867e4ea874d",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-QW-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-QW-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "D-QW-n21",
+      "shape": "D-QW",
+      "family": "D",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/D-QW-n21.csv",
+      "answer_sha256": "5d20b874cbe2abfd692bd3f353fb4021a371e3b5f3b9af8a243530a68f834ff8",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/D-QW-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/D-QW-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12345-n18",
+      "shape": "YB-12345",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12345-n18.csv",
+      "answer_sha256": "9dea3ed19a0a74f9f8e0137f6ab99280333ed8ff25fd08b59a2163eabe18e615",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12345-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12345-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12345-n19",
+      "shape": "YB-12345",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12345-n19.csv",
+      "answer_sha256": "ed3c26e15e1d7e1a60592c1a488bd55cdd0300825b4f7db9a400b06a3eeb1e77",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12345-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12345-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12345-n20",
+      "shape": "YB-12345",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12345-n20.csv",
+      "answer_sha256": "cd45d621a4ffeaf9a84c8c17a9da2749f6b4df8d103e283350c28cba4e990edc",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12345-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12345-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12345-n21",
+      "shape": "YB-12345",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12345-n21.csv",
+      "answer_sha256": "3c6115e6c1f9f05d1913ee4c5bc4466d8a745e190370da8297be76a7db028c42",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12345-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12345-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12346-n18",
+      "shape": "YB-12346",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12346-n18.csv",
+      "answer_sha256": "f3e04f85d5bc1ec1f8e02f3c137f0fd51db825ae9cb2bf476504ff5d7289f799",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12346-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12346-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12346-n19",
+      "shape": "YB-12346",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12346-n19.csv",
+      "answer_sha256": "8f405067dc58768ac5e84ea3b68334b84b2cb3df272df6bb9e5fd3ba5e102e82",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12346-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12346-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12346-n20",
+      "shape": "YB-12346",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12346-n20.csv",
+      "answer_sha256": "edb0b04bac7448dc73c47c0ce2da9e6ca7aa6644f3fd7e826367d45f5c1486f8",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12346-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12346-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12346-n21",
+      "shape": "YB-12346",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12346-n21.csv",
+      "answer_sha256": "522e5f1cd5f1e7c258abb7703c6f5c49daa4ce1ddc0957ab6bff7522afcd1aca",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12346-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12346-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12357-n18",
+      "shape": "YB-12357",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12357-n18.csv",
+      "answer_sha256": "3cf4e81c07272fed19e6c4c3e419c2ee3faaeb9ab63b2ab7e167cd3e8dc7cb7c",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12357-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12357-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12357-n19",
+      "shape": "YB-12357",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12357-n19.csv",
+      "answer_sha256": "28c89659003186870233cea544b64f302a564f24daf879206d64838dfbd3c5d9",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12357-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12357-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12357-n20",
+      "shape": "YB-12357",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12357-n20.csv",
+      "answer_sha256": "026859f54b41de82c9c8b1b8281755bfd11fe8813d96e3c886ae44cbabb74ffd",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12357-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12357-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12357-n21",
+      "shape": "YB-12357",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12357-n21.csv",
+      "answer_sha256": "318806cd32879b395292e322907950d3291d6a7b8095dcbe576ffe8dbd0fb159",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12357-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12357-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12358-n18",
+      "shape": "YB-12358",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12358-n18.csv",
+      "answer_sha256": "330ef800e266915407feb5f46307ea83110a90da1a8aec7502a48f9cb3658adc",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12358-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12358-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12358-n19",
+      "shape": "YB-12358",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12358-n19.csv",
+      "answer_sha256": "50504da4d2f08217e5f1541f199914a00706c921f3532459b41c1f758a9759f5",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12358-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12358-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12358-n20",
+      "shape": "YB-12358",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12358-n20.csv",
+      "answer_sha256": "fa3e8e558f12f46377f151997d47ca78e2fb1b9e29dcce92648d22632923e35c",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12358-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12358-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-12358-n21",
+      "shape": "YB-12358",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-12358-n21.csv",
+      "answer_sha256": "77683061bd2c7bf67d910c5877c065dd0d5a0315edd1b325e8c948cf144d7be4",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-12358-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-12358-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-13578-n18",
+      "shape": "YB-13578",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-13578-n18.csv",
+      "answer_sha256": "7bf53633300fa47727853648e2aedd9f20cf2ae847be88d171d68c705f9aeba6",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-13578-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-13578-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-13578-n19",
+      "shape": "YB-13578",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-13578-n19.csv",
+      "answer_sha256": "202b94a999ae1bbe118c8782108515e4a18e9ce56ebd3943bbc3691729e09195",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-13578-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-13578-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-13578-n20",
+      "shape": "YB-13578",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-13578-n20.csv",
+      "answer_sha256": "d58ff327996ed0fdd0e699ff39c5ee7d368be4971cae19e449bff251b9e9783a",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-13578-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-13578-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-13578-n21",
+      "shape": "YB-13578",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-13578-n21.csv",
+      "answer_sha256": "3cf381ae9b572dd30d9e999870344bac22c6ffee960643b70020895768b0eb2d",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-13578-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-13578-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-13589-n18",
+      "shape": "YB-13589",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-13589-n18.csv",
+      "answer_sha256": "930b0fa5dc9ca95f33f76203cf6c60285fc6e64365a810639bcc0bcd9d4e287b",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-13589-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-13589-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-13589-n19",
+      "shape": "YB-13589",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-13589-n19.csv",
+      "answer_sha256": "762a7718f4224b1dd53111f8a12f073ed2a3b668f564e26f6bb4c92f7e9a50a4",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-13589-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-13589-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-13589-n20",
+      "shape": "YB-13589",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-13589-n20.csv",
+      "answer_sha256": "9b67459e7bc7ebc7a08322a311028d05cd8074bebe3c5a0897fcb71a43dcb2fa",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-13589-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-13589-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "YB-13589-n21",
+      "shape": "YB-13589",
+      "family": "YB",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/YB-13589-n21.csv",
+      "answer_sha256": "3a308695f02667cd4af308dec4f93d5c0d2b04fe3a3c9b3cd7d889e6d0230460",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/YB-13589-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/YB-13589-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12345-n18",
+      "shape": "TEAM-12345",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12345-n18.csv",
+      "answer_sha256": "fc1a6f87fec40d2716713217caca99e6c6636e8c519af8814a2d044d244a468e",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12345-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12345-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12345-n19",
+      "shape": "TEAM-12345",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12345-n19.csv",
+      "answer_sha256": "16c93147446fb07923f2b1c1b531f335fb75cbae73d14fe0f7e3d20582303df0",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12345-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12345-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12345-n20",
+      "shape": "TEAM-12345",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12345-n20.csv",
+      "answer_sha256": "eaa8f5935510a771a6c92ef7f1f54275f31abf28491645cc1859020838a22fbe",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12345-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12345-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12345-n21",
+      "shape": "TEAM-12345",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12345-n21.csv",
+      "answer_sha256": "4fec685f5ad8ce3e0fbb5d6121583bbdbdf82c6c34398e6a64466faa8312ec61",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12345-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12345-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12346-n18",
+      "shape": "TEAM-12346",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12346-n18.csv",
+      "answer_sha256": "e3f40f04113643ea1a633aad5328202a950900c5009f4ebe76ca613fc2452526",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12346-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12346-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12346-n19",
+      "shape": "TEAM-12346",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12346-n19.csv",
+      "answer_sha256": "00b9c181c6baea2adb3937bc5a71a4b54f5f7f2d2a7b940911560e7596801f55",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12346-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12346-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12346-n20",
+      "shape": "TEAM-12346",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12346-n20.csv",
+      "answer_sha256": "e2a2620a0320997f2a897cbe8ca71b4197f46348e25f3d4f0d63740281fc030a",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12346-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12346-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12346-n21",
+      "shape": "TEAM-12346",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12346-n21.csv",
+      "answer_sha256": "862f3ee78a73fdd621f2c2679fe6287cf000d9bb87f0bd6e9a3555b6dedc8849",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12346-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12346-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12356-n18",
+      "shape": "TEAM-12356",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12356-n18.csv",
+      "answer_sha256": "cbaba8ba05b1e9772b7747f0d1d8fbdceb6fc3ee41cc2cb9ec1345cfeabf4832",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12356-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12356-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12356-n19",
+      "shape": "TEAM-12356",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12356-n19.csv",
+      "answer_sha256": "1b0c6d60770165339bbfab1e1432e4e3a2b881d941dac1ba938b3492a2beb35c",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12356-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12356-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12356-n20",
+      "shape": "TEAM-12356",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12356-n20.csv",
+      "answer_sha256": "35591874a50614ac353ddb7b45a2da77b067889adb63a562af020032d83297c0",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12356-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12356-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12356-n21",
+      "shape": "TEAM-12356",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12356-n21.csv",
+      "answer_sha256": "ff0e7b132dbc1ab5ee0be29f78542b8087a1818a7037a4ae74ae423565f4f487",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12356-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12356-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12357-n18",
+      "shape": "TEAM-12357",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12357-n18.csv",
+      "answer_sha256": "bbcafe876afb3ea0a0d8bb36975cc751844e939b69be27fa95b11e745eef60ad",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12357-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12357-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12357-n19",
+      "shape": "TEAM-12357",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12357-n19.csv",
+      "answer_sha256": "b1f156d22548338720013bdb33c2884f0e18a491ba9f49469836115e304a2859",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12357-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12357-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12357-n20",
+      "shape": "TEAM-12357",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12357-n20.csv",
+      "answer_sha256": "45845cd759656c743614ef352725a01da4c76d2703467a56ba4ccb9ada151357",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12357-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12357-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12357-n21",
+      "shape": "TEAM-12357",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12357-n21.csv",
+      "answer_sha256": "abbb2200cc33bd88355aa5223264b1663b8275b4c59d90f3d6246f567f8d4120",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12357-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12357-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12368-n18",
+      "shape": "TEAM-12368",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12368-n18.csv",
+      "answer_sha256": "1044eeb1a45b0979368812292ed1c68a13af869e1f2fd51d80b172d00ccb0644",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12368-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12368-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12368-n19",
+      "shape": "TEAM-12368",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12368-n19.csv",
+      "answer_sha256": "6ca64bc5e6038c4959e03b163ce334c6f41cd7f7cee95988ef754215ff34c748",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12368-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12368-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12368-n20",
+      "shape": "TEAM-12368",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12368-n20.csv",
+      "answer_sha256": "e7be5a3e4e9ef0dcedc2ed88e9cec0dcf82f9f405f5469df891d4183421d39a6",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12368-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12368-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-12368-n21",
+      "shape": "TEAM-12368",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-12368-n21.csv",
+      "answer_sha256": "f8374450d506c2e271be2957dc6314e19a3a48d69238fe99ca307f11167b26d9",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-12368-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-12368-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-13567-n18",
+      "shape": "TEAM-13567",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-13567-n18.csv",
+      "answer_sha256": "abf62d0accaaf20f932d576abf42f1cfe6624b0bbc9e62df52ce60fe25ebaa7b",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-13567-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-13567-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-13567-n19",
+      "shape": "TEAM-13567",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-13567-n19.csv",
+      "answer_sha256": "80b8c64652096be7fdb76eadd9865eb6c28a6798712785f92b402f0ebb5f3b8e",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-13567-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-13567-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-13567-n20",
+      "shape": "TEAM-13567",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-13567-n20.csv",
+      "answer_sha256": "38b60c51ba4d18bba8fbeb2a8cc49c7d10a1a583e3269a10909b14530629ef52",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-13567-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-13567-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-13567-n21",
+      "shape": "TEAM-13567",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-13567-n21.csv",
+      "answer_sha256": "acc94e41c9477dca51edd426f7d45540baa5725c6f203a2e72a04c09745415de",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-13567-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-13567-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-13568-n18",
+      "shape": "TEAM-13568",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-13568-n18.csv",
+      "answer_sha256": "e2f8a8efd2574cdbafdd794ae4892d6192187c57448eff6cedf74821142c5a34",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-13568-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-13568-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-13568-n19",
+      "shape": "TEAM-13568",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-13568-n19.csv",
+      "answer_sha256": "b7b09bc3c7074df94d524eb692a33d09bc239e65cc3315ba6454dc86e6799ae0",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-13568-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-13568-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-13568-n20",
+      "shape": "TEAM-13568",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-13568-n20.csv",
+      "answer_sha256": "0adb9920c605f6d02dd57ae9747dbd8357940174c9b6de25ec9756281c08c2da",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-13568-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-13568-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-13568-n21",
+      "shape": "TEAM-13568",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-13568-n21.csv",
+      "answer_sha256": "79b9cc36e507b324e96a89444d0ebe9a67e00f74aa883e2d4368237b2424a605",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-13568-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-13568-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-13579-n18",
+      "shape": "TEAM-13579",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 18,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-13579-n18.csv",
+      "answer_sha256": "dbdf0053b6376808bced6eafd24c1dcda648585b68f6ef03cb2dc7a0fde86e35",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-13579-n18.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-13579-n18.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-13579-n19",
+      "shape": "TEAM-13579",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 19,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-13579-n19.csv",
+      "answer_sha256": "3d32f0ff2db7413db5c900db5028565efe9c714bf3e1982952f62ea52caaf642",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-13579-n19.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-13579-n19.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-13579-n20",
+      "shape": "TEAM-13579",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 20,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-13579-n20.csv",
+      "answer_sha256": "02e6f3be1f93e11ce17d380bf914ccc3de546c007f52511a8a16815e0950f274",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-13579-n20.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-13579-n20.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-13579-n21",
+      "shape": "TEAM-13579",
+      "family": "TEAM",
+      "role": "5-node-candidate",
+      "fleet": 21,
+      "nodes": 5,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-13579-n21.csv",
+      "answer_sha256": "836cdb0e07bf3eeb53f344d7c3dd8f60de58838f7728351318227207a947204f",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-13579-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-13579-n21.csv 1 50 --trace",
+      "status": "completed"
+    },
+    {
+      "id": "TEAM-9node-n21",
+      "shape": "TEAM-9node",
+      "family": "TEAM",
+      "role": "reference",
+      "fleet": 21,
+      "nodes": 9,
+      "answer_path": "experiments/case1/C1-5node-seeds1-50/answers/TEAM-9node-n21.csv",
+      "answer_sha256": "e086d3b2ffd381dc587fb0cc10efd7a674d29bc7a4746ce7e11447aebaff9777",
+      "log_path": "experiments/case1/C1-5node-seeds1-50/logs/TEAM-9node-n21.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-5node-seeds1-50/answers/TEAM-9node-n21.csv 1 50 --trace",
+      "status": "completed"
+    }
+  ]
+}
