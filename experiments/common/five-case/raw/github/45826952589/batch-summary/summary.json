@@ -1,0 +1,65 @@
+{
+  "batch": "auto-11262212",
+  "planned": 40,
+  "returned": 40,
+  "missing": [],
+  "failures": [],
+  "cases": {
+    "3": {
+      "evaluations": 0,
+      "searchEvaluations": 3024,
+      "fleets": {},
+      "bestSearch": [
+        {
+          "sha": "00fad1b682e2fd10740877a25bde303e7128c7c909e96c7a69bc739abebd953f",
+          "score": 962.7048001222345,
+          "fleet": 22,
+          "dir": "1111111100000000011111011001101",
+          "label": "auto-11262212:e2"
+        },
+        {
+          "sha": "2fcf90e69eb4e1e1d236753e5c469648c6ef0f2b883976a8b27ceed53e267234",
+          "score": 969.4106855033331,
+          "fleet": 23,
+          "dir": "1111111100000000011111011001101",
+          "label": "auto-11262212:e3"
+        }
+      ]
+    },
+    "4": {
+      "evaluations": 0,
+      "searchEvaluations": 1208,
+      "fleets": {},
+      "bestSearch": [
+        {
+          "sha": "d5152c1e93b668b3b9efcc675dfa4bd9815ca2c942037d27dc014e3e2b1408f7",
+          "score": 792.3265964312684,
+          "fleet": 18,
+          "dir": "1111111111011111111000001110100111100000110010011101101100011110011111101111",
+          "label": "auto-11262212:e4"
+        }
+      ]
+    },
+    "5": {
+      "evaluations": 0,
+      "searchEvaluations": 2824,
+      "fleets": {},
+      "bestSearch": [
+        {
+          "sha": "aed2f894f8a5e6f9ecb61b334d7edea5b2c827ba61d35ed468195a908400de80",
+          "score": 770.8816460515609,
+          "fleet": 23,
+          "dir": "111000010000011110100001101100",
+          "label": "auto-11262212:e0"
+        },
+        {
+          "sha": "dd48afb957ba5953a19164e0261f871dba672e2699615252ab227145594ed9de",
+          "score": 771.4314557779178,
+          "fleet": 23,
+          "dir": "111000010000011110100001101100",
+          "label": "auto-11262212:e1"
+        }
+      ]
+    }
+  }
+}
