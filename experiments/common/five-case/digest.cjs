@@ -288,8 +288,13 @@ for (const c of CASES) {
 
   const bestSearchHeld = Object.values(searchOut).map(o => o.best).filter(Boolean).map(b => ({...b, heldOutBlocks: (all.find(e => e.sha12 === b.sha12) || {blocks: new Map()}).blocks.size}));
 
+  const searchTasks = {};
+  for (const t of tasks.values()) if (t.case === c && t.type === 'search') {
+    const k = `${t.batch}:${t.env}`, o = searchTasks[k] || (searchTasks[k] = {planned: 0, returned: 0});
+    o.planned++; if (results.has(t.id)) o.returned++;
+  }
   casesOut[c] = {
-    candidates: all.length, withPublic: withPub.length, withHeldOut: held.length,
+    candidates: all.length, searchTasks, withPublic: withPub.length, withHeldOut: held.length,
     engines: [...new Set(all.flatMap(e => [...e.engines]))],
     public: {best: pubOut, teamBest, diffVsTeam: pubVsTeam, top5: withPub.slice(0, 5).map(e => ({sha12: e.sha12, fleet: e.fleet, dir: e.dir, score: r4(e.pub)}))},
     heldOut: heldOut.map(h => ({...h, adjMean: r2((held.find(e => e.sha12 === h.sha12) || {}).adj)})).sort((a, b) => (a.adjMean ?? 1e9) - (b.adjMean ?? 1e9)).slice(0, 15), heldOutTotal: heldOut.length,
