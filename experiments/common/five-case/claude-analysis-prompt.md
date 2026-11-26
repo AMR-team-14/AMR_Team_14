@@ -47,10 +47,27 @@ experiments/common/five-case/reports/known-insights.md를 갱신해. 최종 보�
 - 고정할 것, 바꿀 것, 판정 기준(공개 시드 11-15 점수가 팀 전체 1위보다 낮고, 시드 1-500에서 반려 0)을 적는다.
 
 
+## next.json — 다음 실험을 실제로 돌릴 명세 (저장소 루트)
+"2) 다음 실험 하나"를 코드가 바로 실행할 수 있게 next.json으로도 쓴다. 코드가 검사하고 상한을 적용한 뒤 GitHub Actions에서 돌린다.
+```json
+{"decision": "run",
+ "reason": "한 줄 이유",
+ "experiments": [
+  {"case": 5, "type": "search", "fleet": 24, "dir": "sha12:<답안 sha12>", "start": "transplant:<답안 sha12>",
+   "budget": 240, "repeats": 8, "why": "이 탐색이 필요한 이유"},
+  {"case": 5, "type": "eval", "sha12": "<답안 sha12>", "fleet": 24, "seeds": "public", "why": "..."}
+ ]}
+```
+- search: 공개 시드 11-15 점수를 낮추는 국소 탐색. dir은 기존 답안의 통로를 "sha12:<sha12>"로 가리키거나 0/1 문자열. start는 "transplant:<sha12>"(그 답안의 트리에서 시작), "nearest", "shortFar", "longFar". repeats = 서로 다른 난수로 몇 번 돌릴지(최대 16), budget = 한 번에 평가 횟수(최대 400).
+- eval: 기존 답안(필요하면 fleet만 바꿔) 평가. seeds = public(11-15) | screen(1-500 중 20시드) | confirm(200시드) | final(1-500 전부 + 묶음 점수).
+- sha12는 digest.json(publicRanking, heldOut, search)에 나온 값만 쓴다. 한 번에 실험 항목 12개, 탐색 64회까지.
+- 돌릴 가치가 있는 실험이 없으면 {"decision": "stop", "reason": "..."}만 쓴다.
+- 이미 돌린 것을 반복하지 마(digest의 search, publicRanking 확인).
+
 ## known-insights.md 갱신
 - 케이스별로 "확인된 인사이트"(각 줄 끝에 [ev:id=verdict]), "검증 필요 가설", "다음 확인할 것"을 쓴다.
 - 케이스당 10줄 안팎. 뒤집힌 내용은 지우고 최신 결론만 남긴다.
 
 ## 금지
-- deep.md와 known-insights.md 외 파일 수정, 새 실험 실행, 커밋, 푸시, 리더보드 제출.
+- deep.md, known-insights.md, next.json 외 파일 수정, 새 실험 실행, 커밋, 푸시, 리더보드 제출.
 - digest.json에 없는 숫자를 만들어 쓰기. 데이터가 없으면 "데이터 없음".

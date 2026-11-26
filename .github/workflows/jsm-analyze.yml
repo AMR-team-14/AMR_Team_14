@@ -31,13 +31,20 @@ concurrency:
 jobs:
   analyze:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
+    # Secrets live in the 'claude-jsm' environment, which only the jsm branch may use (Settings > Environments).
+    environment: claude-jsm
     steps:
       - uses: actions/checkout@v6
         with:
           ref: ${{ github.sha }}
           fetch-depth: 2
+          # JSM_PUSH_TOKEN (owner's fine-grained token) makes the next-experiment push start a new run;
+          # pushes made with the default token never trigger workflows.
+          token: ${{ secrets.JSM_PUSH_TOKEN || github.token }}
           sparse-checkout: |
+            experiments/case1/candidates
+            experiments/case2/candidates
             experiments/case3
             experiments/case4
             experiments/case5
@@ -65,7 +72,7 @@ jobs:
       - name: Gather and re-score every team answer (no AI)
         id: team
         run: |
-          node experiments/common/five-case/team-gather.cjs --cases 1,2,3,4,5 --top 10 --max500 60 | tee gather.txt
+          node experiments/common/five-case/team-gather.cjs --cases 1,2,3,4,5 --top 10 --max500 1000 | tee gather.txt
           echo "new=$(sed -n 's/.*scored public \([0-9]*\).*/\1/p' gather.txt)" >> "$GITHUB_OUTPUT"
       - name: Compute digest and basic report (no AI)
         id: digest
@@ -86,17 +93,23 @@ jobs:
         continue-on-error: true
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          RUN: ${{ github.run_id }}
         run: |
           claude -p "$(cat experiments/common/five-case/claude-analysis-prompt.md)" \
             --allowedTools "Read,Glob,Grep,Write" \
-            --max-turns 40 > claude-log.txt
+            --max-turns 40 --output-format json > claude-log.json
+          # usage of this run (model, turns, tokens) appended to reports/usage.jsonl
+          node experiments/common/five-case/usage-log.cjs claude-log.json
           test -s deep.md
       - name: Combine report (code basic + AI deep)
         if: steps.gate.outputs.run == '1'
+        env:
+          RUN: ${{ github.run_id }}
         run: |
           cp basic.md report.md
           if [ -s deep.md ]; then printf '\n---\n\n' >> report.md; cat deep.md >> report.md
-          else printf '\n---\n\n> 심화 분석(AI) 실패: claude-log.txt 확인\n' >> report.md; fi
+          else printf '\n---\n\n> 심화 분석(AI) 실패: claude-log.json 확인\n' >> report.md; fi
+          node experiments/common/five-case/usage-log.cjs --last-line >> report.md
       - name: Publish report
         if: always()
         run: |
@@ -113,13 +126,20 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3 4; do
             git fetch --depth=1 origin jsm && git reset -q --mixed FETCH_HEAD
-            for f in "$DIR/$NAME.md" "$DIR/known-insights.md" "$DIR/digest-latest.json" "$DIR/digest-state.json" experiments/common/five-case/raw/github experiments/common/five-case/team/scores.json; do
+            for f in "$DIR/$NAME.md" "$DIR/known-insights.md" "$DIR/digest-latest.json" "$DIR/digest-state.json" "$DIR/usage.jsonl" experiments/common/five-case/raw/github experiments/common/five-case/team/scores.json; do
               if [ -e "$f" ]; then git add -f "$f"; fi
             done
             git commit -q -m "Claude analysis $NAME [skip ci]" && git push origin HEAD:jsm && exit 0
             sleep $((i*5))
           done
           exit 1
+      - name: Start the next experiment (AI proposal, code limits)
+        if: always() && github.ref == 'refs/heads/jsm' && steps.gate.outputs.run == '1' && hashFiles('next.json') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HAS_PAT: ${{ secrets.JSM_PUSH_TOKEN != '' }}
+          MAX_PER_DAY: ${{ vars.AUTO_MAX_PER_DAY || '6' }}
+        run: bash experiments/common/five-case/start-next.sh "${{ github.repository }}" "${{ github.run_id }}"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -127,7 +147,8 @@ jobs:
           path: |
             report.md
             deep.md
+            next.json
             digest.json
-            claude-log.txt
+            claude-log.json
           if-no-files-found: warn
           retention-days: 30

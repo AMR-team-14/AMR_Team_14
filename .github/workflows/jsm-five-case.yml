@@ -34,6 +34,9 @@ jobs:
         run: |
           set -euo pipefail
           read -r BATCH WANT < overnight-request.txt
+          echo "BATCH=$BATCH" >> "$GITHUB_ENV"
+          mkdir -p out/github
+          if [ ! -s "jobs/$BATCH-g${{ matrix.shard }}.jsonl" ]; then echo "shard ${{ matrix.shard }}: no tasks"; echo empty > out/github/run.txt; exit 0; fi
           NP=$(nproc)
           echo "nproc=$NP cpu.max=$(cat /sys/fs/cgroup/cpu.max 2>/dev/null || echo n/a)"
           W=$(( WANT < NP ? WANT : NP )); W=$(( W > 4 ? 4 : W ))

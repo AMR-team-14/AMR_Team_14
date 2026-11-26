@@ -1,11 +1,12 @@
 // Gather every answer CSV the team has pushed and score them all the same way, so all work is one experiment pool.
-//   node team-gather.cjs [--cases 1,2,3,4,5] [--top 10] [--max500 40]
+//   node team-gather.cjs [--cases 1,2,3,4,5] [--top 10] [--max500 1000] [--workers <cpus>]
 // 1. Fetches every remote branch (depth 1, no blobs) except jsm, and lists answer-like CSVs for the cases
 //    (paths with caseN / cN, files named answer*, ans*, cand*, *best*; legacy/ and bulk folders are skipped).
 //    jsm's own candidates (experiments/caseN/candidates/*.csv) join the same pool from the working tree.
 // 2. Scores each distinct answer (by sha256 of its text) with simulator/score.cjs on the public seeds 11-15.
-// 3. Scores pooled seeds 1-500 (the team's common check): the top N per case by public cost for Cases 2-5, and every
-//    answer for Case 1, which is graded on a hidden seed and is therefore ranked by the 1-500 cost.
+// 3. Scores pooled seeds 1-500 (the team's common check) for every answer file. Best trees found by jsm searches
+//    (raw/**/*.jsonl) also join the pool; of those only the top N per case by public cost get 1-500.
+//    Case 1 is graded on a hidden seed and is ranked by the 1-500 cost. Scoring runs on all CPU cores.
 // Each answer keeps who made it (owner: the branch's main committer, or the name prefix in "name__file.csv") and when
 // this script first saw it, so credit stays with the person.
 // Results are cached in team/scores.json, so each answer is scored once; sources keep branch, commit, path, author
@@ -22,7 +23,8 @@ const REPO = path.resolve(HERE, '..', '..', '..');
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : d; };
 const CASES = arg('--cases', '1,2,3,4,5').split(',').map(Number);
 const TOP = +arg('--top', '10');
-const MAX500 = +arg('--max500', '40');
+const MAX500 = +arg('--max500', '1000');
+const WORKERS = +arg('--workers', String(require('node:os').cpus().length));
 const CACHE = path.join(HERE, 'team', 'scores.json');
 const SCORE = path.join(REPO, 'simulator', 'score.cjs');
 const git = (...a) => execFileSync('git', a, {cwd: REPO, encoding: 'utf8', maxBuffer: 1 << 28});
@@ -101,31 +103,54 @@ for (const c of CASES) {
     addSource(fs.readFileSync(path.join(dir, f), 'utf8'), c, {branch: 'jsm', commit: own, path: `experiments/case${c}/candidates/${f}`, author: who(HOUSEKEEPER), recorded: null});
 }
 
-// ---------- 2-3. score ----------
-function score(a, start, count) {
-  const tmp = path.join(require('node:os').tmpdir(), `ans-${a.sha12}.csv`);
-  fs.writeFileSync(tmp, a.text);
-  try {
-    const r = JSON.parse(execFileSync('node', [SCORE, String(a.case), tmp, String(start), String(count)], {cwd: path.dirname(SCORE), encoding: 'utf8'}));
-    return {cost: r.pooled_cost, rejected: r.rejected.length};
-  } catch (e) { return {cost: null, rejected: null, error: String(e.message).split('\n')[0].slice(0, 120)}; }
-}
-let n11 = 0, n500 = 0;
-for (const a of Object.values(answers)) if (!a.public) { a.public = score(a, 11, 5); n11++; }
-for (const c of CASES) {
-  const ranked = Object.values(answers).filter(a => a.case === c && a.public && a.public.cost !== null).sort((x, y) => x.public.cost - y.public.cost);
-  for (const a of (c === 1 ? ranked : ranked.slice(0, TOP))) {
-    if (a.s500 || n500 >= MAX500) continue;
-    a.s500 = score(a, 1, 500); n500++;
+// jsm search results: every best tree a search returned
+const walk = d => !fs.existsSync(d) ? [] : fs.readdirSync(d, {withFileTypes: true}).flatMap(e => e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]);
+for (const f of walk(path.join(HERE, 'raw')).filter(f => f.endsWith('.jsonl'))) {
+  const rel = path.relative(REPO, f).split(path.sep).join('/');
+  for (const line of fs.readFileSync(f, 'utf8').split(/\r?\n/)) {
+    if (!line.includes('"results"')) continue;
+    let r; try { r = JSON.parse(line); } catch { continue; }
+    const c = +((r.id || '').match(/:c(\d)/) || [])[1];
+    if (!CASES.includes(c)) continue;
+    for (const x of (r.out && r.out.results) || []) if (x.text)
+      addSource(x.text, c, {branch: 'jsm', commit: own, path: `${rel}#${r.id}`, author: who(HOUSEKEEPER), recorded: null, kind: 'search'});
   }
 }
-for (const a of Object.values(answers)) {
-  const fl = a.text.split('\n')[1].split(',')[1];
-  a.fleet = +fl;
-  for (const s of a.sources) s.match = s.recorded === null || !a.public || a.public.cost === null ? null : Math.abs(s.recorded - a.public.cost) < 0.006;
+
+// ---------- 2-3. score (parallel) ----------
+const {execFile} = require('node:child_process');
+function score(a, start, count) {
+  const tmp = path.join(require('node:os').tmpdir(), `ans-${a.sha12}-${start}.csv`);
+  fs.writeFileSync(tmp, a.text);
+  return new Promise(res => execFile('node', [SCORE, String(a.case), tmp, String(start), String(count)], {cwd: path.dirname(SCORE), encoding: 'utf8'}, (err, out) => {
+    if (err) return res({cost: null, rejected: null, error: String(err.message).split('\n')[0].slice(0, 120)});
+    try { const r = JSON.parse(out); res({cost: r.pooled_cost, rejected: r.rejected.length}); } catch (e) { res({cost: null, rejected: null, error: 'bad output'}); }
+  }));
 }
-cache.updated = new Date().toISOString();
-cache.engine = 'simulator/score.cjs pooled';
-fs.mkdirSync(path.dirname(CACHE), {recursive: true});
-fs.writeFileSync(CACHE, JSON.stringify(cache, null, 1) + '\n');
-console.log(`branches ${branches.length}, answers ${Object.keys(answers).length}, scored public ${n11}, scored 1-500 ${n500}`);
+async function pool(jobs) {
+  let k = 0;
+  await Promise.all(Array.from({length: Math.min(WORKERS, jobs.length)}, async () => { while (k < jobs.length) await jobs[k++](); }));
+}
+(async () => {
+  const t0 = Date.now();
+  const all = Object.values(answers);
+  const p11 = all.filter(a => !a.public);
+  await pool(p11.map(a => async () => { a.public = await score(a, 11, 5); }));
+  const want = [];
+  for (const c of CASES) {
+    const ranked = all.filter(a => a.case === c && a.public && a.public.cost !== null).sort((x, y) => x.public.cost - y.public.cost);
+    const top = new Set(ranked.slice(0, TOP));
+    for (const a of ranked) if (!a.s500 && (top.has(a) || a.sources.some(s => s.kind !== 'search'))) want.push(a);
+  }
+  const p500 = want.slice(0, MAX500);
+  await pool(p500.map(a => async () => { a.s500 = await score(a, 1, 500); }));
+  for (const a of all) {
+    a.fleet = +a.text.split('\n')[1].split(',')[1];
+    for (const s of a.sources) s.match = s.recorded === null || !a.public || a.public.cost === null ? null : Math.abs(s.recorded - a.public.cost) < 0.006;
+  }
+  cache.updated = new Date().toISOString();
+  cache.engine = 'simulator/score.cjs pooled';
+  fs.mkdirSync(path.dirname(CACHE), {recursive: true});
+  fs.writeFileSync(CACHE, JSON.stringify(cache, null, 1) + '\n');
+  console.log(`branches ${branches.length}, answers ${all.length}, scored public ${p11.length}, scored 1-500 ${p500.length}, still without 1-500 ${want.length - p500.length}, workers ${WORKERS}, ${((Date.now() - t0) / 1000).toFixed(0)}s`);
+})();
