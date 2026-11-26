@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T09:53:29.890Z",
+ "generated": "2026-11-26T10:24:26.179Z",
  "method": {
   "alpha": 0.05,
   "minBlocks": 3,
@@ -204,150 +204,154 @@
     {
      "rank": 1,
      "sha12": "00fad1b682e2",
-     "labels": [
-      "case3-baseline",
-      "jinhong:answer_case3.csv"
-     ],
      "fleet": 22,
      "dir": "D1",
      "score": 962.7048,
-     "vsTeam": 0.0048,
-     "heldOutBlocks": 33,
-     "heldOutMean": 978.27,
-     "rejectedBlocks": 0
+     "gapToFirst": 0,
+     "s500": 978.1394,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case3/answer_case3.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case3/cand_96271.csv@1584cb7ca4",
+      "jsm-original:experiments/JSM/five-case/team/case3/jinhong__answer_case3.csv@4f01b27a5c"
+     ],
+     "recordedMismatch": []
     },
     {
      "rank": 2,
      "sha12": "2fcf90e69eb4",
-     "labels": [
-      "search:c3-B0-n23-search:transplant",
-      "c3-B0-n23-search"
-     ],
      "fleet": 23,
      "dir": "D1",
      "score": 969.4107,
-     "vsTeam": 6.7107,
-     "heldOutBlocks": 30,
-     "heldOutMean": 976.23,
-     "rejectedBlocks": 0
+     "gapToFirst": 6.7059,
+     "s500": 976.6124,
+     "s500Rejected": 0,
+     "sources": [
+      "jsm:experiments/case3/candidates/2fcf90e69eb4.csv@991be4b464"
+     ],
+     "recordedMismatch": []
     },
     {
      "rank": 3,
      "sha12": "ed5f5d03d37d",
-     "labels": [
-      "jinhong:cand_97082.csv",
-      "jinhong:cand_97082"
-     ],
      "fleet": 22,
      "dir": "D1",
      "score": 970.821,
-     "vsTeam": 8.121,
-     "heldOutBlocks": 34,
-     "heldOutMean": 988,
-     "rejectedBlocks": 0
+     "gapToFirst": 8.1162,
+     "s500": 988.3446,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case3/cand_97082.csv@1584cb7ca4",
+      "jsm-original:experiments/JSM/five-case/team/case3/jinhong__cand_97082.csv@4f01b27a5c",
+      "jsm:experiments/case3/candidates/ed5f5d03d37d.csv@991be4b464"
+     ],
+     "recordedMismatch": []
     },
     {
      "rank": 4,
      "sha12": "a5c1da947d90",
-     "labels": [
-      "search:c3-B0-n21-search:transplant",
-      "c3-B0-n21-search"
-     ],
      "fleet": 21,
      "dir": "D1",
      "score": 971.2163,
-     "vsTeam": 8.5163,
-     "heldOutBlocks": 30,
-     "heldOutMean": 978.78,
-     "rejectedBlocks": 0
+     "gapToFirst": 8.5115,
+     "s500": 979.9373,
+     "s500Rejected": 0,
+     "sources": [
+      "jsm:experiments/case3/candidates/a5c1da947d90.csv@991be4b464"
+     ],
+     "recordedMismatch": []
     },
     {
      "rank": 5,
      "sha12": "859269dbb6c6",
-     "labels": [
-      "search:c3-D2-n21-search:transplant",
-      "c3-D2-n21-search"
-     ],
      "fleet": 21,
      "dir": "D2",
      "score": 972.4246,
-     "vsTeam": 9.7246,
-     "heldOutBlocks": 29,
-     "heldOutMean": 983.03,
-     "rejectedBlocks": 0
+     "gapToFirst": 9.7198,
+     "s500": 983.7489,
+     "s500Rejected": 0,
+     "sources": [
+      "jsm:experiments/case3/candidates/859269dbb6c6.csv@991be4b464"
+     ],
+     "recordedMismatch": []
     },
     {
      "rank": 6,
      "sha12": "2336589ad919",
-     "labels": [
-      "jinhong:answer_case3_97315.csv"
-     ],
      "fleet": 22,
      "dir": "D1",
      "score": 973.1501,
-     "vsTeam": 10.4501,
-     "heldOutBlocks": 4,
-     "heldOutMean": 987.49,
-     "rejectedBlocks": 0
+     "gapToFirst": 10.4453,
+     "s500": 987.7944,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case3/answer_case3_97315.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case3/cand_97315.csv@1584cb7ca4",
+      "jsm-original:experiments/JSM/five-case/team/case3/jinhong__answer_case3_97315.csv@4f01b27a5c"
+     ],
+     "recordedMismatch": []
     },
     {
      "rank": 7,
      "sha12": "f5d9cca6b020",
-     "labels": [
-      "search:c3-D2-n22-search:transplant",
-      "c3-D2-n22-search"
-     ],
      "fleet": 22,
      "dir": "D2",
      "score": 973.671,
-     "vsTeam": 10.971,
-     "heldOutBlocks": 30,
-     "heldOutMean": 981.77,
-     "rejectedBlocks": 0
+     "gapToFirst": 10.9662,
+     "s500": 981.8458,
+     "s500Rejected": 0,
+     "sources": [
+      "jsm:experiments/case3/candidates/f5d9cca6b020.csv@991be4b464"
+     ],
+     "recordedMismatch": []
     },
     {
      "rank": 8,
      "sha12": "4592869026de",
-     "labels": [
-      "c3-B0-n21-transplant-base"
-     ],
      "fleet": 21,
      "dir": "D1",
      "score": 974.3433,
-     "vsTeam": 11.6433,
-     "heldOutBlocks": 33,
-     "heldOutMean": 978.47,
-     "rejectedBlocks": 0
+     "gapToFirst": 11.6385,
+     "s500": 979.8071,
+     "s500Rejected": 0,
+     "sources": [
+      "jsm:experiments/case3/candidates/4592869026de.csv@991be4b464"
+     ],
+     "recordedMismatch": []
     },
     {
      "rank": 9,
      "sha12": "b3debb316487",
-     "labels": [
-      "c3-D2-n22-transplant-base"
-     ],
      "fleet": 22,
      "dir": "D2",
      "score": 975.1069,
-     "vsTeam": 12.4069,
-     "heldOutBlocks": 4,
-     "heldOutMean": 980.55,
-     "rejectedBlocks": 0
+     "gapToFirst": 12.4021,
+     "s500": 982.8991,
+     "s500Rejected": 0,
+     "sources": [
+      "jsm:experiments/case3/candidates/b3debb316487.csv@991be4b464"
+     ],
+     "recordedMismatch": []
     },
     {
      "rank": 10,
      "sha12": "3a0a134f1d3c",
-     "labels": [
-      "c3-B0-n23-transplant-base"
-     ],
      "fleet": 23,
      "dir": "D1",
      "score": 975.942,
-     "vsTeam": 13.242,
-     "heldOutBlocks": 4,
-     "heldOutMean": 978.87,
-     "rejectedBlocks": 0
+     "gapToFirst": 13.2372,
+     "s500": 979.9109,
+     "s500Rejected": 0,
+     "sources": [
+      "jsm:experiments/case3/candidates/3a0a134f1d3c.csv@991be4b464"
+     ],
+     "recordedMismatch": []
     }
    ],
+   "teamPool": {
+    "answers": 170,
+    "updated": "2026-11-26T10:24:26.024Z"
+   },
    "candidates": 400,
    "searchTasks": {
     "B2:github": {
@@ -1530,20 +1534,157 @@
    "publicRanking": [
     {
      "rank": 1,
-     "sha12": "a88dfee925e7",
-     "labels": [
-      "case4-baseline",
-      "published-tree-fleet-18"
+     "sha12": "55e571f4da46",
+     "fleet": 18,
+     "dir": "D2",
+     "score": 792.0212,
+     "gapToFirst": 0,
+     "s500": 796.7896,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case4/cand_79202.csv@1584cb7ca4"
      ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 2,
+     "sha12": "9658e175c735",
+     "fleet": 18,
+     "dir": "D2",
+     "score": 792.0212,
+     "gapToFirst": 0,
+     "s500": 796.8178,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case4/cand_k1c.csv@1584cb7ca4"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 3,
+     "sha12": "d5152c1e93b6",
+     "fleet": 18,
+     "dir": "D3",
+     "score": 792.3266,
+     "gapToFirst": 0.3054,
+     "s500": 797.3505,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case4/answer_case4.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case4/cand_79233.csv@1584cb7ca4",
+      "pjh:experiments/case4/PJH-1125-79233/answer.csv@c5dc1c6d79"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 4,
+     "sha12": "43ca084bf2ee",
+     "fleet": 18,
+     "dir": "D3",
+     "score": 793.8167,
+     "gapToFirst": 1.7955,
+     "s500": 798.2923,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case4/answer_case4_79382.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case4/cand_79382.csv@1584cb7ca4",
+      "pjh:experiments/case4/PJH-1125-79382/answer.csv@c5dc1c6d79"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 5,
+     "sha12": "a4e436b036a3",
+     "fleet": 18,
+     "dir": "D4",
+     "score": 796.6573,
+     "gapToFirst": 4.6361,
+     "s500": 799.0857,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case4/answer_case4_79666.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case4/cand_n18_79666.csv@1584cb7ca4"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 6,
+     "sha12": "f0eb6f93b611",
+     "fleet": 17,
+     "dir": "D5",
+     "score": 798.0185,
+     "gapToFirst": 5.9973,
+     "s500": 799.5023,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case4/cand_r1n17b.csv@1584cb7ca4"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 7,
+     "sha12": "f9c8c9d1c522",
+     "fleet": 17,
+     "dir": "D6",
+     "score": 800.7904,
+     "gapToFirst": 8.7692,
+     "s500": 803.7403,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case4/cand_n17_80079.csv@1584cb7ca4"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 8,
+     "sha12": "80b5fba5f81d",
+     "fleet": 17,
+     "dir": "D6",
+     "score": 800.8966,
+     "gapToFirst": 8.8754,
+     "s500": 803.8813,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case4/cand_n17_80090.csv@1584cb7ca4"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 9,
+     "sha12": "1bf815aabbb1",
+     "fleet": 18,
+     "dir": "D7",
+     "score": 801.4408,
+     "gapToFirst": 9.4196,
+     "s500": 802.1191,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case4/answer_case4_80144.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case4/cand_80144.csv@1584cb7ca4"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 10,
+     "sha12": "a88dfee925e7",
      "fleet": 18,
      "dir": "D1",
      "score": 801.467,
-     "vsTeam": 10.197,
-     "heldOutBlocks": 200,
-     "heldOutMean": 802.96,
-     "rejectedBlocks": 0
+     "gapToFirst": 9.4458,
+     "s500": 802.1418,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case4/answer_case4_80147.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case4/cand_80147.csv@1584cb7ca4",
+      "jsm:experiments/case4/candidates/a88dfee925e7.csv@991be4b464"
+     ],
+     "recordedMismatch": []
     }
    ],
+   "teamPool": {
+    "answers": 22,
+    "updated": "2026-11-26T10:24:26.024Z"
+   },
    "candidates": 2,
    "searchTasks": {
     "overnight-45:kaggle": {
@@ -1705,7 +1846,13 @@
    "search": {},
    "bestSearchCandidates": [],
    "dirLegend": {
-    "D1": "0011011111111110011011000111110111100000010010111110000110011100011111100101"
+    "D1": "0011011111111110011011000111110111100000010010111110000110011100011111100101",
+    "D2": "1111111111011111111000001110100111100000110010011101001100011110011111101111",
+    "D3": "1111111111011111111000001110100111100000110010011101101100011110011111101111",
+    "D4": "0111111111111111111010001111110111100000011001111100000100011100011111100111",
+    "D5": "0001111111111111111011101111110111100000011000111100000100011100011111100111",
+    "D6": "0111011111111110011010000111110111100000010001111100001110001100011111100101",
+    "D7": "0011011111111110011011000111110111100000110010111110000110011100011111100101"
    }
   },
   "5": {
@@ -1713,20 +1860,158 @@
    "publicRanking": [
     {
      "rank": 1,
-     "sha12": "dd48afb957ba",
-     "labels": [
-      "case5-baseline",
-      "published-tree-fleet-23"
+     "sha12": "aed2f894f8a5",
+     "fleet": 23,
+     "dir": "D1",
+     "score": 770.8816,
+     "gapToFirst": 0,
+     "s500": 786.7907,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case5/cand_77088.csv@1584cb7ca4"
      ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 2,
+     "sha12": "4141dd3f34bf",
+     "fleet": 23,
+     "dir": "D1",
+     "score": 770.9353,
+     "gapToFirst": 0.0537,
+     "s500": 786.4477,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case5/answer_case5.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case5/cand_77094.csv@1584cb7ca4",
+      "pjh:experiments/case5/PJH-1125-77094/answer.csv@c5dc1c6d79"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 3,
+     "sha12": "65df1c29fdfd",
+     "fleet": 23,
+     "dir": "D1",
+     "score": 771.3895,
+     "gapToFirst": 0.5079,
+     "s500": 787.1119,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case5/cand_77139.csv@1584cb7ca4"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 4,
+     "sha12": "dd48afb957ba",
      "fleet": 23,
      "dir": "D1",
      "score": 771.4315,
-     "vsTeam": 0.6115,
-     "heldOutBlocks": 200,
-     "heldOutMean": 787.23,
-     "rejectedBlocks": 0
+     "gapToFirst": 0.5499,
+     "s500": 787.1466,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case5/answer_case5_77143.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case5/cand_77143.csv@1584cb7ca4",
+      "jsm:experiments/case5/candidates/dd48afb957ba.csv@991be4b464"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 5,
+     "sha12": "c26f6598a06d",
+     "fleet": 22,
+     "dir": "D2",
+     "score": 776.1009,
+     "gapToFirst": 5.2193,
+     "s500": 775.5363,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case5/answer_case5_776.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case5/cand_776.csv@1584cb7ca4"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 6,
+     "sha12": "20d3388e68c1",
+     "fleet": 21,
+     "dir": "D3",
+     "score": 779.7092,
+     "gapToFirst": 8.8276,
+     "s500": 788.2543,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case5/answer_case5_779.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case5/search_s11_best.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case5/search_s12_best.csv@1584cb7ca4"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 7,
+     "sha12": "83d486afd08f",
+     "fleet": 21,
+     "dir": "D3",
+     "score": 779.896,
+     "gapToFirst": 9.0144,
+     "s500": 788.2432,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case5/search_s1_best.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case5/search_s5_best.csv@1584cb7ca4",
+      "jinhong-experiments:jinhong/case5/search_s6_best.csv@1584cb7ca4"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 8,
+     "sha12": "e42e6bb936fd",
+     "fleet": 21,
+     "dir": "D4",
+     "score": 782.2823,
+     "gapToFirst": 11.4007,
+     "s500": 789.1828,
+     "s500Rejected": 0,
+     "sources": [
+      "jinhong-experiments:jinhong/case5/search_s2_best.csv@1584cb7ca4"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 9,
+     "sha12": "75e12532fa95",
+     "fleet": 21,
+     "dir": "D5",
+     "score": 785.013,
+     "gapToFirst": 14.1314,
+     "s500": 782.267,
+     "s500Rejected": 0,
+     "sources": [
+      "kmj:experiments/case5/KMJ-1125-DUAL-C5/answer.csv@29934ceef7"
+     ],
+     "recordedMismatch": []
+    },
+    {
+     "rank": 10,
+     "sha12": "40239b5104a3",
+     "fleet": 21,
+     "dir": "D3",
+     "score": 814.0583,
+     "gapToFirst": 43.1767,
+     "s500": 812.2789,
+     "s500Rejected": 0,
+     "sources": [
+      "kmj:experiments/case5/KMJ-1125-FH-C5-V2/answer.csv@29934ceef7"
+     ],
+     "recordedMismatch": []
     }
    ],
+   "teamPool": {
+    "answers": 13,
+    "updated": "2026-11-26T10:24:26.024Z"
+   },
    "candidates": 3,
    "searchTasks": {
     "overnight-45:kaggle": {
@@ -1973,7 +2258,11 @@
    "search": {},
    "bestSearchCandidates": [],
    "dirLegend": {
-    "D1": "111000010000011110100001101100"
+    "D1": "111000010000011110100001101100",
+    "D2": "111000010011100001000001100011",
+    "D3": "000111100111100001000010010011",
+    "D4": "000111100111100001001110010011",
+    "D5": "111000011011100001000001100011"
    }
   }
  },

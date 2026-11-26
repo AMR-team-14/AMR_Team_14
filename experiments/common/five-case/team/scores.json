@@ -107,7 +107,7 @@
     },
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/00fad1b682e2.csv",
      "author": "jsm",
      "recorded": null,
@@ -163,7 +163,7 @@
     },
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/2336589ad919.csv",
      "author": "jsm",
      "recorded": null,
@@ -219,7 +219,7 @@
     },
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/d8d70e5cdecd.csv",
      "author": "jsm",
      "recorded": null,
@@ -279,7 +279,7 @@
     },
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/5623b55f0873.csv",
      "author": "jsm",
      "recorded": null,
@@ -315,7 +315,7 @@
     },
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/ed5f5d03d37d.csv",
      "author": "jsm",
      "recorded": null,
@@ -355,7 +355,7 @@
     },
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/898cd4781bd3.csv",
      "author": "jsm",
      "recorded": null,
@@ -422,7 +422,11 @@
     "cost": 792.3266,
     "rejected": 0
    },
-   "fleet": 18
+   "fleet": 18,
+   "s500": {
+    "cost": 797.3505,
+    "rejected": 0
+   }
   },
   "43ca084bf2ee8fc32f9645d65f4f91279199bca874e0d6c5916547ed4ecc7c6d": {
    "case": 4,
@@ -458,7 +462,11 @@
     "cost": 793.8167,
     "rejected": 0
    },
-   "fleet": 18
+   "fleet": 18,
+   "s500": {
+    "cost": 798.2923,
+    "rejected": 0
+   }
   },
   "a4e436b036a3246a22dc14431e7457730697e8fa4fe4574e2cdaaa87407905ee": {
    "case": 4,
@@ -486,7 +494,11 @@
     "cost": 796.6573,
     "rejected": 0
    },
-   "fleet": 18
+   "fleet": 18,
+   "s500": {
+    "cost": 799.0857,
+    "rejected": 0
+   }
   },
   "1bf815aabbb156762209fa31780e36b5706af64613705f218144da168d3833de": {
    "case": 4,
@@ -514,7 +526,11 @@
     "cost": 801.4408,
     "rejected": 0
    },
-   "fleet": 18
+   "fleet": 18,
+   "s500": {
+    "cost": 802.1191,
+    "rejected": 0
+   }
   },
   "a88dfee925e78b2930e1d07a115e457544695fd35b09092e4d52049aa76eed66": {
    "case": 4,
@@ -539,7 +555,7 @@
     },
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case4/candidates/a88dfee925e7.csv",
      "author": "jsm",
      "recorded": null,
@@ -550,7 +566,11 @@
     "cost": 801.467,
     "rejected": 0
    },
-   "fleet": 18
+   "fleet": 18,
+   "s500": {
+    "cost": 802.1418,
+    "rejected": 0
+   }
   },
   "630988e52750af7a9006699c28341a3e83c9542379e7e5141ef9df0321068e3d": {
    "case": 4,
@@ -614,7 +634,11 @@
     "cost": 792.0212,
     "rejected": 0
    },
-   "fleet": 18
+   "fleet": 18,
+   "s500": {
+    "cost": 796.7896,
+    "rejected": 0
+   }
   },
   "2f070bb7e86d1fbca00cc1b4bc6961ef6674c1d374c707652e030cba28644573": {
    "case": 4,
@@ -674,7 +698,11 @@
     "cost": 792.0212,
     "rejected": 0
    },
-   "fleet": 18
+   "fleet": 18,
+   "s500": {
+    "cost": 796.8178,
+    "rejected": 0
+   }
   },
   "f9c8c9d1c52200d08538118b3fd31351767b2f33983cfa977ae66c2109491b32": {
    "case": 4,
@@ -694,7 +722,11 @@
     "cost": 800.7904,
     "rejected": 0
    },
-   "fleet": 17
+   "fleet": 17,
+   "s500": {
+    "cost": 803.7403,
+    "rejected": 0
+   }
   },
   "80b5fba5f81d8c4fc80a8cd7165d99eb9a0135e5bb0e436397bafe4a2ae672f3": {
    "case": 4,
@@ -714,7 +746,11 @@
     "cost": 800.8966,
     "rejected": 0
    },
-   "fleet": 17
+   "fleet": 17,
+   "s500": {
+    "cost": 803.8813,
+    "rejected": 0
+   }
   },
   "910c206d0b9d3d1b10dbd54f0d320a21270975c2845be3decc27feb69f72f0db": {
    "case": 4,
@@ -774,7 +810,11 @@
     "cost": 798.0185,
     "rejected": 0
    },
-   "fleet": 17
+   "fleet": 17,
+   "s500": {
+    "cost": 799.5023,
+    "rejected": 0
+   }
   },
   "103977924b911accab8ce311d649d49317930dce019dab75c39c19a4984d3862": {
    "case": 4,
@@ -898,7 +938,11 @@
     "cost": 770.9353,
     "rejected": 0
    },
-   "fleet": 23
+   "fleet": 23,
+   "s500": {
+    "cost": 786.4477,
+    "rejected": 0
+   }
   },
   "dd48afb957ba5953a19164e0261f871dba672e2699615252ab227145594ed9de": {
    "case": 5,
@@ -923,7 +967,7 @@
     },
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case5/candidates/dd48afb957ba.csv",
      "author": "jsm",
      "recorded": null,
@@ -934,7 +978,11 @@
     "cost": 771.4315,
     "rejected": 0
    },
-   "fleet": 23
+   "fleet": 23,
+   "s500": {
+    "cost": 787.1466,
+    "rejected": 0
+   }
   },
   "c26f6598a06d22d3074b5827b864323df9e9376f3a3d518a68ac4223c6429139": {
    "case": 5,
@@ -962,7 +1010,11 @@
     "cost": 776.1009,
     "rejected": 0
    },
-   "fleet": 22
+   "fleet": 22,
+   "s500": {
+    "cost": 775.5363,
+    "rejected": 0
+   }
   },
   "20d3388e68c16c2316254b2ac4071c2b6d95d82366b44e0f8604428de467890c": {
    "case": 5,
@@ -1006,7 +1058,11 @@
     "cost": 779.7092,
     "rejected": 0
    },
-   "fleet": 21
+   "fleet": 21,
+   "s500": {
+    "cost": 788.2543,
+    "rejected": 0
+   }
   },
   "aed2f894f8a5e6f9ecb61b334d7edea5b2c827ba61d35ed468195a908400de80": {
    "case": 5,
@@ -1026,7 +1082,11 @@
     "cost": 770.8816,
     "rejected": 0
    },
-   "fleet": 23
+   "fleet": 23,
+   "s500": {
+    "cost": 786.7907,
+    "rejected": 0
+   }
   },
   "65df1c29fdfd02646d21ea57bfae313a5eabd362ee999a1dd8caf96d57e24483": {
    "case": 5,
@@ -1046,7 +1106,11 @@
     "cost": 771.3895,
     "rejected": 0
    },
-   "fleet": 23
+   "fleet": 23,
+   "s500": {
+    "cost": 787.1119,
+    "rejected": 0
+   }
   },
   "83d486afd08f1b67a8ca82eaa053e00bcc3305ff66e708020e01f60b30f91dab": {
    "case": 5,
@@ -1082,7 +1146,11 @@
     "cost": 779.896,
     "rejected": 0
    },
-   "fleet": 21
+   "fleet": 21,
+   "s500": {
+    "cost": 788.2432,
+    "rejected": 0
+   }
   },
   "e42e6bb936fd06e26083bf2e32e5e32b132a75a3c4aa5006edadd81425c267c2": {
    "case": 5,
@@ -1102,7 +1170,11 @@
     "cost": 782.2823,
     "rejected": 0
    },
-   "fleet": 21
+   "fleet": 21,
+   "s500": {
+    "cost": 789.1828,
+    "rejected": 0
+   }
   },
   "f6ef0140cc1c824f57d76f865fe04b6665023e4a7ee57a753e610d14eb658528": {
    "case": 3,
@@ -1190,7 +1262,11 @@
     "cost": 785.013,
     "rejected": 0
    },
-   "fleet": 21
+   "fleet": 21,
+   "s500": {
+    "cost": 782.267,
+    "rejected": 0
+   }
   },
   "40239b5104a324068e20876370383e03f147e4bd6bb472387be984c2c1cf4e22": {
    "case": 5,
@@ -1210,7 +1286,11 @@
     "cost": 814.0583,
     "rejected": 0
    },
-   "fleet": 21
+   "fleet": 21,
+   "s500": {
+    "cost": 812.2789,
+    "rejected": 0
+   }
   },
   "7cd3b2bebf435d8454901293629502261d195504ae03e6a8b55f268799c71758": {
    "case": 5,
@@ -1279,7 +1359,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/035d9d4b2435.csv",
      "author": "jsm",
      "recorded": null,
@@ -1299,7 +1379,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/0528062832c9.csv",
      "author": "jsm",
      "recorded": null,
@@ -1319,7 +1399,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/06299b0d2092.csv",
      "author": "jsm",
      "recorded": null,
@@ -1339,7 +1419,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/0891e98fefb7.csv",
      "author": "jsm",
      "recorded": null,
@@ -1359,7 +1439,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/08e689a42e60.csv",
      "author": "jsm",
      "recorded": null,
@@ -1379,7 +1459,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/09d9825edecf.csv",
      "author": "jsm",
      "recorded": null,
@@ -1399,7 +1479,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/0ccf2aa0b265.csv",
      "author": "jsm",
      "recorded": null,
@@ -1419,7 +1499,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/0cfefadeac51.csv",
      "author": "jsm",
      "recorded": null,
@@ -1439,7 +1519,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/14a1e94e4dba.csv",
      "author": "jsm",
      "recorded": null,
@@ -1459,7 +1539,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/1698a271ff4b.csv",
      "author": "jsm",
      "recorded": null,
@@ -1479,7 +1559,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/199b63079e2e.csv",
      "author": "jsm",
      "recorded": null,
@@ -1499,7 +1579,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/1e5c492488fd.csv",
      "author": "jsm",
      "recorded": null,
@@ -1519,7 +1599,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/2166b4c73ef4.csv",
      "author": "jsm",
      "recorded": null,
@@ -1539,7 +1619,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/25f509a43178.csv",
      "author": "jsm",
      "recorded": null,
@@ -1559,7 +1639,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/28f7658f9e06.csv",
      "author": "jsm",
      "recorded": null,
@@ -1579,7 +1659,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/29cbc8bb9b70.csv",
      "author": "jsm",
      "recorded": null,
@@ -1599,7 +1679,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/29f7b0096924.csv",
      "author": "jsm",
      "recorded": null,
@@ -1619,7 +1699,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/2c812aa84dd2.csv",
      "author": "jsm",
      "recorded": null,
@@ -1639,7 +1719,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/2c90620651a8.csv",
      "author": "jsm",
      "recorded": null,
@@ -1659,7 +1739,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/2cf90a821cce.csv",
      "author": "jsm",
      "recorded": null,
@@ -1679,7 +1759,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/2e79c3ae13ca.csv",
      "author": "jsm",
      "recorded": null,
@@ -1699,7 +1779,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/2ee0385620ba.csv",
      "author": "jsm",
      "recorded": null,
@@ -1719,7 +1799,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/2efa01b98603.csv",
      "author": "jsm",
      "recorded": null,
@@ -1739,7 +1819,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/2fbb1bc1e14b.csv",
      "author": "jsm",
      "recorded": null,
@@ -1759,7 +1839,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/2fcf90e69eb4.csv",
      "author": "jsm",
      "recorded": null,
@@ -1783,7 +1863,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/304d54201009.csv",
      "author": "jsm",
      "recorded": null,
@@ -1803,7 +1883,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/30d623cd4478.csv",
      "author": "jsm",
      "recorded": null,
@@ -1823,7 +1903,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/330d0dcc8087.csv",
      "author": "jsm",
      "recorded": null,
@@ -1843,7 +1923,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/335e1ca8793c.csv",
      "author": "jsm",
      "recorded": null,
@@ -1863,7 +1943,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/3566ccb5909f.csv",
      "author": "jsm",
      "recorded": null,
@@ -1883,7 +1963,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/36ec49d47f50.csv",
      "author": "jsm",
      "recorded": null,
@@ -1903,7 +1983,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/38ab054837ad.csv",
      "author": "jsm",
      "recorded": null,
@@ -1923,7 +2003,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/3a0a134f1d3c.csv",
      "author": "jsm",
      "recorded": null,
@@ -1934,7 +2014,11 @@
     "cost": 975.942,
     "rejected": 0
    },
-   "fleet": 23
+   "fleet": 23,
+   "s500": {
+    "cost": 979.9109,
+    "rejected": 0
+   }
   },
   "3c82908d00c5778924ad99392d36350bce28fcc245beea472224b6145c942a8f": {
    "case": 3,
@@ -1943,7 +2027,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/3c82908d00c5.csv",
      "author": "jsm",
      "recorded": null,
@@ -1963,7 +2047,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/3d985e14e747.csv",
      "author": "jsm",
      "recorded": null,
@@ -1983,7 +2067,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/3e32d86b09d1.csv",
      "author": "jsm",
      "recorded": null,
@@ -2003,7 +2087,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/3ef53dd5b370.csv",
      "author": "jsm",
      "recorded": null,
@@ -2023,7 +2107,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/3fdf2451a462.csv",
      "author": "jsm",
      "recorded": null,
@@ -2043,7 +2127,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/40fbff0aea68.csv",
      "author": "jsm",
      "recorded": null,
@@ -2063,7 +2147,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/4592869026de.csv",
      "author": "jsm",
      "recorded": null,
@@ -2074,7 +2158,11 @@
     "cost": 974.3433,
     "rejected": 0
    },
-   "fleet": 21
+   "fleet": 21,
+   "s500": {
+    "cost": 979.8071,
+    "rejected": 0
+   }
   },
   "47fe343b1cf62140c7630b47a023910dc4a3f0dd485245e00466a442cf24eb7b": {
    "case": 3,
@@ -2083,7 +2171,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/47fe343b1cf6.csv",
      "author": "jsm",
      "recorded": null,
@@ -2103,7 +2191,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/48ce24321e0c.csv",
      "author": "jsm",
      "recorded": null,
@@ -2123,7 +2211,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/4c7d2689db3e.csv",
      "author": "jsm",
      "recorded": null,
@@ -2143,7 +2231,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/4e5dd950eec2.csv",
      "author": "jsm",
      "recorded": null,
@@ -2163,7 +2251,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/542d2e06715f.csv",
      "author": "jsm",
      "recorded": null,
@@ -2183,7 +2271,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/55725d4e0e7b.csv",
      "author": "jsm",
      "recorded": null,
@@ -2203,7 +2291,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/55ac0a617a1a.csv",
      "author": "jsm",
      "recorded": null,
@@ -2223,7 +2311,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/5bb5e72fec6e.csv",
      "author": "jsm",
      "recorded": null,
@@ -2243,7 +2331,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/5c3b3bc4c775.csv",
      "author": "jsm",
      "recorded": null,
@@ -2263,7 +2351,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/5d6d8e88f239.csv",
      "author": "jsm",
      "recorded": null,
@@ -2283,7 +2371,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/5edc16c62ffc.csv",
      "author": "jsm",
      "recorded": null,
@@ -2303,7 +2391,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/60d072e3b2ca.csv",
      "author": "jsm",
      "recorded": null,
@@ -2323,7 +2411,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/6294198f83fe.csv",
      "author": "jsm",
      "recorded": null,
@@ -2343,7 +2431,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/68b4b461235e.csv",
      "author": "jsm",
      "recorded": null,
@@ -2363,7 +2451,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/68e2454c3d83.csv",
      "author": "jsm",
      "recorded": null,
@@ -2383,7 +2471,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/6d129d8fb3ea.csv",
      "author": "jsm",
      "recorded": null,
@@ -2403,7 +2491,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/6d2e00b09fb8.csv",
      "author": "jsm",
      "recorded": null,
@@ -2423,7 +2511,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/6d38eff4af0c.csv",
      "author": "jsm",
      "recorded": null,
@@ -2443,7 +2531,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/6fb2ae4bd449.csv",
      "author": "jsm",
      "recorded": null,
@@ -2463,7 +2551,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/7059069266e0.csv",
      "author": "jsm",
      "recorded": null,
@@ -2483,7 +2571,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/7696f16174eb.csv",
      "author": "jsm",
      "recorded": null,
@@ -2503,7 +2591,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/785b31efa836.csv",
      "author": "jsm",
      "recorded": null,
@@ -2523,7 +2611,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/789c73d7cfbf.csv",
      "author": "jsm",
      "recorded": null,
@@ -2543,7 +2631,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/7a062f7f3817.csv",
      "author": "jsm",
      "recorded": null,
@@ -2563,7 +2651,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/7a47f438e19e.csv",
      "author": "jsm",
      "recorded": null,
@@ -2583,7 +2671,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/7acb02109509.csv",
      "author": "jsm",
      "recorded": null,
@@ -2603,7 +2691,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/7ad44634ee09.csv",
      "author": "jsm",
      "recorded": null,
@@ -2623,7 +2711,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/7d21dacd6a70.csv",
      "author": "jsm",
      "recorded": null,
@@ -2643,7 +2731,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/7dd14ca4191e.csv",
      "author": "jsm",
      "recorded": null,
@@ -2663,7 +2751,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/7feabc1b2725.csv",
      "author": "jsm",
      "recorded": null,
@@ -2683,7 +2771,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/8024e5f764ff.csv",
      "author": "jsm",
      "recorded": null,
@@ -2703,7 +2791,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/809a4b1d90ab.csv",
      "author": "jsm",
      "recorded": null,
@@ -2723,7 +2811,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/859269dbb6c6.csv",
      "author": "jsm",
      "recorded": null,
@@ -2747,7 +2835,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/85b3eff2cbac.csv",
      "author": "jsm",
      "recorded": null,
@@ -2767,7 +2855,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/895984c32cc0.csv",
      "author": "jsm",
      "recorded": null,
@@ -2787,7 +2875,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/897c3782a12a.csv",
      "author": "jsm",
      "recorded": null,
@@ -2807,7 +2895,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/8c7708ebedbb.csv",
      "author": "jsm",
      "recorded": null,
@@ -2827,7 +2915,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/8c7a6f0e2645.csv",
      "author": "jsm",
      "recorded": null,
@@ -2847,7 +2935,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/8c918e7f87dc.csv",
      "author": "jsm",
      "recorded": null,
@@ -2867,7 +2955,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/8c9634406dc3.csv",
      "author": "jsm",
      "recorded": null,
@@ -2887,7 +2975,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/8f7e1fc43671.csv",
      "author": "jsm",
      "recorded": null,
@@ -2907,7 +2995,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/8fbdde76f33a.csv",
      "author": "jsm",
      "recorded": null,
@@ -2927,7 +3015,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/913a2b6e3d7b.csv",
      "author": "jsm",
      "recorded": null,
@@ -2947,7 +3035,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/93c5a03a49bc.csv",
      "author": "jsm",
      "recorded": null,
@@ -2967,7 +3055,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/9416a54552b0.csv",
      "author": "jsm",
      "recorded": null,
@@ -2987,7 +3075,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/951aba7178c8.csv",
      "author": "jsm",
      "recorded": null,
@@ -3007,7 +3095,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/96435b405abd.csv",
      "author": "jsm",
      "recorded": null,
@@ -3027,7 +3115,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/97fd8cd9ac90.csv",
      "author": "jsm",
      "recorded": null,
@@ -3047,7 +3135,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/989aae2a9be8.csv",
      "author": "jsm",
      "recorded": null,
@@ -3067,7 +3155,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/9a346548cf72.csv",
      "author": "jsm",
      "recorded": null,
@@ -3087,7 +3175,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/9ad6aa3bbb41.csv",
      "author": "jsm",
      "recorded": null,
@@ -3107,7 +3195,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/9d4fc7c0af1c.csv",
      "author": "jsm",
      "recorded": null,
@@ -3127,7 +3215,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/9d871ba92d48.csv",
      "author": "jsm",
      "recorded": null,
@@ -3147,7 +3235,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/9eb73aa2bd5d.csv",
      "author": "jsm",
      "recorded": null,
@@ -3167,7 +3255,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/a00cdfa609ac.csv",
      "author": "jsm",
      "recorded": null,
@@ -3187,7 +3275,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/a13dc127a90f.csv",
      "author": "jsm",
      "recorded": null,
@@ -3207,7 +3295,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/a1b0a3bc3ade.csv",
      "author": "jsm",
      "recorded": null,
@@ -3227,7 +3315,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/a4c31b4a2a7d.csv",
      "author": "jsm",
      "recorded": null,
@@ -3247,7 +3335,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/a56340c7a0ed.csv",
      "author": "jsm",
      "recorded": null,
@@ -3267,7 +3355,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/a5c1da947d90.csv",
      "author": "jsm",
      "recorded": null,
@@ -3291,7 +3379,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/a6901ec21c7d.csv",
      "author": "jsm",
      "recorded": null,
@@ -3311,7 +3399,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/a6e9940bea70.csv",
      "author": "jsm",
      "recorded": null,
@@ -3331,7 +3419,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/a7d1b81d6234.csv",
      "author": "jsm",
      "recorded": null,
@@ -3351,7 +3439,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/a8bacff23970.csv",
      "author": "jsm",
      "recorded": null,
@@ -3371,7 +3459,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/a9aa1f29a8be.csv",
      "author": "jsm",
      "recorded": null,
@@ -3391,7 +3479,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/aadfc9a1f6b4.csv",
      "author": "jsm",
      "recorded": null,
@@ -3411,7 +3499,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/ac23484ade9d.csv",
      "author": "jsm",
      "recorded": null,
@@ -3431,7 +3519,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/acd12a09a509.csv",
      "author": "jsm",
      "recorded": null,
@@ -3451,7 +3539,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/ade1878f47be.csv",
      "author": "jsm",
      "recorded": null,
@@ -3471,7 +3559,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/aee3a9948b14.csv",
      "author": "jsm",
      "recorded": null,
@@ -3491,7 +3579,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/b112c88f89b0.csv",
      "author": "jsm",
      "recorded": null,
@@ -3511,7 +3599,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/b2409f6ee066.csv",
      "author": "jsm",
      "recorded": null,
@@ -3531,7 +3619,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/b3debb316487.csv",
      "author": "jsm",
      "recorded": null,
@@ -3542,7 +3630,11 @@
     "cost": 975.1069,
     "rejected": 0
    },
-   "fleet": 22
+   "fleet": 22,
+   "s500": {
+    "cost": 982.8991,
+    "rejected": 0
+   }
   },
   "b8d1431a1c5b60bd542e7975f0b5fc0a91e87a40c8344afc51c6f015d612a637": {
    "case": 3,
@@ -3551,7 +3643,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/b8d1431a1c5b.csv",
      "author": "jsm",
      "recorded": null,
@@ -3571,7 +3663,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/b9b770300de3.csv",
      "author": "jsm",
      "recorded": null,
@@ -3591,7 +3683,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/bba30f1451ee.csv",
      "author": "jsm",
      "recorded": null,
@@ -3611,7 +3703,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/be33f6161ab9.csv",
      "author": "jsm",
      "recorded": null,
@@ -3631,7 +3723,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/be8e78251a29.csv",
      "author": "jsm",
      "recorded": null,
@@ -3651,7 +3743,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/c2b42e617073.csv",
      "author": "jsm",
      "recorded": null,
@@ -3671,7 +3763,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/c55daea4124b.csv",
      "author": "jsm",
      "recorded": null,
@@ -3691,7 +3783,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/c709778624db.csv",
      "author": "jsm",
      "recorded": null,
@@ -3711,7 +3803,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/d1294e427d28.csv",
      "author": "jsm",
      "recorded": null,
@@ -3731,7 +3823,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/d2486e9ae6cc.csv",
      "author": "jsm",
      "recorded": null,
@@ -3751,7 +3843,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/d383c8d940a5.csv",
      "author": "jsm",
      "recorded": null,
@@ -3771,7 +3863,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/d3ab6ffffeb7.csv",
      "author": "jsm",
      "recorded": null,
@@ -3791,7 +3883,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/d494b1ea72c4.csv",
      "author": "jsm",
      "recorded": null,
@@ -3811,7 +3903,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/d4fec5cea2bd.csv",
      "author": "jsm",
      "recorded": null,
@@ -3831,7 +3923,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/d6ceb25871bf.csv",
      "author": "jsm",
      "recorded": null,
@@ -3851,7 +3943,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/d70597a33594.csv",
      "author": "jsm",
      "recorded": null,
@@ -3871,7 +3963,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/d7574acd9602.csv",
      "author": "jsm",
      "recorded": null,
@@ -3891,7 +3983,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/d8c654fcd3de.csv",
      "author": "jsm",
      "recorded": null,
@@ -3911,7 +4003,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/d92a9fec5988.csv",
      "author": "jsm",
      "recorded": null,
@@ -3931,7 +4023,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/d9daeaf9db2e.csv",
      "author": "jsm",
      "recorded": null,
@@ -3951,7 +4043,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/daf0f0e9d006.csv",
      "author": "jsm",
      "recorded": null,
@@ -3971,7 +4063,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/db537f6dde31.csv",
      "author": "jsm",
      "recorded": null,
@@ -3991,7 +4083,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/de178bae728a.csv",
      "author": "jsm",
      "recorded": null,
@@ -4011,7 +4103,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/deb0321f380b.csv",
      "author": "jsm",
      "recorded": null,
@@ -4031,7 +4123,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/e103f6e3ddb3.csv",
      "author": "jsm",
      "recorded": null,
@@ -4051,7 +4143,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/e1670f0facbb.csv",
      "author": "jsm",
      "recorded": null,
@@ -4071,7 +4163,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/e41da840d169.csv",
      "author": "jsm",
      "recorded": null,
@@ -4091,7 +4183,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/e65ab4d23449.csv",
      "author": "jsm",
      "recorded": null,
@@ -4111,7 +4203,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/e6ec61e01ab8.csv",
      "author": "jsm",
      "recorded": null,
@@ -4131,7 +4223,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/e89491c9b1e6.csv",
      "author": "jsm",
      "recorded": null,
@@ -4151,7 +4243,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/e9ee7024bb30.csv",
      "author": "jsm",
      "recorded": null,
@@ -4171,7 +4263,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/ebba0abb6d0d.csv",
      "author": "jsm",
      "recorded": null,
@@ -4191,7 +4283,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/ef1f77289648.csv",
      "author": "jsm",
      "recorded": null,
@@ -4211,7 +4303,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/ef27510a05e6.csv",
      "author": "jsm",
      "recorded": null,
@@ -4231,7 +4323,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/f293cace16d1.csv",
      "author": "jsm",
      "recorded": null,
@@ -4251,7 +4343,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/f324f7bde4f6.csv",
      "author": "jsm",
      "recorded": null,
@@ -4271,7 +4363,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/f32c3de74f8c.csv",
      "author": "jsm",
      "recorded": null,
@@ -4291,7 +4383,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/f4ef2b7c2194.csv",
      "author": "jsm",
      "recorded": null,
@@ -4311,7 +4403,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/f5086fee01fb.csv",
      "author": "jsm",
      "recorded": null,
@@ -4331,7 +4423,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/f534d55c8254.csv",
      "author": "jsm",
      "recorded": null,
@@ -4351,7 +4443,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/f5d9cca6b020.csv",
      "author": "jsm",
      "recorded": null,
@@ -4362,7 +4454,11 @@
     "cost": 973.671,
     "rejected": 0
    },
-   "fleet": 22
+   "fleet": 22,
+   "s500": {
+    "cost": 981.8458,
+    "rejected": 0
+   }
   },
   "f5db63052a212655771a590344097d053cf849d0a19a8b36f522cf27237cda44": {
    "case": 3,
@@ -4371,7 +4467,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/f5db63052a21.csv",
      "author": "jsm",
      "recorded": null,
@@ -4391,7 +4487,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/f7276af6c4f8.csv",
      "author": "jsm",
      "recorded": null,
@@ -4411,7 +4507,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/fa1d3431542f.csv",
      "author": "jsm",
      "recorded": null,
@@ -4431,7 +4527,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/fd8009a2ee45.csv",
      "author": "jsm",
      "recorded": null,
@@ -4451,7 +4547,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/ff4567a1d850.csv",
      "author": "jsm",
      "recorded": null,
@@ -4471,7 +4567,7 @@
    "sources": [
     {
      "branch": "jsm",
-     "commit": "eafa6cb53f",
+     "commit": "991be4b464",
      "path": "experiments/case3/candidates/ff8b93f1ec73.csv",
      "author": "jsm",
      "recorded": null,
@@ -4485,6 +4581,6 @@
    "fleet": 21
   }
  },
- "updated": "2026-11-26T10:19:07.391Z",
+ "updated": "2026-11-26T10:24:26.024Z",
  "engine": "simulator/score.cjs pooled"
 }

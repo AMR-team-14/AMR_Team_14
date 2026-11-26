@@ -1,5 +1,5 @@
 {
- "saved": "2026-11-26T09:54:17.026Z",
+ "saved": "2026-11-26T10:25:18.626Z",
  "sources": [
   {
    "source": "experiments/common/five-case/raw/B1-github.jsonl",
@@ -2267,8 +2267,9 @@
    "verdict": "a-worse",
    "diff": 37.7
   },
-  "c3.public.beatsTeam": {
-   "verdict": "no"
+  "c3.public.first": {
+   "verdict": "00fad1b682e2",
+   "score": 962.7048
   },
   "c4.public.best": {
    "verdict": "a88dfee925e7",
@@ -2292,8 +2293,9 @@
    "verdict": "a-better",
    "diff": -4.8
   },
-  "c4.public.beatsTeam": {
-   "verdict": "no"
+  "c4.public.first": {
+   "verdict": "55e571f4da46",
+   "score": 792.0212
   },
   "c5.public.best": {
    "verdict": "dd48afb957ba",
@@ -2332,8 +2334,9 @@
    "verdict": "a-worse",
    "diff": 13.54
   },
-  "c5.public.beatsTeam": {
-   "verdict": "no"
+  "c5.public.first": {
+   "verdict": "aed2f894f8a5",
+   "score": 770.8816
   }
  }
 }
