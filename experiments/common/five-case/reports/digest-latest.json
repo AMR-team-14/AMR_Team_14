@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-26T09:17:50.500Z",
+ "generated": "2026-11-26T09:24:45.504Z",
  "method": {
   "alpha": 0.05,
   "minBlocks": 3,
@@ -12,34 +12,7 @@
  },
  "sources": {
   "total": 26,
-  "new": [
-   "experiments/common/five-case/raw/B1-github.jsonl",
-   "experiments/common/five-case/raw/B1-kaggle.jsonl",
-   "experiments/common/five-case/raw/B1-local.jsonl",
-   "experiments/common/five-case/raw/B2-github.jsonl",
-   "experiments/common/five-case/raw/B2-kaggle.jsonl",
-   "experiments/common/five-case/raw/B2-local.jsonl",
-   "experiments/common/five-case/raw/github/45360075037/jsm-five-case-B1-45360075037-1/B1-github.jsonl",
-   "experiments/common/five-case/raw/github/45360658878/jsm-five-case-B2-45360658878-1/B2-github.jsonl",
-   "experiments/common/five-case/raw/github/45361708457/jsm-five-case-B2h-45361708457-1/B2-github.jsonl",
-   "experiments/common/five-case/raw/github/45363331998/jsm-five-case-B3-45363331998-1/B3-github.jsonl",
-   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-0/overnight-1125-github.jsonl",
-   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-1/overnight-1125-github.jsonl",
-   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-2/overnight-1125-github.jsonl",
-   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-3/overnight-1125-github.jsonl",
-   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-4/overnight-1125-github.jsonl",
-   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-5/overnight-1125-github.jsonl",
-   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-6/overnight-1125-github.jsonl",
-   "experiments/common/five-case/raw/github/45637202992/jsm-five-case-overnight-1125-45637202992-1-7/overnight-1125-github.jsonl",
-   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-0/overnight-45-github.jsonl",
-   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-1/overnight-45-github.jsonl",
-   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-2/overnight-45-github.jsonl",
-   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-3/overnight-45-github.jsonl",
-   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-4/overnight-45-github.jsonl",
-   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-5/overnight-45-github.jsonl",
-   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-6/overnight-45-github.jsonl",
-   "experiments/common/five-case/raw/github/45639996221/jsm-five-case-overnight-45-45639996221-1-7/overnight-45-github.jsonl"
-  ],
+  "new": [],
   "conflicts": []
  },
  "coverage": [
@@ -227,6 +200,28 @@
  "cases": {
   "3": {
    "candidates": 400,
+   "searchTasks": {
+    "B2:github": {
+     "planned": 41,
+     "returned": 41
+    },
+    "B2:kaggle": {
+     "planned": 26,
+     "returned": 26
+    },
+    "B2:local": {
+     "planned": 5,
+     "returned": 5
+    },
+    "overnight-1125:github": {
+     "planned": 234,
+     "returned": 234
+    },
+    "overnight-1125:kaggle": {
+     "planned": 54,
+     "returned": 0
+    }
+   },
    "withPublic": 400,
    "withHeldOut": 100,
    "engines": [
@@ -1448,6 +1443,12 @@
   },
   "4": {
    "candidates": 2,
+   "searchTasks": {
+    "overnight-45:kaggle": {
+     "planned": 128,
+     "returned": 0
+    }
+   },
    "withPublic": 1,
    "withHeldOut": 2,
    "engines": [
@@ -1603,6 +1604,12 @@
   },
   "5": {
    "candidates": 3,
+   "searchTasks": {
+    "overnight-45:kaggle": {
+     "planned": 189,
+     "returned": 0
+    }
+   },
    "withPublic": 1,
    "withHeldOut": 3,
    "engines": [
@@ -1842,6 +1849,55 @@
    }
   }
  },
- "citedEvidence": [],
+ "citedEvidence": [
+  {
+   "ev": "c3.vsbest.00fad1b682e2",
+   "recorded": "indistinct",
+   "current": "indistinct",
+   "status": "ok"
+  },
+  {
+   "ev": "c3.vsbest.a5c1da947d90",
+   "recorded": "worse",
+   "current": "worse",
+   "status": "ok"
+  },
+  {
+   "ev": "c3.vsbest.f5d9cca6b020",
+   "recorded": "worse",
+   "current": "worse",
+   "status": "ok"
+  },
+  {
+   "ev": "c3.effect.a6901ec21c7d.55725d4e0e7b",
+   "recorded": "a-better",
+   "current": "a-better",
+   "status": "ok"
+  },
+  {
+   "ev": "c3.effect.d1294e427d28.93c5a03a49bc",
+   "recorded": "a-better",
+   "current": "a-better",
+   "status": "ok"
+  },
+  {
+   "ev": "c4.vsbest.03b542a9976c",
+   "recorded": "worse",
+   "current": "worse",
+   "status": "ok"
+  },
+  {
+   "ev": "c5.vsbest.dd48afb957ba",
+   "recorded": "worse",
+   "current": "worse",
+   "status": "ok"
+  },
+  {
+   "ev": "c5.effect.dd48afb957ba.19b730ac721c",
+   "recorded": "a-better",
+   "current": "a-better",
+   "status": "ok"
+  }
+ ],
  "evidenceCount": 568
 }
