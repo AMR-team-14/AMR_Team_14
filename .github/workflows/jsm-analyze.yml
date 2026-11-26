@@ -97,7 +97,7 @@ jobs:
         run: |
           claude -p "$(cat experiments/common/five-case/claude-analysis-prompt.md)" \
             --allowedTools "Read,Glob,Grep,Write" \
-            --model "${{ vars.CLAUDE_MODEL || 'opus' }}" --max-turns 40 --output-format json > claude-log.json
+            --model "${{ vars.CLAUDE_MODEL || 'sonnet' }}" --max-turns 40 --output-format json > claude-log.json
           # usage of this run (model, turns, tokens) appended to reports/usage.jsonl
           node experiments/common/five-case/usage-log.cjs claude-log.json
           test -s deep.md
