@@ -1,0 +1,120 @@
+{
+ "batch": "auto-11271939",
+ "created": "2026-11-27T10:39:59.406Z",
+ "reason": "C4 공개 1위는 kick 뒤 통로 사슬 이동에서 나왔다 → 공개 ILS를 처음 쓰는 출발 답(fe27·d5152·63c1·00fad·4141)에 kick 1로 돌린다. robust 탐색 답이 회수되지 않는 C3·C5는 대수만 바꾼 eval로, 미채점 robust 답(C1·C4)은 final로 판정한다",
+ "experiments": [
+  {
+   "case": 4,
+   "type": "ils",
+   "start": "sha12:fe273108230f",
+   "fleet": 18,
+   "budget": 2000,
+   "repeats": 8,
+   "objective": "public",
+   "kick": 1,
+   "why": "새 공개 1위(18/D8)이고 출발점으로 처음. kick 뒤 chain 재상승으로 찾은 통로라 주변 통로가 덜 탐색됨"
+  },
+  {
+   "case": 4,
+   "type": "ils",
+   "start": "sha12:d5152c1e93b6",
+   "fleet": 18,
+   "budget": 2000,
+   "repeats": 6,
+   "objective": "public",
+   "kick": 1,
+   "why": "D3 통로 답(박진홍·장승민, 공개 7위)이고 나무 탐색만 받음. 다른 통로 계열에서 처음 하는 ILS"
+  },
+  {
+   "case": 2,
+   "type": "ils",
+   "start": "sha12:63c180933a03",
+   "budget": 2000,
+   "repeats": 8,
+   "objective": "public",
+   "kick": 1,
+   "why": "공개 1위는 나무 탐색만 받음(국소최적 8). 통로 사슬·대수·kick ILS는 처음"
+  },
+  {
+   "case": 3,
+   "type": "ils",
+   "start": "sha12:00fad1b682e2",
+   "budget": 2000,
+   "repeats": 8,
+   "objective": "public",
+   "kick": 1,
+   "why": "공개 1위는 ILS 기록 없음. a376 뼈대 ILS는 00fad 뼈대로 못 넘어왔으니 00fad에서 직접 오름"
+  },
+  {
+   "case": 5,
+   "type": "ils",
+   "start": "sha12:4141dd3f34bf",
+   "budget": 2000,
+   "repeats": 8,
+   "objective": "public",
+   "kick": 1,
+   "why": "공개 2위(0.0537 차이)이고 출발점으로 처음. aed2·c26f는 ILS 국소최적"
+  },
+  {
+   "case": 2,
+   "type": "ils",
+   "start": "sha12:edde63813d76",
+   "budget": 1000,
+   "repeats": 8,
+   "objective": "robust",
+   "kick": 1,
+   "why": "새 1-500 1위(24/D3)이고 출발점으로 처음. 예산을 늘려 kick 뒤 재상승까지 봄. 결과는 top5로 회수됨"
+  },
+  {
+   "case": 4,
+   "type": "eval",
+   "sha12": "c7dc630d7437",
+   "seeds": "final",
+   "objective": "robust",
+   "why": "817ab robust ILS 답(D9). 501-550에서 386042보다 낮지만 1-500 미채점. 1-500 1위 791.5536을 넘는지"
+  },
+  {
+   "case": 4,
+   "type": "eval",
+   "sha12": "a8faf4e86d1a",
+   "seeds": "final",
+   "objective": "robust",
+   "why": "817ab robust ILS 답(D6). 501-550에서 386042보다 낮지만 1-500 미채점"
+  },
+  {
+   "case": 3,
+   "type": "eval",
+   "sha12": "2fcf90e69eb4",
+   "fleet": 22,
+   "seeds": "final",
+   "objective": "robust",
+   "why": "2fcf robust ILS 8회가 모두 23→22로 감(답은 digest 미회수). 같은 나무 22대로 1-500 1위 974.54를 넘는지와 대수 effect를 판정"
+  },
+  {
+   "case": 3,
+   "type": "eval",
+   "sha12": "0f61d990ab1e",
+   "fleet": 23,
+   "seeds": "final",
+   "objective": "robust",
+   "why": "1-500 1위 나무의 23대판. 2fcf 22대 시험과 짝을 이루는 대수 교차 검증"
+  },
+  {
+   "case": 5,
+   "type": "eval",
+   "sha12": "82e37d094240",
+   "fleet": 23,
+   "seeds": "final",
+   "objective": "robust",
+   "why": "'D2 최적 대수 22' 가설을 같은 나무로 판정. robust ILS 답은 회수되지 않으니 eval로 대체"
+  },
+  {
+   "case": 1,
+   "type": "eval",
+   "sha12": "6cbf3b93ef11",
+   "seeds": "final",
+   "objective": "robust",
+   "why": "9e92 나무 robust ILS가 kick 뒤 찾은 답(21/D1). 1-500 미채점. 1위 1180.6962를 넘는지"
+  }
+ ]
+}
