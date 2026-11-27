@@ -1,5 +1,5 @@
 {
- "saved": "2026-11-27T12:33:54.413Z",
+ "saved": "2026-11-27T13:18:37.149Z",
  "sources": [
   {
    "source": "experiments/common/five-case/raw/B1-github.jsonl",
@@ -593,6 +593,54 @@
    "source": "experiments/common/five-case/raw/github/45994187823/jsm-five-case-auto-11272053-45994187823-1-7/auto-11272053-github.jsonl",
    "rows": 19,
    "sha12": "c40e82dd4079",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45999724397/jsm-five-case-auto-11272134-45999724397-1-0/auto-11272134-github.jsonl",
+   "rows": 7,
+   "sha12": "3a4cfa55fd20",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45999724397/jsm-five-case-auto-11272134-45999724397-1-1/auto-11272134-github.jsonl",
+   "rows": 7,
+   "sha12": "d516841db7c2",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45999724397/jsm-five-case-auto-11272134-45999724397-1-2/auto-11272134-github.jsonl",
+   "rows": 7,
+   "sha12": "12be69f88682",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45999724397/jsm-five-case-auto-11272134-45999724397-1-3/auto-11272134-github.jsonl",
+   "rows": 7,
+   "sha12": "165db0f1219c",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45999724397/jsm-five-case-auto-11272134-45999724397-1-4/auto-11272134-github.jsonl",
+   "rows": 6,
+   "sha12": "ae3a64516613",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45999724397/jsm-five-case-auto-11272134-45999724397-1-5/auto-11272134-github.jsonl",
+   "rows": 6,
+   "sha12": "f4c371fe3345",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45999724397/jsm-five-case-auto-11272134-45999724397-1-6/auto-11272134-github.jsonl",
+   "rows": 6,
+   "sha12": "afddaac47e61",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45999724397/jsm-five-case-auto-11272134-45999724397-1-7/auto-11272134-github.jsonl",
+   "rows": 6,
+   "sha12": "9119c921f0a7",
    "engine": "jsim:e2dc473b4509+ev1"
   },
   {
@@ -3458,7 +3506,7 @@
    "s500": 974.54
   },
   "c3.rank.first": {
-   "verdict": "27d7ec47e34c",
+   "verdict": "0d42595421be",
    "score": 962.4482
   },
   "c4.public.best": {
@@ -3497,8 +3545,8 @@
    "diff": -4.8
   },
   "c4.robust.first": {
-   "verdict": "00b1d7fe900d",
-   "s500": 790.4416
+   "verdict": "76de42acbc69",
+   "s500": 790.4171
   },
   "c4.rank.first": {
    "verdict": "1e358630afb0",
