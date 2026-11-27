@@ -99,7 +99,7 @@ jobs:
         run: |
           claude -p "$(cat experiments/common/five-case/claude-analysis-prompt.md)" \
             --allowedTools "Read,Glob,Grep,Write" \
-            --model "${{ vars.CLAUDE_MODEL || 'opus' }}" --effort "${{ vars.CLAUDE_EFFORT || 'xhigh' }}" --max-turns 60 --output-format json > claude-log.json
+            --model "${{ vars.CLAUDE_MODEL || 'opus' }}" --effort "${{ vars.CLAUDE_EFFORT || 'high' }}" --max-turns 60 --output-format json > claude-log.json
           # usage of this run (model, turns, tokens) appended to reports/usage.jsonl
           node experiments/common/five-case/usage-log.cjs claude-log.json
           test -s deep.md
@@ -140,7 +140,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           HAS_PAT: ${{ secrets.JSM_PUSH_TOKEN != '' }}
-          MAX_PER_DAY: ${{ vars.AUTO_MAX_PER_DAY || '30' }}
+          MAX_PER_DAY: ${{ vars.AUTO_MAX_PER_DAY || '15' }}
         run: bash experiments/common/five-case/start-next.sh "${{ github.repository }}" "${{ github.run_id }}"
       - uses: actions/upload-artifact@v4
         if: always()
