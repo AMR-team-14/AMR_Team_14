@@ -1,0 +1,30 @@
+{
+  "decision": "run",
+  "reason": "C4에서 통한 엇갈린 출발(공개 1위 → robust ILS → 1-500 1위)을 C3·C4·C5에서 출발점으로 쓴 적 없는 공개 상위 답에 옮긴다. 공개 천장(C3 962.4482, C5 770.8816, C2 613.6186)은 아직 안 본 통로·대수(C4 D7, C3 D2, C5 D3, C2 25대)에서 출발해 뚫는다. C1 501-550 탐색은 bead 끌개로 멈추고 1위의 별도 시드 확인만 한다",
+  "experiments": [
+    {"case": 4, "type": "ils", "start": "sha12:60faf3b07318", "fleet": 18, "budget": 600, "repeats": 6, "objective": "robust", "kick": 1,
+     "why": "공개 2위(D11)이고 robust 출발점으로 처음. 공개 1위 1e358 robust ILS가 44번째 통로 자리를 0으로 바꿔 1-500 1위 76de를 냈다"},
+    {"case": 4, "type": "ils", "start": "sha12:7ef5a861c06a", "fleet": 18, "budget": 600, "repeats": 4, "objective": "robust", "kick": 1,
+     "why": "공개 3위 D11 새 나무(00b1·35e4 공개 ILS에서 나옴). robust 출발점으로 처음"},
+    {"case": 4, "type": "ils", "start": "sha12:f1f5a1250d0e", "fleet": 18, "budget": 2000, "repeats": 6, "objective": "public", "kick": 2,
+     "why": "D7 통로는 공개 출발점으로 쓴 적 없음(1-500 8위). D6·D9 출발은 D11까지만 가서 D13 1위에 막혔다"},
+    {"case": 4, "type": "ils", "start": "sha12:76de42acbc69", "fleet": 18, "budget": 2000, "repeats": 4, "objective": "public", "kick": 2,
+     "why": "새 1-500 1위. 1e358 나무에 잎 열쇠 두 개가 다르다. 44번째 자리를 1로 되돌릴 때 1e358과 다른 잎 조합으로 내려가는지 본다"},
+    {"case": 3, "type": "ils", "start": "sha12:27d7ec47e34c", "budget": 600, "repeats": 4, "objective": "robust", "kick": 1,
+     "why": "공개 1위 동점 답이고 robust 출발점으로 처음. robust 출발점 5개(0f61·2fcf·fb690·cb2d·af817)는 모두 0f61을 못 넘었다"},
+    {"case": 3, "type": "ils", "start": "sha12:00fad1b682e2", "budget": 600, "repeats": 4, "objective": "robust", "kick": 1,
+     "why": "공개 7위(박진홍·장승민). 공개 1위 27d7을 낳은 출발 나무이고 robust 출발점으로 처음"},
+    {"case": 3, "type": "ils", "start": "sha12:e89491c9b1e6", "budget": 2000, "repeats": 6, "objective": "public", "kick": 2,
+     "why": "22/D1 공개는 출발 계열 3개가 모두 962.4482 천장에 닿았다. D2 통로(23대)는 공개 출발점으로 처음"},
+    {"case": 5, "type": "ils", "start": "sha12:aed2f894f8a5", "budget": 600, "repeats": 4, "objective": "robust", "kick": 2,
+     "why": "공개 1위(23/D1)이고 robust 출발점으로 처음. C4에서는 공개 1위 출발 robust ILS가 1-500 1위를 냈다. D1→D2는 통로 차이가 커서 kick 2"},
+    {"case": 5, "type": "ils", "start": "sha12:fe3714dc644d", "budget": 600, "repeats": 4, "objective": "robust", "kick": 1,
+     "why": "22/D2 1-500 5위이고 그중 공개 최상(29위). 출발점으로 처음. b9a1은 1-500 1위가 아닌 출발(c26f)에서 나왔다"},
+    {"case": 5, "type": "ils", "start": "sha12:7d6f3157ec50", "budget": 2000, "repeats": 4, "objective": "public", "kick": 2,
+     "why": "23/D1 공개는 770.8816 천장(aed2·ef5d·c31d), D2 공개 출발은 D2에 머물렀다. D3(21대)는 공개 출발점으로 처음"},
+    {"case": 2, "type": "ils", "start": "sha12:f275cd67403d", "fleet": 25, "budget": 2000, "repeats": 6, "objective": "public", "kick": 2,
+     "why": "24/D1 공개 출발점 5개와 D2가 모두 막혔다. 25/D1은 공개 출발점으로 처음"},
+    {"case": 1, "type": "eval", "sha12": "da7d865ac362", "fleet": 21, "seeds": "confirm",
+     "why": "1-500 1위인데 별도 시드 데이터가 없다. 501-550 끌개 bead(1-500 4위)와 비공개 시드 기준으로 비교할 근거를 만든다"}
+  ]
+}
