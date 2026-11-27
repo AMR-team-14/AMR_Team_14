@@ -11,7 +11,26 @@ concurrency:
   group: jsm-five-case
   cancel-in-progress: false
 jobs:
+  # Pacing: wait until start-after.txt (written by start-next.sh) so analyses stay inside the 5-hour usage window.
+  wait:
+    if: github.ref == 'refs/heads/jsm'
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          sparse-checkout: experiments/common/five-case
+      - name: Wait for the start time
+        run: |
+          F=experiments/common/five-case/start-after.txt
+          [ -s "$F" ] || { echo "no start time"; exit 0; }
+          T=$(date -u -d "$(cat $F)" +%s); NOW=$(date -u +%s); W=$(( T - NOW ))
+          [ "$W" -gt 19800 ] && W=19800
+          if [ "$W" -gt 0 ]; then echo "waiting $((W/60)) min until $(cat $F)"; sleep "$W"; else echo "start now"; fi
   run:
+    needs: wait
     if: github.ref == 'refs/heads/jsm'
     runs-on: ubuntu-latest
     timeout-minutes: 240

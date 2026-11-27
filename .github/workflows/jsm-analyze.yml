@@ -141,6 +141,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           HAS_PAT: ${{ secrets.JSM_PUSH_TOKEN != '' }}
           MAX_PER_DAY: ${{ vars.AUTO_MAX_PER_DAY || '15' }}
+          MIN_GAP_MIN: ${{ vars.AUTO_MIN_GAP_MIN || '150' }}
         run: bash experiments/common/five-case/start-next.sh "${{ github.repository }}" "${{ github.run_id }}"
       - uses: actions/upload-artifact@v4
         if: always()

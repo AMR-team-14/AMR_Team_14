@@ -6,4 +6,5 @@ AI가 `stop`을 낸 경우, 실행 실패. 다시 시작하려면 `kick.txt`를 
     date > experiments/common/five-case/kick.txt && git add experiments/common/five-case/kick.txt && git commit -m kick && git push origin jsm
 
 분석이 돌고(새 결과가 없어도 AI 단계 실행), AI가 낸 next.json으로 다음 실험이 시작된다.
+실험 사이 간격은 저장소 변수 `AUTO_MIN_GAP_MIN`(기본 150분, 직전 실험 시작 기준)으로 정한다. 5시간 사용 한도 안에 Opus 분석이 약 2번 들어가게 한 값이다.
 모델·effort는 저장소 변수 `CLAUDE_MODEL`(기본 opus), `CLAUDE_EFFORT`(기본 high)로 바꾼다.
