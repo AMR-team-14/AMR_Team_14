@@ -1,0 +1,54 @@
+{
+  "experiment_id": "KMJ-1127-LB-C2",
+  "case": 2,
+  "purpose": "공개 5시드(11..15) 리더보드 전용 극한 Fit (1..500 & OOS DQ=0 검증)",
+  "recorded_at_kst": "2026-11-27 15:27",
+  "answer": {
+    "file": "answer.csv",
+    "sha256": "ac6689c72e279ab32c973d21c0dd6221505d1f80866c34ba8762524b2f323d4c",
+    "dir": "001011111110000001101000111001110101",
+    "fleet": 25,
+    "tree_nodes": 8
+  },
+  "evaluator": {
+    "script": "simulator/score.cjs",
+    "commit": "7926d0db8039d51a99529ee2670bfd7bb16b0812",
+    "input_path": "jinhong/case2/answer_case2.csv",
+    "input_sha": "ce9687136f4bd22aa41c82659ed31c2132432007",
+    "options": "--trace"
+  },
+  "aggregation": "시드 묶음의 워밍업 이후 완료 픽업 기록을 합쳐 비용을 한 번 계산(반려 시드가 있으면 비용 칸을 비움)",
+  "seeds_evaluated": [
+    "11~15",
+    "1~500"
+  ],
+  "seeds_used_for_search": "11..15 direct SA/cycle/0.00001 w-sweep, audit(1..500, 3001..3500)",
+  "source_commit": "local:leaderboard_polish_11_15.cpp",
+  "note": "11..15 leaderboard extreme fit: 33k SCC Pareto scan + n=25, 8n -> 11..15=621.2739 (-22.78pt vs robust), 1..500=620.6152, DQ=0/1000",
+  "results": [
+    {
+      "case": 2,
+      "fleet": 25,
+      "first_seed": 11,
+      "seeds": 5,
+      "pooled_cost": 621.2739,
+      "rejected": [],
+      "dispatch_count": 24214,
+      "dispatch_sha256": "98842dc9971bbaedb7ed03ebf4a08668b73956e601e703edaa04e811c7655ca4"
+    },
+    {
+      "case": 2,
+      "fleet": 25,
+      "first_seed": 1,
+      "seeds": 500,
+      "pooled_cost": 620.6152,
+      "rejected": [],
+      "dispatch_count": 2416458,
+      "dispatch_sha256": "fd62d3205c2003ee6d8fb0c70fc44ea757baea82c237af46ad1da0b067c1a964"
+    }
+  ],
+  "reproduce": [
+    "node simulator/score.cjs 2 experiments/case2/KMJ-1127-LB-C2/answer.csv 11 5 --trace",
+    "node simulator/score.cjs 2 experiments/case2/KMJ-1127-LB-C2/answer.csv 1 500 --trace"
+  ]
+}
