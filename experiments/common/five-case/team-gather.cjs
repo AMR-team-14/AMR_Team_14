@@ -88,9 +88,14 @@ for (const b of branches) {
   const blob = f => git('show', `refs/team/${b}:${f}`);
   for (const p of files) {
     if (SKIP.test(p) || !LIKE.test(p)) continue;
-    const c = caseOf(p);
-    if (!CASES.includes(c)) continue;
+    let c = caseOf(p);
+    if (c !== null && !CASES.includes(c)) continue;
     let text; try { text = blob(p); } catch { continue; }
+    // the direction has a different bit count in every case (33, 36, 31, 76, 30): use it, the path can be silent or wrong
+    const bits = (norm(text).match(/^dir,([01]+)\n/) || [])[1];
+    const byBits = bits ? [1, 2, 3, 4, 5].find(k => L.caseInput(k).p.edges.length === bits.length) : null;
+    if (byBits) c = byBits;
+    if (!CASES.includes(c)) continue;
     const prefixed = path.posix.basename(p).match(/^([A-Za-z][\w-]*?)__/);
     addSource(text, c, {branch: b, commit: commit.slice(0, 10), path: p, author: who(prefixed ? prefixed[1] : author), recorded: recorded(b, files, p, blob)});
   }
