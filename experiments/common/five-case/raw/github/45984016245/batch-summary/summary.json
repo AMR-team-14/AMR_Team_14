@@ -1,0 +1,164 @@
+{
+  "batch": "auto-11271939",
+  "planned": 646,
+  "returned": 646,
+  "missing": [],
+  "failures": [],
+  "cases": {
+    "1": {
+      "evaluations": 100,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11271939:e11": {
+          "blocks": 100,
+          "rejected": 0,
+          "mean": 1183.1453080995493,
+          "p95": 1195.2402782562594,
+          "worst": 1200.3086416577707,
+          "vehicle": 315,
+          "wait": 359.78836239478244,
+          "urgent": 508.3569457047665
+        }
+      },
+      "bestSearch": []
+    },
+    "2": {
+      "evaluations": 16,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11271939:e2": {
+          "blocks": 8,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        },
+        "auto-11271939:e5": {
+          "blocks": 8,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        }
+      },
+      "bestSearch": []
+    },
+    "3": {
+      "evaluations": 208,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11271939:e3": {
+          "blocks": 8,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        },
+        "auto-11271939:e8": {
+          "blocks": 100,
+          "rejected": 0,
+          "mean": 975.6543154817949,
+          "p95": 986.8458197222471,
+          "worst": 998.7363670425065,
+          "vehicle": 330,
+          "wait": 121.75297222811932,
+          "urgent": 523.9013432536757
+        },
+        "auto-11271939:e9": {
+          "blocks": 100,
+          "rejected": 0,
+          "mean": 975.9479951156859,
+          "p95": 989.2422966231487,
+          "worst": 997.6757308923477,
+          "vehicle": 345,
+          "wait": 117.25138358196722,
+          "urgent": 513.6966115337185
+        }
+      },
+      "bestSearch": []
+    },
+    "4": {
+      "evaluations": 214,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11271939:e1": {
+          "blocks": 6,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        },
+        "auto-11271939:e0": {
+          "blocks": 8,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        },
+        "auto-11271939:e6": {
+          "blocks": 100,
+          "rejected": 0,
+          "mean": 791.5886065171497,
+          "p95": 803.0047786277325,
+          "worst": 819.9725382467644,
+          "vehicle": 270,
+          "wait": 74.74821527995314,
+          "urgent": 446.8403912371967
+        },
+        "auto-11271939:e7": {
+          "blocks": 100,
+          "rejected": 0,
+          "mean": 791.6759158612647,
+          "p95": 803.2309644110962,
+          "worst": 820.0565307274753,
+          "vehicle": 270,
+          "wait": 74.73463772866634,
+          "urgent": 446.9412781325981
+        }
+      },
+      "bestSearch": []
+    },
+    "5": {
+      "evaluations": 108,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11271939:e10": {
+          "blocks": 100,
+          "rejected": 0,
+          "mean": 777.1437481720849,
+          "p95": 787.9907045547423,
+          "worst": 796.8656294621895,
+          "vehicle": 345,
+          "wait": 92.82855706211416,
+          "urgent": 339.3151911099709
+        },
+        "auto-11271939:e4": {
+          "blocks": 8,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        }
+      },
+      "bestSearch": []
+    }
+  }
+}
