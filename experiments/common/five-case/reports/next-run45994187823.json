@@ -1,0 +1,28 @@
+{
+  "decision": "run",
+  "reason": "이번 회차에 통한 두 방식(1-500 상위 답을 공개 목표로 오르기 → C4 공개 1위, 1-500 1위가 아닌 답에서 robust ILS → C2·C4·C5 1-500 1위)을 출발점으로 쓴 적 없는 답에 옮긴다. 소진된 방향(C1 대수, C3 대수, C2·C5 D2 공개, 1-500 1위 출발 robust)은 멈춘다",
+  "experiments": [
+    {"case": 4, "type": "ils", "start": "sha12:00b1d7fe900d", "fleet": 18, "budget": 2000, "repeats": 6, "objective": "public", "kick": 2,
+     "why": "1-500 1위(D6)이고 출발점으로 쓴 적 없음. c7dc(D9)·a8fa(D6) 공개 ILS가 44번째 통로 자리를 뒤집어 공개 1·2위를 냈다"},
+    {"case": 4, "type": "ils", "start": "sha12:35e4682a12e2", "fleet": 18, "budget": 2000, "repeats": 4, "objective": "public", "kick": 2,
+     "why": "7eaef robust ILS에서 나온 새 D6 나무(1-500 4위). 공개 출발점으로 처음"},
+    {"case": 4, "type": "ils", "start": "sha12:1e358630afb0", "fleet": 18, "budget": 2000, "repeats": 4, "objective": "public", "kick": 3,
+     "why": "새 공개 1위(D13). 출발점으로 처음 쓰고, kick을 크게 해서 D13 주변을 벗어나게 한다"},
+    {"case": 4, "type": "ils", "start": "sha12:1e358630afb0", "fleet": 18, "budget": 600, "repeats": 4, "objective": "robust", "kick": 1,
+     "why": "1-500 1위가 아닌 출발점(공개 1위)에서 robust ILS. 44번째 자리를 0으로 뒤집으면서 D13 나무를 유지한 강건 답을 찾는다"},
+    {"case": 3, "type": "ils", "start": "sha12:0f61d990ab1e", "budget": 2000, "repeats": 6, "objective": "public", "kick": 2,
+     "why": "1-500 1위(곽민재)인데 공개 ILS 출발점으로 쓴 적 없음. 공개 목표는 21·22·23대 출발이 모두 22/D1로 돌아와 포화"},
+    {"case": 3, "type": "ils", "start": "sha12:af817b334101", "budget": 600, "repeats": 4, "objective": "robust", "kick": 1,
+     "why": "cb2d robust ILS로 나온 1-500 2위 새 나무이고 출발점으로 처음. 0f61 자신에서 출발하면 1-500이 나빠졌다"},
+    {"case": 2, "type": "ils", "start": "sha12:fc825b73f9c7", "budget": 2000, "repeats": 6, "objective": "public", "kick": 2,
+     "why": "robust 목표로 나온 D1 새 나무이고 둘 다 상위인 답(공개 9위·1-500 18위). 공개 출발점으로 처음. 24/D1 기존 출발점 4개와 D2는 막혔다"},
+    {"case": 2, "type": "ils", "start": "sha12:f275cd67403d", "budget": 600, "repeats": 4, "objective": "robust", "kick": 2,
+     "why": "25/D1 답은 출발점으로 쓴 적 없음. D2 출발은 D3 edde 계열로 모였으니, D1·25대에서 다른 강건 답이 있는지 본다"},
+    {"case": 5, "type": "ils", "start": "sha12:66025f9b8e23", "budget": 2000, "repeats": 6, "objective": "public", "kick": 2,
+     "why": "23/D1 출발점 4개와 D2 공개(82e3·c26f)가 모두 막혔다. 24/D1 나무는 ILS 출발점으로 처음"},
+    {"case": 5, "type": "ils", "start": "sha12:2657831caef4", "budget": 600, "repeats": 4, "objective": "robust", "kick": 1,
+     "why": "82e3 공개 ILS로 나온 22/D2 새 나무(1-500 775.5904)이고 출발점으로 처음. 1-500 1위 b9a1은 비-1위 출발(c26f)에서 나왔다"},
+    {"case": 1, "type": "ils", "start": "sha12:54806bbd9ac5", "budget": 600, "repeats": 4, "objective": "robust", "kick": 2,
+     "why": "da7d 나무는 20·21·22대를 모두 확인했고 21대가 최적. 1위 계열 출발은 bead로 갔다. 아직 안 쓴 다른 나무(박진홍 race_a_best)에서 출발한다"}
+  ]
+}
