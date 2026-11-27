@@ -4,7 +4,7 @@
 
 - 채점 기준: Case 2–5는 공개 시드 점수 그대로, Case 1은 비공개 시드(→ 1–500으로 판단).
 - 출처 표기: [진홍] = `jinhong-experiments` 노트·발표 문서(11/26), [민재] = `kmj` 브랜치 insights·보고서, [윤빈] = `yb` 브랜치, [승민] = jsm 자동 분석(`known-insights.md`, `digest`), [실험C] = `reports/expC-transfer/`.
-- 이 파일은 요청할 때만 갱신한다. 자동 분석은 `known-insights.md`(jsm 결과 위주)를 계속 갱신한다.
+- 이 파일은 요청할 때만 갱신한다. 자동 분석은 같은 폴더의 `known-insights.md`를 매 회차 갱신한다.
 
 ## 1. 지금 최고 답 (저장소에 올라온 답안 기준)
 

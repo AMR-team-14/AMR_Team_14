@@ -6,7 +6,7 @@ name: JSM Claude analysis
 # experiments/common/five-case/raw/github/<run_id>/ (artifacts expire after 30 days; this keeps them).
 # digest.cjs then computes every number deterministically (coverage, public/held-out stats, CRN paired tests with
 # Holm, screening subset, one-factor effects, OCBA) into digest.json and writes the basic report (basic.md).
-# Claude writes only the deep analysis (deep.md) from digest.json and reports/known-insights.md. A plain git step commits archive, digest, state,
+# Claude writes only the deep analysis (deep.md) from digest.json and insights/known-insights.md. A plain git step commits archive, digest, state,
 # report and insights file to jsm (Claude never computes, commits or pushes).
 on:
   workflow_call:
@@ -22,6 +22,7 @@ on:
       - '.github/workflows/jsm-analyze.yml'
       - 'experiments/common/five-case/digest.cjs'
       - 'experiments/common/five-case/team-gather.cjs'
+      - 'experiments/common/five-case/kick.txt'
 permissions:
   contents: write
   actions: read
@@ -43,6 +44,7 @@ jobs:
           # pushes made with the default token never trigger workflows.
           token: ${{ secrets.JSM_PUSH_TOKEN || github.token }}
           sparse-checkout: |
+            insights
             experiments/case1/candidates
             experiments/case2/candidates
             experiments/case3
@@ -83,7 +85,7 @@ jobs:
         id: gate
         run: |
           N=$(( ${{ steps.team.outputs.new || 0 }} + ${{ steps.digest.outputs.new || 0 }} ))
-          if [ "$N" -gt 0 ] || [ "${{ github.event_name }}" = "push" -a -n "$(git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -E 'claude-analysis-prompt|jsm-analyze' )" ]; then echo "run=1" >> "$GITHUB_OUTPUT"; else echo "run=0" >> "$GITHUB_OUTPUT"; fi
+          if [ "$N" -gt 0 ] || [ "${{ github.event_name }}" = "push" -a -n "$(git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -E 'claude-analysis-prompt|jsm-analyze|kick.txt' )" ]; then echo "run=1" >> "$GITHUB_OUTPUT"; else echo "run=0" >> "$GITHUB_OUTPUT"; fi
           echo "새 결과 파일 ${{ steps.digest.outputs.new }}개, 새 팀 답안 ${{ steps.team.outputs.new }}개"
       - name: Install Claude Code
         if: steps.gate.outputs.run == '1'
@@ -97,7 +99,7 @@ jobs:
         run: |
           claude -p "$(cat experiments/common/five-case/claude-analysis-prompt.md)" \
             --allowedTools "Read,Glob,Grep,Write" \
-            --model "${{ vars.CLAUDE_MODEL || 'sonnet' }}" --max-turns 40 --output-format json > claude-log.json
+            --model "${{ vars.CLAUDE_MODEL || 'opus' }}" --effort "${{ vars.CLAUDE_EFFORT || 'xhigh' }}" --max-turns 60 --output-format json > claude-log.json
           # usage of this run (model, turns, tokens) appended to reports/usage.jsonl
           node experiments/common/five-case/usage-log.cjs claude-log.json
           test -s deep.md
@@ -126,7 +128,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3 4; do
             git fetch --depth=1 origin jsm && git reset -q --mixed FETCH_HEAD
-            for f in "$DIR/$NAME.md" "$DIR/known-insights.md" "$DIR/digest-latest.json" "$DIR/digest-state.json" "$DIR/usage.jsonl" experiments/common/five-case/raw/github experiments/common/five-case/team/scores.json; do
+            for f in "$DIR/$NAME.md" insights/known-insights.md "$DIR/digest-latest.json" "$DIR/digest-state.json" "$DIR/usage.jsonl" experiments/common/five-case/raw/github experiments/common/five-case/team/scores.json; do
               if [ -e "$f" ]; then git add -f "$f"; fi
             done
             git commit -q -m "Claude analysis $NAME [skip ci]" && git push origin HEAD:jsm && exit 0
@@ -138,7 +140,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           HAS_PAT: ${{ secrets.JSM_PUSH_TOKEN != '' }}
-          MAX_PER_DAY: ${{ vars.AUTO_MAX_PER_DAY || '6' }}
+          MAX_PER_DAY: ${{ vars.AUTO_MAX_PER_DAY || '30' }}
         run: bash experiments/common/five-case/start-next.sh "${{ github.repository }}" "${{ github.run_id }}"
       - uses: actions/upload-artifact@v4
         if: always()

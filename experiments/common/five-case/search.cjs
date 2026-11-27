@@ -1,5 +1,6 @@
 // Deterministic single-thread local search over dispatch trees for a fixed case, direction and fleet.
-// Objective: the public block (seeds 11-15, web aggregation). The final pick is re-checked on held-out seeds elsewhere.
+// Objective: task.objective = 'public' (default: seeds 11-15, the graded leaderboard block) or 'robust' (pooled seeds
+// 501-550, outside the team's 1-500 test range). The final pick is re-checked on seeds 1-500 elsewhere.
 'use strict';
 const L = require('./lib.cjs');
 
@@ -98,7 +99,14 @@ function neighbours(nodes, maxNodes, T, r) {
 }
 
 // First-improvement hill climbing with a shared cache; stops at a local optimum or when the budget is spent.
-function climb(c, dir, fleet, startNodes, budget, seed, cache, counter) {
+const OBJECTIVES = {public: [11, 5], robust: [501, 50]};
+function objectiveBlock(name) {
+  const b = OBJECTIVES[name || 'public'];
+  if (!b) throw Error('Unknown objective ' + name);
+  return b;
+}
+function climb(c, dir, fleet, startNodes, budget, seed, cache, counter, objective) {
+  const [S0, SN] = objectiveBlock(objective);
   const maxNodes = L.caseInput(c).p.maxNodes;
   const T = thresholdSets(c, dir);
   const r = rng(seed);
@@ -108,7 +116,7 @@ function climb(c, dir, fleet, startNodes, budget, seed, cache, counter) {
     if (cache.has(cand.sha)) return cache.get(cand.sha);
     if (counter.n >= counter.max) return undefined;
     counter.n++;
-    const e = L.evaluate(c, cand.design, 11, 5);
+    const e = L.evaluate(c, cand.design, S0, SN);
     const v = {score: e.score === null ? Infinity : e.score, cand};
     cache.set(cand.sha, v);
     return v;
@@ -147,10 +155,10 @@ function runSearch(task) {
   const results = [];
   let i = 0;
   for (const [name, nodes] of Object.entries(starts)) {
-    const res = climb(c, dir, fleet, nodes, budget, seed + 7919 * i++, cache, counter);
+    const res = climb(c, dir, fleet, nodes, budget, seed + 7919 * i++, cache, counter, task.objective);
     results.push({start: name, score: res.best.score, sha: res.best.cand.sha, text: res.best.cand.text, evals: res.evals, localOptimum: res.localOptimum, steps: res.steps});
   }
   return {results, evals: counter.n, distinct: cache.size};
 }
 
-module.exports = {runSearch, startTrees, thresholdSets};
+module.exports = {runSearch, startTrees, thresholdSets, neighbours, rng, clone, objectiveBlock};

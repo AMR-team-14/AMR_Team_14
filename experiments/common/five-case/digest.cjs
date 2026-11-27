@@ -6,7 +6,7 @@
 //   - screening subset (Nelson et al. 2001 style, Bonferroni alpha/(k-1)): candidates not shown worse than any other;
 //   - one-factor effects: candidate pairs that differ only in fleet, only in dir, or only in tree;
 //   - OCBA allocation of the next confirm budget over the screening subset.
-// Evidence ids (ev) are stable; reports/known-insights.md cites them as [ev:<id>=<verdict>] and this script flags
+// Evidence ids (ev) are stable; insights/known-insights.md (repo root) cites them as [ev:<id>=<verdict>] and this script flags
 // any cited id whose verdict changed or disappeared. --save-state records the sources analyzed (reports/digest-state.json).
 'use strict';
 const fs = require('node:fs');
@@ -27,7 +27,7 @@ const PUBLIC = 11;               // public block = seeds 11-15
 const OBJECTIVE = c => c === 1 ? 'heldout' : 'public';
 const REPORTS = path.join(HERE, 'reports');
 const STATE = path.join(REPORTS, 'digest-state.json');
-const KNOWN = path.join(REPORTS, 'known-insights.md');
+const KNOWN = path.join(REPO, 'insights', 'known-insights.md');
 
 // ---------- statistics ----------
 function lgamma(x) {
@@ -181,7 +181,7 @@ for (const c of CASES) {
       if (t.start === PUBLIC && t.count === 5) { if (e.pub === null || r.out.score < e.pub) { e.pub = r.out.score; e.pubSrc = r._src; } }
       else if (t.count === 5) { e.blocks.set(t.start, r.out.score); e.blockRows.push(r.out); }
       else if (t.start === 1 && t.count === 500) e.s500 = r.out.score;
-    } else if (t.type === 'search') {
+    } else if (t.type === 'search' || t.type === 'ils') {
       for (const x of r.out.results || []) {
         const e = cand(x.sha, x.text, `search:${t.label || t.id}:${x.start}`);
         e.batches.add(t.batch);
@@ -294,7 +294,7 @@ for (const c of CASES) {
   const bestSearchHeld = Object.values(searchOut).map(o => o.best).filter(Boolean).map(b => ({...b, heldOutBlocks: (all.find(e => e.sha12 === b.sha12) || {blocks: new Map()}).blocks.size}));
 
   const searchTasks = {};
-  for (const t of tasks.values()) if (t.case === c && t.type === 'search') {
+  for (const t of tasks.values()) if (t.case === c && (t.type === 'search' || t.type === 'ils')) {
     const k = `${t.batch}:${t.env}`, o = searchTasks[k] || (searchTasks[k] = {planned: 0, returned: 0});
     o.planned++; if (results.has(t.id)) o.returned++;
   }
@@ -309,10 +309,25 @@ for (const c of CASES) {
     s500: a.s500 ? a.s500.cost : null, s500Rejected: a.s500 ? a.s500.rejected : null,
     sources: a.sources.map(x => `${x.author} · ${x.branch}:${x.path}@${x.commit}`).slice(0, 3),
     recordedMismatch: a.sources.filter(x => x.match === false).map(x => `${x.branch}:${x.path} recorded ${x.recorded}`)}));
+  // robustness ranking: pooled 1-500 for every case (for Case 1 it equals the main ranking)
+  const rpool = pool.filter(a => a.s500 && a.s500.cost !== null).sort((x, y) => x.s500.cost - y.s500.cost || x.sha12.localeCompare(y.sha12));
+  const robustRanking = rpool.slice(0, 10).map((a, i) => ({rank: i + 1, sha12: a.sha12, fleet: a.fleet, dir: dirId(c, a.text.split('\n')[0].slice(4)),
+    s500: a.s500.cost, s500Rejected: a.s500.rejected, publicScore: r4(a.public.cost), gapToFirst: r4(a.s500.cost - rpool[0].s500.cost),
+    publicRank: pool.indexOf(a) + 1, owners: [...new Set(a.sources.map(x => x.author))], sources: a.sources.map(x => `${x.author} · ${x.branch}:${x.path}@${x.commit}`).slice(0, 3)}));
+  // the best of each objective, and whether one answer is good on both
+  const both = pool.filter(a => a.s500 && a.s500.cost !== null).map(a => ({a, pr: pool.indexOf(a) + 1, rr: rpool.indexOf(a) + 1}))
+    .sort((x, y) => Math.max(x.pr, x.rr) - Math.max(y.pr, y.rr) || (x.pr + x.rr) - (y.pr + y.rr))[0];
+  const objectives = {
+    publicBest: pool[0] ? {sha12: pool[0].sha12, public: r4(pool[0].public.cost), s500: pool[0].s500 ? pool[0].s500.cost : null} : null,
+    robustBest: rpool[0] ? {sha12: rpool[0].sha12, s500: rpool[0].s500.cost, public: r4(rpool[0].public.cost)} : null,
+    sameAnswer: !!(pool[0] && rpool[0] && pool[0] === rpool[0]),
+    bestBalanced: both ? {sha12: both.a.sha12, publicRank: both.pr, robustRank: both.rr, public: r4(both.a.public.cost), s500: both.a.s500.cost} : null,
+  };
+  if (rpool.length) ev(`c${c}.robust.first`, rpool[0].sha12, {s500: rpool[0].s500.cost});
   if (pool.length) ev(`c${c}.rank.first`, pool[0].sha12, {score: r4(key(pool[0]))});
   casesOut[c] = {
     objective: OBJECTIVE(c) === 'public' ? 'public seeds 11-15 score (graded as is)' : 'hidden seed (judge on held-out seeds)',
-    publicRanking: pubRank, teamPool: {answers: pool.length, updated: TEAM && TEAM.updated},
+    publicRanking: pubRank, robustRanking, objectives, teamPool: {answers: pool.length, updated: TEAM && TEAM.updated},
     candidates: all.length, searchTasks, withPublic: withPub.length, withHeldOut: held.length,
     engines: [...new Set(all.flatMap(e => [...e.engines]))],
     public: {best: pubOut, teamBest, diffVsTeam: pubVsTeam, top5: withPub.slice(0, 5).map(e => ({sha12: e.sha12, fleet: e.fleet, dir: e.dir, score: r4(e.pub)}))},
@@ -394,6 +409,14 @@ if (MD) {
       tbl(['순위', '후보', '만든 사람', '대수', '통로', '공개 11-15', '1-500', '1-500 반려', '1위와 차이', '출처'],
         x.publicRanking.map(r => [r.rank, r.sha12, r.owners.join(', '), r.fleet, r.dir, r.score, r.s500, r.s500Rejected, r.gapToFirst,
           r.sources.map(s => s.split(' · ')[1].split('@')[0]).join('<br>')]));
+      if (pub && x.robustRanking.length) {
+        const o = x.objectives;
+        L.push(`**강건성 순위 — 시드 1-500** · 공개 1위 ${o.publicBest.sha12}(${o.publicBest.public} / 1-500 ${o.publicBest.s500}) vs 1-500 1위 ${o.robustBest.sha12}(1-500 ${o.robustBest.s500} / 공개 ${o.robustBest.public})` +
+          (o.sameAnswer ? ' — 같은 답' : ` — 다른 답. 둘 다 상위인 답: ${o.bestBalanced.sha12} (공개 ${o.bestBalanced.publicRank}위 · 1-500 ${o.bestBalanced.robustRank}위)`), '');
+        tbl(['순위', '후보', '만든 사람', '대수', '통로', '1-500', '반려', '공개 11-15', '공개 순위', '1위와 차이', '출처'],
+          x.robustRanking.map(r => [r.rank, r.sha12, r.owners.join(', '), r.fleet, r.dir, r.s500, r.s500Rejected, r.publicScore, r.publicRank, r.gapToFirst,
+            r.sources.map(s => s.split(' · ')[1].split('@')[0]).join('<br>')]));
+      }
       const mm = x.publicRanking.flatMap(r => r.recordedMismatch);
       if (mm.length) L.push('기록 점수와 재채점이 다른 답안: ' + mm.join('; '), '');
     }

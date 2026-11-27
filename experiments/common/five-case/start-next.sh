@@ -10,7 +10,7 @@ cp next.json "$DIR/reports/next-run$RUN.json"
 if [ "${HAS_PAT:-false}" != "true" ]; then echo "JSM_PUSH_TOKEN 없음: 다음 실험은 제안만 하고 시작하지 않음"; exit 0; fi
 SINCE=$(date -u -d '24 hours ago' +%Y-%m-%dT%H:%M:%SZ)
 N=$(gh api "repos/$REPO/actions/workflows/jsm-five-case.yml/runs?branch=jsm&created=>=$SINCE&per_page=1" -q '.total_count')
-if [ "$N" -ge "${MAX_PER_DAY:-6}" ]; then echo "최근 24시간 실험 $N회, 상한 ${MAX_PER_DAY:-6}회: 시작하지 않음"; exit 0; fi
+if [ "$N" -ge "${MAX_PER_DAY:-30}" ]; then echo "최근 24시간 실험 $N회, 상한 ${MAX_PER_DAY:-30}회: 시작하지 않음"; exit 0; fi
 git config user.name "github-actions[bot]"
 git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 for i in 1 2 3 4; do

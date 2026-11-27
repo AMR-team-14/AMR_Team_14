@@ -23,6 +23,8 @@ if (process.argv[2] === '--child') {
         out = {status: 'done', ...e};
       } else if (task.type === 'search') {
         out = {status: 'done', ...runSearch(task)};
+      } else if (task.type === 'ils') {
+        out = {status: 'done', ...require('./ils.cjs').runIls(task)};
       } else throw Error('Unknown task type');
     } catch (err) {
       out = {status: 'failed', error: String(err && err.message || err)};

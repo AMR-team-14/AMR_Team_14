@@ -6,6 +6,8 @@
 //      {"case": 5, "type": "search", "fleet": 24, "dir": "sha12:aed2f894f8a5" | "<0/1 bits>",
 //       "start": "transplant:aed2f894f8a5" | "nearest" | "shortFar" | "longFar", "budget": 240, "repeats": 4,
 //       "why": "..."},
+//      {"case": 4, "type": "ils", "start": "sha12:55e571f4da46", "fleet": 18 (optional), "budget": 1500,
+//       "repeats": 8, "objective": "public" | "robust", "kick": 3, "why": "..."},
 //      {"case": 3, "type": "eval", "sha12": "2fcf90e69eb4", "fleet": 23 (optional override),
 //       "seeds": "public" | "screen" | "confirm" | "final", "why": "..."}]}
 // sha12 refers to any answer in team/scores.json or experiments/caseN/candidates/. Searches climb on the public seeds
@@ -19,7 +21,8 @@ const L = require('./lib.cjs');
 const R = require('./results.cjs');
 const S = require('./seeds.cjs');
 
-const LIMITS = {experiments: 12, searches: 64, budget: 400, repeats: 16, evalBlocks: 800, fleet: [1, 60]};
+const LIMITS = {experiments: 12, searches: 64, budget: 400, ilsBudget: 3000, repeats: 16, evalBlocks: 800, fleet: [1, 60]};
+const OBJ = o => { const v = o || 'public'; if (!['public', 'robust'].includes(v)) fail('objective must be public or robust'); return v; };
 const SHARDS = 8;
 const file = process.argv[2];
 const i = process.argv.indexOf('--batch');
@@ -82,7 +85,20 @@ exps.forEach((x, n) => {
       if (++searches > LIMITS.searches) fail(`more than ${LIMITS.searches} searches`);
       const seed = parseInt(crypto.createHash('sha256').update(`${batch}:${n}:${r}`).digest('hex').slice(0, 6), 16);
       tasks.push({id: `${batch}:c${c}:search:${n}:${r}`, batch, env: 'github', type: 'search', case: c, label: `${batch}:e${n}`,
-        hypothesis: why, dir, fleet, only, transplant, budget, seed});
+        hypothesis: why, dir, fleet, only, transplant, budget, seed, objective: OBJ(x.objective)});
+    }
+  } else if (x.type === 'ils') {
+    const d = design(c, x.start || x.sha12);
+    const fleet = x.fleet ? +x.fleet : d.fleet;
+    if (!(fleet >= LIMITS.fleet[0] && fleet <= LIMITS.fleet[1])) fail(`experiment ${n}: fleet out of range`);
+    const start = L.candidate(c, {...d, fleet}).text;
+    const budget = Math.min(+x.budget || 1500, LIMITS.ilsBudget);
+    const repeats = Math.min(Math.max(1, +x.repeats || 1), LIMITS.repeats);
+    for (let r = 0; r < repeats; r++) {
+      if (++searches > LIMITS.searches) fail(`more than ${LIMITS.searches} searches`);
+      const seed = parseInt(crypto.createHash('sha256').update(`${batch}:${n}:${r}`).digest('hex').slice(0, 6), 16);
+      tasks.push({id: `${batch}:c${c}:ils:${n}:${r}`, batch, env: 'github', type: 'ils', case: c, label: `${batch}:e${n}`,
+        hypothesis: why, start, budget, seed, objective: OBJ(x.objective), kick: Math.min(+x.kick || 3, 8)});
     }
   } else if (x.type === 'eval') {
     const d = design(c, x.sha12);
@@ -101,12 +117,12 @@ exps.forEach((x, n) => {
     }
     if (stage === 'final') tasks.push({id: `${batch}:c${c}:${cand.sha.slice(0, 12)}:pooled1-500`, batch, env: 'github', type: 'eval', case: c,
       label: `${batch}:e${n}`, hypothesis: why, candSha: cand.sha, design: cand.text, start: S.POOLED.start, count: S.POOLED.count});
-  } else fail(`experiment ${n}: type must be search or eval`);
+  } else fail(`experiment ${n}: type must be ils, search or eval`);
 });
 if (!tasks.length) { console.log('next-plan: everything requested is already done'); process.exit(3); }
 
 // searches are long, evals short: deal searches first so every shard gets a similar load
-tasks.sort((a, b) => (a.type === b.type ? 0 : a.type === 'search' ? -1 : 1));
+tasks.sort((a, b) => (a.type === 'eval') - (b.type === 'eval'));
 const shards = Array.from({length: SHARDS}, () => []);
 tasks.forEach((t, k) => shards[k % SHARDS].push(t));
 const jobs = path.join(L.HERE, 'jobs');
