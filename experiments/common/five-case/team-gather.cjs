@@ -108,6 +108,11 @@ for (const c of CASES) {
     addSource(fs.readFileSync(path.join(dir, f), 'utf8'), c, {branch: 'jsm', commit: own, path: `experiments/case${c}/candidates/${f}`, author: who(HOUSEKEEPER), recorded: null});
 }
 
+// objective of every search task (public: climbed on 11-15, robust: climbed on 501-550)
+const objectiveOf = new Map();
+for (const f of fs.readdirSync(path.join(HERE, 'jobs')).filter(f => f.endsWith('.jsonl')))
+  for (const line of fs.readFileSync(path.join(HERE, 'jobs', f), 'utf8').split(/\r?\n/))
+    if (line.includes('"objective"')) { try { const t = JSON.parse(line); objectiveOf.set(t.id, t.objective); } catch {} }
 // jsm search results: every best tree a search returned
 const walk = d => !fs.existsSync(d) ? [] : fs.readdirSync(d, {withFileTypes: true}).flatMap(e => e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]);
 for (const f of walk(path.join(HERE, 'raw')).filter(f => f.endsWith('.jsonl'))) {
@@ -118,7 +123,8 @@ for (const f of walk(path.join(HERE, 'raw')).filter(f => f.endsWith('.jsonl'))) 
     const c = +((r.id || '').match(/:c(\d)/) || [])[1];
     if (!CASES.includes(c)) continue;
     for (const x of (r.out && r.out.results) || []) if (x.text)
-      addSource(x.text, c, {branch: 'jsm', commit: own, path: `${rel}#${r.id}`, author: who(HOUSEKEEPER), recorded: null, kind: 'search'});
+      addSource(x.text, c, {branch: 'jsm', commit: own, path: `${rel}#${r.id}`, author: who(HOUSEKEEPER), recorded: null,
+        kind: 'search', objective: (r.out && r.out.objective) || objectiveOf.get(r.id) || 'public', searchScore: x.score});
   }
 }
 
@@ -145,6 +151,11 @@ async function pool(jobs) {
   for (const c of CASES) {
     const ranked = all.filter(a => a.case === c && a.public && a.public.cost !== null).sort((x, y) => x.public.cost - y.public.cost);
     const top = new Set(ranked.slice(0, TOP));
+    // robust-objective search answers: their public score says nothing, so take the top N by the score they climbed on
+    const rob = all.filter(a => a.case === c && a.sources.some(s => s.kind === 'search' && s.objective === 'robust'))
+      .map(a => ({a, v: Math.min(...a.sources.filter(s => s.objective === 'robust').map(s => s.searchScore ?? Infinity))}))
+      .sort((x, y) => x.v - y.v).slice(0, TOP).map(x => x.a);
+    for (const a of rob) top.add(a);
     for (const a of ranked) if (!a.s500 && (top.has(a) || a.sources.some(s => s.kind !== 'search'))) want.push(a);
   }
   const p500 = want.slice(0, MAX500);

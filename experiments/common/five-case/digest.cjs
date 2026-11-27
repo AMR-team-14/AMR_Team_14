@@ -186,7 +186,7 @@ for (const c of CASES) {
         const e = cand(x.sha, x.text, `search:${t.label || t.id}:${x.start}`);
         e.batches.add(t.batch);
         if (e.pub === null || x.score < e.pub) { e.pub = x.score; e.pubSrc = r._src; }
-        searches.push({batch: t.batch, task: t.id, start: x.start, fleet: e.fleet, dir: e.dir, sha12: e.sha12, score: x.score, evals: x.evals, localOptimum: x.localOptimum});
+        searches.push({batch: t.batch + (t.objective === 'robust' ? ' (robust: 501-550)' : ''), task: t.id, start: x.start, fleet: e.fleet, dir: e.dir, sha12: e.sha12, score: x.score, evals: x.evals, localOptimum: x.localOptimum});
       }
     }
   }
