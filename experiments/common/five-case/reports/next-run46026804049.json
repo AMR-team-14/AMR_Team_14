@@ -1,0 +1,20 @@
+{"decision": "run",
+ "reason": "auto-11280039에서는 대수 변경 eval(C1 3aaa 20→21)만 1위를 바꿨다. 공개 탐색은 C2·C3·C5 천장과 C4 D1·D4 국소최적에 막혔다. 그래서 robust로 처음 쓰는 통로(C4 D2·D3, C3 22/D2)와 1-500에서 잰 적 없는 대수(C2 23, C4 19, C5 21)를 잰다. C1은 새 1위를 별도 시드로 확정한다",
+ "experiments": [
+  {"case": 4, "type": "ils", "start": "sha12:55e571f4da46", "fleet": 18, "budget": 600, "repeats": 6, "objective": "robust", "kick": 1,
+   "why": "D2(28번째 자리 0)는 공개 ILS 출발로만 썼고 robust 출발은 처음이다. D11 출발은 D6, D8은 D18·D19, D13은 D9로 갔다. 판정: 1-500 < 790.4171"},
+  {"case": 4, "type": "ils", "start": "sha12:d5152c1e93b6", "fleet": 18, "budget": 600, "repeats": 4, "objective": "robust", "kick": 1,
+   "why": "D3(28번째 자리 0)도 robust 출발은 처음이다. D2와 함께 28번째 자리가 0인 계열의 강건 국소최적을 본다. 판정: 1-500 < 790.4171"},
+  {"case": 4, "type": "eval", "sha12": "76de42acbc69", "fleet": 19, "seeds": "final",
+   "why": "1-500 1위(18/D9)의 19대는 1-500 데이터가 없다(17대는 나쁨). ILS의 대수 이동은 501-550 판정이라 1-500에서 직접 잰다. 판정: 1-500 < 790.4171"},
+  {"case": 3, "type": "ils", "start": "sha12:f5d9cca6b020", "budget": 600, "repeats": 4, "objective": "robust", "kick": 1,
+   "why": "22/D2 robust 출발은 처음이다. 22/D1과 23/D2 출발 8개는 모두 22/D1 끌개(b3db 등)에 모여 0f61을 못 넘었다. 판정: 1-500 < 974.54"},
+  {"case": 2, "type": "eval", "sha12": "e6c5ff027e95", "fleet": 23, "seeds": "final",
+   "why": "1-500 1위(24/D3)의 25대(83f0)는 상위 10위 밖이었다. 줄이는 방향인 23대는 데이터가 없다. 판정: 1-500 < 603.4758"},
+  {"case": 5, "type": "eval", "sha12": "b9a1e3692503", "fleet": 21, "seeds": "final",
+   "why": "D2에서는 22대가 23대보다 낫다(c5.effect.82e3.86e4=a-better). 21대는 1-500 데이터가 없다. 판정: 1-500 < 774.78"},
+  {"case": 1, "type": "eval", "sha12": "8e7431131490", "fleet": 21, "seeds": "confirm",
+   "why": "새 1-500 1위다. 별도 시드에서 da7d·bead와 구별 안 됨이다. 비공개 시드 채점이라 제출 답을 고르려고 별도 시드 블록을 늘린다(OCBA 배분 1순위). 판정: da7d 대비 better"},
+  {"case": 1, "type": "eval", "sha12": "da7d865ac362", "fleet": 21, "seeds": "confirm",
+   "why": "8e74와 짝을 이루는 비교다. 같은 나무에 루트 w만 다르고, 별도 시드 40블록뿐이라 블록을 늘린다. 판정: 8e74와의 대응 비교 verdict"}
+ ]}
