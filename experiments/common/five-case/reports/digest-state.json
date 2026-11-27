@@ -1,5 +1,5 @@
 {
- "saved": "2026-11-27T09:11:22.147Z",
+ "saved": "2026-11-27T10:01:47.358Z",
  "sources": [
   {
    "source": "experiments/common/five-case/raw/B1-github.jsonl",
@@ -356,6 +356,54 @@
    "engine": "jsim:e2dc473b4509+ev1"
   },
   {
+   "source": "experiments/common/five-case/raw/github/45971647261/jsm-five-case-auto-11271811-45971647261-1-0/auto-11271811-github.jsonl",
+   "rows": 21,
+   "sha12": "4752ce17c6f3",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45971647261/jsm-five-case-auto-11271811-45971647261-1-1/auto-11271811-github.jsonl",
+   "rows": 21,
+   "sha12": "a9db322529c4",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45971647261/jsm-five-case-auto-11271811-45971647261-1-2/auto-11271811-github.jsonl",
+   "rows": 20,
+   "sha12": "be37bb0067c0",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45971647261/jsm-five-case-auto-11271811-45971647261-1-3/auto-11271811-github.jsonl",
+   "rows": 20,
+   "sha12": "1e41e2a2b075",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45971647261/jsm-five-case-auto-11271811-45971647261-1-4/auto-11271811-github.jsonl",
+   "rows": 20,
+   "sha12": "cdedf09c6841",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45971647261/jsm-five-case-auto-11271811-45971647261-1-5/auto-11271811-github.jsonl",
+   "rows": 20,
+   "sha12": "3a0ef78002a5",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45971647261/jsm-five-case-auto-11271811-45971647261-1-6/auto-11271811-github.jsonl",
+   "rows": 20,
+   "sha12": "c7d888d268b6",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/45971647261/jsm-five-case-auto-11271811-45971647261-1-7/auto-11271811-github.jsonl",
+   "rows": 20,
+   "sha12": "cd135f682562",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
    "source": "experiments/common/five-case/raw/overnight-1125-kaggle.jsonl",
    "rows": 374,
    "sha12": "f9d3b2f388d0",
@@ -370,8 +418,15 @@
  ],
  "evidence": {
   "c1.public.best": {
-   "verdict": "e086d3b2ffd3",
-   "score": 1180.4234
+   "verdict": "bead1742276d",
+   "score": 1178.0692
+  },
+  "c1.held.best": {
+   "verdict": "a8f835a8b056",
+   "adjMean": 1182.23
+  },
+  "c1.subset.a8f835a8b056": {
+   "verdict": "in-subset"
   },
   "c1.robust.first": {
    "verdict": "da7d865ac362",
@@ -382,8 +437,8 @@
    "score": 1180.6962
   },
   "c2.public.best": {
-   "verdict": "6f8788c2ef46",
-   "score": 613.6186
+   "verdict": "edde63813d76",
+   "score": 592.2712
   },
   "c2.held.best": {
    "verdict": "9c4fd1d38b1b",
@@ -3201,8 +3256,8 @@
    "score": 962.7048
   },
   "c4.public.best": {
-   "verdict": "55e571f4da46",
-   "score": 792.0212
+   "verdict": "386042fbd971",
+   "score": 791.1288
   },
   "c4.held.best": {
    "verdict": "a88dfee925e7",
