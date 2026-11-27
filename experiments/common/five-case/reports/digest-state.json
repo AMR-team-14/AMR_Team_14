@@ -1,5 +1,5 @@
 {
- "saved": "2026-11-26T13:22:23.824Z",
+ "saved": "2026-11-27T09:11:22.147Z",
  "sources": [
   {
    "source": "experiments/common/five-case/raw/B1-github.jsonl",
@@ -373,9 +373,13 @@
    "verdict": "e086d3b2ffd3",
    "score": 1180.4234
   },
+  "c1.robust.first": {
+   "verdict": "da7d865ac362",
+   "s500": 1180.6962
+  },
   "c1.rank.first": {
-   "verdict": "e086d3b2ffd3",
-   "score": 1181.4931
+   "verdict": "da7d865ac362",
+   "score": 1180.6962
   },
   "c2.public.best": {
    "verdict": "6f8788c2ef46",
@@ -1071,6 +1075,10 @@
   "c2.effect.f695fdc885b3.b861d172f77e": {
    "verdict": "indistinct",
    "diff": 28.98
+  },
+  "c2.robust.first": {
+   "verdict": "9bcff5d2630b",
+   "s500": 605.6962
   },
   "c2.rank.first": {
    "verdict": "63c180933a03",
@@ -3184,6 +3192,10 @@
    "verdict": "a-worse",
    "diff": 37.7
   },
+  "c3.robust.first": {
+   "verdict": "0f61d990ab1e",
+   "s500": 974.54
+  },
   "c3.rank.first": {
    "verdict": "00fad1b682e2",
    "score": 962.7048
@@ -3209,6 +3221,10 @@
   "c4.effect.a88dfee925e7.03b542a9976c": {
    "verdict": "a-better",
    "diff": -4.8
+  },
+  "c4.robust.first": {
+   "verdict": "aa3a1559a568",
+   "s500": 791.5536
   },
   "c4.rank.first": {
    "verdict": "55e571f4da46",
@@ -3250,6 +3266,10 @@
   "c5.effect.a528e43bafdd.19b730ac721c": {
    "verdict": "a-better",
    "diff": -13.54
+  },
+  "c5.robust.first": {
+   "verdict": "c26f6598a06d",
+   "s500": 775.5363
   },
   "c5.rank.first": {
    "verdict": "aed2f894f8a5",
