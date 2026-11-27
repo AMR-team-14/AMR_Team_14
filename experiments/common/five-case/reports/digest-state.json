@@ -1,5 +1,5 @@
 {
- "saved": "2026-11-27T18:29:49.082Z",
+ "saved": "2026-11-27T20:33:59.310Z",
  "sources": [
   {
    "source": "experiments/common/five-case/raw/B1-github.jsonl",
@@ -788,6 +788,54 @@
    "engine": "jsim:e2dc473b4509+ev1"
   },
   {
+   "source": "experiments/common/five-case/raw/github/46049934680/jsm-five-case-auto-11280330-46049934680-1-0/auto-11280330-github.jsonl",
+   "rows": 30,
+   "sha12": "e9ae9998359f",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/46049934680/jsm-five-case-auto-11280330-46049934680-1-1/auto-11280330-github.jsonl",
+   "rows": 30,
+   "sha12": "86f51fba4288",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/46049934680/jsm-five-case-auto-11280330-46049934680-1-2/auto-11280330-github.jsonl",
+   "rows": 30,
+   "sha12": "e816f4fd418d",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/46049934680/jsm-five-case-auto-11280330-46049934680-1-3/auto-11280330-github.jsonl",
+   "rows": 30,
+   "sha12": "8e984a8b0491",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/46049934680/jsm-five-case-auto-11280330-46049934680-1-4/auto-11280330-github.jsonl",
+   "rows": 30,
+   "sha12": "cc3e9c5bd4e0",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/46049934680/jsm-five-case-auto-11280330-46049934680-1-5/auto-11280330-github.jsonl",
+   "rows": 30,
+   "sha12": "d6c8b73575fd",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/46049934680/jsm-five-case-auto-11280330-46049934680-1-6/auto-11280330-github.jsonl",
+   "rows": 29,
+   "sha12": "8b3c4cb9246a",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
+   "source": "experiments/common/five-case/raw/github/46049934680/jsm-five-case-auto-11280330-46049934680-1-7/auto-11280330-github.jsonl",
+   "rows": 29,
+   "sha12": "1f349402721d",
+   "engine": "jsim:e2dc473b4509+ev1"
+  },
+  {
    "source": "experiments/common/five-case/raw/overnight-1125-kaggle.jsonl",
    "rows": 374,
    "sha12": "f9d3b2f388d0",
@@ -827,7 +875,11 @@
   },
   "c1.vsbest.da7d865ac362": {
    "verdict": "indistinct",
-   "diff": 0.29
+   "diff": 0.02
+  },
+  "c1.vsbest.e4e9248a8e06": {
+   "verdict": "indistinct",
+   "diff": 0.11
   },
   "c1.subset.bead1742276d": {
    "verdict": "in-subset"
@@ -847,41 +899,60 @@
   "c1.subset.8e7431131490": {
    "verdict": "in-subset"
   },
+  "c1.subset.e4e9248a8e06": {
+   "verdict": "in-subset"
+  },
   "c1.effect.bead1742276d.6cbf3b93ef11": {
    "verdict": "a-better",
    "diff": -2.18
   },
   "c1.effect.bead1742276d.da7d865ac362": {
    "verdict": "indistinct",
-   "diff": 0.4
+   "diff": 0.57
   },
   "c1.effect.bead1742276d.8e7431131490": {
    "verdict": "indistinct",
    "diff": 0.58
+  },
+  "c1.effect.bead1742276d.e4e9248a8e06": {
+   "verdict": "indistinct",
+   "diff": 0.47
   },
   "c1.effect.a8f835a8b056.0409d7cd460e": {
    "verdict": "indistinct",
    "diff": -1
   },
   "c1.effect.a8f835a8b056.da7d865ac362": {
-   "verdict": "indistinct",
-   "diff": 0.9
+   "verdict": "a-worse",
+   "diff": 1.84
   },
   "c1.effect.6cbf3b93ef11.da7d865ac362": {
-   "verdict": "indistinct",
-   "diff": 1.94
+   "verdict": "a-worse",
+   "diff": 2.74
   },
   "c1.effect.6cbf3b93ef11.8e7431131490": {
    "verdict": "a-worse",
    "diff": 2.76
   },
+  "c1.effect.6cbf3b93ef11.e4e9248a8e06": {
+   "verdict": "a-worse",
+   "diff": 2.65
+  },
   "c1.effect.0409d7cd460e.da7d865ac362": {
    "verdict": "a-worse",
-   "diff": 2.62
+   "diff": 2.84
   },
   "c1.effect.da7d865ac362.8e7431131490": {
    "verdict": "indistinct",
-   "diff": 0.29
+   "diff": 0.02
+  },
+  "c1.effect.da7d865ac362.e4e9248a8e06": {
+   "verdict": "indistinct",
+   "diff": -0.09
+  },
+  "c1.effect.8e7431131490.e4e9248a8e06": {
+   "verdict": "indistinct",
+   "diff": -0.11
   },
   "c1.robust.first": {
    "verdict": "8e7431131490",

@@ -1,0 +1,182 @@
+{
+  "batch": "auto-11280330",
+  "planned": 238,
+  "returned": 238,
+  "missing": [],
+  "failures": [],
+  "cases": {
+    "1": {
+      "evaluations": 200,
+      "searchEvaluations": 917,
+      "fleets": {
+        "auto-11280330:e0": {
+          "blocks": 100,
+          "rejected": 0,
+          "mean": 1180.4015329259119,
+          "p95": 1191.5981980391364,
+          "worst": 1197.7159537681696,
+          "vehicle": 315,
+          "wait": 349.15643806387305,
+          "urgent": 516.2450948620386
+        },
+        "auto-11280330:e1": {
+          "blocks": 100,
+          "rejected": 0,
+          "mean": 1180.4947127888483,
+          "p95": 1191.6312055816682,
+          "worst": 1199.5506893717873,
+          "vehicle": 315,
+          "wait": 349.1612767599404,
+          "urgent": 516.3334360289077
+        }
+      },
+      "bestSearch": [
+        {
+          "sha": "c811da1aa590ff29a3472d1285fbcc3f43ccd9611e60d80c96dc3b0243642098",
+          "score": 1180.1632545041746,
+          "fleet": 22,
+          "dir": "000011110000000111100000000110101",
+          "label": "auto-11280330:e2"
+        },
+        {
+          "sha": "277a1935f29c8783c973607d0f642da582b3d4e3d5095aac92587bd7085449b1",
+          "score": 1180.2955166218399,
+          "fleet": 22,
+          "dir": "000011110000000111100000000110101",
+          "label": "auto-11280330:e2"
+        },
+        {
+          "sha": "25953775e6d45e8da306c68827c11e6d2b00b9f3d0b38d135d7dabf281001c5c",
+          "score": 1181.090881596567,
+          "fleet": 22,
+          "dir": "000011110000000111100000000110101",
+          "label": "auto-11280330:e2"
+        },
+        {
+          "sha": "153a4b49f704c7dc726861f5002baf1f244ede235e66999164b8844cebfc5eca",
+          "score": 1182.4890915103979,
+          "fleet": 22,
+          "dir": "000011110000000111100000000110101",
+          "label": "auto-11280330:e2"
+        }
+      ]
+    },
+    "2": {
+      "evaluations": 0,
+      "searchEvaluations": 1562,
+      "fleets": {},
+      "bestSearch": [
+        {
+          "sha": "83f02e1b9f9c960581a9fe1b0f60dafaba667f432be8dbdade837d5fea4ad98f",
+          "score": 600.5445356970645,
+          "fleet": 25,
+          "dir": "000011111110001110011111100100110101",
+          "label": "auto-11280330:e4"
+        },
+        {
+          "sha": "48e2c7e7c58269fe39a11906eb5bc6ebed23e87b9d25acb1b60bdb8a7949a78f",
+          "score": 600.9724285205409,
+          "fleet": 23,
+          "dir": "000011111110001110011111100100110101",
+          "label": "auto-11280330:e3"
+        },
+        {
+          "sha": "67f9a245769c00a7d0841a03b815d4dae2f5f3c7ad14691c36981e310cd7399b",
+          "score": 600.9741084889479,
+          "fleet": 23,
+          "dir": "000011111110001110011111100100110101",
+          "label": "auto-11280330:e3"
+        },
+        {
+          "sha": "474bc1ca8a3b26bab6d597613b02c2e865fb8a4c7da153623f4d4675fbc649b0",
+          "score": 600.9741084889479,
+          "fleet": 23,
+          "dir": "000011111110001110011111100100110101",
+          "label": "auto-11280330:e3"
+        },
+        {
+          "sha": "f7d0b132662a35c7edf8b918e1f007c4c654c3f22327fe24d00aaaffd7f835b6",
+          "score": 601.1606342386344,
+          "fleet": 23,
+          "dir": "000011111110001110011111100100110101",
+          "label": "auto-11280330:e3"
+        }
+      ]
+    },
+    "3": {
+      "evaluations": 0,
+      "searchEvaluations": 1384,
+      "fleets": {},
+      "bestSearch": [
+        {
+          "sha": "ba50bc7f17dec579eb36326fffbe86f04cdbd40785f8b6666a110d9f338459cf",
+          "score": 976.6774592347402,
+          "fleet": 23,
+          "dir": "1111111100000000011111011001101",
+          "label": "auto-11280330:e5"
+        },
+        {
+          "sha": "fb260a7d68e9c53128a634a1949ef32a13ad6fa7123150925556999f7c48cfc2",
+          "score": 976.9187117410097,
+          "fleet": 23,
+          "dir": "1111111100000000011111011001101",
+          "label": "auto-11280330:e5"
+        }
+      ]
+    },
+    "4": {
+      "evaluations": 18,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11280330:e8": {
+          "blocks": 6,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        },
+        "auto-11280330:e7": {
+          "blocks": 6,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        },
+        "auto-11280330:e6": {
+          "blocks": 6,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        }
+      },
+      "bestSearch": []
+    },
+    "5": {
+      "evaluations": 4,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11280330:e9": {
+          "blocks": 4,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        }
+      },
+      "bestSearch": []
+    }
+  }
+}
