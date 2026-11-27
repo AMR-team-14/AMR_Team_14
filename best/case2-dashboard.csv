@@ -3,6 +3,6 @@ fleet,24
 key,1,w,max,0.3,2,3
 key,2,dl,min,202.5,0,4
 key,3,dl,min,227.5,5,0
-key,4,de,max,22.5,0,0
+key,4,de,max,20,0,0
 key,5,qo,min,1,0,6
 key,6,urg,max,0.5,0,0

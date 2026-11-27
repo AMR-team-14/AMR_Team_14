@@ -28,8 +28,13 @@ for (const c of [1, 2, 3, 4, 5]) {
   const pub = [...ok].sort((x, y) => x.public.cost - y.public.cost || s5(x) - s5(y) || x.sha12.localeCompare(y.sha12))[0];
   const rob = ok.filter(a => a.s500 && a.s500.cost !== null && a.s500.rejected === 0)
     .sort((x, y) => x.s500.cost - y.s500.cost || x.sha12.localeCompare(y.sha12))[0];
-  const cell = (a, kind) => a ? [`**${f4(kind === 'pub' ? a.public.cost : a.s500.cost)}**`, f4(kind === 'pub' ? (a.s500 && a.s500.cost) : a.public.cost),
-    `${a.fleet}대`, owners(a), origin(a), save(a, `case${c}-${kind === 'pub' ? 'dashboard' : 'robust'}.csv`)] : ['–', '–', '–', '–', '–', '–'];
+  // answers with the same score (to 4 decimals) on both objectives are the same record: credit everyone who has one
+  const key = a => `${f4(a.public.cost)}|${f4(a.s500 && a.s500.cost)}`;
+  const tie = a => ok.filter(x => key(x) === key(a));
+  const ownersOf = a => [...new Set(tie(a).flatMap(x => x.sources.map(s => s.author)))].join(', ');
+  const rep = a => tie(a).find(x => x.sources.some(s => s.branch !== 'jsm')) || a;
+  const cell = (a0, kind) => { const a = a0 && rep(a0); return a ? [`**${f4(kind === 'pub' ? a.public.cost : a.s500.cost)}**`, f4(kind === 'pub' ? (a.s500 && a.s500.cost) : a.public.cost),
+    `${a.fleet}대`, ownersOf(a), origin(a), save(a, `case${c}-${kind === 'pub' ? 'dashboard' : 'robust'}.csv`)] : ['–', '–', '–', '–', '–', '–']; };
   rows.push({c, pub: cell(pub, 'pub'), rob: cell(rob, 'rob')});
 }
 const lines = [START, '## 최고 기록 (팀 전체 답안, 공통 평가기)', '',
