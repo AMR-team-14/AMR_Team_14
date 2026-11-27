@@ -1,0 +1,126 @@
+{
+ "batch": "auto-11271811",
+ "created": "2026-11-27T09:11:31.691Z",
+ "reason": "ILS·robust 목표 탐색은 아직 0회. 1위 주변 나무 탐색 대신 처음 쓰는 출발 답(곽민재 11/27, D2 계열, 작은 urg 나무)에서 두 목표를 따로 오르고, C4 통로×나무 교차 이식과 C1 20대 평가를 함께 돌린다",
+ "experiments": [
+  {
+   "case": 4,
+   "type": "ils",
+   "start": "sha12:817ab48a0711",
+   "budget": 2000,
+   "repeats": 8,
+   "objective": "public",
+   "kick": 3,
+   "why": "D6(곽민재 LB)은 공개 1위와 1.002 차이에 1-500 2위. 출발점으로 쓴 적 없음. 공개 1위를 넘으면서 1-500도 상위일 가능성이 가장 큼"
+  },
+  {
+   "case": 4,
+   "type": "ils",
+   "start": "sha12:aa3a1559a568",
+   "budget": 500,
+   "repeats": 8,
+   "objective": "robust",
+   "kick": 3,
+   "why": "1-500 1위 D7(곽민재 V3)에서 robust 목표 탐색은 처음. D2 변형 통로 주변에서 통로와 나무를 함께 바꿈"
+  },
+  {
+   "case": 3,
+   "type": "ils",
+   "start": "sha12:a376f0cd0fab",
+   "budget": 2000,
+   "repeats": 8,
+   "objective": "public",
+   "kick": 2,
+   "why": "공개 2위(곽민재 LB, 0.492 차이)는 출발점으로 쓴 적 없음. 00fad1b682e2 주변 나무 탐색은 포화"
+  },
+  {
+   "case": 3,
+   "type": "ils",
+   "start": "sha12:0f61d990ab1e",
+   "budget": 600,
+   "repeats": 8,
+   "objective": "robust",
+   "kick": 2,
+   "why": "1-500 1위(곽민재 V3)는 공개≈1-500이라 과적합이 없는 답. robust 목표 탐색은 처음"
+  },
+  {
+   "case": 5,
+   "type": "ils",
+   "start": "sha12:c26f6598a06d",
+   "budget": 500,
+   "repeats": 8,
+   "objective": "robust",
+   "kick": 2,
+   "why": "1-500 1·2위가 모두 22/D2(나무는 다름). D2 자기 나무에서 robust 탐색은 처음, 대수 ±1도 함께 시험"
+  },
+  {
+   "case": 2,
+   "type": "ils",
+   "start": "sha12:9bcff5d2630b",
+   "budget": 600,
+   "repeats": 8,
+   "objective": "robust",
+   "kick": 3,
+   "why": "1-500 1위인 작은 urg 나무(25/D2). 24대와 구별이 안 돼서 대수·통로·나무를 함께 오르는 robust 탐색이 처음 필요"
+  },
+  {
+   "case": 2,
+   "type": "ils",
+   "start": "sha12:50cfda9473f9",
+   "budget": 2000,
+   "repeats": 4,
+   "objective": "public",
+   "kick": 3,
+   "why": "같은 urg 나무를 D1에 쓴 균형 답(공개 7위·1-500 5위). 이 계열은 공개 목표로 다듬은 적 없음"
+  },
+  {
+   "case": 5,
+   "type": "ils",
+   "start": "sha12:c26f6598a06d",
+   "budget": 2000,
+   "repeats": 4,
+   "objective": "public",
+   "kick": 2,
+   "why": "D2 자기 나무는 공개 탐색 기록 없음(지난 D2 탐색은 D1 나무를 이식한 것, 최저 778.2948). 두 목표 모두 상위인 답에서 공개를 낮춰 봄"
+  },
+  {
+   "case": 1,
+   "type": "ils",
+   "start": "sha12:da7d865ac362",
+   "budget": 500,
+   "repeats": 4,
+   "objective": "robust",
+   "why": "Case 1은 탐색 기록이 전혀 없음. 새 1-500 1위에서 나무·대수 robust 탐색(루트 w 경계가 작을수록 1-500이 좋다는 가설)"
+  },
+  {
+   "case": 4,
+   "type": "search",
+   "fleet": 18,
+   "dir": "sha12:aa3a1559a568",
+   "start": "transplant:55e571f4da46",
+   "budget": 1,
+   "repeats": 1,
+   "objective": "public",
+   "why": "교차 이식 채점용(budget 1 = 이식 답 하나만). 공개 1위 나무를 D7 통로에 쓰면 강건성이 통로 덕인지 확인"
+  },
+  {
+   "case": 4,
+   "type": "search",
+   "fleet": 18,
+   "dir": "sha12:55e571f4da46",
+   "start": "transplant:aa3a1559a568",
+   "budget": 1,
+   "repeats": 1,
+   "objective": "public",
+   "why": "교차 이식 채점용. 1-500 1위 나무를 D2 통로에 쓰면 공개 성적이 통로 덕인지 나무 덕인지 확인"
+  },
+  {
+   "case": 1,
+   "type": "eval",
+   "sha12": "da7d865ac362",
+   "fleet": 20,
+   "seeds": "final",
+   "why": "같은 나무에서 대수만 21→20. 20대 3aaa0b7fe576이 1위와 1.9552 차이라 차 1대 절감으로 1-500 1위를 넘을 수 있음"
+  }
+ ]
+}
