@@ -45,6 +45,7 @@ jobs:
           token: ${{ secrets.JSM_PUSH_TOKEN || github.token }}
           sparse-checkout: |
             insights
+            best
             experiments/case1/candidates
             experiments/case2/candidates
             experiments/case3
@@ -124,11 +125,12 @@ jobs:
           NAME="$(TZ=Asia/Seoul date +%m%d-%H%M)-run${{ github.run_id }}"
           mkdir -p "$DIR"; cp report.md "$DIR/$NAME.md"; cp digest.json "$DIR/digest-latest.json"
           node experiments/common/five-case/digest.cjs --save-state --out /dev/null
+          node experiments/common/five-case/readme-board.cjs > /dev/null
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3 4; do
             git fetch --depth=1 origin jsm && git reset -q --mixed FETCH_HEAD
-            for f in "$DIR/$NAME.md" insights/known-insights.md "$DIR/digest-latest.json" "$DIR/digest-state.json" "$DIR/usage.jsonl" experiments/common/five-case/raw/github experiments/common/five-case/team/scores.json; do
+            for f in "$DIR/$NAME.md" insights/known-insights.md "$DIR/digest-latest.json" "$DIR/digest-state.json" "$DIR/usage.jsonl" experiments/common/five-case/raw/github experiments/common/five-case/team/scores.json README.md best; do
               if [ -e "$f" ]; then git add -f "$f"; fi
             done
             git commit -q -m "Claude analysis $NAME [skip ci]" && git push origin HEAD:jsm && exit 0
