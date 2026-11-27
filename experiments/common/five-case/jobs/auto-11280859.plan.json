@@ -1,0 +1,94 @@
+{
+ "batch": "auto-11280859",
+ "created": "2026-11-27T23:59:16.558Z",
+ "reason": "auto-11280651에서 1위는 바뀌지 않았지만 C5 21/D2·42fa 출발이 b9a1 분지 밖에서 1-500 2·4·5위를 냈다. 이 새 경로에 반복을 늘리고, robust 출발로 쓴 적 없는 1위 근처 답(C4 76de·44a1, C3 af81, C2 83f0)을 한 번씩 시험한다. C1과 닫힌 공개 국소최적은 쉰다",
+ "experiments": [
+  {
+   "case": 5,
+   "type": "ils",
+   "start": "sha12:1cf4fa442041",
+   "fleet": 22,
+   "budget": 800,
+   "repeats": 8,
+   "objective": "robust",
+   "kick": 2,
+   "why": "5e06 경로가 낸 1-500 2위(774.8178)이고 출발로 쓴 적이 없다. b9a1 분지 밖이다. 판정: 1-500 < 774.78"
+  },
+  {
+   "case": 5,
+   "type": "ils",
+   "start": "sha12:5e065c06af65",
+   "fleet": 21,
+   "budget": 800,
+   "repeats": 8,
+   "objective": "robust",
+   "kick": 3,
+   "why": "21→22 경로는 4회에서 서로 다른 22/D2 나무 4개(2·4위 포함)를 냈다. 반복을 늘려 774.78 아래 나무를 노린다. 판정: 1-500 < 774.78"
+  },
+  {
+   "case": 5,
+   "type": "ils",
+   "start": "sha12:dc4ba8aabc7b",
+   "fleet": 22,
+   "budget": 800,
+   "repeats": 4,
+   "objective": "robust",
+   "kick": 2,
+   "why": "42fa 계열에서 나온 1-500 5위이고 출발로 쓴 적이 없다. 판정: 1-500 < 774.78"
+  },
+  {
+   "case": 4,
+   "type": "ils",
+   "start": "sha12:76de42acbc69",
+   "fleet": 18,
+   "budget": 800,
+   "repeats": 6,
+   "objective": "robust",
+   "kick": 2,
+   "why": "1-500 1위인데 robust 출발로 쓴 적이 없다(공개 kick 2, 19대 eval만 있음). 판정: 1-500 < 790.4171"
+  },
+  {
+   "case": 4,
+   "type": "ils",
+   "start": "sha12:44a125b86299",
+   "fleet": 18,
+   "budget": 800,
+   "repeats": 6,
+   "objective": "robust",
+   "kick": 2,
+   "why": "고원 아래 1-500 3위이고 두 회차에서 다시 나왔지만 출발로 쓴 적이 없다. 판정: 1-500 < 790.4171"
+  },
+  {
+   "case": 3,
+   "type": "ils",
+   "start": "sha12:af817b334101",
+   "fleet": 22,
+   "budget": 800,
+   "repeats": 4,
+   "objective": "robust",
+   "kick": 3,
+   "why": "0f61에 가장 가까운 1-500 2위인데 kick 1로만 출발해 봤다. b3db 끌개를 벗어날 큰 kick을 시험한다. 판정: 1-500 < 974.54"
+  },
+  {
+   "case": 2,
+   "type": "ils",
+   "start": "sha12:83f02e1b9f9c",
+   "budget": 800,
+   "repeats": 4,
+   "objective": "robust",
+   "kick": 2,
+   "why": "25/D3 국소최적인데 ILS 출발로 쓴 적이 없다. D3 분지에 다른 대수로 들어가는 유일한 입구다. 판정: 1-500 < 603.4758"
+  },
+  {
+   "case": 4,
+   "type": "ils",
+   "start": "sha12:64fe9432608f",
+   "fleet": 18,
+   "budget": 1500,
+   "repeats": 6,
+   "objective": "public",
+   "kick": 2,
+   "why": "D11 공개 5위이고 공개 출발로 쓴 적이 없다. 다른 공개 국소최적 5개는 모두 닫혀 있다. 판정: 공개 < 789.2041이고 1-500 반려 0"
+  }
+ ]
+}
