@@ -1,0 +1,586 @@
+{
+  "experiment_id": "C4-20261127-direction-leaf",
+  "case": 4,
+  "recorded_date_kst": "2026-11-27",
+  "purpose": "Compare the Case 4 direction/tree cross and test one leaf on the fixed best base.",
+  "design": {
+    "crossing": "Two team trees crossed with D2/D7 at fixed 18 AGVs.",
+    "actions_evidence": [
+      {
+        "candidate": "public-tree-D7",
+        "artifact": "https://github.com/AMR-team-14/AMR_Team_14/actions/runs/45971647261/artifacts/15185419345",
+        "job": "auto-11271811:c4:search:9:0",
+        "score": 804.1,
+        "engine": "JSM search-runner",
+        "objective": "public"
+      },
+      {
+        "candidate": "robust-tree-D2",
+        "artifact": "https://github.com/AMR-team-14/AMR_Team_14/actions/runs/45971647261/artifacts/15186351806",
+        "job": "auto-11271811:c4:search:10:0",
+        "score": 793.1396,
+        "engine": "JSM search-runner",
+        "objective": "public"
+      }
+    ],
+    "selection": "The best available public Case 4 score among four crossed/reference arms selected the one-leaf follow-up. Verify the crossed search results with the common scorer.",
+    "selection_public_scores": [
+      [
+        "public-tree-D2",
+        792.0212
+      ],
+      [
+        "robust-tree-D2",
+        793.1396
+      ],
+      [
+        "robust-tree-D7",
+        798.2064
+      ],
+      [
+        "public-tree-D7",
+        804.1
+      ]
+    ],
+    "followup": {
+      "fixed": "D2, 18 AGVs and original public tree. Change only node 7, the de max rule on early nonurgent long trips.",
+      "baseline_threshold": 90,
+      "adjacent_thresholds": [
+        85.6,
+        100.6
+      ],
+      "feasible_de_m": [
+        0,
+        30,
+        60,
+        81.2,
+        90,
+        96.2,
+        105,
+        126.2,
+        141.2
+      ]
+    }
+  },
+  "branch": "yb",
+  "branch_heads_at_start": {
+    "main": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "jkd": "aeb5fa98f2789f7c4f80a7506515e2d5ddda4fb0",
+    "jsm": "df7f450c46165acd2c3466e511bee6c4b78657d8",
+    "kmj": "7d098c5d79aa4f39108cf926154797e6d72a5948",
+    "pjh": "c5dc1c6d792ff6c2bdad78e3da052a778bab79aa",
+    "yb": "6be90cc999df829d835acd456bb16d1ea013d29e",
+    "jinhong": "1584cb7ca438f26297adf953432977527d18dd55"
+  },
+  "environment": {
+    "node": "v24.14.0",
+    "platform": "win32",
+    "runner": "local",
+    "shared_worker_limit": 8
+  },
+  "evaluator": {
+    "path": "simulator/score.cjs",
+    "commit": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "simulator_tree": "47c21aff74316d4f4b62ef7a441710f6f199f12c",
+    "trace": true
+  },
+  "input": {
+    "path": "simulator/spec/c4.json",
+    "git_sha256": "681cd0e9ef1a69f21664443ffccdb414f9d9b13382e98bad84f2fbb7b6b9f238",
+    "source_answer_git_blob": "ffbf512fd55c4134c9ff05d4d0ca9758dfcb20d1"
+  },
+  "aggregation": "Pool all completed pickups after warmup, then calculate one cost with floor-index urgent p95. Blank score if any seed is rejected.",
+  "reuse_notes": "Exact answer identity, seed count and input/evaluator version required. Team gather provides pooled outcomes without trace. Raw traces are reused separately where available.",
+  "candidates": [
+    {
+      "id": "public-tree-D2",
+      "role": "reference",
+      "fleet": 18,
+      "direction": "1111111111011111111000001110100111100000110010011101001100011110011111101111",
+      "nodes": 9,
+      "answer": "experiments/case4/C4-20261127-direction-leaf/answers/public-tree-D2.csv",
+      "answer_sha256": "55e571f4da46611706832d424f828d71adac61f1de966bffc8e6fa5feddc1a80",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/case4/cand_79202.csv"
+    },
+    {
+      "id": "robust-tree-D7",
+      "role": "reference",
+      "fleet": 18,
+      "direction": "1111111111011111111000001111110111100000110011011101000100011110011111101111",
+      "nodes": 8,
+      "answer": "experiments/case4/C4-20261127-direction-leaf/answers/robust-tree-D7.csv",
+      "answer_sha256": "aa3a1559a568bc7024f3c2992b670d7ac7a54584cef1a2d49f94704265a493f7",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/7d098c5d79aa4f39108cf926154797e6d72a5948/experiments/case4/KMJ-1127-V3-C4/answer.csv"
+    },
+    {
+      "id": "public-tree-D7",
+      "role": "crossed",
+      "fleet": 18,
+      "direction": "1111111111011111111000001111110111100000110011011101000100011110011111101111",
+      "nodes": 9,
+      "answer": "experiments/case4/C4-20261127-direction-leaf/answers/public-tree-D7.csv",
+      "answer_sha256": "84c7573e20191ebbbb7e91cd228cc78647553c5c4df11a89601ee197fa6705a6",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/actions/runs/45971647261/artifacts/15185419345"
+    },
+    {
+      "id": "robust-tree-D2",
+      "role": "crossed",
+      "fleet": 18,
+      "direction": "1111111111011111111000001110100111100000110010011101001100011110011111101111",
+      "nodes": 8,
+      "answer": "experiments/case4/C4-20261127-direction-leaf/answers/robust-tree-D2.csv",
+      "answer_sha256": "8ae6d84e9463518ee2725c22d97fcedd7a97cfb72f668d0b464cc848fed0b2c2",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/actions/runs/45971647261/artifacts/15186351806"
+    },
+    {
+      "id": "D2-leaf7-de-85p6",
+      "role": "candidate",
+      "fleet": 18,
+      "direction": "1111111111011111111000001110100111100000110010011101001100011110011111101111",
+      "nodes": 9,
+      "answer": "experiments/case4/C4-20261127-direction-leaf/answers/D2-leaf7-de-85p6.csv",
+      "answer_sha256": "09bedac9f6ad72dae0bfde9395233ab1df8eae5e235ebb21df4d5cfac030cb63",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/case4/cand_79202.csv"
+    },
+    {
+      "id": "D2-leaf7-de-100p6",
+      "role": "candidate",
+      "fleet": 18,
+      "direction": "1111111111011111111000001110100111100000110010011101001100011110011111101111",
+      "nodes": 9,
+      "answer": "experiments/case4/C4-20261127-direction-leaf/answers/D2-leaf7-de-100p6.csv",
+      "answer_sha256": "259fd4bd675dbb6828036ae2cc191bd76f800f181aca80e2659cf6474925ce47",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/case4/cand_79202.csv"
+    }
+  ],
+  "preflight": {
+    "command": "node simulator/score.cjs 4 --baseline 11 5 --trace",
+    "case": 4,
+    "fleet": 18,
+    "first_seed": 11,
+    "seeds": 5,
+    "pooled_cost": 801.467,
+    "rejected": [],
+    "dispatch_count": 17787,
+    "dispatch_sha256": "f71273a7e9e96fc0e6c0016f462b73c4db6d18122408173cfe47ba0e06fd9507",
+    "log": "experiments/case4/C4-20261127-direction-leaf/logs/baseline-11-15.json"
+  },
+  "runs": [
+    {
+      "id": "public-tree-D2",
+      "role": "reference",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/public-tree-D2-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/public-tree-D2.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 796.9283,
+        "rejected": [],
+        "dispatch_count": 175395,
+        "dispatch_sha256": "4698172378ce6c67b07cfe9eb8d13bc6fde682010febae92b560060f9a2f9df6"
+      }
+    },
+    {
+      "id": "public-tree-D2",
+      "role": "reference",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/public-tree-D2-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/public-tree-D2.csv 11 5 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 792.0212,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "public-tree-D2",
+      "role": "reference",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/public-tree-D2-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/public-tree-D2.csv 1 500 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 796.7896,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "robust-tree-D7",
+      "role": "reference",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/robust-tree-D7-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/robust-tree-D7.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 792.1214,
+        "rejected": [],
+        "dispatch_count": 175396,
+        "dispatch_sha256": "475f345e35749bb7fc957182be7cb2d9bcc065a324dbe73b889ed8d72ef4880a"
+      }
+    },
+    {
+      "id": "robust-tree-D7",
+      "role": "reference",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/robust-tree-D7-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/robust-tree-D7.csv 11 5 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 798.2064,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "robust-tree-D7",
+      "role": "reference",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/robust-tree-D7-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/robust-tree-D7.csv 1 500 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 791.5536,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "public-tree-D7",
+      "role": "crossed",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/public-tree-D7-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/public-tree-D7.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 793.5078,
+        "rejected": [],
+        "dispatch_count": 175396,
+        "dispatch_sha256": "845fa30734d7752ec556d7137eb780d5f1145f668d7ed0c9258534088a763954"
+      }
+    },
+    {
+      "id": "public-tree-D7",
+      "role": "crossed",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/public-tree-D7-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/public-tree-D7.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 804.1,
+        "rejected": [],
+        "dispatch_count": 17787,
+        "dispatch_sha256": "46cdf1c35294f7a82730aed7bfcbdcbb0751f8c8a9d5d4456a6950da84f59dfa"
+      }
+    },
+    {
+      "id": "public-tree-D7",
+      "role": "crossed",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/public-tree-D7-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/public-tree-D7.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 792.0283,
+        "rejected": [],
+        "dispatch_count": 1755798,
+        "dispatch_sha256": "07a50d83368386239b63440c94d1e331ea25033c927c87358f99a225e2028d74"
+      }
+    },
+    {
+      "id": "robust-tree-D2",
+      "role": "crossed",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/robust-tree-D2-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/robust-tree-D2.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 795.8154,
+        "rejected": [],
+        "dispatch_count": 175395,
+        "dispatch_sha256": "9352d9c5d7e258d107a1f1c6cef0da217ad6d6e9b0c383fba1ecd2cd487e38df"
+      }
+    },
+    {
+      "id": "robust-tree-D2",
+      "role": "crossed",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/robust-tree-D2-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/robust-tree-D2.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 793.1396,
+        "rejected": [],
+        "dispatch_count": 17787,
+        "dispatch_sha256": "5304fbb18c95823ab328945a9b54aa01356199ba6da0e508302b144ef92a4a66"
+      }
+    },
+    {
+      "id": "robust-tree-D2",
+      "role": "crossed",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/robust-tree-D2-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/robust-tree-D2.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 796.1289,
+        "rejected": [],
+        "dispatch_count": 1755795,
+        "dispatch_sha256": "ce0eb307bf6f01bc05d8038539d780c20dba7d4590ec35401e899f902ec2cd8d"
+      }
+    },
+    {
+      "id": "D2-leaf7-de-85p6",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/D2-leaf7-de-85p6-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/D2-leaf7-de-85p6.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 803.7859,
+        "rejected": [],
+        "dispatch_count": 175395,
+        "dispatch_sha256": "4cd31d8a6b0d7f46cf688b64cc6889d27fe81544cbcef77ccbf5530b7ee9926f"
+      }
+    },
+    {
+      "id": "D2-leaf7-de-85p6",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/D2-leaf7-de-85p6-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/D2-leaf7-de-85p6.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 810.0191,
+        "rejected": [],
+        "dispatch_count": 17787,
+        "dispatch_sha256": "3dbcb0567b24770141c79846977c46dd54be15873d9cd16b19dbae0407d180c8"
+      }
+    },
+    {
+      "id": "D2-leaf7-de-85p6",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/D2-leaf7-de-85p6-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/D2-leaf7-de-85p6.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 804.4087,
+        "rejected": [],
+        "dispatch_count": 1755796,
+        "dispatch_sha256": "94e1495a25fc54c3359bd11058523c1e63cf553db40a3e6cc0ad22bee666340f"
+      }
+    },
+    {
+      "id": "D2-leaf7-de-100p6",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/D2-leaf7-de-100p6-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/D2-leaf7-de-100p6.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 825.4764,
+        "rejected": [],
+        "dispatch_count": 175394,
+        "dispatch_sha256": "68e40de59ade831bb5872090b58da0a261c171706bac41634a2d26568707c736"
+      }
+    },
+    {
+      "id": "D2-leaf7-de-100p6",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/D2-leaf7-de-100p6-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/D2-leaf7-de-100p6.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 827.6413,
+        "rejected": [],
+        "dispatch_count": 17787,
+        "dispatch_sha256": "8e934fa41cf9fe52f7b7c3897c24e60c0518d8e08d046ae77ffb8f086e78754f"
+      }
+    },
+    {
+      "id": "D2-leaf7-de-100p6",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-direction-leaf/logs/D2-leaf7-de-100p6-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-direction-leaf/answers/D2-leaf7-de-100p6.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 823.4547,
+        "rejected": [],
+        "dispatch_count": 1755793,
+        "dispatch_sha256": "ddd2c09d21a5cdd6566d1152fd07951b293eec0c251e0c38fe5c7aec1b08e4fc"
+      }
+    }
+  ]
+}

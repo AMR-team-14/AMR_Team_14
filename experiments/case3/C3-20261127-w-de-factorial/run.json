@@ -1,0 +1,553 @@
+{
+  "experiment_id": "C3-20261127-w-de-factorial",
+  "case": 3,
+  "recorded_date_kst": "2026-11-27",
+  "purpose": "Isolate the root waiting-time threshold and the near/far empty distance threshold.",
+  "design": {
+    "fixed": "KMJ V3 dir, fleet=22, topology, features, modes and other thresholds.",
+    "factors": {
+      "root_w": [
+        0.0005,
+        0.02
+      ],
+      "node_3_de": [
+        179.7,
+        130
+      ]
+    },
+    "references": [
+      "Unmodified V3",
+      "Public leader",
+      "KMJ LB full tree"
+    ]
+  },
+  "branch": "yb",
+  "branch_heads_at_start": {
+    "main": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "jkd": "aeb5fa98f2789f7c4f80a7506515e2d5ddda4fb0",
+    "jsm": "df7f450c46165acd2c3466e511bee6c4b78657d8",
+    "kmj": "7d098c5d79aa4f39108cf926154797e6d72a5948",
+    "pjh": "c5dc1c6d792ff6c2bdad78e3da052a778bab79aa",
+    "yb": "6be90cc999df829d835acd456bb16d1ea013d29e",
+    "jinhong": "1584cb7ca438f26297adf953432977527d18dd55"
+  },
+  "environment": {
+    "node": "v24.14.0",
+    "platform": "win32",
+    "runner": "local",
+    "shared_worker_limit": 8
+  },
+  "evaluator": {
+    "path": "simulator/score.cjs",
+    "commit": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "simulator_tree": "47c21aff74316d4f4b62ef7a441710f6f199f12c",
+    "trace": true
+  },
+  "input": {
+    "path": "simulator/spec/c3.json",
+    "git_sha256": "feadd58f5bc7b961f8a320bf9c02ff01c9105f998dd5b0b7c9844b57cd5904cd",
+    "source_answer_git_blob": "003e218af65293d21f68d2d8f16c3a44616fac02"
+  },
+  "aggregation": "Pool all completed pickups after warmup, then calculate one cost with floor-index urgent p95. Blank score if any seed is rejected.",
+  "reuse_notes": "Exact answer identity, seed count and input/evaluator version required. Team gather provides pooled outcomes without trace. Raw traces are reused separately where available.",
+  "candidates": [
+    {
+      "id": "w-lo-de-179p7",
+      "role": "V3-control",
+      "fleet": 22,
+      "direction": "1111111100000000011111011001101",
+      "nodes": 9,
+      "answer": "experiments/case3/C3-20261127-w-de-factorial/answers/w-lo-de-179p7.csv",
+      "answer_sha256": "0f61d990ab1e4d14c2f6c5d91b48e322c49bc43195f624de1ae1b0b48b63b995",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/7d098c5d79aa4f39108cf926154797e6d72a5948/experiments/case3/KMJ-1127-V3-C3/answer.csv"
+    },
+    {
+      "id": "w-lo-de-130",
+      "role": "candidate",
+      "fleet": 22,
+      "direction": "1111111100000000011111011001101",
+      "nodes": 9,
+      "answer": "experiments/case3/C3-20261127-w-de-factorial/answers/w-lo-de-130.csv",
+      "answer_sha256": "a9671e5429b154581f0cdbcba247057c2d3fb15581562f49f2cd7b55001978f6",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/7d098c5d79aa4f39108cf926154797e6d72a5948/experiments/case3/KMJ-1127-V3-C3/answer.csv"
+    },
+    {
+      "id": "w-hi-de-179p7",
+      "role": "candidate",
+      "fleet": 22,
+      "direction": "1111111100000000011111011001101",
+      "nodes": 9,
+      "answer": "experiments/case3/C3-20261127-w-de-factorial/answers/w-hi-de-179p7.csv",
+      "answer_sha256": "7993e349b47b2d7d5d8bee012373adfe828412b344e649e6f5211138c3938789",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/7d098c5d79aa4f39108cf926154797e6d72a5948/experiments/case3/KMJ-1127-V3-C3/answer.csv"
+    },
+    {
+      "id": "w-hi-de-130",
+      "role": "candidate",
+      "fleet": 22,
+      "direction": "1111111100000000011111011001101",
+      "nodes": 9,
+      "answer": "experiments/case3/C3-20261127-w-de-factorial/answers/w-hi-de-130.csv",
+      "answer_sha256": "a145702c0313d30ce2b263c79a8feb70e17433a0804853b925ef1b4c24c326bf",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/7d098c5d79aa4f39108cf926154797e6d72a5948/experiments/case3/KMJ-1127-V3-C3/answer.csv"
+    },
+    {
+      "id": "REF-PJH-public",
+      "role": "reference",
+      "fleet": 22,
+      "direction": "1111111100000000011111011001101",
+      "nodes": 9,
+      "answer": "experiments/case3/C3-20261127-w-de-factorial/answers/REF-PJH-public.csv",
+      "answer_sha256": "00fad1b682e2fd10740877a25bde303e7128c7c909e96c7a69bc739abebd953f",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/case3/answer_case3.csv"
+    },
+    {
+      "id": "REF-KMJ-LB",
+      "role": "reference",
+      "fleet": 22,
+      "direction": "1111111100000000011111011001101",
+      "nodes": 9,
+      "answer": "experiments/case3/C3-20261127-w-de-factorial/answers/REF-KMJ-LB.csv",
+      "answer_sha256": "a376f0cd0fabc860c09777ba6cf454f62e95122cba7ec6c9d3561903f0de2fc7",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/7d098c5d79aa4f39108cf926154797e6d72a5948/experiments/case3/KMJ-1127-LB-C3/answer.csv"
+    }
+  ],
+  "preflight": {
+    "command": "node simulator/score.cjs 3 --baseline 11 5 --trace",
+    "case": 3,
+    "fleet": 22,
+    "first_seed": 11,
+    "seeds": 5,
+    "pooled_cost": 962.7048,
+    "rejected": [],
+    "dispatch_count": 24212,
+    "dispatch_sha256": "ff3edaf2ca6d78c5bf092c03d7a100c82a778232c3c2d6d0524b276e0761c233",
+    "log": "experiments/case3/C3-20261127-w-de-factorial/logs/baseline-11-15.json"
+  },
+  "runs": [
+    {
+      "id": "w-lo-de-179p7",
+      "role": "V3-control",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/w-lo-de-179p7-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/w-lo-de-179p7.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 973.0431,
+        "rejected": [],
+        "dispatch_count": 241181,
+        "dispatch_sha256": "ef757de396f746400d908fad93d756b0ca58d72232e378d881dc370dc138164d"
+      }
+    },
+    {
+      "id": "w-lo-de-179p7",
+      "role": "V3-control",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/w-lo-de-179p7-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/w-lo-de-179p7.csv 11 5 --trace",
+      "execution": "reuse-trace",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/7d098c5d79aa4f39108cf926154797e6d72a5948/experiments/case3/KMJ-1127-V3-C3/run.json",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 974.4337,
+        "rejected": [],
+        "dispatch_count": 24212,
+        "dispatch_sha256": "88350dab4a5bffc3879ff4583edd61ae7ddf6ef200fcb5cd69afd559b087f46f"
+      }
+    },
+    {
+      "id": "w-lo-de-179p7",
+      "role": "V3-control",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/w-lo-de-179p7-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/w-lo-de-179p7.csv 1 500 --trace",
+      "execution": "reuse-trace",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/7d098c5d79aa4f39108cf926154797e6d72a5948/experiments/case3/KMJ-1127-V3-C3/run.json",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 974.54,
+        "rejected": [],
+        "dispatch_count": 2416420,
+        "dispatch_sha256": "e80e06fae7a7b5396f39a4eabb347085b99da892e97ec5043300a1c4d871f16c"
+      }
+    },
+    {
+      "id": "w-lo-de-130",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/w-lo-de-130-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/w-lo-de-130.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 975.4655,
+        "rejected": [],
+        "dispatch_count": 241181,
+        "dispatch_sha256": "9b68de72bb21c3abf32de260a56722ddf66ea9c60a04fe5ba12ebd3ce6aeae58"
+      }
+    },
+    {
+      "id": "w-lo-de-130",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/w-lo-de-130-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/w-lo-de-130.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 977.7919,
+        "rejected": [],
+        "dispatch_count": 24212,
+        "dispatch_sha256": "bf3dcd8eacfb9a242e42bf324661b82de990308eff33929f8ecbe5b3f1c50c9a"
+      }
+    },
+    {
+      "id": "w-lo-de-130",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/w-lo-de-130-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/w-lo-de-130.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 975.3529,
+        "rejected": [],
+        "dispatch_count": 2416416,
+        "dispatch_sha256": "3491b23bd4f918e333a106c160ea1d5895dc2fab84a5ad0e9892a874cfa44053"
+      }
+    },
+    {
+      "id": "w-hi-de-179p7",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/w-hi-de-179p7-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/w-hi-de-179p7.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 974.2665,
+        "rejected": [],
+        "dispatch_count": 241181,
+        "dispatch_sha256": "7ceb3838e6be91e09d650c0c4452d8977f2683f8a73785c82647092f6828a805"
+      }
+    },
+    {
+      "id": "w-hi-de-179p7",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/w-hi-de-179p7-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/w-hi-de-179p7.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 974.7078,
+        "rejected": [],
+        "dispatch_count": 24212,
+        "dispatch_sha256": "a483fbcdd61f124cd52909be9cedc8d26f031c4ce19ac42a3e673245a8dc8327"
+      }
+    },
+    {
+      "id": "w-hi-de-179p7",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/w-hi-de-179p7-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/w-hi-de-179p7.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 975.1505,
+        "rejected": [],
+        "dispatch_count": 2416419,
+        "dispatch_sha256": "f8698e2f8e4476c81fb6a88f889f2305165a2bc162747c2ab50437fc5331f8ef"
+      }
+    },
+    {
+      "id": "w-hi-de-130",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/w-hi-de-130-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/w-hi-de-130.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 975.8498,
+        "rejected": [],
+        "dispatch_count": 241181,
+        "dispatch_sha256": "c6e15feedd5aaa2f2150759e72f93099c615bbc87fc8fabe39f5673bc5940fae"
+      }
+    },
+    {
+      "id": "w-hi-de-130",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/w-hi-de-130-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/w-hi-de-130.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 978.7212,
+        "rejected": [],
+        "dispatch_count": 24212,
+        "dispatch_sha256": "8e778ba01a3434c8618dc1a7c600d89dad5c63cca4cb91188ce94d3dfd79d99b"
+      }
+    },
+    {
+      "id": "w-hi-de-130",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/w-hi-de-130-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/w-hi-de-130.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 975.6289,
+        "rejected": [],
+        "dispatch_count": 2416416,
+        "dispatch_sha256": "c9dab47a756806985b79dee6138273a06d773421062de4cf1668ef83a13ab734"
+      }
+    },
+    {
+      "id": "REF-PJH-public",
+      "role": "reference",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/REF-PJH-public-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/REF-PJH-public.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 975.1773,
+        "rejected": [],
+        "dispatch_count": 241181,
+        "dispatch_sha256": "4e3c8f1f67b65e7dc660b99357725d0338420be4d1d667d59702a2552593272b"
+      }
+    },
+    {
+      "id": "REF-PJH-public",
+      "role": "reference",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/REF-PJH-public-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/REF-PJH-public.csv 11 5 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 962.7048,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "REF-PJH-public",
+      "role": "reference",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/REF-PJH-public-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/REF-PJH-public.csv 1 500 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 978.1394,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "REF-KMJ-LB",
+      "role": "reference",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/REF-KMJ-LB-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/REF-KMJ-LB.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 975.4503,
+        "rejected": [],
+        "dispatch_count": 241182,
+        "dispatch_sha256": "d0923f04b6705b303c3b46c9e82b22a95c8c5c049c0a6b688da2c6b2782e93e2"
+      }
+    },
+    {
+      "id": "REF-KMJ-LB",
+      "role": "reference",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/REF-KMJ-LB-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/REF-KMJ-LB.csv 11 5 --trace",
+      "execution": "reuse-trace",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/7d098c5d79aa4f39108cf926154797e6d72a5948/experiments/case3/KMJ-1127-LB-C3/run.json",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 963.1968,
+        "rejected": [],
+        "dispatch_count": 24212,
+        "dispatch_sha256": "d3685161aa4c9d4ddab088cc2588a98e9e67536c1dd2445fef1a5e77eff38a9e"
+      }
+    },
+    {
+      "id": "REF-KMJ-LB",
+      "role": "reference",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case3/C3-20261127-w-de-factorial/logs/REF-KMJ-LB-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 3 experiments/case3/C3-20261127-w-de-factorial/answers/REF-KMJ-LB.csv 1 500 --trace",
+      "execution": "reuse-trace",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/7d098c5d79aa4f39108cf926154797e6d72a5948/experiments/case3/KMJ-1127-LB-C3/run.json",
+      "result": {
+        "case": 3,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 978.3994,
+        "rejected": [],
+        "dispatch_count": 2416417,
+        "dispatch_sha256": "6e23ce52b8dafa87ca706fd3f246a1124252a655e16e74f0aeebec8dc4ae5c1c"
+      }
+    }
+  ]
+}

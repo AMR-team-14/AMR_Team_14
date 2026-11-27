@@ -1,0 +1,788 @@
+{
+  "experiment_id": "C5-20261127-dir-fleet-factorial",
+  "case": 5,
+  "recorded_date_kst": "2026-11-27",
+  "purpose": "Cross two frozen trees, two team directions, and two fleet sizes.",
+  "design": {
+    "factors": {
+      "trees": [
+        "Public leader aed2f894f8a5",
+        "Robust leader c26f6598a06d"
+      ],
+      "directions": {
+        "D1": "111000010000011110100001101100",
+        "D2": "111000010011100001000001100011"
+      },
+      "fleets": [
+        22,
+        23
+      ]
+    },
+    "fixed": "Each tree retains all of its original thresholds and links; the two bridge lane bits match.",
+    "contrasts": "Compare 23 minus 22 within each tree and direction; compare D2 minus D1 within each tree and fleet."
+  },
+  "branch": "yb",
+  "branch_heads_at_start": {
+    "main": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "jkd": "aeb5fa98f2789f7c4f80a7506515e2d5ddda4fb0",
+    "jsm": "df7f450c46165acd2c3466e511bee6c4b78657d8",
+    "kmj": "7d098c5d79aa4f39108cf926154797e6d72a5948",
+    "pjh": "c5dc1c6d792ff6c2bdad78e3da052a778bab79aa",
+    "yb": "6be90cc999df829d835acd456bb16d1ea013d29e",
+    "jinhong": "1584cb7ca438f26297adf953432977527d18dd55"
+  },
+  "environment": {
+    "node": "v24.14.0",
+    "platform": "win32",
+    "runner": "local",
+    "shared_worker_limit": 8
+  },
+  "evaluator": {
+    "path": "simulator/score.cjs",
+    "commit": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "simulator_tree": "47c21aff74316d4f4b62ef7a441710f6f199f12c",
+    "trace": true
+  },
+  "input": {
+    "path": "simulator/spec/c5.json",
+    "git_sha256": "9e510557ca737820f3b51b8b7d1653e641b90958b383cf5e5a58f699f5cf4503",
+    "source_answer_git_blob": "ef656f279b90e17fa0fa1b6ae4c3d26513e0db52"
+  },
+  "aggregation": "Pool all completed pickups after warmup, then calculate one cost with floor-index urgent p95. Blank score if any seed is rejected.",
+  "reuse_notes": "Exact answer identity, seed count and input/evaluator version required. Team gather provides pooled outcomes without trace. Raw traces are reused separately where available.",
+  "candidates": [
+    {
+      "id": "public-D1-n22",
+      "role": "candidate",
+      "fleet": 22,
+      "direction": "111000010000011110100001101100",
+      "nodes": 9,
+      "answer": "experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D1-n22.csv",
+      "answer_sha256": "1afe778aa949d655372653ce1e6f6dea44688103d5e167b1fa24a98cad7b0837",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/case5/cand_77088.csv"
+    },
+    {
+      "id": "public-D1-n23",
+      "role": "candidate",
+      "fleet": 23,
+      "direction": "111000010000011110100001101100",
+      "nodes": 9,
+      "answer": "experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D1-n23.csv",
+      "answer_sha256": "aed2f894f8a5e6f9ecb61b334d7edea5b2c827ba61d35ed468195a908400de80",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/case5/cand_77088.csv"
+    },
+    {
+      "id": "public-D2-n22",
+      "role": "candidate",
+      "fleet": 22,
+      "direction": "111000010011100001000001100011",
+      "nodes": 9,
+      "answer": "experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D2-n22.csv",
+      "answer_sha256": "8f685ce151ba836502aedd94d491ae98833bb319c9768d7f0fa001d5ddd823db",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/case5/cand_77088.csv"
+    },
+    {
+      "id": "public-D2-n23",
+      "role": "candidate",
+      "fleet": 23,
+      "direction": "111000010011100001000001100011",
+      "nodes": 9,
+      "answer": "experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D2-n23.csv",
+      "answer_sha256": "99647257d88eeace590121dce2b2708076d08d5af57b0b536dfd98cd5780d63a",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/case5/cand_77088.csv"
+    },
+    {
+      "id": "robust-D1-n22",
+      "role": "candidate",
+      "fleet": 22,
+      "direction": "111000010000011110100001101100",
+      "nodes": 9,
+      "answer": "experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D1-n22.csv",
+      "answer_sha256": "5e89a595dfb7e2fb9fbaeaaf4d79405226d78c1877aa862f5b5685aa91605144",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/case5/answer_case5_776.csv"
+    },
+    {
+      "id": "robust-D1-n23",
+      "role": "candidate",
+      "fleet": 23,
+      "direction": "111000010000011110100001101100",
+      "nodes": 9,
+      "answer": "experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D1-n23.csv",
+      "answer_sha256": "5656df35f1b6c92ac445f830a878c2510ea25376f9a310edf703d2919254296e",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/case5/answer_case5_776.csv"
+    },
+    {
+      "id": "robust-D2-n22",
+      "role": "candidate",
+      "fleet": 22,
+      "direction": "111000010011100001000001100011",
+      "nodes": 9,
+      "answer": "experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D2-n22.csv",
+      "answer_sha256": "c26f6598a06d22d3074b5827b864323df9e9376f3a3d518a68ac4223c6429139",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/case5/answer_case5_776.csv"
+    },
+    {
+      "id": "robust-D2-n23",
+      "role": "candidate",
+      "fleet": 23,
+      "direction": "111000010011100001000001100011",
+      "nodes": 9,
+      "answer": "experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D2-n23.csv",
+      "answer_sha256": "8542aa245d38cdd451e2d8ed9d0920fe2995283d5cdc4a3fd5b739919395d6a1",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/case5/answer_case5_776.csv"
+    }
+  ],
+  "preflight": {
+    "command": "node simulator/score.cjs 5 --baseline 11 5 --trace",
+    "case": 5,
+    "fleet": 23,
+    "first_seed": 11,
+    "seeds": 5,
+    "pooled_cost": 771.4315,
+    "rejected": [],
+    "dispatch_count": 25781,
+    "dispatch_sha256": "a2732b9fec0026c58fcf29036f72029c5e49ea97891715c15e838d879fd55baa",
+    "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/baseline-11-15.json"
+  },
+  "runs": [
+    {
+      "id": "public-D1-n22",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D1-n22-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D1-n22.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 797.6736,
+        "rejected": [],
+        "dispatch_count": 257528,
+        "dispatch_sha256": "892799c2e6004ca322536f2a2bf6766987fdf0bf863599cc3a9e669d0fdddcea"
+      }
+    },
+    {
+      "id": "public-D1-n22",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D1-n22-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D1-n22.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 22,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 790.6457,
+        "rejected": [],
+        "dispatch_count": 25781,
+        "dispatch_sha256": "dd55c893bd92a793b302cd19b4dc9f54a7d9e4c60601204cb143b1cbb5ed54a4"
+      }
+    },
+    {
+      "id": "public-D1-n22",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D1-n22-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D1-n22.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 799.5256,
+        "rejected": [],
+        "dispatch_count": 2581031,
+        "dispatch_sha256": "6e994b733bba8bf6c5e29be47170dec6a67e2aed8b2729058113addf8e88dd5c"
+      }
+    },
+    {
+      "id": "public-D1-n23",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D1-n23-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D1-n23.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 23,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 786.1718,
+        "rejected": [],
+        "dispatch_count": 257528,
+        "dispatch_sha256": "911498bb75a38fe71c3bd958eff8e2f1002c699fc6b3cc17008782e58aa9323e"
+      }
+    },
+    {
+      "id": "public-D1-n23",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D1-n23-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D1-n23.csv 11 5 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 770.8816,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "public-D1-n23",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D1-n23-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D1-n23.csv 1 500 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 786.7907,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "public-D2-n22",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D2-n22-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D2-n22.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 912.9183,
+        "rejected": [],
+        "dispatch_count": 257528,
+        "dispatch_sha256": "0630238a1f79a8266eb5daad3adfa5edad99754c7173f0efad5ca1fc7ff79b5f"
+      }
+    },
+    {
+      "id": "public-D2-n22",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D2-n22-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D2-n22.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 22,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 907.8822,
+        "rejected": [],
+        "dispatch_count": 25781,
+        "dispatch_sha256": "4754e5d141c5bb204e0a17a93d06370d464b20c7af7028cc0dedd7ea9f358a6b"
+      }
+    },
+    {
+      "id": "public-D2-n22",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D2-n22-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D2-n22.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 917.2523,
+        "rejected": [],
+        "dispatch_count": 2581028,
+        "dispatch_sha256": "58b1ea55699673adb5af00dcd518cf88fc579b981620cf7c535dafe90ddc6cc5"
+      }
+    },
+    {
+      "id": "public-D2-n23",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D2-n23-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D2-n23.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 23,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 910.5532,
+        "rejected": [],
+        "dispatch_count": 257528,
+        "dispatch_sha256": "1d473a80cc2f0dcdc958f168946e02ab36c0dde8a2d7120607b35bc8539b79e8"
+      }
+    },
+    {
+      "id": "public-D2-n23",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D2-n23-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D2-n23.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 23,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 914.0362,
+        "rejected": [],
+        "dispatch_count": 25781,
+        "dispatch_sha256": "f5216ae60cedaecb3b832d8406f0970c6de44a4deccc30a5c288a3c197132459"
+      }
+    },
+    {
+      "id": "public-D2-n23",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D2-n23-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/public-D2-n23.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 23,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 913.9053,
+        "rejected": [],
+        "dispatch_count": 2581032,
+        "dispatch_sha256": "ac7fb275128eb47326335b06a01f38c4b086a1abbdf1076a31480e8b4a3572bd"
+      }
+    },
+    {
+      "id": "robust-D1-n22",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D1-n22-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D1-n22.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 1057.1842,
+        "rejected": [],
+        "dispatch_count": 257528,
+        "dispatch_sha256": "a2a228d83c4a04e935ef0ab7be9c40ad248222b8691eef29ae5f805c5729e25b"
+      }
+    },
+    {
+      "id": "robust-D1-n22",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D1-n22-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D1-n22.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 22,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 1057.8945,
+        "rejected": [],
+        "dispatch_count": 25781,
+        "dispatch_sha256": "269e3fdaa970778b720011d5b2ee73924c4afee10ceb868e9eef1a3456d07b74"
+      }
+    },
+    {
+      "id": "robust-D1-n22",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D1-n22-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D1-n22.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 1057.4904,
+        "rejected": [],
+        "dispatch_count": 2581028,
+        "dispatch_sha256": "bec23fd8136a96348276296f9390f261f75b8371bed7b0d46180a180be3fba0d"
+      }
+    },
+    {
+      "id": "robust-D1-n23",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D1-n23-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D1-n23.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 23,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 1060.8123,
+        "rejected": [],
+        "dispatch_count": 257528,
+        "dispatch_sha256": "e11f1ba2d0fa48c186cdc646c28107c69a99a14bd82ecc171d9fa83ca0bb8861"
+      }
+    },
+    {
+      "id": "robust-D1-n23",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D1-n23-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D1-n23.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 23,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 1068.3986,
+        "rejected": [],
+        "dispatch_count": 25781,
+        "dispatch_sha256": "82d77aef360b45ada7fe514607c4dc9220ba4d8d061e800f0628c4cc1941a38e"
+      }
+    },
+    {
+      "id": "robust-D1-n23",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D1-n23-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D1-n23.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 23,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 1062.9345,
+        "rejected": [],
+        "dispatch_count": 2581039,
+        "dispatch_sha256": "e9eccf13c15e05e09418fd4cc59e9c744f47c6135139fb0ed65caff063fb85cf"
+      }
+    },
+    {
+      "id": "robust-D2-n22",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D2-n22-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D2-n22.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 22,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 774.6426,
+        "rejected": [],
+        "dispatch_count": 257528,
+        "dispatch_sha256": "579e7afd1691cf578e4317c612bbc7e1aee4cee8cbc18e8303ac08509028e6d8"
+      }
+    },
+    {
+      "id": "robust-D2-n22",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D2-n22-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D2-n22.csv 11 5 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 776.1009,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "robust-D2-n22",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D2-n22-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D2-n22.csv 1 500 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 775.5363,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "robust-D2-n23",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D2-n23-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D2-n23.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 23,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 777.2665,
+        "rejected": [],
+        "dispatch_count": 257528,
+        "dispatch_sha256": "f3268123051b9ad0e65082361d0ad4a8af575bbe3222c47d83cbdfd1e7cc8808"
+      }
+    },
+    {
+      "id": "robust-D2-n23",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D2-n23-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D2-n23.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 23,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 783.4164,
+        "rejected": [],
+        "dispatch_count": 25781,
+        "dispatch_sha256": "bf407ec20990d295c2991f99b71db810f3dffbab172b1e8110f633e7e1d7e5ed"
+      }
+    },
+    {
+      "id": "robust-D2-n23",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D2-n23-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 5 experiments/case5/C5-20261127-dir-fleet-factorial/answers/robust-D2-n23.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 5,
+        "fleet": 23,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 776.7499,
+        "rejected": [],
+        "dispatch_count": 2581040,
+        "dispatch_sha256": "275911133a2c6f36392e05d228f07b9545a3619c6a4a6c9b37d65ecd59a76100"
+      }
+    }
+  ],
+  "diagnostics": {
+    "description": "Output-only instrumentation of the existing score.cjs evaluation return. The official scorer on disk was not edited. Check each score against results.csv and match dispatch SHA-256 wherever a primary trace is present.",
+    "command_template": "node -e <wrapper> -- CASE ANSWER.csv FIRST_SEED COUNT --trace",
+    "wrapper": "const fs=require('node:fs');\nconst path=require('node:path');\nconst Module=require('node:module');\nconst file=path.resolve('simulator/score.cjs');\nconst source=fs.readFileSync(file,'utf8');\nconst anchor='    case:index, fleet:n, first_seed:seed, seeds:count,';\nif(source.split(anchor).length!==2)throw Error('Unexpected scorer shape');\nconst fields=[\n  '    diagnostics: {',\n  '      mean_wait_min: ws.reduce((sum,value)=>sum+value,0)/ws.length,',\n  '      urgent_p95_min: wu[Math.floor(0.95*(wu.length-1))],',\n  '      agv_cost: p.cAGV*n,',\n  '      wait_cost: p.cW*rate*ws.reduce((sum,value)=>sum+value,0)/ws.length,',\n  '      urgent_cost: p.cU*wu[Math.floor(0.95*(wu.length-1))],',\n  '      pickups: ws.length, urgent_pickups: wu.length,',\n  '    },',\n].join('\\n');\nconst compiled=new Module(file,module);\ncompiled.filename=file;\ncompiled.paths=Module._nodeModulePaths(path.dirname(file));\nprocess.argv=[process.execPath,file,...process.argv.slice(1)];\ncompiled._compile(source.replace(anchor,anchor+'\\n'+fields),file);",
+    "reports": [
+      {
+        "id": "public-D1-n22",
+        "range": {
+          "key": "common",
+          "first": 1,
+          "count": 500
+        },
+        "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D1-n22-common-metrics.json"
+      },
+      {
+        "id": "public-D1-n23",
+        "range": {
+          "key": "common",
+          "first": 1,
+          "count": 500
+        },
+        "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D1-n23-common-metrics.json"
+      },
+      {
+        "id": "public-D2-n22",
+        "range": {
+          "key": "common",
+          "first": 1,
+          "count": 500
+        },
+        "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D2-n22-common-metrics.json"
+      },
+      {
+        "id": "public-D2-n23",
+        "range": {
+          "key": "common",
+          "first": 1,
+          "count": 500
+        },
+        "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/public-D2-n23-common-metrics.json"
+      },
+      {
+        "id": "robust-D1-n22",
+        "range": {
+          "key": "common",
+          "first": 1,
+          "count": 500
+        },
+        "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D1-n22-common-metrics.json"
+      },
+      {
+        "id": "robust-D1-n23",
+        "range": {
+          "key": "common",
+          "first": 1,
+          "count": 500
+        },
+        "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D1-n23-common-metrics.json"
+      },
+      {
+        "id": "robust-D2-n22",
+        "range": {
+          "key": "common",
+          "first": 1,
+          "count": 500
+        },
+        "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D2-n22-common-metrics.json"
+      },
+      {
+        "id": "robust-D2-n23",
+        "range": {
+          "key": "common",
+          "first": 1,
+          "count": 500
+        },
+        "log": "experiments/case5/C5-20261127-dir-fleet-factorial/logs/robust-D2-n23-common-metrics.json"
+      }
+    ]
+  }
+}

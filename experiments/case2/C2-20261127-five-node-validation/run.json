@@ -1,0 +1,344 @@
+{
+  "experiment_id": "C2-20261127-five-node-validation",
+  "case": 2,
+  "recorded_date_kst": "2026-11-27",
+  "purpose": "Re-evaluate both tied five-node trees and their matched three-node control on public and 500 seeds.",
+  "design": {
+    "fixed": "JSM direction and 24 AGVs for the paired comparisons; PJH public answer is an external reference at 24 AGVs.",
+    "previous_batch": "https://github.com/AMR-team-14/AMR_Team_14/blob/6be90cc999df829d835acd456bb16d1ea013d29e/experiments/case2/C2-5node-seeds1-50/results.csv",
+    "compare": "Two 5-node answers vs their 3-node source and each other."
+  },
+  "branch": "yb",
+  "branch_heads_at_start": {
+    "main": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "jkd": "aeb5fa98f2789f7c4f80a7506515e2d5ddda4fb0",
+    "jsm": "df7f450c46165acd2c3466e511bee6c4b78657d8",
+    "kmj": "7d098c5d79aa4f39108cf926154797e6d72a5948",
+    "pjh": "c5dc1c6d792ff6c2bdad78e3da052a778bab79aa",
+    "yb": "6be90cc999df829d835acd456bb16d1ea013d29e",
+    "jinhong": "1584cb7ca438f26297adf953432977527d18dd55"
+  },
+  "environment": {
+    "node": "v24.14.0",
+    "platform": "win32",
+    "runner": "local",
+    "shared_worker_limit": 8
+  },
+  "evaluator": {
+    "path": "simulator/score.cjs",
+    "commit": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "simulator_tree": "47c21aff74316d4f4b62ef7a441710f6f199f12c",
+    "trace": true
+  },
+  "input": {
+    "path": "simulator/spec/c2.json",
+    "git_sha256": "3c3f83aef435d5dc30c529a15fd6a612e304e1b373b2bcb48388db69cc7858eb",
+    "source_answer_git_blob": "ce9687136f4bd22aa41c82659ed31c2132432007"
+  },
+  "aggregation": "Pool all completed pickups after warmup, then calculate one cost with floor-index urgent p95. Blank score if any seed is rejected.",
+  "reuse_notes": "Exact answer identity, seed count and input/evaluator version required. Team gather provides pooled outcomes without trace. Raw traces are reused separately where available.",
+  "candidates": [
+    {
+      "id": "GROW-WQ-JSM-n24",
+      "role": "candidate",
+      "fleet": 24,
+      "direction": "000011111110001110011111101100110101",
+      "nodes": 5,
+      "answer": "experiments/case2/C2-20261127-five-node-validation/answers/GROW-WQ-JSM-n24.csv",
+      "answer_sha256": "6c0c1868716a39f8fe9f7f9a7420e0f4473af988810e87690cddeb6f60e60097",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/6be90cc999df829d835acd456bb16d1ea013d29e/experiments/case2/C2-5node-seeds1-50/answers/GROW-WQ-JSM-n24.csv"
+    },
+    {
+      "id": "GROW-DQ-JSM-n24",
+      "role": "candidate",
+      "fleet": 24,
+      "direction": "000011111110001110011111101100110101",
+      "nodes": 5,
+      "answer": "experiments/case2/C2-20261127-five-node-validation/answers/GROW-DQ-JSM-n24.csv",
+      "answer_sha256": "d3e6e37870d1a4e77678f06a3cfbf56db9fdd5cad4ed68c3a1b6c60182eb099e",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/6be90cc999df829d835acd456bb16d1ea013d29e/experiments/case2/C2-5node-seeds1-50/answers/GROW-DQ-JSM-n24.csv"
+    },
+    {
+      "id": "REF-JSM3-n24",
+      "role": "reference",
+      "fleet": 24,
+      "direction": "000011111110001110011111101100110101",
+      "nodes": 3,
+      "answer": "experiments/case2/C2-20261127-five-node-validation/answers/REF-JSM3-n24.csv",
+      "answer_sha256": "9c4fd1d38b1b7205cae71b4a6f70eecfc4514ce92e8054f9231ee87016662427",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/6be90cc999df829d835acd456bb16d1ea013d29e/experiments/case2/C2-5node-seeds1-50/answers/REF-JSM3-n24.csv"
+    },
+    {
+      "id": "REF-PJH-n24",
+      "role": "reference",
+      "fleet": 24,
+      "direction": "001011111110000001101000111101110101",
+      "nodes": 6,
+      "answer": "experiments/case2/C2-20261127-five-node-validation/answers/REF-PJH-n24.csv",
+      "answer_sha256": "6f8788c2ef4628e6901ad59c9f20dd888f3d3ccf8915954029c69578ac3485cc",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/c5dc1c6d792ff6c2bdad78e3da052a778bab79aa/experiments/case2/PJH-1124-61362/answer.csv"
+    }
+  ],
+  "preflight": {
+    "command": "node simulator/score.cjs 2 --baseline 11 5 --trace",
+    "case": 2,
+    "fleet": 24,
+    "first_seed": 11,
+    "seeds": 5,
+    "pooled_cost": 613.6186,
+    "rejected": [],
+    "dispatch_count": 24214,
+    "dispatch_sha256": "c6d0ebf21e072eef4e40d81a7e4245837cafe9215b579b94930b0e66ebd64b56",
+    "log": "experiments/case2/C2-20261127-five-node-validation/logs/baseline-11-15.json"
+  },
+  "runs": [
+    {
+      "id": "GROW-WQ-JSM-n24",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case2/C2-20261127-five-node-validation/logs/GROW-WQ-JSM-n24-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 2 experiments/case2/C2-20261127-five-node-validation/answers/GROW-WQ-JSM-n24.csv 1 50 --trace",
+      "execution": "reuse-trace",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/6be90cc999df829d835acd456bb16d1ea013d29e/experiments/case2/C2-5node-seeds1-50/logs/GROW-WQ-JSM-n24.json",
+      "result": {
+        "case": 2,
+        "fleet": 24,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 604.5419,
+        "rejected": [],
+        "dispatch_count": 241186,
+        "dispatch_sha256": "108774f9babb883631fe9afa474ccc9360a301d9091452182e18daebdbf45693"
+      }
+    },
+    {
+      "id": "GROW-WQ-JSM-n24",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case2/C2-20261127-five-node-validation/logs/GROW-WQ-JSM-n24-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 2 experiments/case2/C2-20261127-five-node-validation/answers/GROW-WQ-JSM-n24.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 2,
+        "fleet": 24,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 638.0407,
+        "rejected": [],
+        "dispatch_count": 24214,
+        "dispatch_sha256": "0b6712f85f7b4e6fac487a7a81a15cb89b45b8f7cf0abd85ca1a7825dca592f5"
+      }
+    },
+    {
+      "id": "GROW-WQ-JSM-n24",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case2/C2-20261127-five-node-validation/logs/GROW-WQ-JSM-n24-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 2 experiments/case2/C2-20261127-five-node-validation/answers/GROW-WQ-JSM-n24.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 2,
+        "fleet": 24,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 605.7384,
+        "rejected": [],
+        "dispatch_count": 2416461,
+        "dispatch_sha256": "3a80dc710906a99b1b21c96e6e320d79b4d3999e05d591bf146c33a65a00c4a3"
+      }
+    },
+    {
+      "id": "GROW-DQ-JSM-n24",
+      "role": "candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case2/C2-20261127-five-node-validation/logs/GROW-DQ-JSM-n24-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 2 experiments/case2/C2-20261127-five-node-validation/answers/GROW-DQ-JSM-n24.csv 1 50 --trace",
+      "execution": "reuse-trace",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/6be90cc999df829d835acd456bb16d1ea013d29e/experiments/case2/C2-5node-seeds1-50/logs/GROW-DQ-JSM-n24.json",
+      "result": {
+        "case": 2,
+        "fleet": 24,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 604.5419,
+        "rejected": [],
+        "dispatch_count": 241186,
+        "dispatch_sha256": "108774f9babb883631fe9afa474ccc9360a301d9091452182e18daebdbf45693"
+      }
+    },
+    {
+      "id": "GROW-DQ-JSM-n24",
+      "role": "candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case2/C2-20261127-five-node-validation/logs/GROW-DQ-JSM-n24-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 2 experiments/case2/C2-20261127-five-node-validation/answers/GROW-DQ-JSM-n24.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 2,
+        "fleet": 24,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 638.0407,
+        "rejected": [],
+        "dispatch_count": 24214,
+        "dispatch_sha256": "0b6712f85f7b4e6fac487a7a81a15cb89b45b8f7cf0abd85ca1a7825dca592f5"
+      }
+    },
+    {
+      "id": "GROW-DQ-JSM-n24",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case2/C2-20261127-five-node-validation/logs/GROW-DQ-JSM-n24-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 2 experiments/case2/C2-20261127-five-node-validation/answers/GROW-DQ-JSM-n24.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 2,
+        "fleet": 24,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 605.7777,
+        "rejected": [],
+        "dispatch_count": 2416461,
+        "dispatch_sha256": "82d349c96e5a1bda8aa4f552621e43366e28b5c2db75dd50886ac11734522c1d"
+      }
+    },
+    {
+      "id": "REF-JSM3-n24",
+      "role": "reference",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case2/C2-20261127-five-node-validation/logs/REF-JSM3-n24-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 2 experiments/case2/C2-20261127-five-node-validation/answers/REF-JSM3-n24.csv 1 50 --trace",
+      "execution": "reuse-trace",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/6be90cc999df829d835acd456bb16d1ea013d29e/experiments/case2/C2-5node-seeds1-50/logs/REF-JSM3-n24.json",
+      "result": {
+        "case": 2,
+        "fleet": 24,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 604.7421,
+        "rejected": [],
+        "dispatch_count": 241186,
+        "dispatch_sha256": "60b6c6ff4c04047d0ae986d42fbcc98113d47d51f67c8066a37e3658ea8dbdc9"
+      }
+    },
+    {
+      "id": "REF-JSM3-n24",
+      "role": "reference",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case2/C2-20261127-five-node-validation/logs/REF-JSM3-n24-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 2 experiments/case2/C2-20261127-five-node-validation/answers/REF-JSM3-n24.csv 11 5 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 638.0407,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "REF-JSM3-n24",
+      "role": "reference",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case2/C2-20261127-five-node-validation/logs/REF-JSM3-n24-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 2 experiments/case2/C2-20261127-five-node-validation/answers/REF-JSM3-n24.csv 1 500 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 605.7036,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "REF-PJH-n24",
+      "role": "reference",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case2/C2-20261127-five-node-validation/logs/REF-PJH-n24-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 2 experiments/case2/C2-20261127-five-node-validation/answers/REF-PJH-n24.csv 11 5 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 613.6186,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "REF-PJH-n24",
+      "role": "reference",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case2/C2-20261127-five-node-validation/logs/REF-PJH-n24-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 2 experiments/case2/C2-20261127-five-node-validation/answers/REF-PJH-n24.csv 1 500 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 616.0472,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    }
+  ]
+}

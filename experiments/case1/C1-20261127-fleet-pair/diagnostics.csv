@@ -1,0 +1,3 @@
+candidate,seed_group,first_seed,seed_count,pooled_cost,mean_wait_min,urgent_p95_min,agv_cost,wait_cost,urgent_cost,pickups,urgent_pickups,dispatch_sha256,log_path
+same-tree-n20,fresh,27112701,500,1182.2316,3.535000717031037,5.208131672968193,300,361.41847330925316,520.8131672968193,3828671,794442,fc6734610ddb3e3568d4cde056862bf4179b032808345d9374a9b1867cc30f92,experiments/case1/C1-20261127-fleet-pair/logs/same-tree-n20-fresh-metrics.json
+same-tree-n21,fresh,27112701,500,1180.0578,3.4148378234354433,5.159247547712766,315,349.13301906803974,515.9247547712766,3828883,794478,b61f6cc20c7db567a03f90101cf7f5a94df77a02ce5591ccedfbd72969d157ac,experiments/case1/C1-20261127-fleet-pair/logs/same-tree-n21-fresh-metrics.json

@@ -1,0 +1,199 @@
+{
+  "experiment_id": "C1-20261127-fleet-pair",
+  "case": 1,
+  "recorded_date_kst": "2026-11-27",
+  "purpose": "Paired comparison of the same team-leading tree at 20 and 21 AGVs on a separate seed range.",
+  "design": {
+    "fixed": "Published da7d865ac362 tree and fixed road direction",
+    "vary": "Fleet 20 vs. 21.",
+    "fresh": {
+      "first": 27112701,
+      "last": 27113200,
+      "scope": "No occurrence in the local experiment records or reviewed team seed plans. Selected outside the ranges reviewed; undocumented team use is unknown."
+    },
+    "team_action": "https://github.com/AMR-team-14/AMR_Team_14/actions/runs/45971647261",
+    "team_batch_comparison_note": "The Actions run records 100 separate five-seed blocks. Its pooled P95 over 1-500 is not recoverable from block scores alone; the pooled 20-AGV run was computed with the common CLI."
+  },
+  "branch": "yb",
+  "branch_heads_at_start": {
+    "main": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "jkd": "aeb5fa98f2789f7c4f80a7506515e2d5ddda4fb0",
+    "jsm": "df7f450c46165acd2c3466e511bee6c4b78657d8",
+    "kmj": "7d098c5d79aa4f39108cf926154797e6d72a5948",
+    "pjh": "c5dc1c6d792ff6c2bdad78e3da052a778bab79aa",
+    "yb": "6be90cc999df829d835acd456bb16d1ea013d29e",
+    "jinhong": "1584cb7ca438f26297adf953432977527d18dd55"
+  },
+  "environment": {
+    "node": "v24.14.0",
+    "platform": "win32",
+    "runner": "local",
+    "shared_worker_limit": 8
+  },
+  "evaluator": {
+    "path": "simulator/score.cjs",
+    "commit": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "simulator_tree": "47c21aff74316d4f4b62ef7a441710f6f199f12c",
+    "trace": true
+  },
+  "input": {
+    "path": "simulator/spec/c1.json",
+    "git_sha256": "5de2c2f33b9cdb2de43e827b62210310713f9146eda2e962ec99673f1cd544a0",
+    "source_answer_git_blob": "5aa85fdd7f26d7d61b6ef0ac0ed391e202ae2b2c"
+  },
+  "aggregation": "Pool all completed pickups after warmup, then calculate one cost with floor-index urgent p95. Blank score if any seed is rejected.",
+  "reuse_notes": "Exact answer identity, seed count and input/evaluator version required. Team gather provides pooled outcomes without trace. Raw traces are reused separately where available.",
+  "candidates": [
+    {
+      "id": "same-tree-n20",
+      "role": "candidate",
+      "fleet": 20,
+      "direction": "000011110000000111100000000110101",
+      "nodes": 9,
+      "answer": "experiments/case1/C1-20261127-fleet-pair/answers/same-tree-n20.csv",
+      "answer_sha256": "a8f835a8b05652573da5529a4d6279bdbf4db3bde16698ec6d5056d9c2676994",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/answer_jinhong_submitted.csv"
+    },
+    {
+      "id": "same-tree-n21",
+      "role": "reference",
+      "fleet": 21,
+      "direction": "000011110000000111100000000110101",
+      "nodes": 9,
+      "answer": "experiments/case1/C1-20261127-fleet-pair/answers/same-tree-n21.csv",
+      "answer_sha256": "da7d865ac3629aa9c06d3432678b81b24149e6e166198d0ace1b8e2c80f567e0",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/1584cb7ca438f26297adf953432977527d18dd55/jinhong/answer_jinhong_submitted.csv"
+    }
+  ],
+  "preflight": {
+    "command": "node simulator/score.cjs 1 --baseline 11 5 --trace",
+    "case": 1,
+    "fleet": 21,
+    "first_seed": 11,
+    "seeds": 5,
+    "pooled_cost": 1180.4234,
+    "rejected": [],
+    "dispatch_count": 42743,
+    "dispatch_sha256": "322102fa750d1dd77ecd1c30d94c20ef0be41b74dd40638300f61f2a4e72dad5",
+    "log": "experiments/case1/C1-20261127-fleet-pair/logs/baseline-11-15.json"
+  },
+  "runs": [
+    {
+      "id": "same-tree-n20",
+      "role": "candidate",
+      "range": {
+        "key": "fresh",
+        "first": 27112701,
+        "count": 500
+      },
+      "log": "experiments/case1/C1-20261127-fleet-pair/logs/same-tree-n20-fresh.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-20261127-fleet-pair/answers/same-tree-n20.csv 27112701 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 1,
+        "fleet": 20,
+        "first_seed": 27112701,
+        "seeds": 500,
+        "pooled_cost": 1182.2316,
+        "rejected": [],
+        "dispatch_count": 4259542,
+        "dispatch_sha256": "fc6734610ddb3e3568d4cde056862bf4179b032808345d9374a9b1867cc30f92"
+      }
+    },
+    {
+      "id": "same-tree-n21",
+      "role": "reference",
+      "range": {
+        "key": "fresh",
+        "first": 27112701,
+        "count": 500
+      },
+      "log": "experiments/case1/C1-20261127-fleet-pair/logs/same-tree-n21-fresh.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-20261127-fleet-pair/answers/same-tree-n21.csv 27112701 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 1,
+        "fleet": 21,
+        "first_seed": 27112701,
+        "seeds": 500,
+        "pooled_cost": 1180.0578,
+        "rejected": [],
+        "dispatch_count": 4259780,
+        "dispatch_sha256": "b61f6cc20c7db567a03f90101cf7f5a94df77a02ce5591ccedfbd72969d157ac"
+      }
+    },
+    {
+      "id": "same-tree-n21",
+      "role": "reference",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case1/C1-20261127-fleet-pair/logs/same-tree-n21-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-20261127-fleet-pair/answers/same-tree-n21.csv 1 500 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/df7f450c46165acd2c3466e511bee6c4b78657d8/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 1180.6962,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "same-tree-n20",
+      "role": "candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case1/C1-20261127-fleet-pair/logs/same-tree-n20-common.json",
+      "command": "node simulator/score.cjs 1 experiments/case1/C1-20261127-fleet-pair/answers/same-tree-n20.csv 1 500 --trace",
+      "status": "completed",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 1,
+        "fleet": 20,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 1182.3579,
+        "rejected": [],
+        "dispatch_count": 4260191,
+        "dispatch_sha256": "41aeb3ad2fb6c9b53f327c56b955b1c5ae319fbd615a0ceaf9b6aecbcdf0ea7d"
+      }
+    }
+  ],
+  "diagnostics": {
+    "description": "Output-only instrumentation of the existing score.cjs evaluation return. The official scorer on disk was not edited. Check each score against results.csv and match dispatch SHA-256 wherever a primary trace is present.",
+    "command_template": "node -e <wrapper> -- CASE ANSWER.csv FIRST_SEED COUNT --trace",
+    "wrapper": "const fs=require('node:fs');\nconst path=require('node:path');\nconst Module=require('node:module');\nconst file=path.resolve('simulator/score.cjs');\nconst source=fs.readFileSync(file,'utf8');\nconst anchor='    case:index, fleet:n, first_seed:seed, seeds:count,';\nif(source.split(anchor).length!==2)throw Error('Unexpected scorer shape');\nconst fields=[\n  '    diagnostics: {',\n  '      mean_wait_min: ws.reduce((sum,value)=>sum+value,0)/ws.length,',\n  '      urgent_p95_min: wu[Math.floor(0.95*(wu.length-1))],',\n  '      agv_cost: p.cAGV*n,',\n  '      wait_cost: p.cW*rate*ws.reduce((sum,value)=>sum+value,0)/ws.length,',\n  '      urgent_cost: p.cU*wu[Math.floor(0.95*(wu.length-1))],',\n  '      pickups: ws.length, urgent_pickups: wu.length,',\n  '    },',\n].join('\\n');\nconst compiled=new Module(file,module);\ncompiled.filename=file;\ncompiled.paths=Module._nodeModulePaths(path.dirname(file));\nprocess.argv=[process.execPath,file,...process.argv.slice(1)];\ncompiled._compile(source.replace(anchor,anchor+'\\n'+fields),file);",
+    "reports": [
+      {
+        "id": "same-tree-n20",
+        "range": {
+          "key": "fresh",
+          "first": 27112701,
+          "count": 500
+        },
+        "log": "experiments/case1/C1-20261127-fleet-pair/logs/same-tree-n20-fresh-metrics.json"
+      },
+      {
+        "id": "same-tree-n21",
+        "range": {
+          "key": "fresh",
+          "first": 27112701,
+          "count": 500
+        },
+        "log": "experiments/case1/C1-20261127-fleet-pair/logs/same-tree-n21-fresh-metrics.json"
+      }
+    ]
+  }
+}
