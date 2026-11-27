@@ -18,17 +18,17 @@
 - **대시보드**: 공개 시드 11–15 점수 = 리더보드 성적(Case 2–5). Case 1은 비공개 시드로 채점하므로 참고만.
 - **범용성(강건성)**: 시드 1–500 묶음 점수, 반려 0인 답만. Case 1은 이 값이 기준.
 
-| 케이스 | 리더보드 기록 | 저장소 최고 11–15 | 그 답의 1–500 | 대수 | 만든 사람 | 출처 | 답안 |
+| 케이스 | 리더보드 1위 (기록 보유자) | 저장소 최고 11–15 | 그 답의 1–500 | 대수 | 저장소 답 만든 사람 | 저장소 답 출처 | 답안 |
 |---|---|---|---|---|---|---|---|
 | 1 | **1170.20** (박진홍) | **1170.2008** | 1184.0466 | 21대 | 박진홍 | `pjh` PJH-1123-117020/answer.csv | [case1-dashboard.csv](best/case1-dashboard.csv) |
-| 2 | **613.61** (윤빈) — 리더보드가 더 낮음 | **613.6186** | 616.0472 | 24대 | 박진홍, 장승민 | `jinhong-experiments` answer_case2.csv | [case2-dashboard.csv](best/case2-dashboard.csv) |
-| 3 | 962.70 (박진홍) → **저장소 답이 낮음** | **962.4482** | 979.5062 | 22대 | 장승민 | jsm 자동 탐색 `auto-11271939` | [case3-dashboard.csv](best/case3-dashboard.csv) |
-| 4 | **788.95** (박진홍) — 리더보드가 더 낮음 | **789.2041** | 793.3858 | 18대 | 장승민 | jsm 자동 탐색 `auto-11272053` | [case4-dashboard.csv](best/case4-dashboard.csv) |
-| 5 | **770.82** (박진홍) — 리더보드가 더 낮음 | **770.8816** | 786.7907 | 23대 | 박진홍, 장승민 | `jinhong-experiments` cand_77088.csv | [case5-dashboard.csv](best/case5-dashboard.csv) |
+| 2 | **613.61** (윤빈) — 저장소 답이 아직 못 넘음 | **613.6186** | 616.0472 | 24대 | 박진홍, 장승민 | `jinhong-experiments` answer_case2.csv | [case2-dashboard.csv](best/case2-dashboard.csv) |
+| 3 | 962.70 (박진홍) → **저장소 답이 기록 경신** | **962.4482** | 979.5062 | 22대 | 장승민 | jsm 자동 탐색 `auto-11271939` | [case3-dashboard.csv](best/case3-dashboard.csv) |
+| 4 | **788.95** (박진홍) — 저장소 답이 아직 못 넘음 | **789.2041** | 793.3858 | 18대 | 장승민 | jsm 자동 탐색 `auto-11272053` | [case4-dashboard.csv](best/case4-dashboard.csv) |
+| 5 | **770.82** (박진홍) — 저장소 답이 아직 못 넘음 | **770.8816** | 786.7907 | 23대 | 박진홍, 장승민 | `jinhong-experiments` cand_77088.csv | [case5-dashboard.csv](best/case5-dashboard.csv) |
 
-리더보드 기록은 답안 파일이 저장소에 없는 기록까지 포함한다(손으로 적음: `experiments/common/five-case/team/leaderboard.json`). 저장소 최고는 푸시된 답안만 본다.
+리더보드 1위 칸만 리더보드 기록이고, 나머지 칸은 저장소에 푸시된 최고 답안에 대한 것이다. 리더보드 기록은 답안 파일이 저장소에 없는 기록까지 포함한다(손으로 적음: `experiments/common/five-case/team/leaderboard.json`). 저장소 최고는 푸시된 답안만 본다.
 
-| 케이스 | 범용성 1–500 | 그 답의 11–15 | 대수 | 만든 사람 | 출처 | 답안 |
+| 케이스 | 범용성 1–500 | 그 답의 11–15 | 대수 | 저장소 답 만든 사람 | 저장소 답 출처 | 답안 |
 |---|---|---|---|---|---|---|
 | 1 | **1180.6962** | 1177.9655 | 21대 | 박진홍, 장승민 | `jinhong-experiments` answer_jinhong_submitted.csv | [case1-robust.csv](best/case1-robust.csv) |
 | 2 | **603.4758** | 663.0128 | 24대 | 장승민 | jsm 자동 탐색 `auto-11271811` | [case2-robust.csv](best/case2-robust.csv) |
