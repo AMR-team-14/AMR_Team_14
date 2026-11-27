@@ -21,6 +21,7 @@ const origin = a => {
 fs.mkdirSync(BEST, {recursive: true});
 const save = (a, name) => { fs.writeFileSync(path.join(BEST, name), a.text); return `[${name}](best/${name})`; };
 
+const LB = (() => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, 'team', 'leaderboard.json'), 'utf8')).records; } catch { return {}; } })();
 const rows = [];
 for (const c of [1, 2, 3, 4, 5]) {
   const ok = A.filter(a => a.case === c && a.public && a.public.cost !== null);
@@ -35,14 +36,18 @@ for (const c of [1, 2, 3, 4, 5]) {
   const rep = a => tie(a).find(x => x.sources.some(s => s.branch !== 'jsm')) || a;
   const cell = (a0, kind) => { const a = a0 && rep(a0); return a ? [`**${f4(kind === 'pub' ? a.public.cost : a.s500.cost)}**`, f4(kind === 'pub' ? (a.s500 && a.s500.cost) : a.public.cost),
     `${a.fleet}대`, ownersOf(a), origin(a), save(a, `case${c}-${kind === 'pub' ? 'dashboard' : 'robust'}.csv`)] : ['–', '–', '–', '–', '–', '–']; };
-  rows.push({c, pub: cell(pub, 'pub'), rob: cell(rob, 'rob')});
+  const lb = LB[c];
+  const lbCell = !lb ? '–' : pub && pub.public.cost < lb.score - 0.005 ? `${lb.score.toFixed(2)} (${lb.who}) → **저장소 답이 낮음**`
+    : `**${lb.score.toFixed(2)}** (${lb.who})${pub && pub.public.cost > lb.score + 0.005 ? ' — 리더보드가 더 낮음' : ''}`;
+  rows.push({c, pub: cell(pub, 'pub'), rob: cell(rob, 'rob'), lb: lbCell});
 }
 const lines = [START, '## 최고 기록 (팀 전체 답안, 공통 평가기)', '',
   '모든 브랜치의 답안을 `simulator/score.cjs`로 다시 채점한 값이다. 비용이라 낮을수록 좋다. 기록이 바뀔 때만 이 표와 `best/` 파일이 갱신된다.',
   '- **대시보드**: 공개 시드 11–15 점수 = 리더보드 성적(Case 2–5). Case 1은 비공개 시드로 채점하므로 참고만.',
   '- **범용성(강건성)**: 시드 1–500 묶음 점수, 반려 0인 답만. Case 1은 이 값이 기준.', '',
-  '| 케이스 | 대시보드 11–15 | 그 답의 1–500 | 대수 | 만든 사람 | 출처 | 답안 |', '|---|---|---|---|---|---|---|',
-  ...rows.map(r => `| ${r.c} | ${r.pub.join(' | ')} |`), '',
+  '| 케이스 | 리더보드 기록 | 저장소 최고 11–15 | 그 답의 1–500 | 대수 | 만든 사람 | 출처 | 답안 |', '|---|---|---|---|---|---|---|---|',
+  ...rows.map(r => `| ${r.c} | ${r.lb} | ${r.pub.join(' | ')} |`), '',
+  '리더보드 기록은 답안 파일이 저장소에 없는 기록까지 포함한다(손으로 적음: `experiments/common/five-case/team/leaderboard.json`). 저장소 최고는 푸시된 답안만 본다.', '',
   '| 케이스 | 범용성 1–500 | 그 답의 11–15 | 대수 | 만든 사람 | 출처 | 답안 |', '|---|---|---|---|---|---|---|',
   ...rows.map(r => `| ${r.c} | ${r.rob.join(' | ')} |`), '',
   '전체 순위와 회차별 분석은 [reports/](experiments/common/five-case/reports/), 인사이트는 [insights/](insights/)에 있다.', END];
