@@ -1,0 +1,12 @@
+{
+  "archived": {
+    "cost": 790.4171,
+    "rejected": 0
+  },
+  "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json",
+  "answer_sha256": "76de42acbc69fa29877873c770b6cf866cbdf4a6ca770047f728380e660750da",
+  "case": 4,
+  "fleet": 18,
+  "first_seed": 1,
+  "seeds": 500
+}

@@ -1,0 +1,938 @@
+{
+  "experiment_id": "C4-20261127-D13-D9-leaf-factorial",
+  "case": 4,
+  "recorded_date_kst": "2026-11-27",
+  "purpose": "Estimate the effects and interactions of one direction bit and two leaf rules on the two team scores.",
+  "design": {
+    "axes": [
+      {
+        "id": "direction",
+        "levels": [
+          "D13",
+          "D9"
+        ],
+        "column": "Scenario direction (0-indexed bit 43)"
+      },
+      {
+        "id": "key7",
+        "levels": [
+          "urg,min,0.5",
+          "dl,min,105"
+        ],
+        "column": "Leaf node 7"
+      },
+      {
+        "id": "key9",
+        "levels": [
+          "dl,max,60",
+          "dl,max,141.2"
+        ],
+        "column": "Leaf node 9"
+      }
+    ],
+    "fixed": "AGV fleet = 18. The other 75 direction bits and nodes 1–6 and 8 are byte-identical.",
+    "comparisons": {
+      "screen": "1-50",
+      "public": "11-15",
+      "common": "1-500"
+    },
+    "criteria": {
+      "public_cost_below": 789.2041,
+      "common_cost_below": 790.4171,
+      "required_common_rejected_count": 0
+    },
+    "team_baselines": {
+      "public_hash": "1e358630afb09f9618231c1a53bf00bb19dc93b5c781d0f46f01678111ce4cc2",
+      "common_hash": "76de42acbc69fa29877873c770b6cf866cbdf4a6ca770047f728380e660750da",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json"
+    },
+    "candidates": [
+      {
+        "id": "D13-k7urg-k9dl60",
+        "direction": "D13",
+        "bit_44": "1",
+        "key7": "key,7,urg,min,0.5,0,0",
+        "key9": "key,9,dl,max,60,0,0",
+        "answer_sha256": "1e358630afb09f9618231c1a53bf00bb19dc93b5c781d0f46f01678111ce4cc2",
+        "role": "public-reference"
+      },
+      {
+        "id": "D13-k7urg-k9dl141p2",
+        "direction": "D13",
+        "bit_44": "1",
+        "key7": "key,7,urg,min,0.5,0,0",
+        "key9": "key,9,dl,max,141.2,0,0",
+        "answer_sha256": "35c6981f1ab638e88cfeb7f83ef95fd236a3ad07068699c4e57645b8bbfa7651",
+        "role": "crossed-candidate"
+      },
+      {
+        "id": "D13-k7dl-k9dl60",
+        "direction": "D13",
+        "bit_44": "1",
+        "key7": "key,7,dl,min,105,0,0",
+        "key9": "key,9,dl,max,60,0,0",
+        "answer_sha256": "ef3d8c242d346a12fb5d93806d08071d317399aec3beebfcccec7315bbc54ab3",
+        "role": "crossed-candidate"
+      },
+      {
+        "id": "D13-k7dl-k9dl141p2",
+        "direction": "D13",
+        "bit_44": "1",
+        "key7": "key,7,dl,min,105,0,0",
+        "key9": "key,9,dl,max,141.2,0,0",
+        "answer_sha256": "7f79fb9502c649d5061461091c76bf3d37b09c09fc169e150bbb3dd59ecdd0fa",
+        "role": "crossed-candidate"
+      },
+      {
+        "id": "D9-k7urg-k9dl60",
+        "direction": "D9",
+        "bit_44": "0",
+        "key7": "key,7,urg,min,0.5,0,0",
+        "key9": "key,9,dl,max,60,0,0",
+        "answer_sha256": "e6ad720ec8abc4f199699bd5c468e4624262e14c4b99cd48b192d2830483ca4e",
+        "role": "crossed-candidate"
+      },
+      {
+        "id": "D9-k7urg-k9dl141p2",
+        "direction": "D9",
+        "bit_44": "0",
+        "key7": "key,7,urg,min,0.5,0,0",
+        "key9": "key,9,dl,max,141.2,0,0",
+        "answer_sha256": "4cee556fc794481037d8c075056ed2b93fac90ad18034999e87954a1edc31680",
+        "role": "crossed-candidate"
+      },
+      {
+        "id": "D9-k7dl-k9dl60",
+        "direction": "D9",
+        "bit_44": "0",
+        "key7": "key,7,dl,min,105,0,0",
+        "key9": "key,9,dl,max,60,0,0",
+        "answer_sha256": "0a87982ab937558636616c9e5ed8213cd2193900052cc855ed4f58b096bd2429",
+        "role": "crossed-candidate"
+      },
+      {
+        "id": "D9-k7dl-k9dl141p2",
+        "direction": "D9",
+        "bit_44": "0",
+        "key7": "key,7,dl,min,105,0,0",
+        "key9": "key,9,dl,max,141.2,0,0",
+        "answer_sha256": "76de42acbc69fa29877873c770b6cf866cbdf4a6ca770047f728380e660750da",
+        "role": "common-reference"
+      }
+    ],
+    "available_archives_at_start": [
+      {
+        "id": "D13-k7urg-k9dl60",
+        "available": [
+          "public",
+          "common"
+        ]
+      },
+      {
+        "id": "D13-k7urg-k9dl141p2",
+        "available": []
+      },
+      {
+        "id": "D13-k7dl-k9dl60",
+        "available": []
+      },
+      {
+        "id": "D13-k7dl-k9dl141p2",
+        "available": []
+      },
+      {
+        "id": "D9-k7urg-k9dl60",
+        "available": []
+      },
+      {
+        "id": "D9-k7urg-k9dl141p2",
+        "available": []
+      },
+      {
+        "id": "D9-k7dl-k9dl60",
+        "available": []
+      },
+      {
+        "id": "D9-k7dl-k9dl141p2",
+        "available": [
+          "public",
+          "common"
+        ]
+      }
+    ],
+    "team_actions": "https://github.com/AMR-team-14/AMR_Team_14/actions/runs/46017033174",
+    "tail_note": "Compare urgent P95 and mean wait with the common objective; full pooled ranking uses common seeds."
+  },
+  "branch": "yb",
+  "branch_heads_at_start": {
+    "main": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "jkd": "aeb5fa98f2789f7c4f80a7506515e2d5ddda4fb0",
+    "jsm": "f53cdedee0eae49ee4b8f55af31a2c7852fe3b45",
+    "kmj": "7d098c5d79aa4f39108cf926154797e6d72a5948",
+    "pjh": "c5dc1c6d792ff6c2bdad78e3da052a778bab79aa",
+    "yb": "c45f442ddea2ae76ed219ff33ba563bfecaa9b23",
+    "jinhong": "1584cb7ca438f26297adf953432977527d18dd55"
+  },
+  "environment": {
+    "node": "v24.14.0",
+    "platform": "win32",
+    "runner": "local",
+    "shared_worker_limit": 8
+  },
+  "evaluator": {
+    "path": "simulator/score.cjs",
+    "commit": "22adb496866fc59427089de5f4eba374a0e678a2",
+    "simulator_tree": "47c21aff74316d4f4b62ef7a441710f6f199f12c",
+    "trace": true
+  },
+  "input": {
+    "path": "simulator/spec/c4.json",
+    "git_sha256": "681cd0e9ef1a69f21664443ffccdb414f9d9b13382e98bad84f2fbb7b6b9f238",
+    "source_answer_git_blob": "ffbf512fd55c4134c9ff05d4d0ca9758dfcb20d1"
+  },
+  "aggregation": "Pool all completed pickups after warmup, then calculate one cost with floor-index urgent p95. Blank score if any seed is rejected.",
+  "reuse_notes": "Exact answer identity, seed count and input/evaluator version required. Team gather provides pooled outcomes without trace. Raw traces are reused separately where available.",
+  "candidates": [
+    {
+      "id": "D13-k7urg-k9dl60",
+      "role": "public-reference",
+      "fleet": 18,
+      "direction": "1111111111011111111000001111100111100000110110001101000100011110011111101111",
+      "nodes": 9,
+      "answer": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7urg-k9dl60.csv",
+      "answer_sha256": "1e358630afb09f9618231c1a53bf00bb19dc93b5c781d0f46f01678111ce4cc2",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json"
+    },
+    {
+      "id": "D13-k7urg-k9dl141p2",
+      "role": "crossed-candidate",
+      "fleet": 18,
+      "direction": "1111111111011111111000001111100111100000110110001101000100011110011111101111",
+      "nodes": 9,
+      "answer": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7urg-k9dl141p2.csv",
+      "answer_sha256": "35c6981f1ab638e88cfeb7f83ef95fd236a3ad07068699c4e57645b8bbfa7651",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json"
+    },
+    {
+      "id": "D13-k7dl-k9dl60",
+      "role": "crossed-candidate",
+      "fleet": 18,
+      "direction": "1111111111011111111000001111100111100000110110001101000100011110011111101111",
+      "nodes": 9,
+      "answer": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7dl-k9dl60.csv",
+      "answer_sha256": "ef3d8c242d346a12fb5d93806d08071d317399aec3beebfcccec7315bbc54ab3",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json"
+    },
+    {
+      "id": "D13-k7dl-k9dl141p2",
+      "role": "crossed-candidate",
+      "fleet": 18,
+      "direction": "1111111111011111111000001111100111100000110110001101000100011110011111101111",
+      "nodes": 9,
+      "answer": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7dl-k9dl141p2.csv",
+      "answer_sha256": "7f79fb9502c649d5061461091c76bf3d37b09c09fc169e150bbb3dd59ecdd0fa",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json"
+    },
+    {
+      "id": "D9-k7urg-k9dl60",
+      "role": "crossed-candidate",
+      "fleet": 18,
+      "direction": "1111111111011111111000001111100111100000110010001101000100011110011111101111",
+      "nodes": 9,
+      "answer": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7urg-k9dl60.csv",
+      "answer_sha256": "e6ad720ec8abc4f199699bd5c468e4624262e14c4b99cd48b192d2830483ca4e",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json"
+    },
+    {
+      "id": "D9-k7urg-k9dl141p2",
+      "role": "crossed-candidate",
+      "fleet": 18,
+      "direction": "1111111111011111111000001111100111100000110010001101000100011110011111101111",
+      "nodes": 9,
+      "answer": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7urg-k9dl141p2.csv",
+      "answer_sha256": "4cee556fc794481037d8c075056ed2b93fac90ad18034999e87954a1edc31680",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json"
+    },
+    {
+      "id": "D9-k7dl-k9dl60",
+      "role": "crossed-candidate",
+      "fleet": 18,
+      "direction": "1111111111011111111000001111100111100000110010001101000100011110011111101111",
+      "nodes": 9,
+      "answer": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7dl-k9dl60.csv",
+      "answer_sha256": "0a87982ab937558636616c9e5ed8213cd2193900052cc855ed4f58b096bd2429",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json"
+    },
+    {
+      "id": "D9-k7dl-k9dl141p2",
+      "role": "common-reference",
+      "fleet": 18,
+      "direction": "1111111111011111111000001111100111100000110010001101000100011110011111101111",
+      "nodes": 9,
+      "answer": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7dl-k9dl141p2.csv",
+      "answer_sha256": "76de42acbc69fa29877873c770b6cf866cbdf4a6ca770047f728380e660750da",
+      "source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json"
+    }
+  ],
+  "preflight": {
+    "command": "node simulator/score.cjs 4 --baseline 11 5 --trace",
+    "case": 4,
+    "fleet": 18,
+    "first_seed": 11,
+    "seeds": 5,
+    "pooled_cost": 801.467,
+    "rejected": [],
+    "dispatch_count": 17787,
+    "dispatch_sha256": "f71273a7e9e96fc0e6c0016f462b73c4db6d18122408173cfe47ba0e06fd9507",
+    "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/baseline-11-15.json"
+  },
+  "runs": [
+    {
+      "id": "D13-k7urg-k9dl60",
+      "role": "public-reference",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7urg-k9dl60-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7urg-k9dl60.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 794.4129,
+        "rejected": [],
+        "dispatch_count": 175396,
+        "dispatch_sha256": "167af89e996cc0d00aa5b3e632cd038fb3c17a4e15df821a321a59ea78619757"
+      }
+    },
+    {
+      "id": "D13-k7urg-k9dl60",
+      "role": "public-reference",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7urg-k9dl60-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7urg-k9dl60.csv 11 5 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 789.2041,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "D13-k7urg-k9dl60",
+      "role": "public-reference",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7urg-k9dl60-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7urg-k9dl60.csv 1 500 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 793.3858,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "D13-k7urg-k9dl141p2",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7urg-k9dl141p2-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7urg-k9dl141p2.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 794.1739,
+        "rejected": [],
+        "dispatch_count": 175396,
+        "dispatch_sha256": "7c76465c91f6a7ec9aaa9535594ea5fcf3b825fee358164dc8f2db56c42623bf"
+      }
+    },
+    {
+      "id": "D13-k7urg-k9dl141p2",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7urg-k9dl141p2-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7urg-k9dl141p2.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 789.6554,
+        "rejected": [],
+        "dispatch_count": 17787,
+        "dispatch_sha256": "281dabc8834b07677c747b7e6ee94a35e19a1467c8d64bfb66e93bf2e829a629"
+      }
+    },
+    {
+      "id": "D13-k7urg-k9dl141p2",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7urg-k9dl141p2-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7urg-k9dl141p2.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 793.2655,
+        "rejected": [],
+        "dispatch_count": 1755798,
+        "dispatch_sha256": "d87d27e821e73ae8ed797ccb0d7bf514025578ab26271b943273c9e7395b5eac"
+      }
+    },
+    {
+      "id": "D13-k7dl-k9dl60",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7dl-k9dl60-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7dl-k9dl60.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 794.4797,
+        "rejected": [],
+        "dispatch_count": 175396,
+        "dispatch_sha256": "75354989375c927de343edadd9c9cc54e79d09f5bc1ff426a8a2d718beaad06a"
+      }
+    },
+    {
+      "id": "D13-k7dl-k9dl60",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7dl-k9dl60-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7dl-k9dl60.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 789.4892,
+        "rejected": [],
+        "dispatch_count": 17787,
+        "dispatch_sha256": "3cc92f1dfce82ee19d715e0a7b7febab986cbfc4998cc04f1e2f57fa8eec7718"
+      }
+    },
+    {
+      "id": "D13-k7dl-k9dl60",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7dl-k9dl60-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7dl-k9dl60.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 793.5088,
+        "rejected": [],
+        "dispatch_count": 1755798,
+        "dispatch_sha256": "0762f67ab75260a5c747bf170d1db4b506287105c1c677a20f362bedbd585ac6"
+      }
+    },
+    {
+      "id": "D13-k7dl-k9dl141p2",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7dl-k9dl141p2-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7dl-k9dl141p2.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 794.1817,
+        "rejected": [],
+        "dispatch_count": 175396,
+        "dispatch_sha256": "86904045aff26e863e4982c58030d0804bccc1e54dfa8f79da005c36dd8a8917"
+      }
+    },
+    {
+      "id": "D13-k7dl-k9dl141p2",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7dl-k9dl141p2-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7dl-k9dl141p2.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 790.1721,
+        "rejected": [],
+        "dispatch_count": 17787,
+        "dispatch_sha256": "706a4d8126b48ae9cf160985e095a4acc67356331b212783a4272e2a8c72a2a0"
+      }
+    },
+    {
+      "id": "D13-k7dl-k9dl141p2",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7dl-k9dl141p2-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D13-k7dl-k9dl141p2.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 793.342,
+        "rejected": [],
+        "dispatch_count": 1755798,
+        "dispatch_sha256": "3b0f505b9f3ae26f43d1f2fda1748c0da431b2cf7be97df72b6bae6c080b819c"
+      }
+    },
+    {
+      "id": "D9-k7urg-k9dl60",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7urg-k9dl60-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7urg-k9dl60.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 791.949,
+        "rejected": [],
+        "dispatch_count": 175396,
+        "dispatch_sha256": "cae2abe17db7645673f518be736bd97cb784059236a8dfd151e922216f73043c"
+      }
+    },
+    {
+      "id": "D9-k7urg-k9dl60",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7urg-k9dl60-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7urg-k9dl60.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 793.5493,
+        "rejected": [],
+        "dispatch_count": 17787,
+        "dispatch_sha256": "b9cfff06aa44a747049427b0740f38e3cf87559d7faa5052c75cd16948fce09f"
+      }
+    },
+    {
+      "id": "D9-k7urg-k9dl60",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7urg-k9dl60-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7urg-k9dl60.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 790.3754,
+        "rejected": [],
+        "dispatch_count": 1755799,
+        "dispatch_sha256": "f9967ea749e040e672c9bbefd2c3f8c6f759a3fbd173477ef05acd7d5998c4a4"
+      }
+    },
+    {
+      "id": "D9-k7urg-k9dl141p2",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7urg-k9dl141p2-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7urg-k9dl141p2.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 791.8322,
+        "rejected": [],
+        "dispatch_count": 175396,
+        "dispatch_sha256": "58dd8f41d85d3621dde16299a9ecf7fdb0baf1959c6821b6d13bf4848fd505cf"
+      }
+    },
+    {
+      "id": "D9-k7urg-k9dl141p2",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7urg-k9dl141p2-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7urg-k9dl141p2.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 794.0821,
+        "rejected": [],
+        "dispatch_count": 17787,
+        "dispatch_sha256": "c0f3519a8e02d6590719d7e0e2612372f487395e6c922e7715bfdb1d678818ec"
+      }
+    },
+    {
+      "id": "D9-k7urg-k9dl141p2",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7urg-k9dl141p2-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7urg-k9dl141p2.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 790.334,
+        "rejected": [],
+        "dispatch_count": 1755799,
+        "dispatch_sha256": "8a9fe17798518ac67ee63d3649339851599c9e68c609a96af082655a12691ddc"
+      }
+    },
+    {
+      "id": "D9-k7dl-k9dl60",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7dl-k9dl60-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7dl-k9dl60.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 792.0153,
+        "rejected": [],
+        "dispatch_count": 175396,
+        "dispatch_sha256": "57f1d717a422fbd61ca5f53a2ad98c8cba077e20e155e1a43cb52910d0e05744"
+      }
+    },
+    {
+      "id": "D9-k7dl-k9dl60",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7dl-k9dl60-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7dl-k9dl60.csv 11 5 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 11,
+        "seeds": 5,
+        "pooled_cost": 793.4461,
+        "rejected": [],
+        "dispatch_count": 17787,
+        "dispatch_sha256": "019e929e1cf0b4f1e08aa3f02c2dd86c1980706cb1fe7ee392ca5f47de4857b8"
+      }
+    },
+    {
+      "id": "D9-k7dl-k9dl60",
+      "role": "crossed-candidate",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7dl-k9dl60-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7dl-k9dl60.csv 1 500 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 500,
+        "pooled_cost": 790.4468,
+        "rejected": [],
+        "dispatch_count": 1755799,
+        "dispatch_sha256": "f661565f32e2b727a5b3b23eb75885d0ba9f73ec8373ddcb5703fb6f1312e519"
+      }
+    },
+    {
+      "id": "D9-k7dl-k9dl141p2",
+      "role": "common-reference",
+      "range": {
+        "key": "screen",
+        "first": 1,
+        "count": 50
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7dl-k9dl141p2-screen.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7dl-k9dl141p2.csv 1 50 --trace",
+      "execution": "run",
+      "reuse_source": "",
+      "result": {
+        "case": 4,
+        "fleet": 18,
+        "first_seed": 1,
+        "seeds": 50,
+        "pooled_cost": 792.1219,
+        "rejected": [],
+        "dispatch_count": 175396,
+        "dispatch_sha256": "5edde87eca05f55a513876eae028d84873e44a2a4e52d4a9858e6e275daa251e"
+      }
+    },
+    {
+      "id": "D9-k7dl-k9dl141p2",
+      "role": "common-reference",
+      "range": {
+        "key": "public",
+        "first": 11,
+        "count": 5
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7dl-k9dl141p2-public.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7dl-k9dl141p2.csv 11 5 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 793.9583,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    },
+    {
+      "id": "D9-k7dl-k9dl141p2",
+      "role": "common-reference",
+      "range": {
+        "key": "common",
+        "first": 1,
+        "count": 500
+      },
+      "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7dl-k9dl141p2-common.json",
+      "status": "completed",
+      "command": "node simulator/score.cjs 4 experiments/case4/C4-20261127-D13-D9-leaf-factorial/answers/D9-k7dl-k9dl141p2.csv 1 500 --trace",
+      "execution": "reuse-pooled",
+      "reuse_source": "https://github.com/AMR-team-14/AMR_Team_14/blob/f53cdedee0eae49ee4b8f55af31a2c7852fe3b45/experiments/common/five-case/team/scores.json",
+      "result": {
+        "pooled_cost": 790.4171,
+        "rejected": [],
+        "dispatch_sha256": "",
+        "dispatch_count": ""
+      }
+    }
+  ],
+  "diagnostics": {
+    "note": "Output-only measurements from the same evaluate function. Results matched official costs, and dispatch hashes where primary trace was available.",
+    "command_template": "node -e <wrapper> -- 4 ANSWER.csv FIRST_SEED COUNT --trace",
+    "wrapper": "const fs=require('node:fs');\nconst path=require('node:path');\nconst Module=require('node:module');\nconst file=path.resolve('simulator/score.cjs');\nconst source=fs.readFileSync(file,'utf8');\nconst anchor='    case:index, fleet:n, first_seed:seed, seeds:count,';\nif(source.split(anchor).length!==2)throw Error('Unexpected scorer shape');\nconst fields=[\n  '    diagnostics: {',\n  '      mean_wait_min: ws.reduce((sum,value)=>sum+value,0)/ws.length,',\n  '      urgent_p95_min: wu[Math.floor(0.95*(wu.length-1))],',\n  '      agv_cost: p.cAGV*n,',\n  '      wait_cost: p.cW*rate*ws.reduce((sum,value)=>sum+value,0)/ws.length,',\n  '      urgent_cost: p.cU*wu[Math.floor(0.95*(wu.length-1))],',\n  '      pickups: ws.length, urgent_pickups: wu.length,',\n  '    },',\n].join('\\n');\nconst compiled=new Module(file,module);\ncompiled.filename=file;\ncompiled.paths=Module._nodeModulePaths(path.dirname(file));\nprocess.argv=[process.execPath,file,...process.argv.slice(1)];\ncompiled._compile(source.replace(anchor,anchor+'\\n'+fields),file);",
+    "reports": [
+      {
+        "id": "D13-k7urg-k9dl60",
+        "group": "public",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7urg-k9dl60-public-metrics.json"
+      },
+      {
+        "id": "D13-k7urg-k9dl60",
+        "group": "common",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7urg-k9dl60-common-metrics.json"
+      },
+      {
+        "id": "D13-k7urg-k9dl141p2",
+        "group": "public",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7urg-k9dl141p2-public-metrics.json"
+      },
+      {
+        "id": "D13-k7urg-k9dl141p2",
+        "group": "common",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7urg-k9dl141p2-common-metrics.json"
+      },
+      {
+        "id": "D13-k7dl-k9dl60",
+        "group": "public",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7dl-k9dl60-public-metrics.json"
+      },
+      {
+        "id": "D13-k7dl-k9dl60",
+        "group": "common",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7dl-k9dl60-common-metrics.json"
+      },
+      {
+        "id": "D13-k7dl-k9dl141p2",
+        "group": "public",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7dl-k9dl141p2-public-metrics.json"
+      },
+      {
+        "id": "D13-k7dl-k9dl141p2",
+        "group": "common",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D13-k7dl-k9dl141p2-common-metrics.json"
+      },
+      {
+        "id": "D9-k7urg-k9dl60",
+        "group": "public",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7urg-k9dl60-public-metrics.json"
+      },
+      {
+        "id": "D9-k7urg-k9dl60",
+        "group": "common",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7urg-k9dl60-common-metrics.json"
+      },
+      {
+        "id": "D9-k7urg-k9dl141p2",
+        "group": "public",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7urg-k9dl141p2-public-metrics.json"
+      },
+      {
+        "id": "D9-k7urg-k9dl141p2",
+        "group": "common",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7urg-k9dl141p2-common-metrics.json"
+      },
+      {
+        "id": "D9-k7dl-k9dl60",
+        "group": "public",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7dl-k9dl60-public-metrics.json"
+      },
+      {
+        "id": "D9-k7dl-k9dl60",
+        "group": "common",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7dl-k9dl60-common-metrics.json"
+      },
+      {
+        "id": "D9-k7dl-k9dl141p2",
+        "group": "public",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7dl-k9dl141p2-public-metrics.json"
+      },
+      {
+        "id": "D9-k7dl-k9dl141p2",
+        "group": "common",
+        "log": "experiments/case4/C4-20261127-D13-D9-leaf-factorial/logs/D9-k7dl-k9dl141p2-common-metrics.json"
+      }
+    ]
+  }
+}
