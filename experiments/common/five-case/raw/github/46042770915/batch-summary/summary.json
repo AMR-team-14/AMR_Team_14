@@ -1,0 +1,124 @@
+{
+  "batch": "auto-11280233",
+  "planned": 394,
+  "returned": 394,
+  "missing": [],
+  "failures": [],
+  "cases": {
+    "1": {
+      "evaluations": 80,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11280233:e6": {
+          "blocks": 40,
+          "rejected": 0,
+          "mean": 1180.5644398369125,
+          "p95": 1189.7539209432614,
+          "worst": 1192.4181531508852,
+          "vehicle": 315,
+          "wait": 349.2784814661,
+          "urgent": 516.2859583708129
+        },
+        "auto-11280233:e7": {
+          "blocks": 40,
+          "rejected": 0,
+          "mean": 1180.853144018654,
+          "p95": 1195.6856889762248,
+          "worst": 1196.8660338315385,
+          "vehicle": 315,
+          "wait": 349.4776149104702,
+          "urgent": 516.3755291081837
+        }
+      },
+      "bestSearch": []
+    },
+    "2": {
+      "evaluations": 100,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11280233:e4": {
+          "blocks": 100,
+          "rejected": 0,
+          "mean": 621.96540312698,
+          "p95": 657.710621535048,
+          "worst": 721.092074136325,
+          "vehicle": 345,
+          "wait": 81.72101956668033,
+          "urgent": 195.24438356029984
+        }
+      },
+      "bestSearch": []
+    },
+    "3": {
+      "evaluations": 4,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11280233:e3": {
+          "blocks": 4,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        }
+      },
+      "bestSearch": []
+    },
+    "4": {
+      "evaluations": 110,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11280233:e2": {
+          "blocks": 100,
+          "rejected": 0,
+          "mean": 797.6106489579804,
+          "p95": 802.9473658174061,
+          "worst": 806.4008886815358,
+          "vehicle": 285,
+          "wait": 71.97467442366471,
+          "urgent": 440.63597453431555
+        },
+        "auto-11280233:e1": {
+          "blocks": 4,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        },
+        "auto-11280233:e0": {
+          "blocks": 6,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        }
+      },
+      "bestSearch": []
+    },
+    "5": {
+      "evaluations": 100,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11280233:e5": {
+          "blocks": 100,
+          "rejected": 0,
+          "mean": 776.4115348544974,
+          "p95": 785.372818466679,
+          "worst": 796.057156141665,
+          "vehicle": 315,
+          "wait": 99.35605066007469,
+          "urgent": 362.05548419442295
+        }
+      },
+      "bestSearch": []
+    }
+  }
+}
