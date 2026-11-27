@@ -1,0 +1,128 @@
+{
+ "batch": "auto-11280534",
+ "created": "2026-11-27T20:34:11.783Z",
+ "reason": "auto-11280330에서 대수 ±1 재맞춤 search(C1·C2·C3)와 1위 답 재출발(C5 b9a1), c960 robust, 60fa 공개 kick 3이 모두 1위를 못 넘었다. 대수 축과 1위 재출발을 닫고, 출발로 쓴 적 없는 답(C1 9cbc·3aaa, C2 e6c5·3e9d, C3 a5c1·4592, C4 c960 공개)과 써 본 적 없는 kick 크기(C4 공개 4·robust 3, C5 4)에 예산을 쓴다",
+ "experiments": [
+  {
+   "case": 1,
+   "type": "ils",
+   "start": "sha12:9cbc5f7ac007",
+   "fleet": 21,
+   "budget": 800,
+   "repeats": 4,
+   "objective": "robust",
+   "kick": 2,
+   "why": "박진홍 exp12 나무(1-500 9위)는 출발로 쓴 적이 없다. 1위 주변 출발은 모두 bead 끌개로 수렴했다. 판정: 1-500 < 1180.5642"
+  },
+  {
+   "case": 1,
+   "type": "ils",
+   "start": "sha12:3aaa0b7fe576",
+   "fleet": 20,
+   "budget": 800,
+   "repeats": 4,
+   "objective": "robust",
+   "kick": 2,
+   "why": "8e74 나무의 원본(박진홍, 20대)이다. 21대가 최적으로 확정됐으므로 대수와 나무를 함께 다시 맞춘다. 판정: 1-500 < 1180.5642"
+  },
+  {
+   "case": 2,
+   "type": "ils",
+   "start": "sha12:e6c5ff027e95",
+   "fleet": 24,
+   "budget": 800,
+   "repeats": 4,
+   "objective": "robust",
+   "kick": 3,
+   "why": "1-500 1위인데 출발로 쓴 적이 없다. kick 3으로 D3 분지 안의 다른 나무를 찾는다. 판정: 1-500 < 603.4758"
+  },
+  {
+   "case": 2,
+   "type": "ils",
+   "start": "sha12:3e9daf44a556",
+   "fleet": 26,
+   "budget": 800,
+   "repeats": 4,
+   "objective": "robust",
+   "kick": 3,
+   "why": "e6c5는 25/D2에서 kick 3으로 나왔다. 26/D2 출발은 처음이고, 대수 끌개(→24)를 타면서 D3로 넘어가는 다른 경로를 본다. 판정: 1-500 < 603.4758"
+  },
+  {
+   "case": 3,
+   "type": "ils",
+   "start": "sha12:a5c1da947d90",
+   "fleet": 21,
+   "budget": 800,
+   "repeats": 4,
+   "objective": "robust",
+   "kick": 2,
+   "why": "21대 답은 robust 출발로 쓴 적이 없다. 22대 끌개로 오는 도중 b3db·3570과 다른 나무가 나올 수 있다. 판정: 1-500 < 974.54"
+  },
+  {
+   "case": 3,
+   "type": "ils",
+   "start": "sha12:4592869026de",
+   "fleet": 21,
+   "budget": 800,
+   "repeats": 4,
+   "objective": "robust",
+   "kick": 3,
+   "why": "출발로 쓴 적 없는 21/D1 답이다. kick 3으로 더 넓게 본다. 판정: 1-500 < 974.54"
+  },
+  {
+   "case": 4,
+   "type": "ils",
+   "start": "sha12:c96057b9c1e1",
+   "fleet": 18,
+   "budget": 3000,
+   "repeats": 6,
+   "objective": "public",
+   "kick": 3,
+   "why": "공개 6위 D11이고 공개 출발로 쓴 적이 없다. 1e358·60fa와 다른 국소최적을 찾는다. 판정: 공개 < 789.2041이고 1-500 반려 0"
+  },
+  {
+   "case": 4,
+   "type": "ils",
+   "start": "sha12:1e358630afb0",
+   "fleet": 18,
+   "budget": 3000,
+   "repeats": 6,
+   "objective": "public",
+   "kick": 4,
+   "why": "공개 목표에서 kick 4는 처음이다. 1e358과 60fa는 kick 3으로 빠져나오지 못했다. 판정: 공개 < 789.2041이고 1-500 반려 0"
+  },
+  {
+   "case": 4,
+   "type": "ils",
+   "start": "sha12:1e358630afb0",
+   "fleet": 18,
+   "budget": 800,
+   "repeats": 6,
+   "objective": "robust",
+   "kick": 3,
+   "why": "강건성 1·3위(76de·44a1)를 낸 유일한 출발이다. robust kick 3은 처음이다. 판정: 1-500 < 790.4171"
+  },
+  {
+   "case": 5,
+   "type": "ils",
+   "start": "sha12:c26f6598a06d",
+   "fleet": 22,
+   "budget": 800,
+   "repeats": 4,
+   "objective": "robust",
+   "kick": 4,
+   "why": "b9a1을 낳은 출발이다. C5 robust는 kick 2 이하만 써 봤다. 판정: 1-500 < 774.78"
+  },
+  {
+   "case": 5,
+   "type": "ils",
+   "start": "sha12:b9a1e3692503",
+   "fleet": 22,
+   "budget": 800,
+   "repeats": 4,
+   "objective": "robust",
+   "kick": 4,
+   "why": "b9a1은 kick 2로는 닫힌 분지였다. kick 4로 탈출을 시도한다. 판정: 1-500 < 774.78"
+  }
+ ]
+}
