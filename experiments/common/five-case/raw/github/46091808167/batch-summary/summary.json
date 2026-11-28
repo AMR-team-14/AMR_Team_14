@@ -1,0 +1,107 @@
+{
+  "batch": "auto-11281011",
+  "planned": 44,
+  "returned": 44,
+  "missing": [],
+  "failures": [],
+  "cases": {
+    "2": {
+      "evaluations": 6,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11281011:e5": {
+          "blocks": 6,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        }
+      },
+      "bestSearch": []
+    },
+    "3": {
+      "evaluations": 4,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11281011:e6": {
+          "blocks": 4,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        }
+      },
+      "bestSearch": []
+    },
+    "4": {
+      "evaluations": 14,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11281011:e3": {
+          "blocks": 8,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        },
+        "auto-11281011:e4": {
+          "blocks": 6,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        }
+      },
+      "bestSearch": []
+    },
+    "5": {
+      "evaluations": 20,
+      "searchEvaluations": 0,
+      "fleets": {
+        "auto-11281011:e0": {
+          "blocks": 8,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        },
+        "auto-11281011:e2": {
+          "blocks": 4,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        },
+        "auto-11281011:e1": {
+          "blocks": 8,
+          "rejected": 0,
+          "mean": null,
+          "p95": null,
+          "worst": null,
+          "vehicle": null,
+          "wait": null,
+          "urgent": null
+        }
+      },
+      "bestSearch": []
+    }
+  }
+}
