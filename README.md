@@ -1,15 +1,12 @@
 # 물류관리 실험 · jsm
 
-[이전 작업 브랜치](https://github.com/AMR-team-14/AMR_Team_14/tree/jsm-original)와 비교할 수 있다.
+다섯 케이스 실험을 GitHub Actions에서 자동으로 돌리고(실험 → 팀 답안 수집·재채점 → AI 분석 → 다음 실험), 결과를 아래에 모은다.
 
-- [공통 요구사항](simulator/spec/REQUIREMENTS.md)에서 답안 제약, 시드, 공식 제출 기준을 확인한다.
-- [실험 기록](experiments/)의 case1~case5에서 답안과 로그를 읽고, 주요 발견은 해당 케이스의 insights.md에 쓴다.
-- [제출 기록](experiments/submissions.csv)은 공식 대시보드에서 확인한 값으로 갱신한다.
-- [이전 작업 파일](legacy/)에서 공통 구조에 편입하지 않은 문서와 코드를 찾을 수 있다.
-
-최종 답안은 저장소 루트에서 `node simulator/score.cjs <케이스> <답안 경로> 1 500 --trace`로 평가한다. 새 실험은 `experiments/caseN/<실험ID>/`에 run.json, answer.csv, results.csv, logs/로 저장한다.
-
-[main 반영 계획](experiments/MAIN-%EB%B0%98%EC%98%81%EC%82%AC%ED%95%AD.md)과 [기존 팀 수집본](legacy/team-experiments/README.md)은 이 브랜치에서 확인할 수 있다. 기존 GitHub Pages는 docs/에서 제공한다.
+- **최고 기록**: 아래 표(기록이 바뀔 때 자동 갱신), 답안 파일은 [`best/`](best/)
+- **상위권 답안·트리 그림·전략**: [`insights/TOP.md`](insights/TOP.md)
+- **인사이트**: [`insights/known-insights.md`](insights/known-insights.md)(자동), [`insights/INSIGHTS.md`](insights/INSIGHTS.md)(팀 전체 총정리)
+- **시스템 설명**: [`experiments/common/five-case/README.md`](experiments/common/five-case/README.md)
+- 공통 요구사항: [simulator/spec/REQUIREMENTS.md](simulator/spec/REQUIREMENTS.md) · 평가: `node simulator/score.cjs <케이스> <답안> 1 500 --trace`
 
 <!-- BOARD:START (자동 갱신: experiments/common/five-case/readme-board.cjs) -->
 ## 최고 기록 (팀 전체 답안, 공통 평가기)
@@ -22,7 +19,7 @@
 |---|---|---|---|---|---|---|---|
 | 1 | **1170.20** (박진홍) | **1170.2008** | 1184.0466 | 21대 | 박진홍 | `pjh` PJH-1123-117020/answer.csv | [case1-dashboard.csv](best/case1-dashboard.csv) |
 | 2 | **613.61** (윤빈) — 저장소 답이 아직 못 넘음 | **613.6186** | 616.0472 | 24대 | 박진홍, 장승민 | `jinhong-experiments` answer_case2.csv | [case2-dashboard.csv](best/case2-dashboard.csv) |
-| 3 | 962.70 (박진홍) → **저장소 답이 기록 경신** | **962.4482** | 979.5062 | 22대 | 장승민 | jsm 자동 탐색 `auto-11280039` | [case3-dashboard.csv](best/case3-dashboard.csv) |
+| 3 | **962.28** (14팀 팀원(누구인지 미확인)) — 저장소 답이 아직 못 넘음 | **962.4482** | 979.5062 | 22대 | 장승민 | jsm 자동 탐색 `auto-11280039` | [case3-dashboard.csv](best/case3-dashboard.csv) |
 | 4 | **788.95** (박진홍) — 저장소 답이 아직 못 넘음 | **789.2041** | 793.3858 | 18대 | 장승민 | jsm 자동 탐색 `auto-11272053` | [case4-dashboard.csv](best/case4-dashboard.csv) |
 | 5 | **770.82** (박진홍) — 저장소 답이 아직 못 넘음 | **770.8816** | 786.7907 | 23대 | 박진홍, 장승민 | `jinhong-experiments` cand_77088.csv | [case5-dashboard.csv](best/case5-dashboard.csv) |
 

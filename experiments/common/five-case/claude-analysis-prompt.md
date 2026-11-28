@@ -15,7 +15,7 @@ AMR Case 1~5 실험 결과의 심화 분석만 해(팀 전체 답안 포함). �
    - cases.N.heldOut / vsBest / screeningSubset / effects / effectsSummary: jsm 실험의 같은 시드 묶음 대응 비교.
    - cases.N.search: 탐색 회차별 결과(ils·search). searchTasks: 탐색 작업 계획/반환.
    - citedEvidence: known-insights.md가 인용한 근거의 현재 판정. recheck이면 그 인사이트를 재검토한다.
-2. insights/known-insights.md: 지금까지 확인된 인사이트(네가 갱신). insights/INSIGHTS.md는 팀 전체 총정리(사람이 요청할 때만 갱신)이니 읽기만 하고 고치지 마.
+2. insights/known-insights.md: 지금까지 확인된 인사이트(네가 갱신). insights/TOP.md: 케이스별 상위 답 표와 트리(코드가 만듦). insights/INSIGHTS.md는 팀 전체 총정리(사람이 요청할 때만 갱신)이니 읽기만 하고 고치지 마.
 3. 원인을 확인할 때만 원본 로그(experiments/common/five-case/raw/**)를 Grep으로 필요한 줄만 본다. 통째로 읽지 마.
 
 ## 채점 기준 — 목표가 둘이다
@@ -67,7 +67,10 @@ AMR Case 1~5 실험 결과의 심화 분석만 해(팀 전체 답안 포함). �
 - 돌릴 가치가 없으면 {"decision": "stop", "reason": "..."}.
 
 ## insights/known-insights.md 갱신
-- 맨 위 "범용 인사이트"(케이스 공통) 절, 그 아래 케이스별 절. 케이스별로 "대시보드 1위 / 강건성 1위", "확인된 인사이트"(각 줄 끝에 [ev:id=verdict]), "검증 필요 가설", "다음 확인할 것".
+- 맨 위 "범용 인사이트"(케이스 공통) 절, 그 아래 케이스별 절(제목은 정확히 "## Case N ..."로 시작). 케이스별로 "대시보드 1위 / 강건성 1위", "#### 상위권 전략", "확인된 인사이트"(각 줄 끝에 [ev:id=verdict]), "검증 필요 가설", "다음 확인할 것".
+- "#### 상위권 전략"은 insights/TOP.md 맨 아래에 그대로 실린다(코드가 가져감). 대시보드 상위와 1-500 상위 답의 트리가 무엇을 하는지 2~5줄로 쓴다:
+  루트가 무엇을 가르는지, 어느 주문에 어떤 차를 먼저 보내는지(예: "방금 들어온 일반 주문 중 운반 150m 넘는 것은 96m 넘게 떨어진 빈 차 우선"), 대수·통로 선택, 두 목표 상위 답이 어떻게 다른지.
+  트리는 insights/trees/case<N>-<sha12>.csv(TOP.md에 나온 답)를 읽어서 쓴다. key,id,특성,min|max,경계,lo,hi: 경계 이하면 lo, 초과면 hi로 가고, min이면 이하 쪽, max면 초과 쪽이 우선이다. 끝까지 같으면 가까운 차가 우선이다.
 - 케이스당 10줄 안팎. 뒤집힌 내용은 지우고 최신 결론만.
 
 ## 금지

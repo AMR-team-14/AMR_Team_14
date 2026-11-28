@@ -1,10 +1,10 @@
 // Paired comparison on held-out seed blocks.
 //   node analyze.cjs <case> <baselineSha12> <stage: screen|confirm|final> [sha12 ...]   (no shas: every candidate with that stage complete)
 'use strict';
-const L = require('./lib.cjs');
-const R = require('./results.cjs');
+const L = require('../lib.cjs');
+const R = require('../results.cjs');
 const [c, base12, stage, ...want] = process.argv.slice(2).filter(a => a !== "--legacy");
-const S = require('./seeds.cjs');
+const S = require('../seeds.cjs');
 const STAGE = new Set(S.STAGES[stage]);       // held-out blocks inside 1-500 (team seed plan)
 // Results from before the team seed plan used 2,400,001+ blocks: pass --legacy to read those.
 const LEGACY = process.argv.includes('--legacy');

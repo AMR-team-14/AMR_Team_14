@@ -1,5 +1,5 @@
 const fs = require('node:fs');
-const L = require('./lib.cjs');
+const L = require('../lib.cjs');
 const batch = 'overnight-1125';
 const gh = Array.from({ length: 8 }, () => []);
 const kaggle = [];

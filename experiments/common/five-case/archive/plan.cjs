@@ -4,12 +4,12 @@
 'use strict';
 const fs = require('node:fs');
 const path = require('node:path');
-const L = require('./lib.cjs');
-const R = require('./results.cjs');
-const {startTrees} = require('./search.cjs');
+const L = require('../lib.cjs');
+const R = require('../results.cjs');
+const {startTrees} = require('../search.cjs');
 
 const batch = process.argv[2];
-const S = require('./seeds.cjs');            // team seed plan: public 11-15, held-out blocks inside 1-500
+const S = require('../seeds.cjs');            // team seed plan: public 11-15, held-out blocks inside 1-500
 const PUBLIC = S.PUBLIC, SCREEN = S.STAGES.screen, CONFIRM = S.STAGES.confirm, FINAL = S.STAGES.final;
 const ORIGIN = {
   jinhong: 'jinhong-experiments@98597c1:jinhong/case{c}/{f}',

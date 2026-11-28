@@ -4,13 +4,13 @@
 'use strict';
 const fs = require('node:fs');
 const path = require('node:path');
-const L = require('./lib.cjs');
-const R = require('./results.cjs');
+const L = require('../lib.cjs');
+const R = require('../results.cjs');
 
 const [batch, speedArg, budgetArg] = process.argv.slice(2);
 const budget = Number(budgetArg || 800);
 const speeds = Object.fromEntries(speedArg.split(',').map(s => s.split('=')).map(([k, v]) => [k, +v]));
-const S = require('./seeds.cjs');            // team seed plan: public 11-15, held-out blocks inside 1-500
+const S = require('../seeds.cjs');            // team seed plan: public 11-15, held-out blocks inside 1-500
 const PUBLIC = S.PUBLIC, SCREEN = S.STAGES.screen;
 const tasks = [], reused = [];
 const doneKeys = {};

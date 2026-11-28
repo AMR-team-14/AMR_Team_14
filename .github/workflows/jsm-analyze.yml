@@ -46,6 +46,7 @@ jobs:
           sparse-checkout: |
             insights
             best
+            docs/tree-viewer
             experiments/case1/candidates
             experiments/case2/candidates
             experiments/case3
@@ -113,6 +114,16 @@ jobs:
           if [ -s deep.md ]; then printf '\n---\n\n' >> report.md; cat deep.md >> report.md
           else printf '\n---\n\n> 심화 분석(AI) 실패: claude-log.json 확인\n' >> report.md; fi
           node experiments/common/five-case/usage-log.cjs --last-line >> report.md
+      - name: Top answers board with tree pictures (no AI)
+        if: steps.gate.outputs.run == '1'
+        continue-on-error: true
+        run: |
+          node experiments/common/five-case/top-board.cjs
+          NEED=$(node -e 'const fs=require("fs"),d="insights/trees/";console.log(JSON.parse(fs.readFileSync(d+"manifest.json")).filter(m=>!fs.existsSync(d+m.png)).length)')
+          if [ "$NEED" -gt 0 ]; then
+            npm install -g playwright@1.49.1 >/dev/null && npx -y playwright@1.49.1 install --with-deps chromium >/dev/null
+            NODE_PATH=$(npm root -g) node experiments/common/five-case/render-trees.cjs
+          fi
       - name: Publish report
         if: always()
         run: |
@@ -126,11 +137,12 @@ jobs:
           mkdir -p "$DIR"; cp report.md "$DIR/$NAME.md"; cp digest.json "$DIR/digest-latest.json"
           node experiments/common/five-case/digest.cjs --save-state --out /dev/null
           node experiments/common/five-case/readme-board.cjs > /dev/null
+          node experiments/common/five-case/top-board.cjs > /dev/null
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for i in 1 2 3 4; do
             git fetch --depth=1 origin jsm && git reset -q --mixed FETCH_HEAD
-            for f in "$DIR/$NAME.md" insights/known-insights.md "$DIR/digest-latest.json" "$DIR/digest-state.json" "$DIR/usage.jsonl" experiments/common/five-case/raw/github experiments/common/five-case/team/scores.json README.md best; do
+            for f in "$DIR/$NAME.md" insights "$DIR/digest-latest.json" "$DIR/digest-state.json" "$DIR/usage.jsonl" experiments/common/five-case/raw/github experiments/common/five-case/team/scores.json README.md best; do
               if [ -e "$f" ]; then git add -f "$f"; fi
             done
             git commit -q -m "Claude analysis $NAME [skip ci]" && git push origin HEAD:jsm && exit 0
