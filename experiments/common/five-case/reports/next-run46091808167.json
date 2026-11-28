@@ -1,0 +1,18 @@
+{"decision": "run",
+ "reason": "auto-11281011에서 낮춘 출발 7종이 모두 1위를 넘지 못했다(C2·C4는 출발 답으로 회귀, C3는 b3db 끌개, C5 D3는 21대에 고착). 남은 미시도 출발만 돌린다: C5 상위 22/D2 나무(1위 b9a1 포함)의 21대 출발, C4·C2의 반대 방향 대수 출발. 이번에도 실패하면 Case 2~5 탐색을 멈춘다",
+ "experiments": [
+  {"case": 5, "type": "ils", "start": "sha12:b9a1e3692503", "fleet": 21, "budget": 800, "repeats": 8, "objective": "robust", "kick": 3,
+   "why": "C5에서만 낮춘 출발이 새 22/D2 나무를 냈으나 출발은 5e06 하나였다. 1-500 1위 나무 자체를 21대로 낮춘 출발은 처음. 판정: 1-500 < 774.78"},
+  {"case": 5, "type": "ils", "start": "sha12:361c5a1a4a41", "fleet": 21, "budget": 800, "repeats": 8, "objective": "robust", "kick": 3,
+   "why": "1-500 2위(1위와 0.0187 차). 다른 출발 나무로 1위 근처 22/D2 분포를 넓힌다(처음). 판정: 1-500 < 774.78"},
+  {"case": 5, "type": "ils", "start": "sha12:1cf4fa442041", "fleet": 21, "budget": 800, "repeats": 4, "objective": "robust", "kick": 3,
+   "why": "1-500 3위 나무의 21대 출발(처음). 판정: 1-500 < 774.78"},
+  {"case": 4, "type": "ils", "start": "sha12:1e358630afb0", "fleet": 19, "budget": 1500, "repeats": 6, "objective": "public", "kick": 2,
+   "why": "17대 출발은 5/6이 17대에 갇혔다. 위(19대)에서 내려오는 방향은 처음(C2 공개 25→24 끌개와 같은 꼴). 판정: 공개 < 789.2041이고 1-500 반려 0"},
+  {"case": 4, "type": "ils", "start": "sha12:60faf3b07318", "fleet": 19, "budget": 1500, "repeats": 4, "objective": "public", "kick": 2,
+   "why": "공개 2위 D11 계열의 19대 출발(처음). 판정: 공개 < 789.2041이고 1-500 반려 0"},
+  {"case": 4, "type": "ils", "start": "sha12:76de42acbc69", "fleet": 19, "budget": 800, "repeats": 4, "objective": "robust", "kick": 2,
+   "why": "17대 출발은 8/8이 18/D9로, 3회는 76de 자신으로 회귀했다. 19대에서 내려오는 방향은 처음. 판정: 1-500 < 790.4171"},
+  {"case": 2, "type": "ils", "start": "sha12:63c180933a03", "fleet": 23, "budget": 1500, "repeats": 4, "objective": "public", "kick": 2,
+   "why": "C2 공개는 위쪽(25→24)만 확인됐다. 공개 1위 나무의 23대 출발은 처음. 판정: 공개 < 613.6186이고 1-500 반려 0"}
+ ]}
