@@ -7,15 +7,13 @@ README의 최고 기록 표와 같은 데이터에서 만든다. 표 위 순위�
 
 ## Case 1
 
-리더보드 1위 기록: **1170.20** (박진홍, 진홍 발표 문서 11/26 14:02)
-
 ### 범용성 상위 (시드 1–500) — Case 1 채점 기준
 
 | 순위 | 점수 | 다른 목표 점수 | 대수 | 통로 | 노드 | 만든 사람 | 출처 |
 |---|---|---|---|---|---|---|---|
 | 1 | **1180.5642** | 11–15 1185.9410 | 21 | D1 | 9 | 장승민 | jsm: experiments/case1/candidates/8e7431131490.csv |
-| 2 | **1180.6962** | 11–15 1177.9655 | 21 | D1 | 9 | 박진홍, 장승민 | jinhong-experiments: jinhong/answer_jinhong_submitted.csv |
-| 3 | **1180.7740** | 11–15 1181.6313 | 21 | D1 | 9 | 박진홍, 장승민 | jinhong-experiments: jinhong/answer_jinhong_alt.csv |
+| 2 | **1180.6962** | 11–15 1177.9655 | 21 | D1 | 9 | 박진홍 | jinhong-experiments: jinhong/answer_jinhong_submitted.csv |
+| 3 | **1180.7740** | 11–15 1181.6313 | 21 | D1 | 9 | 박진홍 | jinhong-experiments: jinhong/answer_jinhong_alt.csv |
 
 <details open><summary>1위 8e7431131490 트리 (21대, D1) · <a href="trees/case1-8e7431131490.csv">CSV</a></summary>
 
@@ -55,7 +53,7 @@ _자동 분석이 아직 이 케이스의 상위권 전략을 쓰지 않았다._
 
 | 순위 | 점수 | 다른 목표 점수 | 대수 | 통로 | 노드 | 만든 사람 | 출처 |
 |---|---|---|---|---|---|---|---|
-| 1 | **613.6186** | 1–500 616.0472 | 24 | D1 | 6 | 박진홍, 장승민 | jinhong-experiments: jinhong/case2/answer_case2.csv |
+| 1 | **613.6186** | 1–500 616.0472 | 24 | D1 | 6 | 박진홍 | jinhong-experiments: jinhong/case2/answer_case2.csv |
 | 2 | **613.6203** | 1–500 615.9934 | 24 | D1 | 6 | 장승민 | jsm: experiments/case2/candidates/e11ec2f18ec8.csv |
 | 3 | **613.6578** | 1–500 616.0930 | 24 | D1 | 9 | 장승민 | jsm 자동 탐색 auto-11272014 |
 
@@ -277,7 +275,7 @@ _자동 분석이 아직 이 케이스의 상위권 전략을 쓰지 않았다._
 
 | 순위 | 점수 | 다른 목표 점수 | 대수 | 통로 | 노드 | 만든 사람 | 출처 |
 |---|---|---|---|---|---|---|---|
-| 1 | **770.8816** | 1–500 786.7907 | 23 | D1 | 9 | 박진홍, 장승민 | jinhong-experiments: jinhong/case5/cand_77088.csv |
+| 1 | **770.8816** | 1–500 786.7907 | 23 | D1 | 9 | 박진홍 | jinhong-experiments: jinhong/case5/cand_77088.csv |
 | 2 | **770.8819** | 1–500 786.8071 | 23 | D1 | 9 | 장승민 | jsm 자동 탐색 auto-11272134 |
 | 3 | **770.8819** | 1–500 786.8488 | 23 | D1 | 9 | 장승민 | jsm 자동 탐색 auto-11271939 |
 

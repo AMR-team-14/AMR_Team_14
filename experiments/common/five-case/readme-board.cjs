@@ -32,12 +32,14 @@ for (const c of [1, 2, 3, 4, 5]) {
   // answers with the same score (to 4 decimals) on both objectives are the same record: credit everyone who has one
   const key = a => `${f4(a.public.cost)}|${f4(a.s500 && a.s500.cost)}`;
   const tie = a => ok.filter(x => key(x) === key(a));
-  const ownersOf = a => [...new Set(tie(a).flatMap(x => x.sources.map(s => s.author)))].join(', ');
+  // credit the original authors: jsm copies of a teammate's answer (same scores) do not add 장승민
+  const ownersOf = a => { const src = tie(a).flatMap(x => x.sources); const orig = src.filter(s => !s.branch.startsWith('jsm'));
+    return [...new Set((orig.length ? orig : src).map(s => s.author))].join(', '); };
   const rep = a => tie(a).find(x => x.sources.some(s => s.branch !== 'jsm')) || a;
   const cell = (a0, kind) => { const a = a0 && rep(a0); return a ? [`**${f4(kind === 'pub' ? a.public.cost : a.s500.cost)}**`, f4(kind === 'pub' ? (a.s500 && a.s500.cost) : a.public.cost),
     `${a.fleet}대`, ownersOf(a), origin(a), save(a, `case${c}-${kind === 'pub' ? 'dashboard' : 'robust'}.csv`)] : ['–', '–', '–', '–', '–', '–']; };
   const lb = LB[c];
-  const lbCell = !lb ? '–' : pub && pub.public.cost < lb.score - 0.005 ? `${lb.score.toFixed(2)} (${lb.who}) → **저장소 답이 기록 경신**`
+  const lbCell = c === 1 ? '없음 (비공개 시드 채점)' : !lb ? '–' : pub && pub.public.cost < lb.score - 0.005 ? `${lb.score.toFixed(2)} (${lb.who}) → **저장소 답이 기록 경신**`
     : `**${lb.score.toFixed(2)}** (${lb.who})${pub && pub.public.cost > lb.score + 0.005 ? ' — 저장소 답이 아직 못 넘음' : ''}`;
   rows.push({c, pub: cell(pub, 'pub'), rob: cell(rob, 'rob'), lb: lbCell});
 }

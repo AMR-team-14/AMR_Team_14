@@ -21,7 +21,8 @@ fs.mkdirSync(TREES, {recursive: true});
 
 const f4 = v => v === null || v === undefined ? '–' : Number(v).toFixed(4);
 const s5 = a => (a.s500 && a.s500.cost !== null ? a.s500.cost : Infinity);
-const who = a => [...new Set(a.sources.map(s => s.author))].join(', ');
+// credit the original authors: a jsm copy of a teammate's answer does not add 장승민
+const who = a => { const orig = a.sources.filter(s => !s.branch.startsWith('jsm')); return [...new Set((orig.length ? orig : a.sources).map(s => s.author))].join(', '); };
 const from = a => {
   const s = a.sources.find(x => x.kind !== 'search') || a.sources[0];
   return s.kind === 'search' ? `jsm 자동 탐색 ${(s.path.split('#')[1] || '').split(':')[0]}` : `${s.branch}: ${s.path}`;
